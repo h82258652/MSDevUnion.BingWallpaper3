@@ -19,13 +19,6 @@ namespace BingoWallpaper.Models
             set;
         }
 
-        [JsonProperty("query")]
-        public string Query
-        {
-            get;
-            set;
-        }
-
         [JsonProperty("locx")]
         public int LocationX
         {
@@ -35,6 +28,13 @@ namespace BingoWallpaper.Models
 
         [JsonProperty("locy")]
         public int LocationY
+        {
+            get;
+            set;
+        }
+
+        [JsonProperty("query")]
+        public string Query
         {
             get;
             set;

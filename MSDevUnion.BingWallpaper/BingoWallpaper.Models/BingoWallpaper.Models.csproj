@@ -40,6 +40,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Hotspot.cs" />
+    <Compile Include="Models\IImage.cs" />
+    <Compile Include="Models\LeanCloud\AVObject.cs" />
+    <Compile Include="Models\LeanCloud\Image.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
