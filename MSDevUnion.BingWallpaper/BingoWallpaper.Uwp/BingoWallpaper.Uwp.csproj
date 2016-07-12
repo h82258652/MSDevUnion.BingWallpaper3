@@ -123,7 +123,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\BingoWallpaper.Services\BingoWallpaper.Services.csproj">
+      <Project>{0566ba90-61fe-4703-a729-cf6258476673}</Project>
+      <Name>BingoWallpaper.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Page Include="Views\MainView.xaml">
       <SubType>Designer</SubType>
