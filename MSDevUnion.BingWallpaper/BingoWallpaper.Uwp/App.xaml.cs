@@ -9,7 +9,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace BingoWallpaper.Uwp
 {
-    internal sealed partial class App
+    public sealed partial class App
     {
         public App()
         {

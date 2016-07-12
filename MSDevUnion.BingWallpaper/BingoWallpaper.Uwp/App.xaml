@@ -1,5 +1,9 @@
 ﻿<Application x:Class="BingoWallpaper.Uwp.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="using:BingoWallpaper.Uwp"
-             RequestedTheme="Light" />
+             xmlns:viewModels="using:BingoWallpaper.Uwp.ViewModels"
+             RequestedTheme="Light">
+    <Application.Resources>
+        <viewModels:ViewModelLocator x:Key="Locator" />
+    </Application.Resources>
+</Application>
