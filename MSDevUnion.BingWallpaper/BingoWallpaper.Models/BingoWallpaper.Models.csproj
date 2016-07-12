@@ -46,6 +46,7 @@
     <Compile Include="Models\LeanCloud\CoverStory.cs" />
     <Compile Include="Models\LeanCloud\Image.cs" />
     <Compile Include="Models\LeanCloud\LeanCloudPointer.cs" />
+    <Compile Include="Models\LeanCloud\Wallpaper.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
