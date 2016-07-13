@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -26,6 +27,33 @@ namespace BingoWallpaper.Services
             {
                 var json = await client.GetStringAsync(requestUrl);
                 return JsonConvert.DeserializeObject<Image>(json);
+            }
+        }
+
+        public async Task<LeanCloudResultCollection<Image>> GetImagesAsync(IEnumerable<string> objectIds)
+        {
+            if (objectIds == null)
+            {
+                throw new ArgumentNullException(nameof(objectIds));
+            }
+
+            var where = new
+            {
+                objectId = new Dictionary<string, IEnumerable<string>>()
+                {
+                    {
+                        "$in",
+                        objectIds
+                    }
+                }
+            };
+
+            string requestUrl = $"{Constants.LeanCloudUrlBase}/1.1/classes/Image?where={WebUtility.UrlEncode(JsonConvert.SerializeObject(where))}&order=-updatedAt";
+
+            using (var client = new HttpClient())
+            {
+                var json = await client.GetStringAsync(requestUrl);
+                return JsonConvert.DeserializeObject<LeanCloudResultCollection<Image>>(json);
             }
         }
 
