@@ -7,7 +7,7 @@
                             Path=Main}"
       mc:Ignorable="d">
     <Page.BottomAppBar>
-        <AppBar></AppBar>
+        <AppBar ClosedDisplayMode="Compact" />
     </Page.BottomAppBar>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" />
 </Page>
