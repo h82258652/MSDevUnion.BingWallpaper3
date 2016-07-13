@@ -29,5 +29,21 @@ namespace BingoWallpaper.Services.UnitTests
                 await _service.GetImageAsync(string.Empty);
             });
         }
+
+        [Test]
+        public async Task TestGetImagesAsync()
+        {
+            var images = await _service.GetImagesAsync(new[]
+            {
+                "559d0e88e4b03bd51879a0de",
+                "559d0e88e4b0a35bc506fbf8"
+            });
+            Assert.AreEqual(images.ErrorCode, 0);
+            Assert.AreEqual(images.Results.Count, 2);
+            Assert.ThrowsAsync<ArgumentNullException>(async () =>
+            {
+                await _service.GetImagesAsync(null);
+            });
+        }
     }
 }
