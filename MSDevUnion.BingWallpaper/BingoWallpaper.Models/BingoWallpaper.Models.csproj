@@ -47,11 +47,18 @@
     <Compile Include="Models\LeanCloud\Image.cs" />
     <Compile Include="Models\LeanCloud\LeanCloudPointer.cs" />
     <Compile Include="Models\LeanCloud\Wallpaper.cs" />
+    <Compile Include="Models\LeanCloud\WallpaperCollection.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\Bing\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BingoWallpaper.Utils\BingoWallpaper.Utils.csproj">
+      <Project>{c523169b-c592-4fe4-a683-0a8189462efd}</Project>
+      <Name>BingoWallpaper.Utils</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
