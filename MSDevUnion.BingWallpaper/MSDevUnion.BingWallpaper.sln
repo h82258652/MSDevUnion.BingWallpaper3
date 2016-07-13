@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BingoWallpaper.Models", "Bi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BingoWallpaper.Utils", "BingoWallpaper.Utils\BingoWallpaper.Utils.csproj", "{C523169B-C592-4FE4-A683-0A8189462EFD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BingoWallpaper.Services.UnitTests", "BingoWallpaper.Services.UnitTests\BingoWallpaper.Services.UnitTests.csproj", "{801E5EB5-5AF9-4E44-8590-6EBCBF1037BA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +93,22 @@ Global
 		{C523169B-C592-4FE4-A683-0A8189462EFD}.Release|x64.Build.0 = Release|Any CPU
 		{C523169B-C592-4FE4-A683-0A8189462EFD}.Release|x86.ActiveCfg = Release|Any CPU
 		{C523169B-C592-4FE4-A683-0A8189462EFD}.Release|x86.Build.0 = Release|Any CPU
+		{801E5EB5-5AF9-4E44-8590-6EBCBF1037BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{801E5EB5-5AF9-4E44-8590-6EBCBF1037BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{801E5EB5-5AF9-4E44-8590-6EBCBF1037BA}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{801E5EB5-5AF9-4E44-8590-6EBCBF1037BA}.Debug|ARM.Build.0 = Debug|Any CPU
+		{801E5EB5-5AF9-4E44-8590-6EBCBF1037BA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{801E5EB5-5AF9-4E44-8590-6EBCBF1037BA}.Debug|x64.Build.0 = Debug|Any CPU
+		{801E5EB5-5AF9-4E44-8590-6EBCBF1037BA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{801E5EB5-5AF9-4E44-8590-6EBCBF1037BA}.Debug|x86.Build.0 = Debug|Any CPU
+		{801E5EB5-5AF9-4E44-8590-6EBCBF1037BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{801E5EB5-5AF9-4E44-8590-6EBCBF1037BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{801E5EB5-5AF9-4E44-8590-6EBCBF1037BA}.Release|ARM.ActiveCfg = Release|Any CPU
+		{801E5EB5-5AF9-4E44-8590-6EBCBF1037BA}.Release|ARM.Build.0 = Release|Any CPU
+		{801E5EB5-5AF9-4E44-8590-6EBCBF1037BA}.Release|x64.ActiveCfg = Release|Any CPU
+		{801E5EB5-5AF9-4E44-8590-6EBCBF1037BA}.Release|x64.Build.0 = Release|Any CPU
+		{801E5EB5-5AF9-4E44-8590-6EBCBF1037BA}.Release|x86.ActiveCfg = Release|Any CPU
+		{801E5EB5-5AF9-4E44-8590-6EBCBF1037BA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
