@@ -1,4 +1,6 @@
 ﻿using NUnit.Framework;
+using System;
+using System.Threading.Tasks;
 
 namespace BingoWallpaper.Services.UnitTests
 {
@@ -14,9 +16,18 @@ namespace BingoWallpaper.Services.UnitTests
         }
 
         [Test]
-        public void TestGetImageAsync()
+        public async Task TestGetImageAsync()
         {
-            Assert.Fail();
+            var image = await _service.GetImageAsync("559d0e88e4b03bd51879a0de");
+            Assert.AreEqual(image.ErrorCode, 0);
+            Assert.ThrowsAsync<ArgumentNullException>(async () =>
+            {
+                await _service.GetImageAsync(null);
+            });
+            Assert.ThrowsAsync<ArgumentException>(async () =>
+            {
+                await _service.GetImageAsync(string.Empty);
+            });
         }
     }
 }

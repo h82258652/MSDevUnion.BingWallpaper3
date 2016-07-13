@@ -4,7 +4,7 @@ using System;
 namespace BingoWallpaper.Models.LeanCloud
 {
     [JsonObject]
-    public class AVObject
+    public class AVObject : LeanCloudResultBase
     {
         [JsonProperty("createdAt")]
         public DateTime CreatedAt
