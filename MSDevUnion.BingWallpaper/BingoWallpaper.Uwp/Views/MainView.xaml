@@ -9,5 +9,7 @@
     <Page.BottomAppBar>
         <AppBar ClosedDisplayMode="Compact" />
     </Page.BottomAppBar>
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" />
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <FlipView ItemsSource="{Binding Path=WallpaperCollections, Mode=OneTime}" />
+    </Grid>
 </Page>
