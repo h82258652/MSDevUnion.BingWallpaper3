@@ -6,6 +6,7 @@
       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:leanCloud="using:BingoWallpaper.Models.LeanCloud"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:media="using:Microsoft.Xaml.Interactions.Media"
       xmlns:uwp="using:FontAwesome.UWP"
@@ -74,6 +75,10 @@
                                         Mode=OneTime}"
                   SelectedItem="{Binding Path=SelectedWallpaperCollection,
                                          Mode=TwoWay}"
-                  Style="{StaticResource BingoWallpaperFlipViewStyle}" />
+                  Style="{StaticResource BingoWallpaperFlipViewStyle}">
+            <FlipView.ItemTemplate>
+                <DataTemplate x:DataType="leanCloud:WallpaperCollection" />
+            </FlipView.ItemTemplate>
+        </FlipView>
     </Grid>
 </Page>
