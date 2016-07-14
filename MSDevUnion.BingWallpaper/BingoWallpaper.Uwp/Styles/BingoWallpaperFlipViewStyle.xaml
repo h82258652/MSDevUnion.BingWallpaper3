@@ -1,6 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:system="using:System"
+                    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+                    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+                    xmlns:media="using:Microsoft.Xaml.Interactions.Media"
                     xmlns:uwp="using:FontAwesome.UWP">
     <SolidColorBrush x:Key="BingoWallpaperFlipViewBackgroundBrush"
                      Color="Transparent" />
@@ -16,9 +18,12 @@
                      Color="#C0000000" />
     <SolidColorBrush x:Key="BingoWallpaperFlipViewButtonPressedForegroundBrush"
                      Color="White" />
-    <system:Double x:Key="BingoWallpaperFlipViewButtonFontSize">12</system:Double>
     <Style x:Key="BingoWallpaperFlipViewPreviousButtonHorizontalStyle"
            TargetType="Button">
+        <Setter Property="HorizontalAlignment"
+                Value="Stretch" />
+        <Setter Property="VerticalAlignment"
+                Value="Stretch" />
         <Setter Property="HorizontalContentAlignment"
                 Value="Center" />
         <Setter Property="VerticalContentAlignment"
@@ -28,7 +33,7 @@
         <Setter Property="Foreground"
                 Value="{StaticResource BingoWallpaperFlipViewButtonForegroundBrush}" />
         <Setter Property="FontSize"
-                Value="{StaticResource BingoWallpaperFlipViewButtonFontSize}" />
+                Value="12" />
         <Setter Property="IsTabStop"
                 Value="False" />
         <Setter Property="UseSystemFocusVisuals"
@@ -76,6 +81,10 @@
     </Style>
     <Style x:Key="BingoWallpaperFlipViewNextButtonHorizontalStyle"
            TargetType="Button">
+        <Setter Property="HorizontalAlignment"
+                Value="Stretch" />
+        <Setter Property="VerticalAlignment"
+                Value="Stretch" />
         <Setter Property="HorizontalContentAlignment"
                 Value="Center" />
         <Setter Property="VerticalContentAlignment"
@@ -85,7 +94,7 @@
         <Setter Property="Foreground"
                 Value="{StaticResource BingoWallpaperFlipViewButtonForegroundBrush}" />
         <Setter Property="FontSize"
-                Value="{StaticResource BingoWallpaperFlipViewButtonFontSize}" />
+                Value="12" />
         <Setter Property="IsTabStop"
                 Value="False" />
         <Setter Property="UseSystemFocusVisuals"
@@ -133,6 +142,10 @@
     </Style>
     <Style x:Key="BingoWallpaperFlipViewPreviousButtonVerticalStyle"
            TargetType="Button">
+        <Setter Property="HorizontalAlignment"
+                Value="Stretch" />
+        <Setter Property="VerticalAlignment"
+                Value="Stretch" />
         <Setter Property="HorizontalContentAlignment"
                 Value="Center" />
         <Setter Property="VerticalContentAlignment"
@@ -142,7 +155,7 @@
         <Setter Property="Foreground"
                 Value="{StaticResource BingoWallpaperFlipViewButtonForegroundBrush}" />
         <Setter Property="FontSize"
-                Value="{StaticResource BingoWallpaperFlipViewButtonFontSize}" />
+                Value="12" />
         <Setter Property="IsTabStop"
                 Value="False" />
         <Setter Property="UseSystemFocusVisuals"
@@ -190,6 +203,10 @@
     </Style>
     <Style x:Key="BingoWallpaperFlipViewNextButtonVerticalStyle"
            TargetType="Button">
+        <Setter Property="HorizontalAlignment"
+                Value="Stretch" />
+        <Setter Property="VerticalAlignment"
+                Value="Stretch" />
         <Setter Property="HorizontalContentAlignment"
                 Value="Center" />
         <Setter Property="VerticalContentAlignment"
@@ -199,7 +216,7 @@
         <Setter Property="Foreground"
                 Value="{StaticResource BingoWallpaperFlipViewButtonForegroundBrush}" />
         <Setter Property="FontSize"
-                Value="{StaticResource BingoWallpaperFlipViewButtonFontSize}" />
+                Value="12" />
         <Setter Property="IsTabStop"
                 Value="False" />
         <Setter Property="UseSystemFocusVisuals"
@@ -249,6 +266,36 @@
            TargetType="FlipView">
         <Setter Property="Background"
                 Value="{StaticResource BingoWallpaperFlipViewBackgroundBrush}" />
+        <Setter Property="BorderThickness"
+                Value="0" />
+        <Setter Property="TabNavigation"
+                Value="Once" />
+        <Setter Property="IsTabStop"
+                Value="False" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility"
+                Value="Hidden" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility"
+                Value="Hidden" />
+        <Setter Property="ScrollViewer.IsHorizontalRailEnabled"
+                Value="False" />
+        <Setter Property="ScrollViewer.IsVerticalRailEnabled"
+                Value="False" />
+        <Setter Property="ScrollViewer.IsHorizontalScrollChainingEnabled"
+                Value="True" />
+        <Setter Property="ScrollViewer.IsDeferredScrollingEnabled"
+                Value="False" />
+        <Setter Property="ScrollViewer.BringIntoViewOnFocusChange"
+                Value="True" />
+        <Setter Property="UseSystemFocusVisuals"
+                Value="True" />
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel AreScrollSnapPointsRegular="True"
+                                            Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="FlipView">
@@ -290,31 +337,31 @@
                             </Border>
                             <Button x:Name="PreviousButtonHorizontal"
                                     Style="{StaticResource BingoWallpaperFlipViewPreviousButtonHorizontalStyle}">
-                                <Interaction.Behaviors>
-                                    <EventTriggerBehavior EventName="Click">
-                                        <ControlStoryboardAction ControlStoryboardOption="Play">
-                                            <ControlStoryboardAction.Storyboard>
+                                <interactivity:Interaction.Behaviors>
+                                    <core:EventTriggerBehavior EventName="Click">
+                                        <media:ControlStoryboardAction ControlStoryboardOption="Play">
+                                            <media:ControlStoryboardAction.Storyboard>
                                                 <Storyboard>
-                                                    <DoubleAnimation Duration="0:0:0.25"
-                                                                     From="1"
-                                                                     Storyboard.TargetName="PreviousHorizontalSemicircle"
+                                                    <DoubleAnimation Storyboard.TargetName="PreviousHorizontalSemicircle"
                                                                      Storyboard.TargetProperty="Opacity"
-                                                                     To="0" />
-                                                    <DoubleAnimation Duration="0:0:0.25"
                                                                      From="1"
-                                                                     Storyboard.TargetName="PreviousHorizontalSemicircleScaleTransform"
+                                                                     To="0"
+                                                                     Duration="0:0:0.25" />
+                                                    <DoubleAnimation Storyboard.TargetName="PreviousHorizontalSemicircleScaleTransform"
                                                                      Storyboard.TargetProperty="ScaleX"
-                                                                     To="5" />
-                                                    <DoubleAnimation Duration="0:0:0.25"
                                                                      From="1"
-                                                                     Storyboard.TargetName="PreviousHorizontalSemicircleScaleTransform"
+                                                                     To="5"
+                                                                     Duration="0:0:0.25" />
+                                                    <DoubleAnimation Storyboard.TargetName="PreviousHorizontalSemicircleScaleTransform"
                                                                      Storyboard.TargetProperty="ScaleY"
-                                                                     To="5" />
+                                                                     From="1"
+                                                                     To="5"
+                                                                     Duration="0:0:0.25" />
                                                 </Storyboard>
-                                            </ControlStoryboardAction.Storyboard>
-                                        </ControlStoryboardAction>
-                                    </EventTriggerBehavior>
-                                </Interaction.Behaviors>
+                                            </media:ControlStoryboardAction.Storyboard>
+                                        </media:ControlStoryboardAction>
+                                    </core:EventTriggerBehavior>
+                                </interactivity:Interaction.Behaviors>
                             </Button>
                         </Grid>
                         <Grid Width="20"
@@ -332,31 +379,31 @@
                             </Border>
                             <Button x:Name="NextButtonHorizontal"
                                     Style="{StaticResource BingoWallpaperFlipViewNextButtonHorizontalStyle}">
-                                <Interaction.Behaviors>
-                                    <EventTriggerBehavior EventName="Click">
-                                        <ControlStoryboardAction ControlStoryboardOption="Play">
-                                            <ControlStoryboardAction.Storyboard>
+                                <interactivity:Interaction.Behaviors>
+                                    <core:EventTriggerBehavior EventName="Click">
+                                        <media:ControlStoryboardAction ControlStoryboardOption="Play">
+                                            <media:ControlStoryboardAction.Storyboard>
                                                 <Storyboard>
-                                                    <DoubleAnimation Duration="0:0:0.25"
-                                                                     From="1"
-                                                                     Storyboard.TargetName="NextHorizontalSemicircle"
+                                                    <DoubleAnimation Storyboard.TargetName="NextHorizontalSemicircle"
                                                                      Storyboard.TargetProperty="Opacity"
-                                                                     To="0" />
-                                                    <DoubleAnimation Duration="0:0:0.25"
                                                                      From="1"
-                                                                     Storyboard.TargetName="NextHorizontalSemicircleScaleTransform"
+                                                                     To="0"
+                                                                     Duration="0:0:0.25" />
+                                                    <DoubleAnimation Storyboard.TargetName="NextHorizontalSemicircleScaleTransform"
                                                                      Storyboard.TargetProperty="ScaleX"
-                                                                     To="5" />
-                                                    <DoubleAnimation Duration="0:0:0.25"
                                                                      From="1"
-                                                                     Storyboard.TargetName="NextHorizontalSemicircleScaleTransform"
+                                                                     To="5"
+                                                                     Duration="0:0:0.25" />
+                                                    <DoubleAnimation Storyboard.TargetName="NextHorizontalSemicircleScaleTransform"
                                                                      Storyboard.TargetProperty="ScaleY"
-                                                                     To="5" />
+                                                                     From="1"
+                                                                     To="5"
+                                                                     Duration="0:0:0.25" />
                                                 </Storyboard>
-                                            </ControlStoryboardAction.Storyboard>
-                                        </ControlStoryboardAction>
-                                    </EventTriggerBehavior>
-                                </Interaction.Behaviors>
+                                            </media:ControlStoryboardAction.Storyboard>
+                                        </media:ControlStoryboardAction>
+                                    </core:EventTriggerBehavior>
+                                </interactivity:Interaction.Behaviors>
                             </Button>
                         </Grid>
                         <Grid Width="40"
@@ -374,31 +421,31 @@
                             </Border>
                             <Button x:Name="PreviousButtonVertical"
                                     Style="{StaticResource BingoWallpaperFlipViewPreviousButtonVerticalStyle}">
-                                <Interaction.Behaviors>
-                                    <EventTriggerBehavior EventName="Click">
-                                        <ControlStoryboardAction ControlStoryboardOption="Play">
-                                            <ControlStoryboardAction.Storyboard>
+                                <interactivity:Interaction.Behaviors>
+                                    <core:EventTriggerBehavior EventName="Click">
+                                        <media:ControlStoryboardAction ControlStoryboardOption="Play">
+                                            <media:ControlStoryboardAction.Storyboard>
                                                 <Storyboard>
-                                                    <DoubleAnimation Duration="0:0:0.25"
-                                                                     From="1"
-                                                                     Storyboard.TargetName="PreviousVerticalSemicircle"
+                                                    <DoubleAnimation Storyboard.TargetName="PreviousVerticalSemicircle"
                                                                      Storyboard.TargetProperty="Opacity"
-                                                                     To="0" />
-                                                    <DoubleAnimation Duration="0:0:0.25"
                                                                      From="1"
-                                                                     Storyboard.TargetName="PreviousVerticalSemicircleScaleTransform"
+                                                                     To="0"
+                                                                     Duration="0:0:0.25" />
+                                                    <DoubleAnimation Storyboard.TargetName="PreviousVerticalSemicircleScaleTransform"
                                                                      Storyboard.TargetProperty="ScaleX"
-                                                                     To="5" />
-                                                    <DoubleAnimation Duration="0:0:0.25"
                                                                      From="1"
-                                                                     Storyboard.TargetName="PreviousVerticalSemicircleScaleTransform"
+                                                                     To="5"
+                                                                     Duration="0:0:0.25" />
+                                                    <DoubleAnimation Storyboard.TargetName="PreviousVerticalSemicircleScaleTransform"
                                                                      Storyboard.TargetProperty="ScaleY"
-                                                                     To="5" />
+                                                                     From="1"
+                                                                     To="5"
+                                                                     Duration="0:0:0.25" />
                                                 </Storyboard>
-                                            </ControlStoryboardAction.Storyboard>
-                                        </ControlStoryboardAction>
-                                    </EventTriggerBehavior>
-                                </Interaction.Behaviors>
+                                            </media:ControlStoryboardAction.Storyboard>
+                                        </media:ControlStoryboardAction>
+                                    </core:EventTriggerBehavior>
+                                </interactivity:Interaction.Behaviors>
                             </Button>
                         </Grid>
                         <Grid Width="40"
@@ -416,31 +463,31 @@
                             </Border>
                             <Button x:Name="NextButtonVertical"
                                     Style="{StaticResource BingoWallpaperFlipViewNextButtonVerticalStyle}">
-                                <Interaction.Behaviors>
-                                    <EventTriggerBehavior EventName="Click">
-                                        <ControlStoryboardAction ControlStoryboarOption="Play">
-                                            <ControlStoryboardAction.Storyboard>
+                                <interactivity:Interaction.Behaviors>
+                                    <core:EventTriggerBehavior EventName="Click">
+                                        <media:ControlStoryboardAction ControlStoryboardOption="Play">
+                                            <media:ControlStoryboardAction.Storyboard>
                                                 <Storyboard>
-                                                    <DoubleAnimation Duration="0:0:0.25"
-                                                                     From="1"
-                                                                     Storyboard.TargetName="NextVerticalSemicircle"
+                                                    <DoubleAnimation Storyboard.TargetName="NextVerticalSemicircle"
                                                                      Storyboard.TargetProperty="Opacity"
-                                                                     To="0" />
-                                                    <DoubleAnimation Duration="0:0:0.25"
                                                                      From="1"
-                                                                     Storyboard.TargetName="NextVerticalSemicircleScaleTransform"
+                                                                     To="0"
+                                                                     Duration="0:0:0.25" />
+                                                    <DoubleAnimation Storyboard.TargetName="NextVerticalSemicircleScaleTransform"
                                                                      Storyboard.TargetProperty="ScaleX"
-                                                                     To="5" />
-                                                    <DoubleAnimation Duration="0:0:0.25"
                                                                      From="1"
-                                                                     Storyboard.TargetName="NextVerticalSemicircleScaleTransform"
+                                                                     To="5"
+                                                                     Duration="0:0:0.25" />
+                                                    <DoubleAnimation Storyboard.TargetName="NextVerticalSemicircleScaleTransform"
                                                                      Storyboard.TargetProperty="ScaleY"
-                                                                     To="5" />
+                                                                     From="1"
+                                                                     To="5"
+                                                                     Duration="0:0:0.25" />
                                                 </Storyboard>
-                                            </ControlStoryboardAction.Storyboard>
-                                        </ControlStoryboardAction>
-                                    </EventTriggerBehavior>
-                                </Interaction.Behaviors>
+                                            </media:ControlStoryboardAction.Storyboard>
+                                        </media:ControlStoryboardAction>
+                                    </core:EventTriggerBehavior>
+                                </interactivity:Interaction.Behaviors>
                             </Button>
                         </Grid>
                     </Grid>
