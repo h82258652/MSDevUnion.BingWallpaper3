@@ -15,6 +15,7 @@
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/BingoWallpaperBrushStyle.xaml" />
                 <ResourceDictionary Source="/Styles/BingoWallpaperFlipViewStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <converters:BooleanNegationConverter x:Key="BooleanNegationConverter" />
@@ -30,6 +31,7 @@
     </Page.Resources>
     <Page.BottomAppBar>
         <AppBar x:Name="AppBar"
+                Background="{ThemeResource SystemAccentBrush}"
                 ClosedDisplayMode="Compact">
             <Grid>
                 <Grid.ColumnDefinitions>
