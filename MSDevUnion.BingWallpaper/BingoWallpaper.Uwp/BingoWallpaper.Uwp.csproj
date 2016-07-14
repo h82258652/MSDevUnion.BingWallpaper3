@@ -132,6 +132,10 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BingoWallpaper.Configuration\BingoWallpaper.Configuration.csproj">
+      <Project>{242f3ee3-e03f-4a7e-b679-ba957acd0215}</Project>
+      <Name>BingoWallpaper.Configuration</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BingoWallpaper.Models\BingoWallpaper.Models.csproj">
       <Project>{62274e0e-9ab4-489f-b8e2-3e7ec0462b1e}</Project>
       <Name>BingoWallpaper.Models</Name>

@@ -1,4 +1,5 @@
-﻿using BingoWallpaper.Models.LeanCloud;
+﻿using BingoWallpaper.Configuration;
+using BingoWallpaper.Models.LeanCloud;
 using BingoWallpaper.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -14,6 +15,8 @@ namespace BingoWallpaper.Uwp.ViewModels
         private readonly ILeanCloudWallpaperService _leanCloudWallpaperService;
 
         private readonly INavigationService _navigationService;
+
+        private readonly IBingoWallpaperSettings _settings;
 
         private bool _isBusy;
 
@@ -52,7 +55,7 @@ namespace BingoWallpaper.Uwp.ViewModels
         {
             get
             {
-                _refreshCommand = _refreshCommand ?? new RelayCommand(() =>
+                _refreshCommand = _refreshCommand ?? new RelayCommand(async () =>
                 {
                     // TODO remove this test code.
                     IsBusy = !IsBusy;
@@ -64,7 +67,11 @@ namespace BingoWallpaper.Uwp.ViewModels
                         var selectedWallpaperCollection = SelectedWallpaperCollection;
                         selectedWallpaperCollection.Clear();
 
-                        throw new NotImplementedException();
+                        var wallpapers = await _leanCloudWallpaperService.GetWallpapersAsync(selectedWallpaperCollection.Year, selectedWallpaperCollection.Month, _settings.SelectedArea);
+                        foreach (var wallpaper in wallpapers)
+                        {
+                            selectedWallpaperCollection.Add(wallpaper);
+                        }
                     }
                     finally
                     {

@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BingoWallpaper.Utils", "Bin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BingoWallpaper.Services.UnitTests", "BingoWallpaper.Services.UnitTests\BingoWallpaper.Services.UnitTests.csproj", "{801E5EB5-5AF9-4E44-8590-6EBCBF1037BA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BingoWallpaper.Configuration", "BingoWallpaper.Configuration\BingoWallpaper.Configuration.csproj", "{242F3EE3-E03F-4A7E-B679-BA957ACD0215}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -109,6 +111,22 @@ Global
 		{801E5EB5-5AF9-4E44-8590-6EBCBF1037BA}.Release|x64.Build.0 = Release|Any CPU
 		{801E5EB5-5AF9-4E44-8590-6EBCBF1037BA}.Release|x86.ActiveCfg = Release|Any CPU
 		{801E5EB5-5AF9-4E44-8590-6EBCBF1037BA}.Release|x86.Build.0 = Release|Any CPU
+		{242F3EE3-E03F-4A7E-B679-BA957ACD0215}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{242F3EE3-E03F-4A7E-B679-BA957ACD0215}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{242F3EE3-E03F-4A7E-B679-BA957ACD0215}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{242F3EE3-E03F-4A7E-B679-BA957ACD0215}.Debug|ARM.Build.0 = Debug|Any CPU
+		{242F3EE3-E03F-4A7E-B679-BA957ACD0215}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{242F3EE3-E03F-4A7E-B679-BA957ACD0215}.Debug|x64.Build.0 = Debug|Any CPU
+		{242F3EE3-E03F-4A7E-B679-BA957ACD0215}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{242F3EE3-E03F-4A7E-B679-BA957ACD0215}.Debug|x86.Build.0 = Debug|Any CPU
+		{242F3EE3-E03F-4A7E-B679-BA957ACD0215}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{242F3EE3-E03F-4A7E-B679-BA957ACD0215}.Release|Any CPU.Build.0 = Release|Any CPU
+		{242F3EE3-E03F-4A7E-B679-BA957ACD0215}.Release|ARM.ActiveCfg = Release|Any CPU
+		{242F3EE3-E03F-4A7E-B679-BA957ACD0215}.Release|ARM.Build.0 = Release|Any CPU
+		{242F3EE3-E03F-4A7E-B679-BA957ACD0215}.Release|x64.ActiveCfg = Release|Any CPU
+		{242F3EE3-E03F-4A7E-B679-BA957ACD0215}.Release|x64.Build.0 = Release|Any CPU
+		{242F3EE3-E03F-4A7E-B679-BA957ACD0215}.Release|x86.ActiveCfg = Release|Any CPU
+		{242F3EE3-E03F-4A7E-B679-BA957ACD0215}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
