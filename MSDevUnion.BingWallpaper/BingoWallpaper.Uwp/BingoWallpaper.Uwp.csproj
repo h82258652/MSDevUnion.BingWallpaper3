@@ -99,6 +99,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Behaviors\BeginOrResumeStoryboardAction.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Converters\BooleanNegationConverter.cs" />
     <Compile Include="Extensions\StoryboardExtensions.cs" />
