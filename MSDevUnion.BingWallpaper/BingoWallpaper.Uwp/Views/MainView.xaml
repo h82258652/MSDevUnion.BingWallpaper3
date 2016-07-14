@@ -1,16 +1,48 @@
 ﻿<Page x:Class="BingoWallpaper.Uwp.Views.MainView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:converters="using:BingoWallpaper.Uwp.Converters"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:uwp="using:FontAwesome.UWP"
       DataContext="{Binding Source={StaticResource Locator},
                             Path=Main}"
       mc:Ignorable="d">
     <Page.Resources>
-        <ResourceDictionary Source="/Styles/BingoWallpaperFlipViewStyle.xaml" />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/BingoWallpaperFlipViewStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <converters:BooleanNegationConverter x:Key="BooleanNegationConverter" />
+        </ResourceDictionary>
     </Page.Resources>
     <Page.BottomAppBar>
-        <AppBar ClosedDisplayMode="Compact" />
+        <AppBar x:Name="AppBar"
+                ClosedDisplayMode="Compact">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <AppBarButton x:Uid="/MainView/RefreshButton"
+                              Grid.Column="1"
+                              Command="{Binding Path=RefreshCommand}"
+                              IsCompact="{Binding ElementName=AppBar,
+                                                  Path=IsOpen,
+                                                  Converter={StaticResource BooleanNegationConverter}}">
+                    <AppBarButton.Icon>
+                        <uwp:FontAwesome Icon="Refresh"
+                                         RenderTransformOrigin="0.5,0.5">
+                            <uwp:FontAwesome.RenderTransform>
+                                <RotateTransform x:Name="RefreshIconRotateTransform" />
+                            </uwp:FontAwesome.RenderTransform>
+                        </uwp:FontAwesome>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+            </Grid>
+        </AppBar>
     </Page.BottomAppBar>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <FlipView ItemsSource="{Binding Path=WallpaperCollections,
