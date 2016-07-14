@@ -50,15 +50,17 @@ namespace BingoWallpaper.Uwp.ViewModels
             {
                 _refreshCommand = _refreshCommand ?? new RelayCommand(() =>
                 {
-                    IsBusy = true;
-                    try
-                    {
-                        throw new NotImplementedException();
-                    }
-                    finally
-                    {
-                        IsBusy = false;
-                    }
+                    // TODO
+                    IsBusy = !IsBusy;
+                    //IsBusy = true;
+                    //try
+                    //{
+                    //    throw new NotImplementedException();
+                    //}
+                    //finally
+                    //{
+                    //    IsBusy = false;
+                    //}
                 });
                 return _refreshCommand;
             }
