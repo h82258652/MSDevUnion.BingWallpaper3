@@ -1,4 +1,5 @@
 ﻿using BingoWallpaper.Models.LeanCloud;
+using BingoWallpaper.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
@@ -10,6 +11,8 @@ namespace BingoWallpaper.Uwp.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
+        private readonly ILeanCloudWallpaperService _leanCloudWallpaperService;
+
         private readonly INavigationService _navigationService;
 
         private bool _isBusy;
@@ -18,9 +21,10 @@ namespace BingoWallpaper.Uwp.ViewModels
 
         private WallpaperCollection _selectedWallpaperCollection;
 
-        public MainViewModel(INavigationService navigationService)
+        public MainViewModel(INavigationService navigationService, ILeanCloudWallpaperService leanCloudWallpaperService)
         {
             _navigationService = navigationService;
+            _leanCloudWallpaperService = leanCloudWallpaperService;
 
             var wallpaperCollections = new List<WallpaperCollection>();
             var date = BingoWallpaper.Constants.MinimumViewMonth;
@@ -50,17 +54,22 @@ namespace BingoWallpaper.Uwp.ViewModels
             {
                 _refreshCommand = _refreshCommand ?? new RelayCommand(() =>
                 {
-                    // TODO
+                    // TODO remove this test code.
                     IsBusy = !IsBusy;
-                    //IsBusy = true;
-                    //try
-                    //{
-                    //    throw new NotImplementedException();
-                    //}
-                    //finally
-                    //{
-                    //    IsBusy = false;
-                    //}
+                    return;
+
+                    IsBusy = true;
+                    try
+                    {
+                        var selectedWallpaperCollection = SelectedWallpaperCollection;
+                        selectedWallpaperCollection.Clear();
+
+                        throw new NotImplementedException();
+                    }
+                    finally
+                    {
+                        IsBusy = false;
+                    }
                 });
                 return _refreshCommand;
             }

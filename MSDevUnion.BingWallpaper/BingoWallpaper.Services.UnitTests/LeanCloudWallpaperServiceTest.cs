@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BingoWallpaper.Services.UnitTests
@@ -13,6 +14,26 @@ namespace BingoWallpaper.Services.UnitTests
         public void SetUp()
         {
             _service = new LeanCloudWallpaperService();
+        }
+
+        [Test]
+        public async Task TestGetArchivesAsync()
+        {
+            var archives = await _service.GetArchivesAsync(2015, 1, "zh-CN");
+            Assert.AreEqual(archives.ErrorCode, 0);
+            Assert.True(archives.Any());
+            Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () =>
+            {
+                await _service.GetArchivesAsync(2014, 12, "zh-CN");
+            });
+            Assert.ThrowsAsync<ArgumentNullException>(async () =>
+            {
+                await _service.GetArchivesAsync(2015, 1, null);
+            });
+            Assert.ThrowsAsync<ArgumentException>(async () =>
+            {
+                await _service.GetArchivesAsync(2015, 1, string.Empty);
+            });
         }
 
         [Test]
@@ -43,6 +64,25 @@ namespace BingoWallpaper.Services.UnitTests
             Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
                 await _service.GetImagesAsync(null);
+            });
+        }
+
+        [Test]
+        public async Task TestGetWallpapersAsync()
+        {
+            var wallpapers = await _service.GetWallpapersAsync(2015, 1, "zh-CN");
+            Assert.True(wallpapers.Any());
+            Assert.ThrowsAsync<ArgumentOutOfRangeException>(async () =>
+            {
+                await _service.GetWallpapersAsync(2014, 12, "zh-CN");
+            });
+            Assert.ThrowsAsync<ArgumentNullException>(async () =>
+            {
+                await _service.GetWallpapersAsync(2015, 1, null);
+            });
+            Assert.ThrowsAsync<ArgumentException>(async () =>
+            {
+                await _service.GetWallpapersAsync(2015, 1, string.Empty);
             });
         }
     }
