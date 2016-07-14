@@ -2,9 +2,13 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:converters="using:BingoWallpaper.Uwp.Converters"
+      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:media="using:Microsoft.Xaml.Interactions.Media"
       xmlns:uwp="using:FontAwesome.UWP"
+      x:Name="Root"
       DataContext="{Binding Source={StaticResource Locator},
                             Path=Main}"
       mc:Ignorable="d">
@@ -14,6 +18,14 @@
                 <ResourceDictionary Source="/Styles/BingoWallpaperFlipViewStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <converters:BooleanNegationConverter x:Key="BooleanNegationConverter" />
+            <Storyboard x:Key="RefreshBusyStoryboard">
+                <DoubleAnimation RepeatBehavior="Forever"
+                                 Storyboard.TargetName="RefreshIconRotateTransform"
+                                 Storyboard.TargetProperty="Angle"
+                                 From="0"
+                                 To="360"
+                                 Duration="0:0:1" />
+            </Storyboard>
         </ResourceDictionary>
     </Page.Resources>
     <Page.BottomAppBar>
@@ -40,6 +52,18 @@
                             </uwp:FontAwesome.RenderTransform>
                         </uwp:FontAwesome>
                     </AppBarButton.Icon>
+                    <interactivity:Interaction.Behaviors>
+                        <core:DataTriggerBehavior Binding="{Binding Path=IsBusy}"
+                                                  Value="True">
+                            <core:CallMethodAction MethodName="BeginOrResumeRefreshBusyStoryboard"
+                                                   TargetObject="{Binding ElementName=Root}" />
+                        </core:DataTriggerBehavior>
+                        <core:DataTriggerBehavior Binding="{Binding Path=IsBusy}"
+                                                  Value="False">
+                            <media:ControlStoryboardAction ControlStoryboardOption="Pause"
+                                                           Storyboard="{StaticResource RefreshBusyStoryboard}" />
+                        </core:DataTriggerBehavior>
+                    </interactivity:Interaction.Behaviors>
                 </AppBarButton>
             </Grid>
         </AppBar>
