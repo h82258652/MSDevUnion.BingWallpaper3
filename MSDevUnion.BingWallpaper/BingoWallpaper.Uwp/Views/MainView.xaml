@@ -6,7 +6,6 @@
       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-      xmlns:leanCloud="using:BingoWallpaper.Models.LeanCloud"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:media="using:Microsoft.Xaml.Interactions.Media"
       xmlns:uwp="using:FontAwesome.UWP"
@@ -20,6 +19,7 @@
                 <ResourceDictionary Source="/Styles/BingoWallpaperFlipViewStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <converters:BooleanNegationConverter x:Key="BooleanNegationConverter" />
+            <converters:MonthNameConverter x:Key="MonthNameConverter" />
             <Storyboard x:Key="RefreshBusyStoryboard">
                 <DoubleAnimation Duration="0:0:1"
                                  From="0"
@@ -41,6 +41,30 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0"
+                            Orientation="Vertical">
+                    <!--TODO add visibility converter for this textblock.-->
+                    <TextBlock IsTextScaleFactorEnabled="False"
+                               Text="{Binding Path=SelectedWallpaperCollection.Year}" />
+                    <Grid>
+                        <TextBlock x:Name="NarrowMonthTextBlock"
+                                   FontSize="{ThemeResource TextStyleExtraLargeFontSize}"
+                                   FontWeight="Bold"
+                                   Visibility="Visible"
+                                   IsTextScaleFactorEnabled="False"
+                                   Text="{Binding Path=SelectedWallpaperCollection.Month,
+                                                  Converter={StaticResource MonthNameConverter},
+                                                  ConverterParameter=Narrow}" />
+                        <TextBlock x:Name="WideMonthTextBlock"
+                                   FontSize="{ThemeResource TextStyleExtraLargeFontSize}"
+                                   FontWeight="Bold"
+                                   Visibility="Collapsed"
+                                   IsTextScaleFactorEnabled="False"
+                                   Text="{Binding Path=SelectedWallpaperCollection.Month,
+                                                  Converter={StaticResource MonthNameConverter},
+                                                  ConverterParameter=Wide}" />
+                    </Grid>
+                </StackPanel>
                 <AppBarButton x:Uid="/MainView/RefreshButton"
                               Grid.Column="1"
                               Command="{Binding Path=RefreshCommand}"
@@ -77,8 +101,34 @@
                                          Mode=TwoWay}"
                   Style="{StaticResource BingoWallpaperFlipViewStyle}">
             <FlipView.ItemTemplate>
-                <DataTemplate x:DataType="leanCloud:WallpaperCollection" />
+                <DataTemplate />
             </FlipView.ItemTemplate>
         </FlipView>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="AdaptiveStates">
+                <VisualState x:Name="Narrow">
+                    <VisualState.Setters>
+                        <Setter Target="NarrowMonthTextBlock.Visibility"
+                                Value="Visible" />
+                        <Setter Target="WideMonthTextBlock.Visibility"
+                                Value="Collapsed" />
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="Wide">
+                    <VisualState.Setters>
+                        <Setter Target="NarrowMonthTextBlock.Visibility"
+                                Value="Collapsed" />
+                        <Setter Target="WideMonthTextBlock.Visibility"
+                                Value="Visible" />
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="400" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
     </Grid>
 </Page>

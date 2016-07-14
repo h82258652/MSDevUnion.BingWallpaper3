@@ -16,6 +16,11 @@ namespace BingoWallpaper.Uwp
             InitializeComponent();
             Resuming += OnResuming;
             Suspending += OnSuspending;
+
+#if DEBUG
+            // 下面语句用于测试其他语言。
+            Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = "";
+#endif
         }
 
         protected override async void OnActivated(IActivatedEventArgs args)
