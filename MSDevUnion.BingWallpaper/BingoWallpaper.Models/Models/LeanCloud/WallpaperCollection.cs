@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Runtime.InteropServices;
 
 namespace BingoWallpaper.Models.LeanCloud
 {
+    [ComVisible(false)]
     public class WallpaperCollection : ObservableCollection<Wallpaper>
     {
         public WallpaperCollection(int year, int month)
