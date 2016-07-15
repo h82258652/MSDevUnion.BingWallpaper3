@@ -2,10 +2,11 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:behaviors="using:BingoWallpaper.Uwp.Behaviors"
-      xmlns:converters="using:BingoWallpaper.Uwp.Converters"
+      xmlns:conv="using:WinRTXamlToolkit.Converters"
       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:localConv="using:BingoWallpaper.Uwp.Converters"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:media="using:Microsoft.Xaml.Interactions.Media"
       xmlns:uwp="using:FontAwesome.UWP"
@@ -18,15 +19,16 @@
                 <ResourceDictionary Source="/Styles/BingoWallpaperBrushStyle.xaml" />
                 <ResourceDictionary Source="/Styles/BingoWallpaperFlipViewStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <converters:BooleanNegationConverter x:Key="BooleanNegationConverter" />
-            <converters:MonthNameConverter x:Key="MonthNameConverter" />
+            <localConv:BooleanNegationConverter x:Key="BooleanNegationConverter" />
+            <conv:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <localConv:MonthNameConverter x:Key="MonthNameConverter" />
             <Storyboard x:Key="RefreshBusyStoryboard">
-                <DoubleAnimation Duration="0:0:1"
-                                 From="0"
-                                 RepeatBehavior="Forever"
+                <DoubleAnimation RepeatBehavior="Forever"
                                  Storyboard.TargetName="RefreshIconRotateTransform"
                                  Storyboard.TargetProperty="Angle"
-                                 To="360" />
+                                 From="0"
+                                 To="360"
+                                 Duration="0:0:1" />
             </Storyboard>
         </ResourceDictionary>
     </Page.Resources>
@@ -43,26 +45,28 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0"
                             Orientation="Vertical">
-                    <!--TODO add visibility converter for this textblock.-->
                     <TextBlock IsTextScaleFactorEnabled="False"
-                               Text="{Binding Path=SelectedWallpaperCollection.Year}" />
+                               Text="{Binding Path=SelectedWallpaperCollection.Year}"
+                               Visibility="{Binding ElementName=AppBar,
+                                                    Path=IsOpen,
+                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
                     <Grid>
                         <TextBlock x:Name="NarrowMonthTextBlock"
                                    FontSize="{ThemeResource TextStyleExtraLargeFontSize}"
                                    FontWeight="Bold"
-                                   Visibility="Visible"
                                    IsTextScaleFactorEnabled="False"
                                    Text="{Binding Path=SelectedWallpaperCollection.Month,
                                                   Converter={StaticResource MonthNameConverter},
-                                                  ConverterParameter=Narrow}" />
+                                                  ConverterParameter=Narrow}"
+                                   Visibility="Visible" />
                         <TextBlock x:Name="WideMonthTextBlock"
                                    FontSize="{ThemeResource TextStyleExtraLargeFontSize}"
                                    FontWeight="Bold"
-                                   Visibility="Collapsed"
                                    IsTextScaleFactorEnabled="False"
                                    Text="{Binding Path=SelectedWallpaperCollection.Month,
                                                   Converter={StaticResource MonthNameConverter},
-                                                  ConverterParameter=Wide}" />
+                                                  ConverterParameter=Wide}"
+                                   Visibility="Collapsed" />
                     </Grid>
                 </StackPanel>
                 <AppBarButton x:Uid="/MainView/RefreshButton"
