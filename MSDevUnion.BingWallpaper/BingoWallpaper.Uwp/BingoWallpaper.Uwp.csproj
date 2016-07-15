@@ -101,6 +101,7 @@
     </Compile>
     <Compile Include="Behaviors\BeginOrResumeStoryboardAction.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Controls\FirstDoubleSizePanel.cs" />
     <Compile Include="Controls\WallpaperCollectionItem.cs" />
     <Compile Include="Converters\BooleanNegationConverter.cs" />
     <Compile Include="Converters\MonthNameConverter.cs" />
