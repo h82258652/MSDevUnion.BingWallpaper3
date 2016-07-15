@@ -101,6 +101,7 @@
     </Compile>
     <Compile Include="Behaviors\BeginOrResumeStoryboardAction.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Controls\WallpaperCollectionItem.cs" />
     <Compile Include="Converters\BooleanNegationConverter.cs" />
     <Compile Include="Converters\MonthNameConverter.cs" />
     <Compile Include="Extensions\StoryboardExtensions.cs" />
@@ -142,6 +143,15 @@
     <Page Include="Styles\BingoWallpaperFlipViewStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\WallpaperCollectionItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Views\MainView.xaml">
       <SubType>Designer</SubType>
