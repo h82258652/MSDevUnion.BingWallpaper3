@@ -1,4 +1,5 @@
-﻿using BingoWallpaper.Models.LeanCloud;
+﻿using BingoWallpaper.Models;
+using BingoWallpaper.Models.LeanCloud;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -111,6 +112,34 @@ namespace BingoWallpaper.Services
                 "pt-BR",
                 "zh-CN",
             };
+        }
+
+        public IReadOnlyList<WallpaperSize> GetSupportedWallpaperSizes()
+        {
+            return new[]
+            {
+                new WallpaperSize(480,800),
+                new WallpaperSize(768,1280),
+                new WallpaperSize(800,480),
+                new WallpaperSize(1080,1920),
+                new WallpaperSize(1366,768),
+                new WallpaperSize(1920,1080),
+                new WallpaperSize(1920,1200),
+            };
+        }
+
+        public string GetUrl(IImage image, WallpaperSize size)
+        {
+            if (image == null)
+            {
+                throw new ArgumentNullException(nameof(image));
+            }
+            if (GetSupportedWallpaperSizes().Contains(size) == false)
+            {
+                throw new NotSupportedException();
+            }
+
+            return $"{Constants.QiNiuUrlBase}{image.UrlBase}_{size.Width}x{size.Height}.jpg";
         }
 
         public async Task<IEnumerable<Wallpaper>> GetWallpapersAsync(int year, int month, string area)

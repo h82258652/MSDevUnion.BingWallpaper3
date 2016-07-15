@@ -9,7 +9,8 @@
                         <Image x:Name="PART_BackgroundImage"
                                Opacity="0.5"
                                Stretch="UniformToFill" />
-                        <GridView IsItemClickEnabled="True"
+                        <GridView x:Name="PART_ItemView"
+                                  IsItemClickEnabled="True"
                                   ItemsSource="{TemplateBinding ItemsSource}"
                                   ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                   ScrollViewer.VerticalScrollBarVisibility="Auto"
