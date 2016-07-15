@@ -4,7 +4,19 @@
     <Style TargetType="controls:WallpaperCollectionItem">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="controls:WallpaperCollectionItem" />
+                <ControlTemplate TargetType="controls:WallpaperCollectionItem">
+                    <Grid>
+                        <Image x:Name="PART_BackgroundImage"
+                               Opacity="0.5"
+                               Stretch="UniformToFill" />
+                        <GridView IsItemClickEnabled="True"
+                                  ItemsSource="{TemplateBinding ItemsSource}"
+                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                  SelectionMode="None" />
+                        <ProgressRing IsActive="{TemplateBinding IsBusy}" />
+                    </Grid>
+                </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
