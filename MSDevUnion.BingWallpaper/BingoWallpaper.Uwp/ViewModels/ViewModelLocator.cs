@@ -1,4 +1,5 @@
-﻿using BingoWallpaper.Services;
+﻿using BingoWallpaper.Configuration;
+using BingoWallpaper.Services;
 using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Unity;
@@ -21,6 +22,8 @@ namespace BingoWallpaper.Uwp.ViewModels
 
             unityContainer.RegisterInstance(CreateNavigationService());
             unityContainer.RegisterType<ILeanCloudWallpaperService, LeanCloudWallpaperService>();
+
+            unityContainer.RegisterType<IBingoWallpaperSettings, BingoWallpaperSettings>();
 
             unityContainer.RegisterType<MainViewModel>();
 

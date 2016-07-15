@@ -24,10 +24,11 @@ namespace BingoWallpaper.Uwp.ViewModels
 
         private WallpaperCollection _selectedWallpaperCollection;
 
-        public MainViewModel(INavigationService navigationService, ILeanCloudWallpaperService leanCloudWallpaperService)
+        public MainViewModel(INavigationService navigationService, ILeanCloudWallpaperService leanCloudWallpaperService, IBingoWallpaperSettings settings)
         {
             _navigationService = navigationService;
             _leanCloudWallpaperService = leanCloudWallpaperService;
+            _settings = settings;
 
             var wallpaperCollections = new List<WallpaperCollection>();
             var date = BingoWallpaper.Constants.MinimumViewMonth;
