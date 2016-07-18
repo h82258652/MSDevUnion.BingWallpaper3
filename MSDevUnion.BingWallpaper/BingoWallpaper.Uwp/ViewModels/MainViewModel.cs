@@ -95,9 +95,9 @@ namespace BingoWallpaper.Uwp.ViewModels
             }
             set
             {
-                Set(ref _selectedWallpaperCollection, value);
                 if (_selectedWallpaperCollection != value)
                 {
+                    Set(ref _selectedWallpaperCollection, value);
                     RefreshCommand.Execute(null);
                 }
             }
