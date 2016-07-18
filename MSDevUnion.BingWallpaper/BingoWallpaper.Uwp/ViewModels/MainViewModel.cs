@@ -58,9 +58,9 @@ namespace BingoWallpaper.Uwp.ViewModels
             {
                 _refreshCommand = _refreshCommand ?? new RelayCommand(async () =>
                 {
-                    // TODO remove this test code.
-                    IsBusy = !IsBusy;
-                    return;
+                    //// TODO remove this test code.
+                    //IsBusy = !IsBusy;
+                    //return;
 
                     IsBusy = true;
                     try
