@@ -5,5 +5,13 @@
              RequestedTheme="Light">
     <Application.Resources>
         <viewModels:ViewModelLocator x:Key="Locator" />
+        <Style TargetType="TextElement">
+            <!--<Setter Property="FontFamily"
+                    Value="ms-appx:/Assets/Fonts/SourceHanSansSC-Normal.otf#Source Han Sans SC" />-->
+        </Style>
+        <Style TargetType="TextBlock">
+            <!--<Setter Property="FontFamily"
+                    Value="ms-appx:/Assets/Fonts/SourceHanSansSC-Normal.otf#Source Han Sans SC" />-->
+        </Style>
     </Application.Resources>
 </Application>

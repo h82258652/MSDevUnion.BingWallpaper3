@@ -129,7 +129,7 @@
                             </GridView.ItemTemplate>
                             <GridView.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <controls:FirstDoubleSizePanel />
+                                    <controls:FirstDoubleSizePanel SizeChanged="FirstDoubleSizePanel_SizeChanged" />
                                 </ItemsPanelTemplate>
                             </GridView.ItemsPanel>
                         </GridView>

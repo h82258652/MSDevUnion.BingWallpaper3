@@ -89,6 +89,8 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <Content Include="Assets\Fonts\SourceHanSansSC-Normal.otf" />
+    <Content Include="Assets\Fonts\SourceHanSansSC-Bold.otf" />
     <None Include="project.json" />
     <PRIResource Include="Strings\en-US\MainView.resw" />
     <PRIResource Include="Strings\zh-CN\MainView.resw" />
