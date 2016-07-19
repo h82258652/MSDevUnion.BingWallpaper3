@@ -23,6 +23,7 @@
             <localConv:BooleanNegationConverter x:Key="BooleanNegationConverter" />
             <conv:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
             <localConv:MonthNameConverter x:Key="MonthNameConverter" />
+            <localConv:WallpaperUrlConverter x:Key="WallpaperUrlConverter" />
             <Storyboard x:Key="RefreshBusyStoryboard">
                 <DoubleAnimation RepeatBehavior="Forever"
                                  Storyboard.TargetName="RefreshIconRotateTransform"
@@ -107,7 +108,33 @@
                   Style="{StaticResource BingoWallpaperFlipViewStyle}">
             <FlipView.ItemTemplate>
                 <DataTemplate>
-                    <controls:WallpaperCollectionItem ItemsSource="{Binding}" />
+                    <Grid>
+                        <Image Opacity="0.5"
+                               Source="{Binding Path=[0],
+                                                Converter={StaticResource WallpaperUrlConverter},
+                                                ConverterParameter='1920x1080'}"
+                               Stretch="UniformToFill" />
+                        <GridView IsItemClickEnabled="True"
+                                  ItemsSource="{Binding}"
+                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                  SelectionMode="None">
+                            <GridView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Image Source="{Binding Path=Image, Converter={StaticResource WallpaperUrlConverter}, ConverterParameter='1920x1080'}"
+                                               Stretch="UniformToFill" />
+                                    </Grid>
+                                </DataTemplate>
+                            </GridView.ItemTemplate>
+                            <GridView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <controls:FirstDoubleSizePanel />
+                                </ItemsPanelTemplate>
+                            </GridView.ItemsPanel>
+                        </GridView>
+                    </Grid>
+                    <!--<controls:WallpaperCollectionItem ItemsSource="{Binding}" />-->
                 </DataTemplate>
             </FlipView.ItemTemplate>
         </FlipView>

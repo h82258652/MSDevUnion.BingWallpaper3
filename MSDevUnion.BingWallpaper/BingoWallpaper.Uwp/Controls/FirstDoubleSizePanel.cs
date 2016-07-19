@@ -101,11 +101,12 @@ namespace BingoWallpaper.Uwp.Controls
 
         protected override Size MeasureOverride(Size availableSize)
         {
+            var childrenCount = Children.Count;
             if (Orientation == Orientation.Horizontal)
             {
                 var columnWidth = availableSize.Width / MaximumRowsOrColumns;
                 var firstElementMeasureSize = default(Size);
-                for (var i = 0; i < Children.Count; i++)
+                for (var i = 0; i < childrenCount; i++)
                 {
                     var child = Children[i];
                     if (i == 0)
@@ -118,12 +119,35 @@ namespace BingoWallpaper.Uwp.Controls
                         child.Measure(new Size(columnWidth, firstElementMeasureSize.Height / 2));
                     }
                 }
+
+                double requiredHeight;
+                if (childrenCount == 0)
+                {
+                    // 没有子元素。
+                    requiredHeight = 0;
+                }
+                else if (childrenCount <= MaximumRowsOrColumns * 2 - 3)
+                {
+                    // 小于等于两行。
+                    requiredHeight = firstElementMeasureSize.Height;
+                }
+                else
+                {
+                    // 大于两行。
+                    var lastElementIndex = childrenCount - 1;
+                    var lastElementRow = (lastElementIndex + 3) / MaximumRowsOrColumns;
+                    requiredHeight = (lastElementRow + 1) * firstElementMeasureSize.Height / 2;
+                }
+
+                var width = availableSize.Width;
+                width = double.IsPositiveInfinity(width) ? 0 : width;
+                return new Size(width, requiredHeight);
             }
             else
             {
                 var rowHeight = availableSize.Height / MaximumRowsOrColumns;
                 var firstElementMeasureSize = default(Size);
-                for (var i = 0; i < Children.Count; i++)
+                for (var i = 0; i < childrenCount; i++)
                 {
                     var child = Children[i];
                     if (i == 0)
@@ -136,13 +160,30 @@ namespace BingoWallpaper.Uwp.Controls
                         child.Measure(new Size(firstElementMeasureSize.Width / 2, rowHeight));
                     }
                 }
-            }
 
-            var width = availableSize.Width;
-            var height = availableSize.Height;
-            width = double.IsPositiveInfinity(width) ? 0 : width;
-            height = double.IsPositiveInfinity(height) ? 0 : height;
-            return new Size(width, height);
+                double requiredWidth;
+                if (childrenCount == 0)
+                {
+                    // 没有子元素。
+                    requiredWidth = 0;
+                }
+                else if (childrenCount <= MaximumRowsOrColumns * 2 - 3)
+                {
+                    // 小于等于两列。
+                    requiredWidth = firstElementMeasureSize.Width;
+                }
+                else
+                {
+                    // 大于两列。
+                    var lastElementIndex = childrenCount - 1;
+                    var lastElementColumn = (lastElementIndex + 3) / MaximumRowsOrColumns;
+                    requiredWidth = (lastElementColumn + 1) * firstElementMeasureSize.Width / 2;
+                }
+
+                var height = availableSize.Height;
+                height = double.IsPositiveInfinity(height) ? 0 : height;
+                return new Size(requiredWidth, height);
+            }
         }
 
         private static void MaximumRowsOrColumnsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
