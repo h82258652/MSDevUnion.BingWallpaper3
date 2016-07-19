@@ -7,6 +7,7 @@ using GalaSoft.MvvmLight.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Windows.UI.Xaml.Controls;
 
 namespace BingoWallpaper.Uwp.ViewModels
 {
@@ -23,6 +24,8 @@ namespace BingoWallpaper.Uwp.ViewModels
         private RelayCommand _refreshCommand;
 
         private WallpaperCollection _selectedWallpaperCollection;
+
+        private RelayCommand<ItemClickEventArgs> _wallpaperClickCommand;
 
         public MainViewModel(INavigationService navigationService, ILeanCloudWallpaperService leanCloudWallpaperService, IBingoWallpaperSettings settings)
         {
@@ -58,10 +61,6 @@ namespace BingoWallpaper.Uwp.ViewModels
             {
                 _refreshCommand = _refreshCommand ?? new RelayCommand(async () =>
                 {
-                    //// TODO remove this test code.
-                    //IsBusy = !IsBusy;
-                    //return;
-
                     IsBusy = true;
                     try
                     {
@@ -100,6 +99,19 @@ namespace BingoWallpaper.Uwp.ViewModels
                     Set(ref _selectedWallpaperCollection, value);
                     RefreshCommand.Execute(null);
                 }
+            }
+        }
+
+        public RelayCommand<ItemClickEventArgs> WallpaperClickCommand
+        {
+            get
+            {
+                _wallpaperClickCommand = _wallpaperClickCommand ?? new RelayCommand<ItemClickEventArgs>(args =>
+                {
+                    var wallpaper = args.ClickedItem;
+                    _navigationService.NavigateTo(ViewModelLocator.DetailViewKey, wallpaper);
+                });
+                return _wallpaperClickCommand;
             }
         }
 

@@ -132,9 +132,13 @@
                                     <controls:FirstDoubleSizePanel SizeChanged="FirstDoubleSizePanel_SizeChanged" />
                                 </ItemsPanelTemplate>
                             </GridView.ItemsPanel>
+                            <interactivity:Interaction.Behaviors>
+                                <core:EventTriggerBehavior EventName="ItemClick">
+                                    <core:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=Main.WallpaperClickCommand}" />
+                                </core:EventTriggerBehavior>
+                            </interactivity:Interaction.Behaviors>
                         </GridView>
                     </Grid>
-                    <!--<controls:WallpaperCollectionItem ItemsSource="{Binding}" />-->
                 </DataTemplate>
             </FlipView.ItemTemplate>
         </FlipView>
