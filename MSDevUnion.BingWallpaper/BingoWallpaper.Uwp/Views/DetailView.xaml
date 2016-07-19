@@ -1,12 +1,12 @@
-﻿<Page x:Class="BingoWallpaper.Uwp.Views.DetailView"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:local="using:BingoWallpaper.Uwp.Views"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      DataContext="{Binding Source={StaticResource Locator},
-                            Path=Detail}"
-      mc:Ignorable="d">
+﻿<local:BindablePage x:Class="BingoWallpaper.Uwp.Views.DetailView"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:local="using:BingoWallpaper.Uwp.Views"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    DataContext="{Binding Source={StaticResource Locator},
+                                          Path=Detail}"
+                    mc:Ignorable="d">
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -22,4 +22,4 @@
         <CommandBar Grid.Row="1"
                     Background="{ThemeResource SystemAccentBrush}" />
     </Grid>
-</Page>
+</local:BindablePage>
