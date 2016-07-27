@@ -51,6 +51,7 @@
     <Compile Include="Models\LeanCloud\Wallpaper.cs" />
     <Compile Include="Models\LeanCloud\WallpaperCollection.cs" />
     <Compile Include="Models\Message.cs" />
+    <Compile Include="Models\SaveLocation.cs" />
     <Compile Include="Models\WallpaperSize.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
