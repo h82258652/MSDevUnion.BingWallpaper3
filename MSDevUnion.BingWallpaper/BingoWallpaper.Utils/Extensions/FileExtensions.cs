@@ -3,7 +3,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace BingoWallpaper.Uwp.Extensions
+namespace BingoWallpaper.Extensions
 {
     public static class FileExtensions
     {

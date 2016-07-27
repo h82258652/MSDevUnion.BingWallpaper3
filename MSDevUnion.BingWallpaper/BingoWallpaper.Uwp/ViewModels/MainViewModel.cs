@@ -6,6 +6,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Windows.UI.Xaml.Controls;
 
@@ -72,6 +73,12 @@ namespace BingoWallpaper.Uwp.ViewModels
                         {
                             selectedWallpaperCollection.Add(wallpaper);
                         }
+                    }
+                    catch (Exception ex)
+                    {
+                        var t = ex.GetType().FullName;
+                        Console.WriteLine(t);
+                        Debugger.Break();
                     }
                     finally
                     {

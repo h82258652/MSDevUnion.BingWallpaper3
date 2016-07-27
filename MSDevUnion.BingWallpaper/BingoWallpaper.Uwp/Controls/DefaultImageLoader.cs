@@ -1,4 +1,4 @@
-﻿using BingoWallpaper.Uwp.Extensions;
+﻿using BingoWallpaper.Extensions;
 using BingoWallpaper.Uwp.Utils;
 using System;
 using System.Collections.Generic;

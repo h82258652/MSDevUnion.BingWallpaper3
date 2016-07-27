@@ -48,5 +48,34 @@ namespace BingoWallpaper.Configuration
                 RaisePropertyChanged();
             }
         }
+
+        public WallpaperSize SelectedWallpaperSize
+        {
+            get
+            {
+                var composite = Get(nameof(SelectedWallpaperSize), ApplicationDataLocality.Local, () => new ApplicationDataCompositeValue());
+                object width;
+                object height;
+                if (composite.TryGetValue(nameof(WallpaperSize.Width), out width) && composite.TryGetValue(nameof(WallpaperSize.Height), out height))
+                {
+                    if (width is int && height is int)
+                    {
+                        return new WallpaperSize((int)width, (int)height);
+                    }
+                }
+
+                return new WallpaperSize(800, 480);
+            }
+            set
+            {
+                var composite = new ApplicationDataCompositeValue()
+                {
+                    [nameof(WallpaperSize.Width)] = value.Width,
+                    [nameof(WallpaperSize.Height)] = value.Height
+                };
+                Set(nameof(SelectedWallpaperSize), composite, ApplicationDataLocality.Local);
+                RaisePropertyChanged();
+            }
+        }
     }
 }

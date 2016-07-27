@@ -109,13 +109,13 @@
             <FlipView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
-                        <Image HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               Opacity="0.5"
-                               Source="{Binding Path=[0],
+                        <controls:ImageEx HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          Opacity="0.5"
+                                          Source="{Binding Path=[0],
                                                 Converter={StaticResource WallpaperUrlConverter},
                                                 ConverterParameter='1920x1080'}"
-                               Stretch="UniformToFill" />
+                                          Stretch="UniformToFill" />
                         <GridView IsItemClickEnabled="True"
                                   ItemsSource="{Binding}"
                                   ScrollViewer.HorizontalScrollBarVisibility="Disabled"
@@ -124,8 +124,8 @@
                             <GridView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid>
-                                        <Image Source="{Binding Path=Image, Converter={StaticResource WallpaperUrlConverter}, ConverterParameter='1920x1080'}"
-                                               Stretch="UniformToFill" />
+                                        <controls:ImageEx Source="{Binding Path=Image, Converter={StaticResource WallpaperUrlConverter}, ConverterParameter='1920x1080'}"
+                                                          Stretch="UniformToFill" />
                                         <Border VerticalAlignment="Bottom"
                                                 Background="#80808080">
                                             <TextBlock Margin="4"

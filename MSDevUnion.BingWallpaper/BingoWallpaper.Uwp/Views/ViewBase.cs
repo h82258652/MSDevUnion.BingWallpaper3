@@ -1,4 +1,5 @@
-﻿using Windows.Foundation.Metadata;
+﻿using Windows.ApplicationModel;
+using Windows.Foundation.Metadata;
 using Windows.Phone.UI.Input;
 using Windows.UI.Core;
 using Windows.UI.Input;
@@ -13,7 +14,10 @@ namespace BingoWallpaper.Uwp.Views
 
         protected ViewBase()
         {
-            _systemNavigationManager = SystemNavigationManager.GetForCurrentView();
+            if (DesignMode.DesignModeEnabled == false)
+            {
+                _systemNavigationManager = SystemNavigationManager.GetForCurrentView();
+            }
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -50,23 +54,39 @@ namespace BingoWallpaper.Uwp.Views
             switch (properties.PointerUpdateKind)
             {
                 case PointerUpdateKind.XButton1Released:
-                    // TODO
+                    if (Frame.CanGoBack)
+                    {
+                        e.Handled = true;
+                        Frame.GoBack();
+                    }
                     break;
 
                 case PointerUpdateKind.XButton2Released:
-                    // TODO
+                    if (Frame.CanGoForward)
+                    {
+                        e.Handled = true;
+                        Frame.GoForward();
+                    }
                     break;
             }
         }
 
         private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
         {
-            // TODO
+            if (Frame.CanGoBack && ApiInformation.IsTypePresent("Windows.Phone.UI.Input.BackPressedEventArgs"))
+            {
+                e.Handled = true;
+                Frame.GoBack();
+            }
         }
 
         private void SystemNavigationManager_BackRequested(object sender, BackRequestedEventArgs e)
         {
-            // TODO
+            if (Frame.CanGoBack)
+            {
+                e.Handled = true;
+                Frame.GoBack();
+            }
         }
     }
 }

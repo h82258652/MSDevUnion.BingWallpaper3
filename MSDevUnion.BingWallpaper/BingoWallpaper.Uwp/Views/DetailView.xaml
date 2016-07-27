@@ -4,6 +4,7 @@
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:local="using:BingoWallpaper.Uwp.Views"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:controls="using:BingoWallpaper.Uwp.Controls"
                 DataContext="{Binding Source={StaticResource Locator},
                                       Path=Detail}"
                 mc:Ignorable="d">
@@ -19,7 +20,14 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+        <Grid>
+            <controls:ImageEx Source="{Binding Path=WallpaperUrl}" />
+        </Grid>
         <CommandBar Grid.Row="1"
-                    Background="{ThemeResource SystemAccentBrush}" />
+                    Background="{ThemeResource SystemAccentBrush}">
+            <AppBarButton x:Uid="/DetailView/SaveButton"
+                          Command="{Binding Path=SaveCommand}"
+                          Icon="Save" />
+        </CommandBar>
     </Grid>
 </local:ViewBase>
