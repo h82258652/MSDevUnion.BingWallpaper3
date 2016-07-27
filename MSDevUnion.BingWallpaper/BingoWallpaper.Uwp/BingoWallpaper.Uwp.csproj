@@ -115,14 +115,21 @@
     </Compile>
     <Compile Include="Behaviors\BeginOrResumeStoryboardAction.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Controls\DefaultImageLoader.cs" />
+    <Compile Include="Controls\ExceptionEventArgs.cs" />
     <Compile Include="Controls\FirstDoubleSizePanel.cs" />
-    <Compile Include="Controls\WallpaperCollectionItem.cs" />
+    <Compile Include="Controls\HttpDownloadProgressEventArgs.cs" />
+    <Compile Include="Controls\IImageLoader.cs" />
+    <Compile Include="Controls\ImageEx.cs" />
+    <Compile Include="Controls\ImageFailedEventArgs.cs" />
     <Compile Include="Converters\BooleanNegationConverter.cs" />
     <Compile Include="Converters\MonthNameConverter.cs" />
     <Compile Include="Converters\WallpaperUrlConverter.cs" />
+    <Compile Include="Extensions\FileExtensions.cs" />
     <Compile Include="Extensions\FrameworkElementExtensions.cs" />
     <Compile Include="Extensions\StoryboardExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\HashHelper.cs" />
     <Compile Include="ViewModels\DetailViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
@@ -182,7 +189,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\WallpaperCollectionItem.xaml">
+    <Page Include="Themes\ImageEx.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

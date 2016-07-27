@@ -1,4 +1,5 @@
-﻿using BingoWallpaper.Services;
+﻿using BingoWallpaper.Models;
+using BingoWallpaper.Services;
 using System;
 using System.Globalization;
 using System.Linq;
@@ -32,6 +33,19 @@ namespace BingoWallpaper.Configuration
             set
             {
                 Set(nameof(SelectedArea), value, ApplicationDataLocality.Roaming);
+            }
+        }
+
+        public SaveLocation SelectedSaveLocation
+        {
+            get
+            {
+                return Get(nameof(SelectedSaveLocation), ApplicationDataLocality.Local, () => SaveLocation.PictureLibrary);
+            }
+            set
+            {
+                Set(nameof(SelectedSaveLocation), value, ApplicationDataLocality.Local);
+                RaisePropertyChanged();
             }
         }
     }
