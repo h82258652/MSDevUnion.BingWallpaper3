@@ -109,9 +109,14 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\FileService.cs" />
+    <Compile Include="Services\ScreenService.cs" />
     <EmbeddedResource Include="Properties\BingoWallpaper.Services.Uwp.rd.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BingoWallpaper.RuntimeComponent\BingoWallpaper.RuntimeComponent.vcxproj">
+      <Project>{90a86079-0df4-47c1-8165-56ad498e4078}</Project>
+      <Name>BingoWallpaper.RuntimeComponent</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BingoWallpaper.Services\BingoWallpaper.Services.csproj">
       <Project>{0566ba90-61fe-4703-a729-cf6258476673}</Project>
       <Name>BingoWallpaper.Services</Name>

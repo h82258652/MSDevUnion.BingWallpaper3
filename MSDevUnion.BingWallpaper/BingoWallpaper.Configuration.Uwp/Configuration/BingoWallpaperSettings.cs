@@ -11,9 +11,12 @@ namespace BingoWallpaper.Configuration
     {
         private readonly ILeanCloudWallpaperService _leanCloudWallpaperService;
 
-        public BingoWallpaperSettings(ILeanCloudWallpaperService leanCloudWallpaperService)
+        private readonly IScreenService _screenService;
+
+        public BingoWallpaperSettings(ILeanCloudWallpaperService leanCloudWallpaperService, IScreenService screenService)
         {
             _leanCloudWallpaperService = leanCloudWallpaperService;
+            _screenService = screenService;
         }
 
         public string SelectedArea
@@ -62,6 +65,12 @@ namespace BingoWallpaper.Configuration
                     {
                         return new WallpaperSize((int)width, (int)height);
                     }
+                }
+
+                var screenSize = new WallpaperSize((int)_screenService.ScreenWidthInRawPixels, (int)_screenService.ScreenHeightInRawPixels);
+                if (_leanCloudWallpaperService.GetSupportedWallpaperSizes().Contains(screenSize))
+                {
+                    return screenSize;
                 }
 
                 return new WallpaperSize(800, 480);
