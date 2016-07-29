@@ -5,6 +5,7 @@ using BingoWallpaper.Services;
 using BingoWallpaper.Uwp.Controls;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using System;
 using System.IO;
 using Windows.Storage;
 
@@ -41,24 +42,24 @@ namespace BingoWallpaper.Uwp.ViewModels
                     var url = _wallpaperService.GetUrl(Wallpaper.Image, _settings.SelectedWallpaperSize);
                     var bytes = await _imageLoader.GetBytesAsync(url);
                     var saveLocation = _settings.SelectedSaveLocation;
-                    string filePath = null;
+                    StorageFile file = null;
                     switch (saveLocation)
                     {
                         case SaveLocation.PictureLibrary:
-                            filePath = Path.Combine(KnownFolders.PicturesLibrary.Path, Path.GetFileName(url));
+                            file = await KnownFolders.PicturesLibrary.CreateFileAsync(Path.GetFileName(url), CreationCollisionOption.ReplaceExisting);
                             break;
 
                         case SaveLocation.ChooseEveryTime:
-                            filePath = await _fileService.PickerSaveFilePathAsync(Path.GetFileName(url));
+                            file = await _fileService.PickerSaveFilePathAsync(Path.GetFileName(url));
                             break;
 
                         case SaveLocation.SavedPictures:
-                            filePath = Path.Combine(KnownFolders.SavedPictures.Path, Path.GetFileName(url));
+                            file = await KnownFolders.SavedPictures.CreateFileAsync(Path.GetFileName(url), CreationCollisionOption.ReplaceExisting);
                             break;
                     }
-                    if (filePath != null)
+                    if (file != null)
                     {
-                        await _fileService.WriteFileAsync(filePath, bytes);
+                        await FileIO.WriteBytesAsync(file, bytes);
                     }
                 });
                 return _saveCommand;
