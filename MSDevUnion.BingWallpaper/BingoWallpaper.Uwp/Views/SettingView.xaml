@@ -9,7 +9,7 @@
                 mc:Ignorable="d">
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel Orientation="Vertical">
-            <ComboBox x:Uid="/SettingView/SelectedSaveLocation"
+            <ComboBox x:Uid="/SettingView/SelectedSaveLocationComboBox"
                       ItemsSource="{Binding Path=SaveLocations}"
                       SelectedItem="{Binding Path=SelectedSaveLocation,
                                              Mode=TwoWay}" />
@@ -17,7 +17,7 @@
                       ItemsSource="{Binding Path=WallpaperSizes}"
                       SelectedItem="{Binding Path=SelectedWallpaperSize,
                                              Mode=TwoWay}" />
-            <ComboBox x:Uid="/SettingView/SelectedArea"
+            <ComboBox x:Uid="/SettingView/SelectedAreaComboBox"
                       ItemsSource="{Binding Path=Areas}"
                       SelectedItem="{Binding Path=SelectedArea,
                                              Mode=TwoWay}" />
