@@ -20,10 +20,25 @@ namespace BingoWallpaper.Uwp.ViewModels
             _settings = settings;
         }
 
+        public IReadOnlyList<string> Areas => _leanCloudWallpaperService.GetSupportedAreas();
+
         public IReadOnlyList<SaveLocation> SaveLocations
         {
             get;
         } = Enum.GetValues(typeof(SaveLocation)).Cast<SaveLocation>().ToList();
+
+        public string SelectedArea
+        {
+            get
+            {
+                return _settings.SelectedArea;
+            }
+            set
+            {
+                _settings.SelectedArea = value;
+                RaisePropertyChanged();
+            }
+        }
 
         public SaveLocation SelectedSaveLocation
         {

@@ -17,6 +17,10 @@
                       ItemsSource="{Binding Path=WallpaperSizes}"
                       SelectedItem="{Binding Path=SelectedWallpaperSize,
                                              Mode=TwoWay}" />
+            <ComboBox x:Uid="/SettingView/SelectedArea"
+                      ItemsSource="{Binding Path=Areas}"
+                      SelectedItem="{Binding Path=SelectedArea,
+                                             Mode=TwoWay}" />
         </StackPanel>
     </Grid>
 </local:ViewBase>
