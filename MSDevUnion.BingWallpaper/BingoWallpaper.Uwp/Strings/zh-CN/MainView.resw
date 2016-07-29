@@ -120,4 +120,7 @@
   <data name="RefreshButton.Label" xml:space="preserve">
     <value>刷新</value>
   </data>
+  <data name="SettingButton.Label" xml:space="preserve">
+    <value>设置</value>
+  </data>
 </root>

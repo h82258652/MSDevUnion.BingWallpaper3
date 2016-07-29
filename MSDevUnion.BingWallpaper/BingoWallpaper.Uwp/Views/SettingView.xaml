@@ -7,5 +7,16 @@
                 DataContext="{Binding Source={StaticResource Locator},
                                       Path=Setting}"
                 mc:Ignorable="d">
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" />
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel Orientation="Vertical">
+            <ComboBox x:Uid="/SettingView/SelectedSaveLocation"
+                      ItemsSource="{Binding Path=SaveLocations}"
+                      SelectedItem="{Binding Path=SelectedSaveLocation,
+                                             Mode=TwoWay}" />
+            <ComboBox x:Uid="/SettingView/SelectedWallpaperSizeComboBox"
+                      ItemsSource="{Binding Path=WallpaperSizes}"
+                      SelectedItem="{Binding Path=SelectedWallpaperSize,
+                                             Mode=TwoWay}" />
+        </StackPanel>
+    </Grid>
 </local:ViewBase>

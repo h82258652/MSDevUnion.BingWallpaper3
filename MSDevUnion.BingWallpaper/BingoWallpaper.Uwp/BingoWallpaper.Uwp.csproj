@@ -104,6 +104,8 @@
     <Content Include="Assets\Fonts\Roboto-Thin.ttf" />
     <Content Include="Assets\Fonts\Roboto-ThinItalic.ttf" />
     <None Include="project.json" />
+    <PRIResource Include="Strings\zh-CN\SettingView.resw" />
+    <PRIResource Include="Strings\en-US\SettingView.resw" />
     <PRIResource Include="Strings\en-US\DetailView.resw" />
     <PRIResource Include="Strings\zh-CN\DetailView.resw" />
     <PRIResource Include="Strings\en-US\MainView.resw" />
