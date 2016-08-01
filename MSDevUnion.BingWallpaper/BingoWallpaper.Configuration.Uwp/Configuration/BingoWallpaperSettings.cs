@@ -9,13 +9,13 @@ namespace BingoWallpaper.Configuration
 {
     public class BingoWallpaperSettings : AppSettingsBase, IBingoWallpaperSettings
     {
-        private readonly ILeanCloudWallpaperService _leanCloudWallpaperService;
-
         private readonly IScreenService _screenService;
 
-        public BingoWallpaperSettings(ILeanCloudWallpaperService leanCloudWallpaperService, IScreenService screenService)
+        private readonly IWallpaperService _wallpaperService;
+
+        public BingoWallpaperSettings(IWallpaperService wallpaperService, IScreenService screenService)
         {
-            _leanCloudWallpaperService = leanCloudWallpaperService;
+            _wallpaperService = wallpaperService;
             _screenService = screenService;
         }
 
@@ -26,7 +26,7 @@ namespace BingoWallpaper.Configuration
                 return Get(nameof(SelectedArea), ApplicationDataLocality.Roaming, () =>
                 {
                     var currentCulture = CultureInfo.CurrentCulture.Name;
-                    if (_leanCloudWallpaperService.GetSupportedAreas().Contains(currentCulture, StringComparer.OrdinalIgnoreCase))
+                    if (_wallpaperService.GetSupportedAreas().Contains(currentCulture, StringComparer.OrdinalIgnoreCase))
                     {
                         return currentCulture;
                     }
@@ -68,7 +68,7 @@ namespace BingoWallpaper.Configuration
                 }
 
                 var screenSize = new WallpaperSize((int)_screenService.ScreenWidthInRawPixels, (int)_screenService.ScreenHeightInRawPixels);
-                if (_leanCloudWallpaperService.GetSupportedWallpaperSizes().Contains(screenSize))
+                if (_wallpaperService.GetSupportedWallpaperSizes().Contains(screenSize))
                 {
                     return screenSize;
                 }

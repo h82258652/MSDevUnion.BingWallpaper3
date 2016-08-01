@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.Background;
 using Windows.Foundation.Metadata;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -24,12 +26,12 @@ namespace BingoWallpaper.Uwp.Views
 
         public event EventHandler Completed;
 
-        public async Task Dismiss()
+        public async Task DismissAsync()
         {
             await DismissStoryboard.BeginAsync();
         }
 
-        private async Task HideStatusBar()
+        private static async Task HideStatusBarAsync()
         {
             if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
             {
@@ -37,21 +39,42 @@ namespace BingoWallpaper.Uwp.Views
             }
         }
 
-        private async Task RegisterBackgroundTask()
+        private static async Task RegisterBackgroundTaskAsync()
         {
-            // TODO
-            await Task.Delay(1000);
+            if (BackgroundTaskRegistration.AllTasks.Any(task => task.Value.Name == Constants.UpdateTileTaskName))
+            {
+                // 已经注册后台任务。
+                return;
+            }
+
+            var access = await BackgroundExecutionManager.RequestAccessAsync();
+            if (access != BackgroundAccessStatus.AllowedMayUseActiveRealTimeConnectivity)
+            {
+                // 没有权限。
+                return;
+            }
+
+            var builder = new BackgroundTaskBuilder();
+            // 仅在网络可用下执行后台任务。
+            builder.AddCondition(new SystemCondition(SystemConditionType.InternetAvailable));
+
+            builder.Name = Constants.UpdateTileTaskName;
+            builder.TaskEntryPoint = "BingoWallpaper.BackgroundTask.UpdateTileTask";
+            builder.SetTrigger(new TimeTrigger(15, false));
+            var registration = builder.Register();
         }
 
         private async void SplashScreenImage_ImageOpened(object sender, RoutedEventArgs e)
         {
+            // 图片加载完毕后激活当前窗口，系统 SplashScreen 将会消失。
             Window.Current.Activate();
 
-            await Task.WhenAll(HideStatusBar(), RegisterBackgroundTask(), UpdatePrimaryTile());
+            // 等待所有初始化执行完毕，最后的等待 1 秒纯粹是为了此扩展 SplashScreen 不太快消失。
+            await Task.WhenAll(HideStatusBarAsync(), RegisterBackgroundTaskAsync(), UpdatePrimaryTileAsync(), Task.Delay(TimeSpan.FromSeconds(1)));
             Completed?.Invoke(this, EventArgs.Empty);
         }
 
-        private async Task UpdatePrimaryTile()
+        private async Task UpdatePrimaryTileAsync()
         {
             // TODO
             await Task.Delay(1000);

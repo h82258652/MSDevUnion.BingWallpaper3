@@ -39,8 +39,10 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Services\BingWallpaperService.cs" />
     <Compile Include="Services\Constants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IBingWallpaperService.cs" />
     <Compile Include="Services\ILeanCloudWallpaperService.cs" />
     <Compile Include="Services\IScreenService.cs" />
     <Compile Include="Services\IWallpaperService.cs" />

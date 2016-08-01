@@ -54,7 +54,7 @@ namespace BingoWallpaper.Uwp.ViewModels
 
         private static INavigationService CreateNavigationService()
         {
-            var navigationService = new NavigationService();
+            var navigationService = new BingoWallpaperNavigationService();
             navigationService.Configure(MainViewKey, typeof(MainView));
             navigationService.Configure(DetailViewKey, typeof(DetailView));
             navigationService.Configure(SettingViewKey, typeof(SettingView));

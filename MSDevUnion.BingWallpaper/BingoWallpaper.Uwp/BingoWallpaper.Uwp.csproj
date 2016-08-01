@@ -118,6 +118,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Behaviors\BeginOrResumeStoryboardAction.cs" />
+    <Compile Include="Behaviors\NavigateToPageAction.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Controls\BindableMargin.xaml.cs">
       <DependentUpon>BindableMargin.xaml</DependentUpon>
@@ -246,6 +247,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BingoWallpaper.BackgroundTask\BingoWallpaper.BackgroundTask.csproj">
+      <Project>{87314e79-4eb0-4431-bb1f-fb449d40d05e}</Project>
+      <Name>BingoWallpaper.BackgroundTask</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BingoWallpaper.Configuration.Uwp\BingoWallpaper.Configuration.Uwp.csproj">
       <Project>{705c0b5b-63b0-4ef3-817a-e8fc5adefc5a}</Project>
       <Name>BingoWallpaper.Configuration.Uwp</Name>

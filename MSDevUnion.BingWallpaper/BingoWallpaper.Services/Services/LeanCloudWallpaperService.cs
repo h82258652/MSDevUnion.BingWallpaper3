@@ -139,7 +139,7 @@ namespace BingoWallpaper.Services
                 throw new NotSupportedException();
             }
 
-            return $"{Constants.QiNiuUrlBase}{image.UrlBase}_{size.Width}x{size.Height}.jpg";
+            return $"{Constants.PenBeatUrlBase}{image.UrlBase}_{size.Width}x{size.Height}.jpg";
         }
 
         public async Task<IEnumerable<Wallpaper>> GetWallpapersAsync(int year, int month, string area)

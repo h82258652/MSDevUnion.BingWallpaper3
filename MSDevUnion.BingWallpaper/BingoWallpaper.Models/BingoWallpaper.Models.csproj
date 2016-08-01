@@ -39,6 +39,9 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Bing\BingResult.cs" />
+    <Compile Include="Models\Bing\Image.cs" />
+    <Compile Include="Models\Bing\Tooltips.cs" />
     <Compile Include="Models\Hotspot.cs" />
     <Compile Include="Models\IImage.cs" />
     <Compile Include="Models\LeanCloud\Archive.cs" />
@@ -55,9 +58,7 @@
     <Compile Include="Models\WallpaperSize.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\Bing\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\BingoWallpaper.Utils\BingoWallpaper.Utils.csproj">
       <Project>{c523169b-c592-4fe4-a683-0a8189462efd}</Project>
