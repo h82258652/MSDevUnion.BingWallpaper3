@@ -119,6 +119,9 @@
     </Compile>
     <Compile Include="Behaviors\BeginOrResumeStoryboardAction.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Controls\BindableMargin.xaml.cs">
+      <DependentUpon>BindableMargin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\DefaultImageLoader.cs" />
     <Compile Include="Controls\ExceptionEventArgs.cs" />
     <Compile Include="Controls\FirstDoubleSizePanel.cs" />
@@ -126,6 +129,7 @@
     <Compile Include="Controls\IImageLoader.cs" />
     <Compile Include="Controls\ImageEx.cs" />
     <Compile Include="Controls\ImageFailedEventArgs.cs" />
+    <Compile Include="Controls\ToastPrompt.cs" />
     <Compile Include="Converters\BooleanNegationConverter.cs" />
     <Compile Include="Converters\MonthNameConverter.cs" />
     <Compile Include="Converters\WallpaperUrlConverter.cs" />
@@ -174,6 +178,10 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\BindableMargin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\BingoWallpaperBrushStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -198,6 +206,11 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\ImageEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Themes\ToastPrompt.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
