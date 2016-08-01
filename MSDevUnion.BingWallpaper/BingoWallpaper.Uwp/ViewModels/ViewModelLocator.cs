@@ -1,6 +1,7 @@
 ﻿using BingoWallpaper.Configuration;
 using BingoWallpaper.Services;
 using BingoWallpaper.Uwp.Controls;
+using BingoWallpaper.Uwp.Services;
 using BingoWallpaper.Uwp.Views;
 using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
@@ -38,6 +39,7 @@ namespace BingoWallpaper.Uwp.ViewModels
             unityContainer.RegisterType<IScreenService, ScreenService>();
             unityContainer.RegisterType<ISystemSettingService, SystemSettingService>();
             unityContainer.RegisterType<IFileService, FileService>();
+            unityContainer.RegisterType<IAppToastService, AppToastService>();
 
             unityContainer.RegisterType<IBingoWallpaperSettings, BingoWallpaperSettings>();
 

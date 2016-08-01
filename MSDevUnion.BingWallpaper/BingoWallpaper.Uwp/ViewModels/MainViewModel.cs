@@ -1,12 +1,12 @@
 ﻿using BingoWallpaper.Configuration;
 using BingoWallpaper.Models.LeanCloud;
 using BingoWallpaper.Services;
+using BingoWallpaper.Uwp.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using Windows.UI.Xaml.Controls;
@@ -15,6 +15,8 @@ namespace BingoWallpaper.Uwp.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
+        private readonly IAppToastService _appToastService;
+
         private readonly ILeanCloudWallpaperService _leanCloudWallpaperService;
 
         private readonly INavigationService _navigationService;
@@ -29,11 +31,12 @@ namespace BingoWallpaper.Uwp.ViewModels
 
         private RelayCommand<ItemClickEventArgs> _wallpaperClickCommand;
 
-        public MainViewModel(INavigationService navigationService, ILeanCloudWallpaperService leanCloudWallpaperService, IBingoWallpaperSettings settings)
+        public MainViewModel(INavigationService navigationService, ILeanCloudWallpaperService leanCloudWallpaperService, IBingoWallpaperSettings settings, IAppToastService appToastService)
         {
             _navigationService = navigationService;
             _leanCloudWallpaperService = leanCloudWallpaperService;
             _settings = settings;
+            _appToastService = appToastService;
 
             var wallpaperCollections = new List<WallpaperCollection>();
             var date = BingoWallpaper.Constants.MinimumViewMonth;
@@ -77,10 +80,7 @@ namespace BingoWallpaper.Uwp.ViewModels
                     }
                     catch (HttpRequestException ex)
                     {
-                        // TODO network error.
-                        var t = ex.GetType().FullName;
-                        Console.WriteLine(t);
-                        Debugger.Break();
+                        _appToastService.ShowError(ex.Message);
                     }
                     finally
                     {

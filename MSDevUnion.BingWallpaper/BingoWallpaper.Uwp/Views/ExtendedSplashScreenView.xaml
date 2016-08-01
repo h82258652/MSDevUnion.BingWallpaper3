@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="BingoWallpaper.Uwp.Views.ExtendedSplashScreenView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="using:BingoWallpaper.Uwp.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="300"
+             d:DesignWidth="400"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <Storyboard x:Name="DismissStoryboard">
+            <DoubleAnimation Storyboard.TargetName="RootGrid"
+                             Storyboard.TargetProperty="Opacity"
+                             From="1"
+                             To="0"
+                             Duration="0:0:0.4" />
+            <DoubleAnimation Storyboard.TargetName="RootGrid"
+                             Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                             From="1"
+                             To="1.3"
+                             Duration="0:0:0.4">
+                <DoubleAnimation.EasingFunction>
+                    <ExponentialEase EasingMode="EaseOut"
+                                     Exponent="5" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="RootGrid"
+                             Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                             From="1"
+                             To="1.3"
+                             Duration="0:0:0.4">
+                <DoubleAnimation.EasingFunction>
+                    <ExponentialEase EasingMode="EaseOut"
+                                     Exponent="5" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+    </UserControl.Resources>
+    <Grid x:Name="RootGrid"
+          Background="#E7E7E7"
+          RenderTransformOrigin="0.5,0.5">
+        <Grid.RenderTransform>
+            <ScaleTransform />
+        </Grid.RenderTransform>
+        <Image x:Name="SplashScreenImage"
+               ImageOpened="SplashScreenImage_ImageOpened"
+               Source="/Assets/SplashScreen.png" />
+        <ProgressRing IsActive="True" />
+    </Grid>
+</UserControl>
