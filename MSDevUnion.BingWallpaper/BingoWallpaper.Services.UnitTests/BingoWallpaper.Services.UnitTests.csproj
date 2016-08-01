@@ -88,6 +88,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="BingWallpaperServicceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LeanCloudWallpaperServiceTest.cs" />
   </ItemGroup>
