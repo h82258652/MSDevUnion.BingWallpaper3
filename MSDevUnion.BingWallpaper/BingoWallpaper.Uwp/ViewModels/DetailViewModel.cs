@@ -19,18 +19,49 @@ namespace BingoWallpaper.Uwp.ViewModels
 
         private readonly IBingoWallpaperSettings _settings;
 
+        private readonly ISystemSettingService _systemSettingService;
+
         private readonly IWallpaperService _wallpaperService;
+
+        private RelayCommand _openLockScreenSettingCommand;
+
+        private RelayCommand _openWallpaperSettingCommand;
 
         private RelayCommand _saveCommand;
 
         private Wallpaper _wallpaper;
 
-        public DetailViewModel(IWallpaperService wallpaperService, IBingoWallpaperSettings settings, IFileService fileService, IImageLoader imageLoader)
+        public DetailViewModel(IWallpaperService wallpaperService, IBingoWallpaperSettings settings, ISystemSettingService systemSettingService, IFileService fileService, IImageLoader imageLoader)
         {
             _wallpaperService = wallpaperService;
             _settings = settings;
+            _systemSettingService = systemSettingService;
             _fileService = fileService;
             _imageLoader = imageLoader;
+        }
+
+        public RelayCommand OpenLockScreenSettingCommand
+        {
+            get
+            {
+                _openLockScreenSettingCommand = _openLockScreenSettingCommand ?? new RelayCommand(async () =>
+                {
+                    await _systemSettingService.OpenLockScreenSettingAsync();
+                });
+                return _openLockScreenSettingCommand;
+            }
+        }
+
+        public RelayCommand OpenWallpaperSettingCommand
+        {
+            get
+            {
+                _openWallpaperSettingCommand = _openWallpaperSettingCommand ?? new RelayCommand(async () =>
+                {
+                    await _systemSettingService.OpenWallpaperSettingAsync();
+                });
+                return _openWallpaperSettingCommand;
+            }
         }
 
         public RelayCommand SaveCommand
@@ -39,6 +70,8 @@ namespace BingoWallpaper.Uwp.ViewModels
             {
                 _saveCommand = _saveCommand ?? new RelayCommand(async () =>
                 {
+                    // TODO check exception and to service.
+
                     var url = _wallpaperService.GetUrl(Wallpaper.Image, _settings.SelectedWallpaperSize);
                     var bytes = await _imageLoader.GetBytesAsync(url);
                     var saveLocation = _settings.SelectedSaveLocation;
