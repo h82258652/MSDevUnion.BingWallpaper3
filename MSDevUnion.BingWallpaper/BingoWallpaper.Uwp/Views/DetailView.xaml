@@ -34,6 +34,16 @@
             <AppBarButton x:Uid="/DetailView/SaveButton"
                           Command="{Binding Path=SaveCommand}"
                           Icon="Save" />
+            <AppBarButton x:Uid="/DetailView/SetWallpaperButton"
+                          Command="{Binding Path=SetWallpaperCommand}">
+                <AppBarButton.Icon>
+                    <FontIcon FontFamily="Segoe MDL2 Assets"
+                              Glyph="&#xE771;" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton x:Uid="/DetailView/SetLockScreenButton"
+                          Command="{Binding Path=SetLockScreenCommand}"
+                          Icon="SetLockScreen" />
         </CommandBar>
     </Grid>
 </local:ViewBase>
