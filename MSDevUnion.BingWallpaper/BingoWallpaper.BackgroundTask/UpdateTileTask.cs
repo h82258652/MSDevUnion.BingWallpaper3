@@ -1,6 +1,7 @@
 ﻿using BingoWallpaper.Configuration;
 using BingoWallpaper.Services;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Windows.ApplicationModel.Background;
 
 namespace BingoWallpaper.BackgroundTask
@@ -11,11 +12,14 @@ namespace BingoWallpaper.BackgroundTask
 
         private readonly IBingWallpaperService _bingWallpaperService;
 
+        private readonly ITileService _tileService;
+
         public UpdateTileTask()
         {
             _bingWallpaperService = new BingWallpaperService();
             IScreenService screenService = new ScreenService();
             _bingoWallpaperSettings = new BingoWallpaperSettings(_bingWallpaperService, screenService);
+            _tileService = new TileService(_bingWallpaperService);
         }
 
         public async void Run(IBackgroundTaskInstance taskInstance)
@@ -27,7 +31,9 @@ namespace BingoWallpaper.BackgroundTask
                 var image = result?.Images.FirstOrDefault();
                 if (image != null)
                 {
-                    // TODO
+                    var copyright = image.Copyright;
+                    var text = Regex.Replace(copyright, @"\(©.*", string.Empty).Trim();
+                    _tileService.UpdatePrimaryTile(image, text);
                 }
             }
             finally

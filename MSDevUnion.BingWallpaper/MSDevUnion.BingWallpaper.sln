@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BingoWallpaper.Uwp", "BingoWallpaper.Uwp\BingoWallpaper.Uwp.csproj", "{4D6FE44D-70F5-42D9-B051-E3C04C2E9B11}"
+	ProjectSection(ProjectDependencies) = postProject
+		{87314E79-4EB0-4431-BB1F-FB449D40D05E} = {87314E79-4EB0-4431-BB1F-FB449D40D05E}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BingoWallpaper.Services", "BingoWallpaper.Services\BingoWallpaper.Services.csproj", "{0566BA90-61FE-4703-A729-CF6258476673}"
 EndProject
