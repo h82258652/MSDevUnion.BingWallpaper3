@@ -1,6 +1,6 @@
 ﻿namespace BingoWallpaper.Services
 {
-    public static class Constants
+    internal static class Constants
     {
         internal const string WallpaperFileName = "wallpaper.jpg";
 
