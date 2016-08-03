@@ -3,6 +3,7 @@ using BingoWallpaper.Models;
 using BingoWallpaper.Models.LeanCloud;
 using BingoWallpaper.Services;
 using BingoWallpaper.Uwp.Controls;
+using BingoWallpaper.Uwp.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
@@ -13,6 +14,8 @@ namespace BingoWallpaper.Uwp.ViewModels
 {
     public class DetailViewModel : ViewModelBase, INavigable
     {
+        private readonly IAppToastService _appToastService;
+
         private readonly IFileService _fileService;
 
         private readonly IImageLoader _imageLoader;
@@ -29,15 +32,20 @@ namespace BingoWallpaper.Uwp.ViewModels
 
         private RelayCommand _saveCommand;
 
+        private RelayCommand _setLockScreenCommand;
+
+        private RelayCommand _setWallpaperCommand;
+
         private Wallpaper _wallpaper;
 
-        public DetailViewModel(IWallpaperService wallpaperService, IBingoWallpaperSettings settings, ISystemSettingService systemSettingService, IFileService fileService, IImageLoader imageLoader)
+        public DetailViewModel(IWallpaperService wallpaperService, IBingoWallpaperSettings settings, ISystemSettingService systemSettingService, IFileService fileService, IImageLoader imageLoader, IAppToastService appToastService)
         {
             _wallpaperService = wallpaperService;
             _settings = settings;
             _systemSettingService = systemSettingService;
             _fileService = fileService;
             _imageLoader = imageLoader;
+            _appToastService = appToastService;
         }
 
         public RelayCommand OpenLockScreenSettingCommand
@@ -96,6 +104,40 @@ namespace BingoWallpaper.Uwp.ViewModels
                     }
                 });
                 return _saveCommand;
+            }
+        }
+
+        public RelayCommand SetLockScreenCommand
+        {
+            get
+            {
+                _setLockScreenCommand = _setLockScreenCommand ?? new RelayCommand(async () =>
+                {
+                    // TODO check exception and show result.
+
+                    var url = _wallpaperService.GetUrl(Wallpaper.Image, _settings.SelectedWallpaperSize);
+                    var bytes = await _imageLoader.GetBytesAsync(url);
+                    var isSuccess = await _systemSettingService.SetLockScreenAsync(bytes);
+                    _appToastService.ShowMessage(isSuccess.ToString());
+                });
+                return _setLockScreenCommand;
+            }
+        }
+
+        public RelayCommand SetWallpaperCommand
+        {
+            get
+            {
+                _setWallpaperCommand = _setWallpaperCommand ?? new RelayCommand(async () =>
+                {
+                    // TODO check exception and show result.
+
+                    var url = _wallpaperService.GetUrl(Wallpaper.Image, _settings.SelectedWallpaperSize);
+                    var bytes = await _imageLoader.GetBytesAsync(url);
+                    var isSuccess = await _systemSettingService.SetWallpaperAsync(bytes);
+                    _appToastService.ShowMessage(isSuccess.ToString());
+                });
+                return _setWallpaperCommand;
             }
         }
 

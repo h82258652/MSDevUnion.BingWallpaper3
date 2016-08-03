@@ -126,4 +126,10 @@
   <data name="SaveButton.Label" xml:space="preserve">
     <value>保存</value>
   </data>
+  <data name="SetLockScreenButton.Label" xml:space="preserve">
+    <value>设置为锁屏</value>
+  </data>
+  <data name="SetWallpaperButton.Label" xml:space="preserve">
+    <value>设置为壁纸</value>
+  </data>
 </root>

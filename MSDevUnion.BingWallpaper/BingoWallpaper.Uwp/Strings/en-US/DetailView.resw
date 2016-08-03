@@ -126,4 +126,10 @@
   <data name="SaveButton.Label" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="SetLockScreenButton.Label" xml:space="preserve">
+    <value>Set as lock screen</value>
+  </data>
+  <data name="SetWallpaperButton.Label" xml:space="preserve">
+    <value>Set as wallpaper</value>
+  </data>
 </root>

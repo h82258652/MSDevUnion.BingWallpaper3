@@ -7,5 +7,9 @@ namespace BingoWallpaper.Services
         Task OpenLockScreenSettingAsync();
 
         Task OpenWallpaperSettingAsync();
+
+        Task<bool> SetLockScreenAsync(byte[] imageBytes);
+
+        Task<bool> SetWallpaperAsync(byte[] imageBytes);
     }
 }

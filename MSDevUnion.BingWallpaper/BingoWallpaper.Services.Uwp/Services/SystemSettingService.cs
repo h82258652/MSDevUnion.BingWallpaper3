@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Windows.Storage;
 using Windows.System;
+using Windows.System.UserProfile;
 
 namespace BingoWallpaper.Services
 {
@@ -14,6 +16,28 @@ namespace BingoWallpaper.Services
         public async Task OpenWallpaperSettingAsync()
         {
             await Launcher.LaunchUriAsync(new Uri("ms-settings:personalization"));
+        }
+
+        public async Task<bool> SetLockScreenAsync(byte[] imageBytes)
+        {
+            if (UserProfilePersonalizationSettings.IsSupported())
+            {
+                var file = await ApplicationData.Current.LocalFolder.CreateFileAsync(Constants.LockScreenFileName);
+                await FileIO.WriteBytesAsync(file, imageBytes);
+                return await UserProfilePersonalizationSettings.Current.TrySetLockScreenImageAsync(file);
+            }
+            return false;
+        }
+
+        public async Task<bool> SetWallpaperAsync(byte[] imageBytes)
+        {
+            if (UserProfilePersonalizationSettings.IsSupported())
+            {
+                var file = await ApplicationData.Current.LocalFolder.CreateFileAsync(Constants.WallpaperFileName);
+                await FileIO.WriteBytesAsync(file, imageBytes);
+                return await UserProfilePersonalizationSettings.Current.TrySetWallpaperImageAsync(file);
+            }
+            return false;
         }
     }
 }
