@@ -8,7 +8,8 @@
              d:DesignWidth="400"
              mc:Ignorable="d">
     <Grid x:Name="RootGrid">
-        <Frame x:Name="RootFrame" />
+        <Frame x:Name="RootFrame"
+               x:FieldModifier="internal" />
         <Grid x:Name="ToastPromptContainer"
               x:FieldModifier="internal" />
     </Grid>

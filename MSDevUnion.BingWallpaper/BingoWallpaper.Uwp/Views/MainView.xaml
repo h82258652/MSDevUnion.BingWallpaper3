@@ -6,6 +6,7 @@
       xmlns:conv="using:WinRTXamlToolkit.Converters"
       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions"
       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
       xmlns:localConv="using:BingoWallpaper.Uwp.Converters"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -145,36 +146,52 @@
                                                            Converter={StaticResource WallpaperUrlConverter},
                                                            ConverterParameter='1920x1080'}"
                                           Stretch="UniformToFill" />
-                        <GridView IsItemClickEnabled="True"
-                                  ItemsSource="{Binding}"
-                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                  ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                  SelectionMode="None">
-                            <GridView.ItemTemplate>
+                        <controls:GridViewEx IsItemClickEnabled="True"
+                                             ItemPointerEntered="GridViewEx_ItemPointerEntered"
+                                             ItemPointerExited="GridViewEx_ItemPointerExited"
+                                             ItemsSource="{Binding}"
+                                             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                             ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                             SelectionMode="None">
+                            <controls:GridViewEx.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid>
+                                    <Grid extensions:FrameworkElementExtensions.ClipToBounds="True">
                                         <controls:ImageEx Source="{Binding Path=Image, Converter={StaticResource WallpaperUrlConverter}, ConverterParameter='1920x1080'}"
                                                           Stretch="UniformToFill" />
                                         <Border VerticalAlignment="Bottom"
                                                 Background="#80808080">
                                             <TextBlock Margin="4"
                                                        Text="{Binding Path=Archive.Info}"
-                                                       TextWrapping="Wrap" />
+                                                       TextWrapping="Wrap">
+                                                <TextBlock.RenderTransform>
+                                                    <TranslateTransform />
+                                                </TextBlock.RenderTransform></TextBlock>
                                         </Border>
                                     </Grid>
                                 </DataTemplate>
-                            </GridView.ItemTemplate>
-                            <GridView.ItemsPanel>
+                            </controls:GridViewEx.ItemTemplate>
+                            <controls:GridViewEx.ItemContainerStyle>
+                                <Style TargetType="GridViewItem">
+                                    <Setter Property="RenderTransformOrigin"
+                                            Value="0.5,0.5" />
+                                    <Setter Property="RenderTransform">
+                                        <Setter.Value>
+                                            <ScaleTransform />
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </controls:GridViewEx.ItemContainerStyle>
+                            <controls:GridViewEx.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <controls:FirstDoubleSizePanel SizeChanged="FirstDoubleSizePanel_SizeChanged" />
                                 </ItemsPanelTemplate>
-                            </GridView.ItemsPanel>
+                            </controls:GridViewEx.ItemsPanel>
                             <interactivity:Interaction.Behaviors>
                                 <core:EventTriggerBehavior EventName="ItemClick">
                                     <core:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=Main.WallpaperClickCommand}" />
                                 </core:EventTriggerBehavior>
                             </interactivity:Interaction.Behaviors>
-                        </GridView>
+                        </controls:GridViewEx>
                     </Grid>
                 </DataTemplate>
             </FlipView.ItemTemplate>

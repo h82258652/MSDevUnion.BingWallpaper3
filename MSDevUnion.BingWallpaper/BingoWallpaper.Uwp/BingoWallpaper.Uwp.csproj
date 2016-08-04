@@ -126,6 +126,7 @@
     <Compile Include="Controls\DefaultImageLoader.cs" />
     <Compile Include="Controls\ExceptionEventArgs.cs" />
     <Compile Include="Controls\FirstDoubleSizePanel.cs" />
+    <Compile Include="Controls\GridViewEx.cs" />
     <Compile Include="Controls\HttpDownloadProgressEventArgs.cs" />
     <Compile Include="Controls\IImageLoader.cs" />
     <Compile Include="Controls\ImageEx.cs" />
