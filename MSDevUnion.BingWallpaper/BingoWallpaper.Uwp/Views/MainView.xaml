@@ -25,12 +25,12 @@
             <localConv:MonthNameConverter x:Key="MonthNameConverter" />
             <localConv:WallpaperUrlConverter x:Key="WallpaperUrlConverter" />
             <Storyboard x:Key="RefreshBusyStoryboard">
-                <DoubleAnimation Duration="0:0:1"
-                                 From="0"
-                                 RepeatBehavior="Forever"
+                <DoubleAnimation RepeatBehavior="Forever"
                                  Storyboard.TargetName="RefreshIconRotateTransform"
                                  Storyboard.TargetProperty="Angle"
-                                 To="360" />
+                                 From="0"
+                                 To="360"
+                                 Duration="0:0:1" />
             </Storyboard>
         </ResourceDictionary>
     </Page.Resources>
@@ -108,6 +108,21 @@
                     <interactivity:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="Click">
                             <behaviors:NavigateToPageAction TargetPage="BingoWallpaper.Uwp.Views.SettingView" />
+                        </core:EventTriggerBehavior>
+                    </interactivity:Interaction.Behaviors>
+                </AppBarButton>
+                <AppBarButton x:Uid="/MainView/AboutButton"
+                              Grid.Column="3"
+                              IsCompact="{Binding ElementName=AppBar,
+                                                  Path=IsOpen,
+                                                  Converter={StaticResource BooleanNegationConverter}}">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe MDL2 Assets"
+                                  Glyph="&#xE946;" />
+                    </AppBarButton.Icon>
+                    <interactivity:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="Click">
+                            <behaviors:NavigateToPageAction TargetPage="BingoWallpaper.Uwp.Views.AboutView" />
                         </core:EventTriggerBehavior>
                     </interactivity:Interaction.Behaviors>
                 </AppBarButton>
