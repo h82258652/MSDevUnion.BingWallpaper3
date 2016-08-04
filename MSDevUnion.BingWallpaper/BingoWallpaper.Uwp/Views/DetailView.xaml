@@ -15,35 +15,50 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+    <local:ViewBase.LeaveStoryboard>
+        <Storyboard>
+            <DoubleAnimation Storyboard.TargetName="RootGrid"
+                             Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+                             To="500"
+                             Duration="0:0:1"></DoubleAnimation>
+        </Storyboard>
+    </local:ViewBase.LeaveStoryboard>
+    <Grid x:Name="RootGrid"
+          Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RenderTransform>
+            <TranslateTransform></TranslateTransform>
+        </Grid.RenderTransform>
         <Grid>
-            <controls:ImageEx Source="{Binding Path=WallpaperUrl}" />
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid>
+                <controls:ImageEx Source="{Binding Path=WallpaperUrl}" />
+            </Grid>
+            <CommandBar Grid.Row="1"
+                        Background="{ThemeResource SystemAccentBrush}">
+                <CommandBar.SecondaryCommands>
+                    <AppBarButton x:Uid="/DetailView/OpenWallpaperSettingButton"
+                                  Command="{Binding Path=OpenWallpaperSettingCommand}" />
+                    <AppBarButton x:Uid="/DetailView/OpenLockScreenSettingButton"
+                                  Command="{Binding Path=OpenLockScreenSettingCommand}" />
+                </CommandBar.SecondaryCommands>
+                <AppBarButton x:Uid="/DetailView/SaveButton"
+                              Command="{Binding Path=SaveCommand}"
+                              Icon="Save" />
+                <AppBarButton x:Uid="/DetailView/SetWallpaperButton"
+                              Command="{Binding Path=SetWallpaperCommand}">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe MDL2 Assets"
+                                  Glyph="&#xE771;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton x:Uid="/DetailView/SetLockScreenButton"
+                              Command="{Binding Path=SetLockScreenCommand}"
+                              Icon="SetLockScreen" />
+            </CommandBar>
         </Grid>
-        <CommandBar Grid.Row="1"
-                    Background="{ThemeResource SystemAccentBrush}">
-            <CommandBar.SecondaryCommands>
-                <AppBarButton x:Uid="/DetailView/OpenWallpaperSettingButton"
-                              Command="{Binding Path=OpenWallpaperSettingCommand}" />
-                <AppBarButton x:Uid="/DetailView/OpenLockScreenSettingButton"
-                              Command="{Binding Path=OpenLockScreenSettingCommand}" />
-            </CommandBar.SecondaryCommands>
-            <AppBarButton x:Uid="/DetailView/SaveButton"
-                          Command="{Binding Path=SaveCommand}"
-                          Icon="Save" />
-            <AppBarButton x:Uid="/DetailView/SetWallpaperButton"
-                          Command="{Binding Path=SetWallpaperCommand}">
-                <AppBarButton.Icon>
-                    <FontIcon FontFamily="Segoe MDL2 Assets"
-                              Glyph="&#xE771;" />
-                </AppBarButton.Icon>
-            </AppBarButton>
-            <AppBarButton x:Uid="/DetailView/SetLockScreenButton"
-                          Command="{Binding Path=SetLockScreenCommand}"
-                          Icon="SetLockScreen" />
-        </CommandBar>
+        <controls:EllipseMask x:Name="EllipseMask" />
     </Grid>
 </local:ViewBase>

@@ -1,0 +1,33 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="using:BingoWallpaper.Uwp.Controls">
+    <Style TargetType="controls:EllipseMask">
+        <Setter Property="Background"
+                Value="Black" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:EllipseMask">
+                    <Grid>
+                        <Viewbox HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"
+                                 Stretch="UniformToFill">
+                            <Path x:Name="PART_Path"
+                                  Width="100"
+                                  Height="100"
+                                  Fill="{TemplateBinding Background}">
+                                <Path.Data>
+                                    <GeometryGroup FillRule="EvenOdd">
+                                        <RectangleGeometry Rect="0,0,100,100" />
+                                        <EllipseGeometry Center="50,50"
+                                                         RadiusX="0"
+                                                         RadiusY="0" />
+                                    </GeometryGroup>
+                                </Path.Data>
+                            </Path>
+                        </Viewbox>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
