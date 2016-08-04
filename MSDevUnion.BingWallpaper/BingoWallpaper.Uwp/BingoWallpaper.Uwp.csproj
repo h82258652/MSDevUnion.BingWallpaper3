@@ -142,10 +142,14 @@
     <Compile Include="Services\IAppToastService.cs" />
     <Compile Include="Services\BingoWallpaperNavigationService.cs" />
     <Compile Include="Utils\HashHelper.cs" />
+    <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\DetailViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\SettingViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
+    <Compile Include="Views\AboutView.xaml.cs">
+      <DependentUpon>AboutView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\BindablePage.cs" />
     <Compile Include="Views\DetailView.xaml.cs">
       <DependentUpon>DetailView.xaml</DependentUpon>
@@ -224,6 +228,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Views\AboutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DetailView.xaml">
       <SubType>Designer</SubType>

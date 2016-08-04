@@ -17,6 +17,8 @@ namespace BingoWallpaper.Uwp.ViewModels
 
         public const string SettingViewKey = "Setting";
 
+        public const string AboutViewKey = "About";
+
         static ViewModelLocator()
         {
             var serviceLocator = new UnityServiceLocator(ConfigureUnityContainer());
@@ -48,6 +50,7 @@ namespace BingoWallpaper.Uwp.ViewModels
             unityContainer.RegisterType<MainViewModel>(new ContainerControlledLifetimeManager());
             unityContainer.RegisterType<DetailViewModel>();
             unityContainer.RegisterType<SettingViewModel>();
+            unityContainer.RegisterType<AboutViewModel>();
 
             return unityContainer;
         }
@@ -58,6 +61,7 @@ namespace BingoWallpaper.Uwp.ViewModels
             navigationService.Configure(MainViewKey, typeof(MainView));
             navigationService.Configure(DetailViewKey, typeof(DetailView));
             navigationService.Configure(SettingViewKey, typeof(SettingView));
+            navigationService.Configure(AboutViewKey, typeof(AboutView));
             return navigationService;
         }
     }
