@@ -35,6 +35,102 @@ namespace BingoWallpaper.Uwp.Controls
             }
         }
 
+        public int GetColumnCount()
+        {
+            var childrenCount = Children.Count;
+            if (childrenCount <= 0)
+            {
+                return 0;
+            }
+            else
+            {
+                return GetColumnFromIndex(childrenCount - 1) + 1;
+            }
+        }
+
+        public int GetColumnFromIndex(int index)
+        {
+            if (index < 0 || index >= Children.Count)
+            {
+                throw new ArgumentOutOfRangeException(nameof(index));
+            }
+
+            if (Orientation == Orientation.Horizontal)
+            {
+                if (index == 0)
+                {
+                    return 0;
+                }
+                else if (index < MaximumRowsOrColumns - 1)
+                {
+                    return index + 1;
+                }
+                else
+                {
+                    return (index + 3) % MaximumRowsOrColumns;
+                }
+            }
+            else
+            {
+                if (index < MaximumRowsOrColumns - 1)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return (index + 3) / MaximumRowsOrColumns;
+                }
+            }
+        }
+
+        public int GetRowCount()
+        {
+            var childrenCount = Children.Count;
+            if (childrenCount <= 0)
+            {
+                return 0;
+            }
+            else
+            {
+                return GetRowFromIndex(childrenCount - 1) + 1;
+            }
+        }
+
+        public int GetRowFromIndex(int index)
+        {
+            if (index < 0 || index >= Children.Count)
+            {
+                throw new ArgumentOutOfRangeException(nameof(index));
+            }
+
+            if (Orientation == Orientation.Horizontal)
+            {
+                if (index < MaximumRowsOrColumns - 1)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return (index + 3) / MaximumRowsOrColumns;
+                }
+            }
+            else
+            {
+                if (index == 0)
+                {
+                    return 0;
+                }
+                else if (index < MaximumRowsOrColumns - 1)
+                {
+                    return index + 1;
+                }
+                else
+                {
+                    return (index + 3) % MaximumRowsOrColumns;
+                }
+            }
+        }
+
         protected override Size ArrangeOverride(Size finalSize)
         {
             if (Orientation == Orientation.Horizontal)
