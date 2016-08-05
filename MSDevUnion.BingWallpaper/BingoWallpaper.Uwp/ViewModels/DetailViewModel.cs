@@ -1,5 +1,4 @@
 ﻿using BingoWallpaper.Configuration;
-using BingoWallpaper.Models;
 using BingoWallpaper.Models.LeanCloud;
 using BingoWallpaper.Services;
 using BingoWallpaper.Uwp.Controls;
@@ -8,7 +7,6 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.IO;
-using Windows.Storage;
 
 namespace BingoWallpaper.Uwp.ViewModels
 {
@@ -16,7 +14,7 @@ namespace BingoWallpaper.Uwp.ViewModels
     {
         private readonly IAppToastService _appToastService;
 
-        private readonly IFileService _fileService;
+        private readonly IBingoFileService _bingoFileService;
 
         private readonly IImageLoader _imageLoader;
 
@@ -38,12 +36,12 @@ namespace BingoWallpaper.Uwp.ViewModels
 
         private Wallpaper _wallpaper;
 
-        public DetailViewModel(IWallpaperService wallpaperService, IBingoWallpaperSettings settings, ISystemSettingService systemSettingService, IFileService fileService, IImageLoader imageLoader, IAppToastService appToastService)
+        public DetailViewModel(IWallpaperService wallpaperService, IBingoWallpaperSettings settings, ISystemSettingService systemSettingService, IBingoFileService bingoFileService, IImageLoader imageLoader, IAppToastService appToastService)
         {
             _wallpaperService = wallpaperService;
             _settings = settings;
             _systemSettingService = systemSettingService;
-            _fileService = fileService;
+            _bingoFileService = bingoFileService;
             _imageLoader = imageLoader;
             _appToastService = appToastService;
         }
@@ -78,29 +76,21 @@ namespace BingoWallpaper.Uwp.ViewModels
             {
                 _saveCommand = _saveCommand ?? new RelayCommand(async () =>
                 {
-                    // TODO check exception and to service.
-
-                    var url = _wallpaperService.GetUrl(Wallpaper.Image, _settings.SelectedWallpaperSize);
-                    var bytes = await _imageLoader.GetBytesAsync(url);
-                    var saveLocation = _settings.SelectedSaveLocation;
-                    StorageFile file = null;
-                    switch (saveLocation)
+                    try
                     {
-                        case SaveLocation.PictureLibrary:
-                            file = await KnownFolders.PicturesLibrary.CreateFileAsync(Path.GetFileName(url), CreationCollisionOption.ReplaceExisting);
-                            break;
-
-                        case SaveLocation.ChooseEveryTime:
-                            file = await _fileService.PickerSaveFilePathAsync(Path.GetFileName(url));
-                            break;
-
-                        case SaveLocation.SavedPictures:
-                            file = await KnownFolders.SavedPictures.CreateFileAsync(Path.GetFileName(url), CreationCollisionOption.ReplaceExisting);
-                            break;
+                        var url = _wallpaperService.GetUrl(Wallpaper.Image, _settings.SelectedWallpaperSize);
+                        var bytes = await _imageLoader.GetBytesAsync(url);
+                        var fileName = Path.GetFileName(url);
+                        var isSaved = await _bingoFileService.SaveImageAsync(fileName, bytes);
+                        if (isSaved)
+                        {
+                            // TODO to localized string.
+                            _appToastService.ShowMessage("保存成功");
+                        }
                     }
-                    if (file != null)
+                    catch (Exception ex)
                     {
-                        await FileIO.WriteBytesAsync(file, bytes);
+                        _appToastService.ShowError(ex.Message);
                     }
                 });
                 return _saveCommand;
@@ -113,12 +103,26 @@ namespace BingoWallpaper.Uwp.ViewModels
             {
                 _setLockScreenCommand = _setLockScreenCommand ?? new RelayCommand(async () =>
                 {
-                    // TODO check exception and show result.
-
-                    var url = _wallpaperService.GetUrl(Wallpaper.Image, _settings.SelectedWallpaperSize);
-                    var bytes = await _imageLoader.GetBytesAsync(url);
-                    var isSuccess = await _systemSettingService.SetLockScreenAsync(bytes);
-                    _appToastService.ShowMessage(isSuccess.ToString());
+                    try
+                    {
+                        var url = _wallpaperService.GetUrl(Wallpaper.Image, _settings.SelectedWallpaperSize);
+                        var bytes = await _imageLoader.GetBytesAsync(url);
+                        var isSuccess = await _systemSettingService.SetLockScreenAsync(bytes);
+                        if (isSuccess)
+                        {
+                            // TODO
+                            _appToastService.ShowMessage("设置成功");
+                        }
+                        else
+                        {
+                            // TODO
+                            _appToastService.ShowError("设置失败");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        _appToastService.ShowError(ex.Message);
+                    }
                 });
                 return _setLockScreenCommand;
             }
@@ -130,12 +134,26 @@ namespace BingoWallpaper.Uwp.ViewModels
             {
                 _setWallpaperCommand = _setWallpaperCommand ?? new RelayCommand(async () =>
                 {
-                    // TODO check exception and show result.
-
-                    var url = _wallpaperService.GetUrl(Wallpaper.Image, _settings.SelectedWallpaperSize);
-                    var bytes = await _imageLoader.GetBytesAsync(url);
-                    var isSuccess = await _systemSettingService.SetWallpaperAsync(bytes);
-                    _appToastService.ShowMessage(isSuccess.ToString());
+                    try
+                    {
+                        var url = _wallpaperService.GetUrl(Wallpaper.Image, _settings.SelectedWallpaperSize);
+                        var bytes = await _imageLoader.GetBytesAsync(url);
+                        var isSuccess = await _systemSettingService.SetWallpaperAsync(bytes);
+                        if (isSuccess)
+                        {
+                            // TODO
+                            _appToastService.ShowMessage("设置成功");
+                        }
+                        else
+                        {
+                            // TODO
+                            _appToastService.ShowError("设置失败");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        _appToastService.ShowError(ex.Message);
+                    }
                 });
                 return _setWallpaperCommand;
             }

@@ -51,6 +51,12 @@ namespace BingoWallpaper.Uwp.Views
                 {
                     renderTransformOrigin.X = 1;
                 }
+
+                // 修正第一个元素。
+                if (index == 0 && panel.MaximumRowsOrColumns == 2)
+                {
+                    renderTransformOrigin.X = 0.5;
+                }
             }
             return renderTransformOrigin;
         }

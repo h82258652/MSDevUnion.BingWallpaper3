@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Background;
 using Windows.Foundation.Metadata;
+using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using WinRTXamlToolkit.AwaitableUI;
@@ -19,9 +20,9 @@ namespace BingoWallpaper.Uwp.Views
 
         public ExtendedSplashScreenView(SplashScreen splashScreen) : this()
         {
-            var r = splashScreen.ImageLocation;
-            SplashScreenImage.Width = r.Width;
-            SplashScreenImage.Height = r.Height;
+            var rect = splashScreen.ImageLocation;
+            SplashScreenImage.Width = rect.Width;
+            SplashScreenImage.Height = rect.Height;
         }
 
         public event EventHandler Completed;
@@ -37,6 +38,14 @@ namespace BingoWallpaper.Uwp.Views
             {
                 await StatusBar.GetForCurrentView().HideAsync();
             }
+        }
+
+        private static void InitTitleBar()
+        {
+            var titleBar = ApplicationView.GetForCurrentView().TitleBar;
+            var systemAccentColor = (Color)Application.Current.Resources["SystemAccentColor"];
+            titleBar.BackgroundColor = systemAccentColor;
+            titleBar.ButtonBackgroundColor = systemAccentColor;
         }
 
         private static async Task RegisterBackgroundTaskAsync()
@@ -70,6 +79,7 @@ namespace BingoWallpaper.Uwp.Views
             Window.Current.Activate();
 
             // 等待所有初始化执行完毕，最后的等待 1 秒纯粹是为了此扩展 SplashScreen 不太快消失。
+            InitTitleBar();
             await Task.WhenAll(HideStatusBarAsync(), RegisterBackgroundTaskAsync(), UpdatePrimaryTileAsync(), Task.Delay(TimeSpan.FromSeconds(1)));
             Completed?.Invoke(this, EventArgs.Empty);
         }

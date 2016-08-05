@@ -11,19 +11,21 @@ namespace BingoWallpaper.Uwp.ViewModels
 {
     public class ViewModelLocator
     {
+        public const string AboutViewKey = "About";
+
         public const string DetailViewKey = "Detail";
 
         public const string MainViewKey = "Main";
 
         public const string SettingViewKey = "Setting";
 
-        public const string AboutViewKey = "About";
-
         static ViewModelLocator()
         {
             var serviceLocator = new UnityServiceLocator(ConfigureUnityContainer());
             ServiceLocator.SetLocatorProvider(() => serviceLocator);
         }
+
+        public AboutViewModel About => ServiceLocator.Current.GetInstance<AboutViewModel>();
 
         public DetailViewModel Detail => ServiceLocator.Current.GetInstance<DetailViewModel>();
 
@@ -40,7 +42,7 @@ namespace BingoWallpaper.Uwp.ViewModels
             unityContainer.RegisterType<ILeanCloudWallpaperService, LeanCloudWallpaperService>();
             unityContainer.RegisterType<IScreenService, ScreenService>();
             unityContainer.RegisterType<ISystemSettingService, SystemSettingService>();
-            unityContainer.RegisterType<IFileService, FileService>();
+            unityContainer.RegisterType<IBingoFileService, BingoFileService>();
             unityContainer.RegisterType<IAppToastService, AppToastService>();
 
             unityContainer.RegisterType<IBingoWallpaperSettings, BingoWallpaperSettings>();
