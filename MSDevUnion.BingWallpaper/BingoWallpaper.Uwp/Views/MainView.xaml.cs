@@ -1,6 +1,5 @@
 ﻿using BingoWallpaper.Uwp.Controls;
 using System;
-using System.Diagnostics;
 using Windows.Devices.Input;
 using Windows.Foundation;
 using Windows.UI;
@@ -21,6 +20,41 @@ namespace BingoWallpaper.Uwp.Views
             NavigationCacheMode = NavigationCacheMode.Required;
         }
 
+        private Point CalculateElementRenderTransformOrigin(UIElement element)
+        {
+            if (element == null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+
+            var renderTransformOrigin = new Point(0.5, 0.5);
+            var itemsControl = ItemsControl.ItemsControlFromItemContainer(element);
+            var panel = itemsControl?.ItemsPanelRoot as FirstDoubleSizePanel;
+            if (panel != null)
+            {
+                var index = itemsControl.IndexFromContainer(element);
+                var row = panel.GetRowFromIndex(index);
+                var column = panel.GetColumnFromIndex(index);
+                if (row == 0)
+                {
+                    renderTransformOrigin.Y = 0;
+                }
+                else if (row == panel.GetRowCount() - 1)
+                {
+                    renderTransformOrigin.Y = 1;
+                }
+                if (column == 0)
+                {
+                    renderTransformOrigin.X = 0;
+                }
+                else if (column == panel.GetColumnCount() - 1)
+                {
+                    renderTransformOrigin.X = 1;
+                }
+            }
+            return renderTransformOrigin;
+        }
+
         private void FirstDoubleSizePanel_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             var panel = (FirstDoubleSizePanel)sender;
@@ -33,41 +67,7 @@ namespace BingoWallpaper.Uwp.Views
             if (e.Pointer.PointerDeviceType == PointerDeviceType.Mouse)
             {
                 var element = (UIElement)sender;
-                var gridView = ItemsControl.ItemsControlFromItemContainer(element);
-                Debug.Assert(gridView != null);
-                var index = gridView.IndexFromContainer(element);
-                var panel = (FirstDoubleSizePanel)gridView.ItemsPanelRoot;
-                Debug.Assert(panel != null);
-                var row = panel.GetRowFromIndex(index);
-                var column = panel.GetColumnFromIndex(index);
-
-                var renderTransformOrigin = new Point();
-                if (row == 0)
-                {
-                    renderTransformOrigin.Y = 0;
-                }
-                else if (row == panel.GetRowCount() - 1)
-                {
-                    renderTransformOrigin.Y = 1;
-                }
-                else
-                {
-                    renderTransformOrigin.Y = 0.5;
-                }
-                if (column == 0)
-                {
-                    renderTransformOrigin.X = 0;
-                }
-                else if (column == panel.GetColumnCount() - 1)
-                {
-                    renderTransformOrigin.X = 1;
-                }
-                else
-                {
-                    renderTransformOrigin.X = 0.5;
-                }
-                element.RenderTransformOrigin = renderTransformOrigin;
-
+                element.RenderTransformOrigin = CalculateElementRenderTransformOrigin(element);
                 Canvas.SetZIndex(element, 2);
                 var border = element.GetFirstDescendantOfType<Border>();
                 var textBlock = border.GetFirstDescendantOfType<TextBlock>();
