@@ -34,7 +34,7 @@ namespace BingoWallpaper.Uwp.Controls
                     EnableDependentAnimation = true,
                     From = 50 * Math.Sqrt(2),
                     To = 0,
-                    Duration = TimeSpan.FromSeconds(0.8)
+                    Duration = TimeSpan.FromSeconds(0.4)
                 };
                 Storyboard.SetTarget(animation, _path);
                 Storyboard.SetTargetProperty(animation, "(Path.Data).(GeometryGroup.Children)[1].(EllipseGeometry.RadiusX)");
@@ -46,7 +46,7 @@ namespace BingoWallpaper.Uwp.Controls
                     EnableDependentAnimation = true,
                     From = 50 * Math.Sqrt(2),
                     To = 0,
-                    Duration = TimeSpan.FromSeconds(0.8)
+                    Duration = TimeSpan.FromSeconds(0.4)
                 };
                 Storyboard.SetTarget(animation, _path);
                 Storyboard.SetTargetProperty(animation, "(Path.Data).(GeometryGroup.Children)[1].(EllipseGeometry.RadiusY)");
@@ -69,7 +69,7 @@ namespace BingoWallpaper.Uwp.Controls
                     EnableDependentAnimation = true,
                     From = 0,
                     To = 50 * Math.Sqrt(2),
-                    Duration = TimeSpan.FromSeconds(0.8)
+                    Duration = TimeSpan.FromSeconds(0.4)
                 };
                 Storyboard.SetTarget(animation, _path);
                 Storyboard.SetTargetProperty(animation, "(Path.Data).(GeometryGroup.Children)[1].(EllipseGeometry.RadiusX)");
@@ -81,7 +81,7 @@ namespace BingoWallpaper.Uwp.Controls
                     EnableDependentAnimation = true,
                     From = 0,
                     To = 50 * Math.Sqrt(2),
-                    Duration = TimeSpan.FromSeconds(0.8)
+                    Duration = TimeSpan.FromSeconds(0.4)
                 };
                 Storyboard.SetTarget(animation, _path);
                 Storyboard.SetTargetProperty(animation, "(Path.Data).(GeometryGroup.Children)[1].(EllipseGeometry.RadiusY)");

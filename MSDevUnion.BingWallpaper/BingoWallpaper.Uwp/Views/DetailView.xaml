@@ -20,7 +20,7 @@
             <DoubleAnimation Storyboard.TargetName="RootGrid"
                              Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
                              To="500"
-                             Duration="0:0:1"></DoubleAnimation>
+                             Duration="0:0:0.4"></DoubleAnimation>
         </Storyboard>
     </local:ViewBase.LeaveStoryboard>
     <Grid x:Name="RootGrid"

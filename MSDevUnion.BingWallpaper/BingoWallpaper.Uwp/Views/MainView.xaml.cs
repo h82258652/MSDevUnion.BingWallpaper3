@@ -39,7 +39,7 @@ namespace BingoWallpaper.Uwp.Views
                     var animation = new DoubleAnimation()
                     {
                         To = 1.05,
-                        Duration = TimeSpan.FromSeconds(0.1)
+                        Duration = TimeSpan.FromSeconds(0.15)
                     };
                     Storyboard.SetTarget(animation, element);
                     Storyboard.SetTargetProperty(animation, "(UIElement.RenderTransform).(ScaleTransform.ScaleX)");
@@ -49,7 +49,7 @@ namespace BingoWallpaper.Uwp.Views
                     var animation = new DoubleAnimation()
                     {
                         To = 1.05,
-                        Duration = TimeSpan.FromSeconds(0.1)
+                        Duration = TimeSpan.FromSeconds(0.15)
                     };
                     Storyboard.SetTarget(animation, element);
                     Storyboard.SetTargetProperty(animation, "(UIElement.RenderTransform).(ScaleTransform.ScaleY)");
@@ -92,7 +92,7 @@ namespace BingoWallpaper.Uwp.Views
                     var animation = new DoubleAnimation()
                     {
                         To = 1,
-                        Duration = TimeSpan.FromSeconds(0.1)
+                        Duration = TimeSpan.FromSeconds(0.15)
                     };
                     Storyboard.SetTarget(animation, element);
                     Storyboard.SetTargetProperty(animation, "(UIElement.RenderTransform).(ScaleTransform.ScaleX)");
@@ -102,7 +102,7 @@ namespace BingoWallpaper.Uwp.Views
                     var animation = new DoubleAnimation()
                     {
                         To = 1,
-                        Duration = TimeSpan.FromSeconds(0.1)
+                        Duration = TimeSpan.FromSeconds(0.15)
                     };
                     Storyboard.SetTarget(animation, element);
                     Storyboard.SetTargetProperty(animation, "(UIElement.RenderTransform).(ScaleTransform.ScaleY)");
@@ -115,7 +115,7 @@ namespace BingoWallpaper.Uwp.Views
                     };
                     animation.KeyFrames.Add(new DiscreteObjectKeyFrame()
                     {
-                        KeyTime = TimeSpan.FromSeconds(0.1),
+                        KeyTime = TimeSpan.FromSeconds(0.15),
                         Value = 0
                     });
                     Storyboard.SetTarget(animation, element);

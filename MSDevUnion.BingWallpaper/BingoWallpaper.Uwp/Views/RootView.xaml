@@ -10,6 +10,8 @@
     <Grid x:Name="RootGrid">
         <Frame x:Name="RootFrame"
                x:FieldModifier="internal" />
+        <ContentControl x:Name="PreviousPageContainer"
+                        x:FieldModifier="internal" />
         <Grid x:Name="ToastPromptContainer"
               x:FieldModifier="internal" />
     </Grid>

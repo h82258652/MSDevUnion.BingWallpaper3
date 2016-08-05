@@ -1,13 +1,15 @@
-﻿using System;
+﻿using BingoWallpaper.Uwp.Extensions;
 using Windows.ApplicationModel;
 using Windows.Foundation.Metadata;
 using Windows.Phone.UI.Input;
 using Windows.UI.Core;
 using Windows.UI.Input;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+using WinRTXamlToolkit.AwaitableUI;
 
 namespace BingoWallpaper.Uwp.Views
 {
@@ -51,32 +53,12 @@ namespace BingoWallpaper.Uwp.Views
             }
         }
 
-        protected virtual void GoBack(ref bool isHandled)
+        private static ContentControl PreviousPageContainer
         {
-            if (Frame.CanGoBack)
+            get
             {
-                isHandled = true;
-                if (LeaveStoryboard != null)
-                {
-                    EventHandler<object> handler = null;
-                    handler = (sender, e) =>
-                    {
-                        LeaveStoryboard.Completed -= handler;
-                        if (Frame.CanGoBack)
-                        {
-                            Frame.GoBack();
-                        }
-                    };
-                    LeaveStoryboard.Completed += handler;
-                    LeaveStoryboard.Begin();
-                }
-                else
-                {
-                    if (Frame.CanGoBack)
-                    {
-                        Frame.GoBack();
-                    }
-                }
+                var rootView = (RootView)Window.Current.Content;
+                return rootView.PreviousPageContainer;
             }
         }
 
@@ -91,9 +73,11 @@ namespace BingoWallpaper.Uwp.Views
             {
                 HardwareButtons.BackPressed -= HardwareButtons_BackPressed;
             }
+
+            FrameExtensions.SetPreviousPage(Frame, this);
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
 
@@ -103,6 +87,22 @@ namespace BingoWallpaper.Uwp.Views
             if (ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
             {
                 HardwareButtons.BackPressed += HardwareButtons_BackPressed;
+            }
+
+            if (e.NavigationMode == NavigationMode.Back)
+            {
+                var previousPage = FrameExtensions.GetPreviousPage(Frame);
+                if (previousPage != null)
+                {
+                    var leaveStoryboard = previousPage.LeaveStoryboard;
+                    if (leaveStoryboard != null)
+                    {
+                        PreviousPageContainer.Content = previousPage;
+                        await leaveStoryboard.BeginAsync();
+                        PreviousPageContainer.Content = null;
+                    }
+                    FrameExtensions.SetPreviousPage(Frame, null);
+                }
             }
 
             EnterStoryboard?.Begin();
@@ -116,10 +116,10 @@ namespace BingoWallpaper.Uwp.Views
             switch (properties.PointerUpdateKind)
             {
                 case PointerUpdateKind.XButton1Released:
+                    if (Frame.CanGoBack)
                     {
-                        var isHandled = e.Handled;
-                        GoBack(ref isHandled);
-                        e.Handled = isHandled;
+                        e.Handled = true;
+                        Frame.GoBack();
                     }
                     break;
 
@@ -137,17 +137,21 @@ namespace BingoWallpaper.Uwp.Views
         {
             if (ApiInformation.IsTypePresent("Windows.Phone.UI.Input.BackPressedEventArgs"))
             {
-                var isHandled = e.Handled;
-                GoBack(ref isHandled);
-                e.Handled = isHandled;
+                if (Frame.CanGoBack)
+                {
+                    e.Handled = true;
+                    Frame.GoBack();
+                }
             }
         }
 
         private void SystemNavigationManager_BackRequested(object sender, BackRequestedEventArgs e)
         {
-            var isHandled = e.Handled;
-            GoBack(ref isHandled);
-            e.Handled = isHandled;
+            if (Frame.CanGoBack)
+            {
+                e.Handled = true;
+                Frame.GoBack();
+            }
         }
     }
 }
