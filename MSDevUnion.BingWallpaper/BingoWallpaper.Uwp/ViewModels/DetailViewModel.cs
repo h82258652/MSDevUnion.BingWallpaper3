@@ -165,7 +165,7 @@ namespace BingoWallpaper.Uwp.ViewModels
             {
                 return _wallpaper;
             }
-            private set
+            internal set
             {
                 Set(ref _wallpaper, value);
                 RaisePropertyChanged(nameof(WallpaperUrl));
@@ -176,7 +176,6 @@ namespace BingoWallpaper.Uwp.ViewModels
 
         public void Activate(object parameter)
         {
-            Wallpaper = (Wallpaper)parameter;
         }
 
         public void Deactivate(object parameter)

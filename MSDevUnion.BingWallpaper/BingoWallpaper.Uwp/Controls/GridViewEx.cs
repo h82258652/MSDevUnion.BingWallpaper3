@@ -4,11 +4,13 @@ using Windows.UI.Xaml.Input;
 
 namespace BingoWallpaper.Uwp.Controls
 {
+    public delegate void ItemPointerEventHandler(object sender, ItemPointerEventArgs e);
+
     public class GridViewEx : GridView
     {
-        public event PointerEventHandler ItemPointerEntered;
+        public event ItemPointerEventHandler ItemPointerEntered;
 
-        public event PointerEventHandler ItemPointerExited;
+        public event ItemPointerEventHandler ItemPointerExited;
 
         protected override void ClearContainerForItemOverride(DependencyObject element, object item)
         {
@@ -28,12 +30,12 @@ namespace BingoWallpaper.Uwp.Controls
 
         private void GridViewItem_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
-            ItemPointerEntered?.Invoke(sender, e);
+            ItemPointerEntered?.Invoke(this, new ItemPointerEventArgs((UIElement)sender, e));
         }
 
         private void GridViewItem_PointerExited(object sender, PointerRoutedEventArgs e)
         {
-            ItemPointerExited?.Invoke(sender, e);
+            ItemPointerExited?.Invoke(this, new ItemPointerEventArgs((UIElement)sender, e));
         }
     }
 }

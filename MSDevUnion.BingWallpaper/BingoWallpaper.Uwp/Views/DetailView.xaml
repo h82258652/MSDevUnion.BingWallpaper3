@@ -20,9 +20,9 @@
     <local:ViewBase.LeaveStoryboard>
         <Storyboard>
             <DoubleAnimation x:Name="LeaveStoryboardAnimation"
+                             Duration="0:0:0.4"
                              Storyboard.TargetName="RootGrid"
-                             Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
-                             Duration="0:0:0.4">
+                             Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)">
                 <DoubleAnimation.EasingFunction>
                     <BackEase Amplitude="0.2"
                               EasingMode="EaseIn" />
@@ -31,7 +31,8 @@
         </Storyboard>
     </local:ViewBase.LeaveStoryboard>
     <Grid x:Name="RootGrid"
-          Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+          Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+          CacheMode="BitmapCache">
         <Grid.RenderTransform>
             <TranslateTransform />
         </Grid.RenderTransform>

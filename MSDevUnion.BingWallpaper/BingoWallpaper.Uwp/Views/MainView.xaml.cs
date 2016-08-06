@@ -1,11 +1,12 @@
 ﻿using BingoWallpaper.Uwp.Controls;
 using System;
+using System.Diagnostics;
 using Windows.Devices.Input;
 using Windows.Foundation;
+using Windows.Foundation.Collections;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using WinRTXamlToolkit.Controls.Extensions;
@@ -65,14 +66,33 @@ namespace BingoWallpaper.Uwp.Views
         {
             var panel = (FirstDoubleSizePanel)sender;
             var width = e.NewSize.Width;
-            panel.MaximumRowsOrColumns = Math.Max((int)(width / 320), 2);
+            panel.MaximumRowsOrColumns = Math.Min(Math.Max((int)(width / 210), 2), 6);
         }
 
-        private void GridViewEx_ItemPointerEntered(object sender, PointerRoutedEventArgs e)
+        private void GridViewEx_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if (e.Pointer.PointerDeviceType == PointerDeviceType.Mouse)
+            var wallpaper = e.ClickedItem;
+            var itemsControl = (ItemsControl)sender;
+            var element = (FrameworkElement)itemsControl.ContainerFromItem(wallpaper);
+            Debug.Assert(element != null);
+            var center = element.TransformToVisual(null).TransformPoint(new Point());
+            center.X = center.X + element.ActualWidth / 2;
+            center.Y = center.Y + element.ActualHeight / 2;
+
+            var parameter = new ValueSet()
             {
-                var element = (UIElement)sender;
+                ["Wallpaper"] = wallpaper,
+                ["Center"] = center
+            };
+
+            Frame.Navigate(typeof(DetailView), parameter);
+        }
+
+        private void GridViewEx_ItemPointerEntered(object sender, ItemPointerEventArgs e)
+        {
+            if (e.Args.Pointer.PointerDeviceType == PointerDeviceType.Mouse)
+            {
+                var element = e.Element;
                 element.RenderTransformOrigin = CalculateElementRenderTransformOrigin(element);
                 Canvas.SetZIndex(element, 2);
                 var border = element.GetFirstDescendantOfType<Border>();
@@ -122,11 +142,11 @@ namespace BingoWallpaper.Uwp.Views
             }
         }
 
-        private void GridViewEx_ItemPointerExited(object sender, PointerRoutedEventArgs e)
+        private void GridViewEx_ItemPointerExited(object sender, ItemPointerEventArgs e)
         {
-            if (e.Pointer.PointerDeviceType == PointerDeviceType.Mouse)
+            if (e.Args.Pointer.PointerDeviceType == PointerDeviceType.Mouse)
             {
-                var element = (UIElement)sender;
+                var element = e.Element;
                 Canvas.SetZIndex(element, 1);
                 var border = element.GetFirstDescendantOfType<Border>();
                 var textBlock = border.GetFirstDescendantOfType<TextBlock>();

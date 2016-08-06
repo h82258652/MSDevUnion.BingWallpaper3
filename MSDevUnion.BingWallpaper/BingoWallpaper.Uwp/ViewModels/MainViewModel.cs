@@ -4,12 +4,10 @@ using BingoWallpaper.Services;
 using BingoWallpaper.Uwp.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using Windows.UI.Xaml.Controls;
 
 namespace BingoWallpaper.Uwp.ViewModels
 {
@@ -19,8 +17,6 @@ namespace BingoWallpaper.Uwp.ViewModels
 
         private readonly ILeanCloudWallpaperService _leanCloudWallpaperService;
 
-        private readonly INavigationService _navigationService;
-
         private readonly IBingoWallpaperSettings _settings;
 
         private bool _isBusy;
@@ -29,11 +25,8 @@ namespace BingoWallpaper.Uwp.ViewModels
 
         private WallpaperCollection _selectedWallpaperCollection;
 
-        private RelayCommand<ItemClickEventArgs> _wallpaperClickCommand;
-
-        public MainViewModel(INavigationService navigationService, ILeanCloudWallpaperService leanCloudWallpaperService, IBingoWallpaperSettings settings, IAppToastService appToastService)
+        public MainViewModel(ILeanCloudWallpaperService leanCloudWallpaperService, IBingoWallpaperSettings settings, IAppToastService appToastService)
         {
-            _navigationService = navigationService;
             _leanCloudWallpaperService = leanCloudWallpaperService;
             _settings = settings;
             _appToastService = appToastService;
@@ -66,12 +59,15 @@ namespace BingoWallpaper.Uwp.ViewModels
             {
                 _refreshCommand = _refreshCommand ?? new RelayCommand(async () =>
                 {
+                    var selectedWallpaperCollection = SelectedWallpaperCollection;
+                    if (selectedWallpaperCollection.Count > 0)
+                    {
+                        return;
+                    }
+
                     IsBusy = true;
                     try
                     {
-                        var selectedWallpaperCollection = SelectedWallpaperCollection;
-                        selectedWallpaperCollection.Clear();
-
                         var wallpapers = await _leanCloudWallpaperService.GetWallpapersAsync(selectedWallpaperCollection.Year, selectedWallpaperCollection.Month, _settings.SelectedArea);
                         foreach (var wallpaper in wallpapers)
                         {
@@ -108,19 +104,6 @@ namespace BingoWallpaper.Uwp.ViewModels
                     Set(ref _selectedWallpaperCollection, value);
                     RefreshCommand.Execute(null);
                 }
-            }
-        }
-
-        public RelayCommand<ItemClickEventArgs> WallpaperClickCommand
-        {
-            get
-            {
-                _wallpaperClickCommand = _wallpaperClickCommand ?? new RelayCommand<ItemClickEventArgs>(args =>
-                {
-                    var wallpaper = args.ClickedItem;
-                    _navigationService.NavigateTo(ViewModelLocator.DetailViewKey, wallpaper);
-                });
-                return _wallpaperClickCommand;
             }
         }
 

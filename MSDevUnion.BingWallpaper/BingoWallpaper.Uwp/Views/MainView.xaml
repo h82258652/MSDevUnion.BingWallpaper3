@@ -27,16 +27,17 @@
             <localConv:MonthNameConverter x:Key="MonthNameConverter" />
             <localConv:WallpaperUrlConverter x:Key="WallpaperUrlConverter" />
             <Storyboard x:Key="RefreshBusyStoryboard">
-                <DoubleAnimation RepeatBehavior="Forever"
+                <DoubleAnimation Duration="0:0:1"
+                                 From="0"
+                                 RepeatBehavior="Forever"
                                  Storyboard.TargetName="RefreshIconRotateTransform"
                                  Storyboard.TargetProperty="Angle"
-                                 From="0"
-                                 To="360"
-                                 Duration="0:0:1" />
+                                 To="360" />
             </Storyboard>
         </ResourceDictionary>
     </Page.Resources>
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid x:Name="RootGrid"
+          Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
@@ -59,6 +60,7 @@
                                           Stretch="UniformToFill" />
                         <controls:GridViewEx x:Name="GridViewEx"
                                              IsItemClickEnabled="True"
+                                             ItemClick="GridViewEx_ItemClick"
                                              ItemPointerEntered="GridViewEx_ItemPointerEntered"
                                              ItemPointerExited="GridViewEx_ItemPointerExited"
                                              ItemsSource="{Binding}"
@@ -69,11 +71,12 @@
                             <controls:GridViewEx.ItemTemplate>
                                 <DataTemplate>
                                     <Grid extensions:FrameworkElementExtensions.ClipToBounds="True">
-                                        <controls:ImageEx Source="{Binding Path=Image, Converter={StaticResource WallpaperUrlConverter}, ConverterParameter='1920x1080'}"
+                                        <controls:ImageEx Source="{Binding Path=Image, Converter={StaticResource WallpaperUrlConverter}, ConverterParameter='800x480'}"
                                                           Stretch="UniformToFill" />
                                         <Border VerticalAlignment="Bottom"
                                                 Background="#80808080">
                                             <TextBlock Margin="4"
+                                                       Foreground="White"
                                                        Text="{Binding Path=Archive.Info}"
                                                        TextWrapping="Wrap">
                                                 <TextBlock.RenderTransform>
@@ -101,11 +104,6 @@
                                     <controls:FirstDoubleSizePanel SizeChanged="FirstDoubleSizePanel_SizeChanged" />
                                 </ItemsPanelTemplate>
                             </controls:GridViewEx.ItemsPanel>
-                            <interactivity:Interaction.Behaviors>
-                                <core:EventTriggerBehavior EventName="ItemClick">
-                                    <core:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=Main.WallpaperClickCommand}" />
-                                </core:EventTriggerBehavior>
-                            </interactivity:Interaction.Behaviors>
                         </controls:GridViewEx>
                     </Grid>
                 </DataTemplate>

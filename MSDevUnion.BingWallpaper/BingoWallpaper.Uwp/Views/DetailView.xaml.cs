@@ -1,4 +1,8 @@
-﻿using Windows.UI.Core;
+﻿using BingoWallpaper.Models.LeanCloud;
+using BingoWallpaper.Uwp.ViewModels;
+using System.Diagnostics;
+using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 
@@ -11,9 +15,15 @@ namespace BingoWallpaper.Uwp.Views
             InitializeComponent();
         }
 
+        public DetailViewModel ViewModel => (DetailViewModel)DataContext;
+
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+
+            var parameter = (ValueSet)e.Parameter;
+            Debug.Assert(parameter != null);
+            ViewModel.Wallpaper = (Wallpaper)parameter["Wallpaper"];
 
             await EllipseMask.LightOnAsync();
         }

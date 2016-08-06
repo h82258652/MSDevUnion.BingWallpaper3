@@ -6,7 +6,6 @@ using Windows.UI.Core;
 using Windows.UI.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using WinRTXamlToolkit.AwaitableUI;
@@ -74,6 +73,9 @@ namespace BingoWallpaper.Uwp.Views
                 HardwareButtons.BackPressed -= HardwareButtons_BackPressed;
             }
 
+            var coreWindow = Window.Current.CoreWindow;
+            coreWindow.PointerReleased -= CurrentWindow_PointerReleased;
+
             FrameExtensions.SetPreviousPage(Frame, this);
         }
 
@@ -88,6 +90,9 @@ namespace BingoWallpaper.Uwp.Views
             {
                 HardwareButtons.BackPressed += HardwareButtons_BackPressed;
             }
+
+            var coreWindow = Window.Current.CoreWindow;
+            coreWindow.PointerReleased += CurrentWindow_PointerReleased;
 
             if (e.NavigationMode == NavigationMode.Back)
             {
@@ -108,17 +113,14 @@ namespace BingoWallpaper.Uwp.Views
             EnterStoryboard?.Begin();
         }
 
-        protected override void OnPointerReleased(PointerRoutedEventArgs e)
+        private void CurrentWindow_PointerReleased(CoreWindow sender, PointerEventArgs args)
         {
-            base.OnPointerReleased(e);
-
-            var properties = e.GetCurrentPoint(null).Properties;
-            switch (properties.PointerUpdateKind)
+            switch (args.CurrentPoint.Properties.PointerUpdateKind)
             {
                 case PointerUpdateKind.XButton1Released:
                     if (Frame.CanGoBack)
                     {
-                        e.Handled = true;
+                        args.Handled = true;
                         Frame.GoBack();
                     }
                     break;
@@ -126,7 +128,7 @@ namespace BingoWallpaper.Uwp.Views
                 case PointerUpdateKind.XButton2Released:
                     if (Frame.CanGoForward)
                     {
-                        e.Handled = true;
+                        args.Handled = true;
                         Frame.GoForward();
                     }
                     break;

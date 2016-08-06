@@ -34,11 +34,10 @@ namespace BingoWallpaper.Uwp.Controls
                     EnableDependentAnimation = true,
                     From = 50 * Math.Sqrt(2),
                     To = 0,
-                    Duration = TimeSpan.FromSeconds(0.6),
-                    EasingFunction = new ExponentialEase()
+                    Duration = TimeSpan.FromSeconds(0.5),
+                    EasingFunction = new CircleEase()
                     {
-                        EasingMode = EasingMode.EaseOut,
-                        Exponent = 1
+                        EasingMode = EasingMode.EaseOut
                     }
                 };
                 Storyboard.SetTarget(animation, _path);
@@ -51,11 +50,10 @@ namespace BingoWallpaper.Uwp.Controls
                     EnableDependentAnimation = true,
                     From = 50 * Math.Sqrt(2),
                     To = 0,
-                    Duration = TimeSpan.FromSeconds(0.6),
-                    EasingFunction = new ExponentialEase()
+                    Duration = TimeSpan.FromSeconds(0.5),
+                    EasingFunction = new CircleEase()
                     {
-                        EasingMode = EasingMode.EaseOut,
-                        Exponent = 1
+                        EasingMode = EasingMode.EaseOut
                     }
                 };
                 Storyboard.SetTarget(animation, _path);
@@ -79,11 +77,10 @@ namespace BingoWallpaper.Uwp.Controls
                     EnableDependentAnimation = true,
                     From = 0,
                     To = 50 * Math.Sqrt(2),
-                    Duration = TimeSpan.FromSeconds(0.6),
-                    EasingFunction = new ExponentialEase()
+                    Duration = TimeSpan.FromSeconds(0.5),
+                    EasingFunction = new CircleEase()
                     {
-                        EasingMode = EasingMode.EaseOut,
-                        Exponent = 1
+                        EasingMode = EasingMode.EaseOut
                     }
                 };
                 Storyboard.SetTarget(animation, _path);
@@ -96,11 +93,10 @@ namespace BingoWallpaper.Uwp.Controls
                     EnableDependentAnimation = true,
                     From = 0,
                     To = 50 * Math.Sqrt(2),
-                    Duration = TimeSpan.FromSeconds(0.6),
-                    EasingFunction = new ExponentialEase()
+                    Duration = TimeSpan.FromSeconds(0.5),
+                    EasingFunction = new CircleEase()
                     {
-                        EasingMode = EasingMode.EaseOut,
-                        Exponent = 1
+                        EasingMode = EasingMode.EaseOut
                     }
                 };
                 Storyboard.SetTarget(animation, _path);

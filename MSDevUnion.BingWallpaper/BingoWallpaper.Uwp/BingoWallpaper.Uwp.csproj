@@ -132,6 +132,7 @@
     <Compile Include="Controls\IImageLoader.cs" />
     <Compile Include="Controls\ImageEx.cs" />
     <Compile Include="Controls\ImageFailedEventArgs.cs" />
+    <Compile Include="Controls\ItemPointerEventArgs.cs" />
     <Compile Include="Controls\ToastPrompt.cs" />
     <Compile Include="Converters\BooleanNegationConverter.cs" />
     <Compile Include="Converters\MonthNameConverter.cs" />
@@ -140,6 +141,7 @@
     <Compile Include="Extensions\FrameExtensions.cs" />
     <Compile Include="Extensions\FrameworkElementExtensions.cs" />
     <Compile Include="Extensions\StoryboardExtensions.cs" />
+    <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AppToastService.cs" />
     <Compile Include="Services\IAppToastService.cs" />

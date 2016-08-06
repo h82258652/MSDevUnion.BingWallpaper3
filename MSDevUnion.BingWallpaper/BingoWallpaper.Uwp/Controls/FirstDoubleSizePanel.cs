@@ -44,7 +44,12 @@ namespace BingoWallpaper.Uwp.Controls
             }
             else
             {
-                return GetColumnFromIndex(childrenCount - 1) + 1;
+                var column = 0;
+                for (var i = childrenCount - 1; i >= childrenCount - MaximumRowsOrColumns && i >= 0; i--)
+                {
+                    column = Math.Max(column, GetColumnFromIndex(i));
+                }
+                return column + 1;
             }
         }
 
@@ -92,7 +97,12 @@ namespace BingoWallpaper.Uwp.Controls
             }
             else
             {
-                return GetRowFromIndex(childrenCount - 1) + 1;
+                var row = 0;
+                for (var i = childrenCount - 1; i >= childrenCount - MaximumRowsOrColumns && i >= 0; i--)
+                {
+                    row = Math.Max(row, GetRowFromIndex(i));
+                }
+                return row + 1;
             }
         }
 
