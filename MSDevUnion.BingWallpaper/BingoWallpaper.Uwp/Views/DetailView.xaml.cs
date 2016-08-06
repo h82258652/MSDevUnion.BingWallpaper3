@@ -1,7 +1,7 @@
 ﻿using BingoWallpaper.Models.LeanCloud;
 using BingoWallpaper.Uwp.ViewModels;
+using System.Collections;
 using System.Diagnostics;
-using Windows.Foundation.Collections;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
@@ -21,7 +21,7 @@ namespace BingoWallpaper.Uwp.Views
         {
             base.OnNavigatedTo(e);
 
-            var parameter = (ValueSet)e.Parameter;
+            var parameter = (IDictionary)e.Parameter;
             Debug.Assert(parameter != null);
             ViewModel.Wallpaper = (Wallpaper)parameter["Wallpaper"];
 

@@ -1,9 +1,9 @@
 ﻿using BingoWallpaper.Uwp.Controls;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Windows.Devices.Input;
 using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -79,7 +79,7 @@ namespace BingoWallpaper.Uwp.Views
             center.X = center.X + element.ActualWidth / 2;
             center.Y = center.Y + element.ActualHeight / 2;
 
-            var parameter = new ValueSet()
+            var parameter = new Dictionary<string, object>
             {
                 ["Wallpaper"] = wallpaper,
                 ["Center"] = center
