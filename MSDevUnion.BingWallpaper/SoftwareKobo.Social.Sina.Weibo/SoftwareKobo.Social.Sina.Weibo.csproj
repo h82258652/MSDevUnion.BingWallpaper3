@@ -107,10 +107,14 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\DictionaryExtensions.cs" />
     <Compile Include="LocalAccessToken.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WeiboClient.cs" />
     <EmbeddedResource Include="Properties\SoftwareKobo.Social.Sina.Weibo.rd.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
