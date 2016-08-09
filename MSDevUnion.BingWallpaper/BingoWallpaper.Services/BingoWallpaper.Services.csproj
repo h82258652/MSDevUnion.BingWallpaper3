@@ -45,6 +45,7 @@
     <Compile Include="Services\IBingWallpaperService.cs" />
     <Compile Include="Services\ILeanCloudWallpaperService.cs" />
     <Compile Include="Services\IScreenService.cs" />
+    <Compile Include="Services\IBingoShareService.cs" />
     <Compile Include="Services\IWallpaperService.cs" />
     <Compile Include="Services\LeanCloudWallpaperService.cs" />
   </ItemGroup>

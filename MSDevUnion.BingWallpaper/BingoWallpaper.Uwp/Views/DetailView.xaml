@@ -2,7 +2,9 @@
                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:controls="using:BingoWallpaper.Uwp.Controls"
+                xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                 xmlns:local="using:BingoWallpaper.Uwp.Views"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:uwp="using:FontAwesome.UWP"
@@ -70,9 +72,40 @@
                     <AppBarButton.Icon>
                         <uwp:FontAwesome Icon="ShareAlt" />
                     </AppBarButton.Icon>
+                    <interactivity:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="Click">
+                            <core:ChangePropertyAction PropertyName="IsOpen"
+                                                       TargetObject="{Binding ElementName=SharePopup}"
+                                                       Value="True" />
+                        </core:EventTriggerBehavior>
+                    </interactivity:Interaction.Behaviors>
                 </AppBarButton>
             </CommandBar>
         </Grid>
+        <Popup x:Name="SharePopup"
+               IsLightDismissEnabled="True">
+            <Grid VerticalAlignment="Bottom"
+                  Background="#171717">
+                <Grid HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Vertical"
+                                Grid.Column="0">
+                        <Image Source="/Assets/Images/Share/SinaWeibo.png"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Width="64"
+                               Height="64"></Image>
+                        <TextBlock Foreground="White"
+                                   Text="TODO"
+                                   TextAlignment="Center"></TextBlock>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Popup>
         <controls:EllipseMask x:Name="EllipseMask" />
     </Grid>
 </local:ViewBase>
