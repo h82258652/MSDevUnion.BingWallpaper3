@@ -1,4 +1,6 @@
-﻿using SoftwareKobo.Social.Sina.Weibo.Extensions;
+﻿using Newtonsoft.Json;
+using SoftwareKobo.Social.Sina.Weibo.Extensions;
+using SoftwareKobo.Social.Sina.Weibo.Models;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -12,8 +14,38 @@ namespace SoftwareKobo.Social.Sina.Weibo
 {
     public class WeiboClient
     {
-        public async void ShareImageAsync(byte[] image, string text)
+        public async Task<Status> UploadAsync(string status, byte[] pic)
         {
+            if (status == null)
+            {
+                throw new ArgumentNullException(nameof(status));
+            }
+            if (pic == null)
+            {
+                throw new ArgumentNullException(nameof(pic));
+            }
+
+            var content = new MultipartFormDataContent
+            {
+                {
+                    new StringContent(this.Token),
+                    "access_token"
+                },
+                {
+                    new StringContent(status),
+                    "status"
+                },
+                {
+                    new ByteArrayContent(pic),
+                    "pic"
+                }
+            };
+            using (var client = new HttpClient())
+            {
+                var response = await client.PostAsync("", content);
+                var json = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<Status>(json);
+            }
         }
 
         public async Task AuthorizeAsync(string appKey, string appSecret, string redirectUri)
@@ -41,7 +73,7 @@ namespace SoftwareKobo.Social.Sina.Weibo
             {
                 query["display"] = "mobile";
             }
-            if (CultureInfo.CurrentUICulture.Name.StartsWith("zh", StringComparison.OrdinalIgnoreCase) == false)
+            if (!CultureInfo.CurrentUICulture.Name.StartsWith("zh", StringComparison.OrdinalIgnoreCase))
             {
                 query["language"] = "en";
             }
@@ -69,7 +101,7 @@ namespace SoftwareKobo.Social.Sina.Weibo
                     {
                         var response = await client.PostAsync("https://api.weibo.com/oauth2/access_token", content);
                         var json = await response.Content.ReadAsStringAsync();
-                        var accessToken = JsonConvert.
+                        var accessToken = JsonConvert.DeserializeObject<AccessToken>(json);
                     }
                     break;
 

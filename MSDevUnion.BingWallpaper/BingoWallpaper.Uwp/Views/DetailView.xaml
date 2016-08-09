@@ -5,6 +5,7 @@
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:local="using:BingoWallpaper.Uwp.Views"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:uwp="using:FontAwesome.UWP"
                 DataContext="{Binding Source={StaticResource Locator},
                                       Path=Detail}"
                 Loaded="DetailView_Loaded"
@@ -20,9 +21,9 @@
     <local:ViewBase.LeaveStoryboard>
         <Storyboard>
             <DoubleAnimation x:Name="LeaveStoryboardAnimation"
-                             Duration="0:0:0.4"
                              Storyboard.TargetName="RootGrid"
-                             Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)">
+                             Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+                             Duration="0:0:0.4">
                 <DoubleAnimation.EasingFunction>
                     <BackEase Amplitude="0.2"
                               EasingMode="EaseIn" />
@@ -65,6 +66,11 @@
                 <AppBarButton x:Uid="/DetailView/SetLockScreenButton"
                               Command="{Binding Path=SetLockScreenCommand}"
                               Icon="SetLockScreen" />
+                <AppBarButton>
+                    <AppBarButton.Icon>
+                        <uwp:FontAwesome Icon="ShareAlt" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
             </CommandBar>
         </Grid>
         <controls:EllipseMask x:Name="EllipseMask" />
