@@ -20,6 +20,45 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
+    <Page.BottomAppBar>
+        <CommandBar x:Name="AppBar"
+                    Background="{ThemeResource SystemAccentBrush}">
+            <CommandBar.RenderTransform>
+                <TranslateTransform />
+            </CommandBar.RenderTransform>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Uid="/DetailView/OpenWallpaperSettingButton"
+                              Command="{Binding Path=OpenWallpaperSettingCommand}" />
+                <AppBarButton x:Uid="/DetailView/OpenLockScreenSettingButton"
+                              Command="{Binding Path=OpenLockScreenSettingCommand}" />
+            </CommandBar.SecondaryCommands>
+            <AppBarButton x:Uid="/DetailView/SaveButton"
+                          Command="{Binding Path=SaveCommand}"
+                          Icon="Save" />
+            <AppBarButton x:Uid="/DetailView/SetWallpaperButton"
+                          Command="{Binding Path=SetWallpaperCommand}">
+                <AppBarButton.Icon>
+                    <FontIcon FontFamily="Segoe MDL2 Assets"
+                              Glyph="&#xE771;" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton x:Uid="/DetailView/SetLockScreenButton"
+                          Command="{Binding Path=SetLockScreenCommand}"
+                          Icon="SetLockScreen" />
+            <AppBarButton>
+                <AppBarButton.Icon>
+                    <uwp:FontAwesome Icon="ShareAlt" />
+                </AppBarButton.Icon>
+                <interactivity:Interaction.Behaviors>
+                    <core:EventTriggerBehavior EventName="Click">
+                        <core:ChangePropertyAction PropertyName="IsOpen"
+                                                   TargetObject="{Binding ElementName=SharePopup}"
+                                                   Value="True" />
+                    </core:EventTriggerBehavior>
+                </interactivity:Interaction.Behaviors>
+            </AppBarButton>
+        </CommandBar>
+    </Page.BottomAppBar>
     <local:ViewBase.LeaveStoryboard>
         <Storyboard>
             <DoubleAnimation x:Name="LeaveStoryboardAnimation"
@@ -31,56 +70,20 @@
                               EasingMode="EaseIn" />
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="AppBar"
+                             Storyboard.TargetProperty="Opacity"
+                             From="1"
+                             To="0"
+                             Duration="0:0:0.4" />
         </Storyboard>
     </local:ViewBase.LeaveStoryboard>
     <Grid x:Name="RootGrid"
-          Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
           CacheMode="BitmapCache">
         <Grid.RenderTransform>
             <TranslateTransform />
         </Grid.RenderTransform>
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Grid>
-                <controls:ImageEx Source="{Binding Path=WallpaperUrl}" />
-            </Grid>
-            <CommandBar Grid.Row="1"
-                        Background="{ThemeResource SystemAccentBrush}">
-                <CommandBar.SecondaryCommands>
-                    <AppBarButton x:Uid="/DetailView/OpenWallpaperSettingButton"
-                                  Command="{Binding Path=OpenWallpaperSettingCommand}" />
-                    <AppBarButton x:Uid="/DetailView/OpenLockScreenSettingButton"
-                                  Command="{Binding Path=OpenLockScreenSettingCommand}" />
-                </CommandBar.SecondaryCommands>
-                <AppBarButton x:Uid="/DetailView/SaveButton"
-                              Command="{Binding Path=SaveCommand}"
-                              Icon="Save" />
-                <AppBarButton x:Uid="/DetailView/SetWallpaperButton"
-                              Command="{Binding Path=SetWallpaperCommand}">
-                    <AppBarButton.Icon>
-                        <FontIcon FontFamily="Segoe MDL2 Assets"
-                                  Glyph="&#xE771;" />
-                    </AppBarButton.Icon>
-                </AppBarButton>
-                <AppBarButton x:Uid="/DetailView/SetLockScreenButton"
-                              Command="{Binding Path=SetLockScreenCommand}"
-                              Icon="SetLockScreen" />
-                <AppBarButton>
-                    <AppBarButton.Icon>
-                        <uwp:FontAwesome Icon="ShareAlt" />
-                    </AppBarButton.Icon>
-                    <interactivity:Interaction.Behaviors>
-                        <core:EventTriggerBehavior EventName="Click">
-                            <core:ChangePropertyAction PropertyName="IsOpen"
-                                                       TargetObject="{Binding ElementName=SharePopup}"
-                                                       Value="True" />
-                        </core:EventTriggerBehavior>
-                    </interactivity:Interaction.Behaviors>
-                </AppBarButton>
-            </CommandBar>
+            <controls:ImageEx Source="{Binding Path=WallpaperUrl}" />
         </Grid>
         <Popup x:Name="SharePopup"
                IsLightDismissEnabled="True">
@@ -92,16 +95,16 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <StackPanel Orientation="Vertical"
-                                Grid.Column="0">
-                        <Image Source="/Assets/Images/Share/SinaWeibo.png"
+                    <StackPanel Grid.Column="0"
+                                Orientation="Vertical">
+                        <Image Width="64"
+                               Height="64"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"
-                               Width="64"
-                               Height="64"></Image>
+                               Source="/Assets/Images/Share/SinaWeibo.png" />
                         <TextBlock Foreground="White"
                                    Text="TODO"
-                                   TextAlignment="Center"></TextBlock>
+                                   TextAlignment="Center" />
                     </StackPanel>
                 </Grid>
             </Grid>
