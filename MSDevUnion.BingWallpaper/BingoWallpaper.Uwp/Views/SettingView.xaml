@@ -1,14 +1,24 @@
 ﻿<local:ViewBase x:Class="BingoWallpaper.Uwp.Views.SettingView"
                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:converters="using:BingoWallpaper.Uwp.Converters"
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:local="using:BingoWallpaper.Uwp.Views"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 DataContext="{Binding Source={StaticResource Locator},
                                       Path=Setting}"
                 mc:Ignorable="d">
+    <Page.Resources>
+        <converters:StringFormatConverter x:Key="StringFormatConverter" />
+    </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel Orientation="Vertical">
+        <Grid>
+            <SymbolIcon Symbol="Setting"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"></SymbolIcon>
+        </Grid>
+        <StackPanel Orientation="Vertical"
+                    Margin="80">
             <ComboBox x:Uid="/SettingView/SelectedSaveLocationComboBox"
                       ItemsSource="{Binding Path=SaveLocations}"
                       SelectedItem="{Binding Path=SelectedSaveLocation,
@@ -20,7 +30,24 @@
             <ComboBox x:Uid="/SettingView/SelectedAreaComboBox"
                       ItemsSource="{Binding Path=Areas}"
                       SelectedItem="{Binding Path=SelectedArea,
-                                             Mode=TwoWay}" />
+                                             Mode=TwoWay}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <RelativePanel>
+                            <Image x:Name="FlagImage"
+                                   Height="24"
+                                   RelativePanel.AlignLeftWithPanel="True"
+                                   RelativePanel.AlignVerticalCenterWithPanel="True"
+                                   Source="{Binding Converter={StaticResource StringFormatConverter},
+                                                    ConverterParameter='/Assets/Images/Flags/{0}.png'}" />
+                            <TextBlock Margin="4,0,0,0"
+                                       RelativePanel.AlignVerticalCenterWith="FlagImage"
+                                       RelativePanel.RightOf="FlagImage"
+                                       Text="{Binding}" />
+                        </RelativePanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
         </StackPanel>
     </Grid>
 </local:ViewBase>

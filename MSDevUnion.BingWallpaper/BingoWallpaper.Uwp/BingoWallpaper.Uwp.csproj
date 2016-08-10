@@ -139,6 +139,7 @@
     <Compile Include="Controls\ToastPrompt.cs" />
     <Compile Include="Converters\BooleanNegationConverter.cs" />
     <Compile Include="Converters\MonthNameConverter.cs" />
+    <Compile Include="Converters\StringFormatConverter.cs" />
     <Compile Include="Converters\WallpaperUrlConverter.cs" />
     <Compile Include="Extensions\FileExtensions.cs" />
     <Compile Include="Extensions\FrameExtensions.cs" />
@@ -187,6 +188,17 @@
     <None Include="BingoWallpaper.Uwp_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Images\Flags\de-DE.png" />
+    <Content Include="Assets\Images\Flags\en-AU.png" />
+    <Content Include="Assets\Images\Flags\en-CA.png" />
+    <Content Include="Assets\Images\Flags\en-GB.png" />
+    <Content Include="Assets\Images\Flags\en-IN.png" />
+    <Content Include="Assets\Images\Flags\en-US.png" />
+    <Content Include="Assets\Images\Flags\fr-CA.png" />
+    <Content Include="Assets\Images\Flags\fr-FR.png" />
+    <Content Include="Assets\Images\Flags\ja-JP.png" />
+    <Content Include="Assets\Images\Flags\pt-BR.png" />
+    <Content Include="Assets\Images\Flags\zh-CN.png" />
     <Content Include="Assets\Images\Share\SystemShare.png" />
     <Content Include="Assets\Images\Share\SinaWeibo.png" />
     <Content Include="Assets\Images\Share\Wechat.png" />

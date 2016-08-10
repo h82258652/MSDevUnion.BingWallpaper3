@@ -22,7 +22,7 @@ namespace BingoWallpaper.Services
         {
             if (UserProfilePersonalizationSettings.IsSupported())
             {
-                var file = await ApplicationData.Current.LocalFolder.CreateFileAsync(Constants.LockScreenFileName);
+                var file = await ApplicationData.Current.LocalFolder.CreateFileAsync(Constants.LockScreenFileName, CreationCollisionOption.ReplaceExisting);
                 await FileIO.WriteBytesAsync(file, imageBytes);
                 return await UserProfilePersonalizationSettings.Current.TrySetLockScreenImageAsync(file);
             }
@@ -33,7 +33,7 @@ namespace BingoWallpaper.Services
         {
             if (UserProfilePersonalizationSettings.IsSupported())
             {
-                var file = await ApplicationData.Current.LocalFolder.CreateFileAsync(Constants.WallpaperFileName);
+                var file = await ApplicationData.Current.LocalFolder.CreateFileAsync(Constants.WallpaperFileName, CreationCollisionOption.ReplaceExisting);
                 await FileIO.WriteBytesAsync(file, imageBytes);
                 return await UserProfilePersonalizationSettings.Current.TrySetWallpaperImageAsync(file);
             }
