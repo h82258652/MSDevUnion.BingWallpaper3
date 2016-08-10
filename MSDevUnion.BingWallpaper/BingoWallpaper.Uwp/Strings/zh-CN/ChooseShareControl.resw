@@ -117,22 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="OpenLockScreenSettingButton.Label" xml:space="preserve">
-    <value>打开锁屏设置</value>
+  <data name="SinaWeiboTextBlock.Text" xml:space="preserve">
+    <value>新浪微博</value>
   </data>
-  <data name="OpenWallpaperSettingButton.Label" xml:space="preserve">
-    <value>打开壁纸设置</value>
+  <data name="SystemShareTextBlock.Text" xml:space="preserve">
+    <value>系统分享</value>
   </data>
-  <data name="SaveButton.Label" xml:space="preserve">
-    <value>保存</value>
-  </data>
-  <data name="SetLockScreenButton.Label" xml:space="preserve">
-    <value>设置为锁屏</value>
-  </data>
-  <data name="SetWallpaperButton.Label" xml:space="preserve">
-    <value>设置为壁纸</value>
-  </data>
-  <data name="ShareButton.Label" xml:space="preserve">
-    <value>分享</value>
+  <data name="WechatTextBlock.Text" xml:space="preserve">
+    <value>微信</value>
   </data>
 </root>

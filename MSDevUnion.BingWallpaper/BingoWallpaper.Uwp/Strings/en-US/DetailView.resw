@@ -132,4 +132,7 @@
   <data name="SetWallpaperButton.Label" xml:space="preserve">
     <value>Set as wallpaper</value>
   </data>
+  <data name="ShareButton.Label" xml:space="preserve">
+    <value>Share</value>
+  </data>
 </root>

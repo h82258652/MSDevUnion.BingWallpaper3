@@ -2,9 +2,11 @@
 using BingoWallpaper.Models.LeanCloud;
 using BingoWallpaper.Services;
 using BingoWallpaper.Uwp.Controls;
+using BingoWallpaper.Uwp.Messages;
 using BingoWallpaper.Uwp.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.IO;
 
@@ -16,6 +18,8 @@ namespace BingoWallpaper.Uwp.ViewModels
 
         private readonly IBingoFileService _bingoFileService;
 
+        private readonly IBingoShareService _bingoShareService;
+
         private readonly IImageLoader _imageLoader;
 
         private readonly IBingoWallpaperSettings _settings;
@@ -23,6 +27,10 @@ namespace BingoWallpaper.Uwp.ViewModels
         private readonly ISystemSettingService _systemSettingService;
 
         private readonly IWallpaperService _wallpaperService;
+
+        private RelayCommand _chooseShareCommand;
+
+        private bool _isBusy;
 
         private RelayCommand _openLockScreenSettingCommand;
 
@@ -36,7 +44,7 @@ namespace BingoWallpaper.Uwp.ViewModels
 
         private Wallpaper _wallpaper;
 
-        public DetailViewModel(IWallpaperService wallpaperService, IBingoWallpaperSettings settings, ISystemSettingService systemSettingService, IBingoFileService bingoFileService, IImageLoader imageLoader, IAppToastService appToastService)
+        public DetailViewModel(IWallpaperService wallpaperService, IBingoWallpaperSettings settings, ISystemSettingService systemSettingService, IBingoFileService bingoFileService, IImageLoader imageLoader, IAppToastService appToastService, IBingoShareService bingoShareService)
         {
             _wallpaperService = wallpaperService;
             _settings = settings;
@@ -44,6 +52,31 @@ namespace BingoWallpaper.Uwp.ViewModels
             _bingoFileService = bingoFileService;
             _imageLoader = imageLoader;
             _appToastService = appToastService;
+            _bingoShareService = bingoShareService;
+        }
+
+        public RelayCommand ChooseShareCommand
+        {
+            get
+            {
+                _chooseShareCommand = _chooseShareCommand ?? new RelayCommand(() =>
+                {
+                    Messenger.Default.Send(new OpenSharePopupMessage());
+                });
+                return _chooseShareCommand;
+            }
+        }
+
+        public bool IsBusy
+        {
+            get
+            {
+                return _isBusy;
+            }
+            private set
+            {
+                Set(ref _isBusy, value);
+            }
         }
 
         public RelayCommand OpenLockScreenSettingCommand
@@ -76,6 +109,7 @@ namespace BingoWallpaper.Uwp.ViewModels
             {
                 _saveCommand = _saveCommand ?? new RelayCommand(async () =>
                 {
+                    IsBusy = true;
                     try
                     {
                         var url = _wallpaperService.GetUrl(Wallpaper.Image, _settings.SelectedWallpaperSize);
@@ -92,6 +126,10 @@ namespace BingoWallpaper.Uwp.ViewModels
                     {
                         _appToastService.ShowError(ex.Message);
                     }
+                    finally
+                    {
+                        IsBusy = false;
+                    }
                 });
                 return _saveCommand;
             }
@@ -103,6 +141,7 @@ namespace BingoWallpaper.Uwp.ViewModels
             {
                 _setLockScreenCommand = _setLockScreenCommand ?? new RelayCommand(async () =>
                 {
+                    IsBusy = true;
                     try
                     {
                         var url = _wallpaperService.GetUrl(Wallpaper.Image, _settings.SelectedWallpaperSize);
@@ -123,6 +162,10 @@ namespace BingoWallpaper.Uwp.ViewModels
                     {
                         _appToastService.ShowError(ex.Message);
                     }
+                    finally
+                    {
+                        IsBusy = false;
+                    }
                 });
                 return _setLockScreenCommand;
             }
@@ -134,6 +177,7 @@ namespace BingoWallpaper.Uwp.ViewModels
             {
                 _setWallpaperCommand = _setWallpaperCommand ?? new RelayCommand(async () =>
                 {
+                    IsBusy = true;
                     try
                     {
                         var url = _wallpaperService.GetUrl(Wallpaper.Image, _settings.SelectedWallpaperSize);
@@ -153,6 +197,10 @@ namespace BingoWallpaper.Uwp.ViewModels
                     catch (Exception ex)
                     {
                         _appToastService.ShowError(ex.Message);
+                    }
+                    finally
+                    {
+                        IsBusy = false;
                     }
                 });
                 return _setWallpaperCommand;
@@ -176,10 +224,37 @@ namespace BingoWallpaper.Uwp.ViewModels
 
         public void Activate(object parameter)
         {
+            Messenger.Default.Register<SinaWeiboSelectedMessage>(this, message =>
+            {
+                ShareToSinaWeibo();
+            });
+            Messenger.Default.Register<WechatSelectedMessage>(this, message =>
+            {
+                ShareToWechat();
+            });
         }
 
         public void Deactivate(object parameter)
         {
+            Messenger.Default.Unregister(this);
+        }
+
+        private async void ShareToSinaWeibo()
+        {
+            return;
+            // TODO
+            var url = _wallpaperService.GetUrl(Wallpaper.Image, _settings.SelectedWallpaperSize);
+            var bytes = await _imageLoader.GetBytesAsync(url);
+            await _bingoShareService.ShareToSinaWeiboAsync(bytes, Wallpaper.Archive.Info);
+        }
+
+        private async void ShareToWechat()
+        {
+            return;
+            // TODO
+            var url = _wallpaperService.GetUrl(Wallpaper.Image, _settings.SelectedWallpaperSize);
+            var bytes = await _imageLoader.GetBytesAsync(url);
+            await _bingoShareService.ShareToWechatAsync(bytes, Wallpaper.Archive.Info);
         }
     }
 }

@@ -2,8 +2,6 @@
 using BingoWallpaper.Uwp.ViewModels;
 using System.Collections;
 using System.Diagnostics;
-using Windows.UI.Core;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 
 namespace BingoWallpaper.Uwp.Views
@@ -28,25 +26,14 @@ namespace BingoWallpaper.Uwp.Views
             await EllipseMask.LightOnAsync();
         }
 
-        private void DetailView_Loaded(object sender, RoutedEventArgs e)
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
-            Window.Current.SizeChanged += Window_SizeChanged;
-            UpdateStoryboard();
-        }
+            if (ViewModel.IsBusy)
+            {
+                e.Cancel = true;
+            }
 
-        private void DetailView_Unloaded(object sender, RoutedEventArgs e)
-        {
-            Window.Current.SizeChanged -= Window_SizeChanged;
-        }
-
-        private void UpdateStoryboard()
-        {
-            LeaveStoryboardAnimation.To = Window.Current.Bounds.Height;
-        }
-
-        private void Window_SizeChanged(object sender, WindowSizeChangedEventArgs e)
-        {
-            UpdateStoryboard();
+            base.OnNavigatingFrom(e);
         }
     }
 }

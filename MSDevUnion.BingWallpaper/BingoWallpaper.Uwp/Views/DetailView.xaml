@@ -2,16 +2,12 @@
                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:controls="using:BingoWallpaper.Uwp.Controls"
-                xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                 xmlns:local="using:BingoWallpaper.Uwp.Views"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:uwp="using:FontAwesome.UWP"
                 DataContext="{Binding Source={StaticResource Locator},
                                       Path=Detail}"
-                Loaded="DetailView_Loaded"
-                Unloaded="DetailView_Unloaded"
                 mc:Ignorable="d">
     <Page.Resources>
         <ResourceDictionary>
@@ -20,8 +16,92 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-    <Page.BottomAppBar>
+    <local:ViewBase.LeaveStoryboard>
+        <Storyboard>
+            <DoubleAnimation Storyboard.TargetName="TitleGrid"
+                             Storyboard.TargetProperty="Opacity"
+                             From="1"
+                             To="0"
+                             Duration="0:0:0.4" />
+            <DoubleAnimation Storyboard.TargetName="TitleGrid"
+                             Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+                             From="0"
+                             To="-30">
+                <DoubleAnimation.EasingFunction>
+                    <QuinticEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <ColorAnimation Storyboard.TargetName="BackgroundGrid"
+                            Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)"
+                            From="#E3E3E3"
+                            To="Transparent"
+                            Duration="0:0:0.4" />
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ImageGrid"
+                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+                <DiscreteDoubleKeyFrame KeyTime="0:0:0"
+                                        Value="1" />
+                <LinearDoubleKeyFrame KeyTime="0:0:0.15"
+                                      Value="1.05" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4"
+                                      Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <QuadraticEase EasingMode="EaseOut" />
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ImageGrid"
+                                           Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                <DiscreteDoubleKeyFrame KeyTime="0:0:0"
+                                        Value="1" />
+                <LinearDoubleKeyFrame KeyTime="0:0:0.15"
+                                      Value="1.05" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4"
+                                      Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <QuadraticEase EasingMode="EaseOut" />
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimation Storyboard.TargetName="AppBar"
+                             Storyboard.TargetProperty="Opacity"
+                             From="1"
+                             To="0"
+                             Duration="0:0:0.4" />
+        </Storyboard>
+    </local:ViewBase.LeaveStoryboard>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid x:Name="BackgroundGrid"
+              Grid.Row="0"
+              Grid.RowSpan="2"
+              Background="#E3E3E3"
+              IsHitTestVisible="False" />
+        <Grid x:Name="ImageGrid"
+              Grid.Row="1"
+              RenderTransformOrigin="0.5,0.5">
+            <Grid.RenderTransform>
+                <ScaleTransform />
+            </Grid.RenderTransform>
+            <controls:ImageEx Source="{Binding Path=WallpaperUrl}" />
+        </Grid>
+        <Grid x:Name="TitleGrid"
+              Grid.Row="0"
+              Background="{ThemeResource SystemAccentBrush}">
+            <Grid.RenderTransform>
+                <TranslateTransform />
+            </Grid.RenderTransform>
+            <TextBlock Margin="8"
+                       FontSize="14"
+                       Foreground="White"
+                       Text="{Binding Path=Wallpaper.Archive.Info}"
+                       TextAlignment="Left" />
+        </Grid>
         <CommandBar x:Name="AppBar"
+                    Grid.Row="2"
                     Background="{ThemeResource SystemAccentBrush}">
             <CommandBar.RenderTransform>
                 <TranslateTransform />
@@ -45,70 +125,15 @@
             <AppBarButton x:Uid="/DetailView/SetLockScreenButton"
                           Command="{Binding Path=SetLockScreenCommand}"
                           Icon="SetLockScreen" />
-            <AppBarButton>
+            <AppBarButton x:Uid="/DetailView/ShareButton"
+                          Command="{Binding Path=ChooseShareCommand}">
                 <AppBarButton.Icon>
                     <uwp:FontAwesome Icon="ShareAlt" />
                 </AppBarButton.Icon>
-                <interactivity:Interaction.Behaviors>
-                    <core:EventTriggerBehavior EventName="Click">
-                        <core:ChangePropertyAction PropertyName="IsOpen"
-                                                   TargetObject="{Binding ElementName=SharePopup}"
-                                                   Value="True" />
-                    </core:EventTriggerBehavior>
-                </interactivity:Interaction.Behaviors>
             </AppBarButton>
         </CommandBar>
-    </Page.BottomAppBar>
-    <local:ViewBase.LeaveStoryboard>
-        <Storyboard>
-            <DoubleAnimation x:Name="LeaveStoryboardAnimation"
-                             Storyboard.TargetName="RootGrid"
-                             Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
-                             Duration="0:0:0.4">
-                <DoubleAnimation.EasingFunction>
-                    <BackEase Amplitude="0.2"
-                              EasingMode="EaseIn" />
-                </DoubleAnimation.EasingFunction>
-            </DoubleAnimation>
-            <DoubleAnimation Storyboard.TargetName="AppBar"
-                             Storyboard.TargetProperty="Opacity"
-                             From="1"
-                             To="0"
-                             Duration="0:0:0.4" />
-        </Storyboard>
-    </local:ViewBase.LeaveStoryboard>
-    <Grid x:Name="RootGrid"
-          CacheMode="BitmapCache">
-        <Grid.RenderTransform>
-            <TranslateTransform />
-        </Grid.RenderTransform>
-        <Grid>
-            <controls:ImageEx Source="{Binding Path=WallpaperUrl}" />
-        </Grid>
-        <Popup x:Name="SharePopup"
-               IsLightDismissEnabled="True">
-            <Grid VerticalAlignment="Bottom"
-                  Background="#171717">
-                <Grid HorizontalAlignment="Center">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Column="0"
-                                Orientation="Vertical">
-                        <Image Width="64"
-                               Height="64"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               Source="/Assets/Images/Share/SinaWeibo.png" />
-                        <TextBlock Foreground="White"
-                                   Text="TODO"
-                                   TextAlignment="Center" />
-                    </StackPanel>
-                </Grid>
-            </Grid>
-        </Popup>
-        <controls:EllipseMask x:Name="EllipseMask" />
+        <controls:EllipseMask x:Name="EllipseMask"
+                              Grid.Row="0"
+                              Grid.RowSpan="3" />
     </Grid>
 </local:ViewBase>

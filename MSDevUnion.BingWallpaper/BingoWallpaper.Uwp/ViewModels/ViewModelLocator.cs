@@ -3,6 +3,7 @@ using BingoWallpaper.Services;
 using BingoWallpaper.Uwp.Controls;
 using BingoWallpaper.Uwp.Services;
 using BingoWallpaper.Uwp.Views;
+using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
 using Microsoft.Practices.Unity;
@@ -33,6 +34,11 @@ namespace BingoWallpaper.Uwp.ViewModels
 
         public SettingViewModel Setting => ServiceLocator.Current.GetInstance<SettingViewModel>();
 
+        public static void Cleanup()
+        {
+            Messenger.Reset();
+        }
+
         private static IUnityContainer ConfigureUnityContainer()
         {
             var unityContainer = new UnityContainer();
@@ -44,6 +50,7 @@ namespace BingoWallpaper.Uwp.ViewModels
             unityContainer.RegisterType<ISystemSettingService, SystemSettingService>();
             unityContainer.RegisterType<IBingoFileService, BingoFileService>();
             unityContainer.RegisterType<IAppToastService, AppToastService>();
+            unityContainer.RegisterType<IBingoShareService, BingoShareService>();
 
             unityContainer.RegisterType<IBingoWallpaperSettings, BingoWallpaperSettings>();
 

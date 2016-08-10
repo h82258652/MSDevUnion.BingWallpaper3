@@ -1,0 +1,52 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="using:BingoWallpaper.Uwp.Controls">
+    <Style TargetType="controls:ChooseShareControl">
+        <Setter Property="HorizontalAlignment"
+                Value="Stretch" />
+        <Setter Property="VerticalAlignment"
+                Value="Bottom" />
+        <Setter Property="Background"
+                Value="Black" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:ChooseShareControl">
+                    <Grid Background="{TemplateBinding Background}">
+                        <Grid HorizontalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0"
+                                        x:Name="PART_SinaWeiboControl"
+                                        Margin="20"
+                                        Orientation="Vertical">
+                                <Image Width="64"
+                                       Height="64"
+                                       Source="/Assets/Images/Share/SinaWeibo.png"
+                                       Stretch="Fill" />
+                                <TextBlock x:Uid="/ChooseShareControl/SinaWeiboTextBlock"
+                                           Margin="0,8,0,0"
+                                           Foreground="LightGray"
+                                           TextAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="1"
+                                        x:Name="PART_SystemShareControl"
+                                        Margin="20"
+                                        Orientation="Vertical">
+                                <Image Width="64"
+                                       Height="64"
+                                       Source="/Assets/Images/Share/SystemShare.png"
+                                       Stretch="Fill" />
+                                <TextBlock Margin="0,8,0,0"
+                                           x:Uid="/ChooseShareControl/SystemShareTextBlock"
+                                           Foreground="LightGray"
+                                           TextAlignment="Center" />
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

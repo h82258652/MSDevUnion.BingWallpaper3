@@ -104,6 +104,8 @@
     <Content Include="Assets\Fonts\Roboto-Thin.ttf" />
     <Content Include="Assets\Fonts\Roboto-ThinItalic.ttf" />
     <None Include="project.json" />
+    <PRIResource Include="Strings\zh-CN\ChooseShareControl.resw" />
+    <PRIResource Include="Strings\en-US\ChooseShareControl.resw" />
     <PRIResource Include="Strings\zh-CN\SettingView.resw" />
     <PRIResource Include="Strings\en-US\SettingView.resw" />
     <PRIResource Include="Strings\en-US\DetailView.resw" />
@@ -123,6 +125,7 @@
     <Compile Include="Controls\BindableMargin.xaml.cs">
       <DependentUpon>BindableMargin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ChooseShareControl.cs" />
     <Compile Include="Controls\DefaultImageLoader.cs" />
     <Compile Include="Controls\EllipseMask.cs" />
     <Compile Include="Controls\ExceptionEventArgs.cs" />
@@ -142,6 +145,9 @@
     <Compile Include="Extensions\FrameworkElementExtensions.cs" />
     <Compile Include="Extensions\StoryboardExtensions.cs" />
     <Compile Include="LocalizedStrings.cs" />
+    <Compile Include="Messages\OpenSharePopupMessage.cs" />
+    <Compile Include="Messages\SinaWeiboSelectedMessage.cs" />
+    <Compile Include="Messages\WechatSelectedMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AppToastService.cs" />
     <Compile Include="Services\IAppToastService.cs" />
@@ -181,7 +187,9 @@
     <None Include="BingoWallpaper.Uwp_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Images\Share\SystemShare.png" />
     <Content Include="Assets\Images\Share\SinaWeibo.png" />
+    <Content Include="Assets\Images\Share\Wechat.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -217,6 +225,16 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\Buttons\EmptyButtonStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Themes\ChooseShareControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Themes\DeviceFamily-Mobile\ChooseShareControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
