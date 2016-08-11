@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
-using Windows.System;
 
-namespace SoftwareKobo.Social.Sina.Weibo.Models
+namespace SoftwareKobo.Social.SinaWeibo.Models
 {
     [JsonObject]
     public class Status
