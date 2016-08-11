@@ -13,7 +13,8 @@
                x:FieldModifier="internal"
                Navigating="RootFrame_Navigating" />
         <ContentControl x:Name="PreviousPageContainer"
-                        x:FieldModifier="internal" />
+                        x:FieldModifier="internal"
+                        IsHitTestVisible="False" />
         <Grid x:Name="ChooseShareGrid"
               Visibility="Collapsed">
             <Grid Background="Transparent"
