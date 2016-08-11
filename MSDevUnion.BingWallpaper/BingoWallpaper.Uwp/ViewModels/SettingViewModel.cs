@@ -2,9 +2,8 @@
 using BingoWallpaper.Models;
 using BingoWallpaper.Services;
 using GalaSoft.MvvmLight;
-using System;
 using System.Collections.Generic;
-using System.Linq;
+using WinRTXamlToolkit.Tools;
 
 namespace BingoWallpaper.Uwp.ViewModels
 {
@@ -25,7 +24,7 @@ namespace BingoWallpaper.Uwp.ViewModels
         public IReadOnlyList<SaveLocation> SaveLocations
         {
             get;
-        } = Enum.GetValues(typeof(SaveLocation)).Cast<SaveLocation>().ToList();
+        } = EnumExtensions.GetValues<SaveLocation>();
 
         public string SelectedArea
         {
