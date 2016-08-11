@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace SoftwareKobo.Social.SinaWeibo
 {
@@ -20,13 +21,14 @@ namespace SoftwareKobo.Social.SinaWeibo
             }
 
             AppKey = appKey;
-            // TODO
+            AppSecret = appSecret;
+            RedirectUri = redirectUri;
+            Scope = scope;
         }
 
-        protected string Scope
+        public abstract bool IsAuthorized
         {
             get;
-            private set;
         }
 
         public string Uid
@@ -35,10 +37,34 @@ namespace SoftwareKobo.Social.SinaWeibo
             protected set;
         }
 
+        protected string AccessToken
+        {
+            get;
+            set;
+        }
+
         protected string AppKey
         {
             get;
-            private set;
         }
+
+        protected string AppSecret
+        {
+            get;
+        }
+
+        protected string RedirectUri
+        {
+            get;
+        }
+
+        protected string Scope
+        {
+            get;
+        }
+
+        public abstract Task AuthorizeAsync();
+
+        public abstract void ClearAuthorize();
     }
 }
