@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ChooseEveryTime" xml:space="preserve">
+    <value>Choose save location before save</value>
+  </data>
+  <data name="PictureLibrary" xml:space="preserve">
+    <value>Picture library</value>
+  </data>
+  <data name="SavedPictures" xml:space="preserve">
+    <value>Saved pictures folder</value>
+  </data>
   <data name="SaveSuccess" xml:space="preserve">
     <value>Save success</value>
   </data>

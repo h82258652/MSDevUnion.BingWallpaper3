@@ -33,6 +33,7 @@
                              To="360"
                              Duration="0:0:12" />
         </Storyboard>
+        <converters:SaveLocationConverter x:Key="SaveLocationConverter" />
         <converters:StringFormatConverter x:Key="StringFormatConverter" />
     </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -97,7 +98,13 @@
             <ComboBox x:Uid="/SettingView/SelectedSaveLocationComboBox"
                       ItemsSource="{Binding Path=SaveLocations}"
                       SelectedItem="{Binding Path=SelectedSaveLocation,
-                                             Mode=TwoWay}" />
+                                             Mode=TwoWay}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Converter={StaticResource SaveLocationConverter}}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             <ComboBox x:Uid="/SettingView/SelectedWallpaperSizeComboBox"
                       ItemsSource="{Binding Path=WallpaperSizes}"
                       SelectedItem="{Binding Path=SelectedWallpaperSize,

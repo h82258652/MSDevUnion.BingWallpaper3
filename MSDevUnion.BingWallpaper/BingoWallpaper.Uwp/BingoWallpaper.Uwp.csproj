@@ -141,6 +141,7 @@
     <Compile Include="Controls\ToastPrompt.cs" />
     <Compile Include="Converters\BooleanNegationConverter.cs" />
     <Compile Include="Converters\MonthNameConverter.cs" />
+    <Compile Include="Converters\SaveLocationConverter.cs" />
     <Compile Include="Converters\StringFormatConverter.cs" />
     <Compile Include="Converters\WallpaperUrlConverter.cs" />
     <Compile Include="Extensions\FileExtensions.cs" />
