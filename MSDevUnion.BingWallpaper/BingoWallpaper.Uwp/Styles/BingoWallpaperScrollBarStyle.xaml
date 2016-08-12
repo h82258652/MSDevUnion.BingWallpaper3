@@ -36,28 +36,36 @@
                                 <Grid x:Name="Root">
                                     <uwp:FontAwesome x:Name="Arrow"
                                                      FontSize="10"
-                                                     Foreground="#C8C8C8"
                                                      Icon="CaretRight"
-                                                     MirroredWhenRightToLeft="True" />
+                                                     MirroredWhenRightToLeft="True">
+                                        <uwp:FontAwesome.Foreground>
+                                            <SolidColorBrush Color="#C8C8C8" />
+                                        </uwp:FontAwesome.Foreground>
+                                    </uwp:FontAwesome>
                                     <VisualStateManager.VisualStateGroups>
                                         <VisualStateGroup x:Name="CommonStates">
-                                            <VisualState x:Name="Normal" />
+                                            <VisualState x:Name="Normal">
+                                                <Storyboard>
+                                                    <ColorAnimation Storyboard.TargetName="Arrow"
+                                                                    Storyboard.TargetProperty="(IconElement.Foreground).(SolidColorBrush.Color)"
+                                                                    To="#C8C8C8"
+                                                                    Duration="0:0:0.15" />
+                                                </Storyboard>
+                                            </VisualState>
                                             <VisualState x:Name="PointerOver">
                                                 <Storyboard>
-                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Arrow"
-                                                                                   Storyboard.TargetProperty="Foreground">
-                                                        <DiscreteObjectKeyFrame KeyTime="0"
-                                                                                Value="White" />
-                                                    </ObjectAnimationUsingKeyFrames>
+                                                    <ColorAnimation Storyboard.TargetName="Arrow"
+                                                                    Storyboard.TargetProperty="(IconElement.Foreground).(SolidColorBrush.Color)"
+                                                                    To="White"
+                                                                    Duration="0:0:0.15" />
                                                 </Storyboard>
                                             </VisualState>
                                             <VisualState x:Name="Pressed">
                                                 <Storyboard>
-                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Arrow"
-                                                                                   Storyboard.TargetProperty="Foreground">
-                                                        <DiscreteObjectKeyFrame KeyTime="0"
-                                                                                Value="#E3E3E3" />
-                                                    </ObjectAnimationUsingKeyFrames>
+                                                    <ColorAnimation Storyboard.TargetName="Arrow"
+                                                                    Storyboard.TargetProperty="(IconElement.Foreground).(SolidColorBrush.Color)"
+                                                                    To="#E3E3E3"
+                                                                    Duration="0:0:0.15" />
                                                 </Storyboard>
                                             </VisualState>
                                             <VisualState x:Name="Disabled">
@@ -78,28 +86,36 @@
                                 <Grid x:Name="Root">
                                     <uwp:FontAwesome x:Name="Arrow"
                                                      FontSize="10"
-                                                     Foreground="#C8C8C8"
                                                      Icon="CaretLeft"
-                                                     MirroredWhenRightToLeft="True" />
+                                                     MirroredWhenRightToLeft="True">
+                                        <uwp:FontAwesome.Foreground>
+                                            <SolidColorBrush Color="#C8C8C8" />
+                                        </uwp:FontAwesome.Foreground>
+                                    </uwp:FontAwesome>
                                     <VisualStateManager.VisualStateGroups>
                                         <VisualStateGroup x:Name="CommonStates">
-                                            <VisualState x:Name="Normal" />
+                                            <VisualState x:Name="Normal">
+                                                <Storyboard>
+                                                    <ColorAnimation Storyboard.TargetName="Arrow"
+                                                                    Storyboard.TargetProperty="(IconElement.Foreground).(SolidColorBrush.Color)"
+                                                                    To="#C8C8C8"
+                                                                    Duration="0:0:0.15" />
+                                                </Storyboard>
+                                            </VisualState>
                                             <VisualState x:Name="PointerOver">
                                                 <Storyboard>
-                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Arrow"
-                                                                                   Storyboard.TargetProperty="Foreground">
-                                                        <DiscreteObjectKeyFrame KeyTime="0"
-                                                                                Value="White" />
-                                                    </ObjectAnimationUsingKeyFrames>
+                                                    <ColorAnimation Storyboard.TargetName="Arrow"
+                                                                    Storyboard.TargetProperty="(IconElement.Foreground).(SolidColorBrush.Color)"
+                                                                    To="White"
+                                                                    Duration="0:0:0.15" />
                                                 </Storyboard>
                                             </VisualState>
                                             <VisualState x:Name="Pressed">
                                                 <Storyboard>
-                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Arrow"
-                                                                                   Storyboard.TargetProperty="Foreground">
-                                                        <DiscreteObjectKeyFrame KeyTime="0"
-                                                                                Value="#E3E3E3" />
-                                                    </ObjectAnimationUsingKeyFrames>
+                                                    <ColorAnimation Storyboard.TargetName="Arrow"
+                                                                    Storyboard.TargetProperty="(IconElement.Foreground).(SolidColorBrush.Color)"
+                                                                    To="#E3E3E3"
+                                                                    Duration="0:0:0.15" />
                                                 </Storyboard>
                                             </VisualState>
                                             <VisualState x:Name="Disabled">
@@ -120,27 +136,35 @@
                                 <Grid x:Name="Root">
                                     <uwp:FontAwesome x:Name="Arrow"
                                                      FontSize="10"
-                                                     Foreground="#C8C8C8"
-                                                     Icon="CaretDown" />
+                                                     Icon="CaretDown">
+                                        <uwp:FontAwesome.Foreground>
+                                            <SolidColorBrush Color="#C8C8C8" />
+                                        </uwp:FontAwesome.Foreground>
+                                    </uwp:FontAwesome>
                                     <VisualStateManager.VisualStateGroups>
                                         <VisualStateGroup x:Name="CommonStates">
-                                            <VisualState x:Name="Normal" />
+                                            <VisualState x:Name="Normal">
+                                                <Storyboard>
+                                                    <ColorAnimation Storyboard.TargetName="Arrow"
+                                                                    Storyboard.TargetProperty="(IconElement.Foreground).(SolidColorBrush.Color)"
+                                                                    To="#C8C8C8"
+                                                                    Duration="0:0:0.15" />
+                                                </Storyboard>
+                                            </VisualState>
                                             <VisualState x:Name="PointerOver">
                                                 <Storyboard>
-                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Arrow"
-                                                                                   Storyboard.TargetProperty="Foreground">
-                                                        <DiscreteObjectKeyFrame KeyTime="0"
-                                                                                Value="White" />
-                                                    </ObjectAnimationUsingKeyFrames>
+                                                    <ColorAnimation Storyboard.TargetName="Arrow"
+                                                                    Storyboard.TargetProperty="(IconElement.Foreground).(SolidColorBrush.Color)"
+                                                                    To="White"
+                                                                    Duration="0:0:0.15" />
                                                 </Storyboard>
                                             </VisualState>
                                             <VisualState x:Name="Pressed">
                                                 <Storyboard>
-                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Arrow"
-                                                                                   Storyboard.TargetProperty="Foreground">
-                                                        <DiscreteObjectKeyFrame KeyTime="0"
-                                                                                Value="#E3E3E3" />
-                                                    </ObjectAnimationUsingKeyFrames>
+                                                    <ColorAnimation Storyboard.TargetName="Arrow"
+                                                                    Storyboard.TargetProperty="(IconElement.Foreground).(SolidColorBrush.Color)"
+                                                                    To="#E3E3E3"
+                                                                    Duration="0:0:0.15" />
                                                 </Storyboard>
                                             </VisualState>
                                             <VisualState x:Name="Disabled">
@@ -161,27 +185,35 @@
                                 <Grid x:Name="Root">
                                     <uwp:FontAwesome x:Name="Arrow"
                                                      FontSize="10"
-                                                     Foreground="#C8C8C8"
-                                                     Icon="CaretUp" />
+                                                     Icon="CaretUp">
+                                        <uwp:FontAwesome.Foreground>
+                                            <SolidColorBrush Color="#C8C8C8" />
+                                        </uwp:FontAwesome.Foreground>
+                                    </uwp:FontAwesome>
                                     <VisualStateManager.VisualStateGroups>
                                         <VisualStateGroup x:Name="CommonStates">
-                                            <VisualState x:Name="Normal" />
+                                            <VisualState x:Name="Normal">
+                                                <Storyboard>
+                                                    <ColorAnimation Storyboard.TargetName="Arrow"
+                                                                    Storyboard.TargetProperty="(IconElement.Foreground).(SolidColorBrush.Color)"
+                                                                    To="#C8C8C8"
+                                                                    Duration="0:0:0.15" />
+                                                </Storyboard>
+                                            </VisualState>
                                             <VisualState x:Name="PointerOver">
                                                 <Storyboard>
-                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Arrow"
-                                                                                   Storyboard.TargetProperty="Foreground">
-                                                        <DiscreteObjectKeyFrame KeyTime="0"
-                                                                                Value="White" />
-                                                    </ObjectAnimationUsingKeyFrames>
+                                                    <ColorAnimation Storyboard.TargetName="Arrow"
+                                                                    Storyboard.TargetProperty="(IconElement.Foreground).(SolidColorBrush.Color)"
+                                                                    To="White"
+                                                                    Duration="0:0:0.15" />
                                                 </Storyboard>
                                             </VisualState>
                                             <VisualState x:Name="Pressed">
                                                 <Storyboard>
-                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Arrow"
-                                                                                   Storyboard.TargetProperty="Foreground">
-                                                        <DiscreteObjectKeyFrame KeyTime="0"
-                                                                                Value="#E3E3E3" />
-                                                    </ObjectAnimationUsingKeyFrames>
+                                                    <ColorAnimation Storyboard.TargetName="Arrow"
+                                                                    Storyboard.TargetProperty="(IconElement.Foreground).(SolidColorBrush.Color)"
+                                                                    To="#E3E3E3"
+                                                                    Duration="0:0:0.15" />
                                                 </Storyboard>
                                             </VisualState>
                                             <VisualState x:Name="Disabled">
