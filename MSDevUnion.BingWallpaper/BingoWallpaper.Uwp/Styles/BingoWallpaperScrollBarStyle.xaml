@@ -200,7 +200,7 @@
                             <ControlTemplate x:Key="VerticalThumbTemplate"
                                              TargetType="Thumb">
                                 <Rectangle x:Name="ThumbVisual"
-                                           Fill="{ThemeResource SystemControlForegroundBaseLowBrush}"
+                                           Fill="#C8C8C8"
                                            RadiusX="6"
                                            RadiusY="6">
                                     <VisualStateManager.VisualStateGroups>
@@ -211,7 +211,7 @@
                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ThumbVisual"
                                                                                    Storyboard.TargetProperty="Fill">
                                                         <DiscreteObjectKeyFrame KeyTime="0"
-                                                                                Value="{ThemeResource SystemControlHighlightBaseMediumLowBrush}" />
+                                                                                Value="White" />
                                                     </ObjectAnimationUsingKeyFrames>
                                                 </Storyboard>
                                             </VisualState>
@@ -220,7 +220,7 @@
                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ThumbVisual"
                                                                                    Storyboard.TargetProperty="Fill">
                                                         <DiscreteObjectKeyFrame KeyTime="0"
-                                                                                Value="{ThemeResource SystemControlHighlightBaseMediumBrush}" />
+                                                                                Value="#E3E3E3" />
                                                     </ObjectAnimationUsingKeyFrames>
                                                 </Storyboard>
                                             </VisualState>
@@ -239,7 +239,7 @@
                             <ControlTemplate x:Key="HorizontalThumbTemplate"
                                              TargetType="Thumb">
                                 <Rectangle x:Name="ThumbVisual"
-                                           Fill="{ThemeResource SystemControlForegroundBaseLowBrush}"
+                                           Fill="#C8C8C8"
                                            RadiusX="6"
                                            RadiusY="6">
                                     <VisualStateManager.VisualStateGroups>
@@ -250,7 +250,7 @@
                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ThumbVisual"
                                                                                    Storyboard.TargetProperty="Fill">
                                                         <DiscreteObjectKeyFrame KeyTime="0"
-                                                                                Value="{ThemeResource SystemControlHighlightBaseMediumLowBrush}" />
+                                                                                Value="White" />
                                                     </ObjectAnimationUsingKeyFrames>
                                                 </Storyboard>
                                             </VisualState>
@@ -259,7 +259,7 @@
                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ThumbVisual"
                                                                                    Storyboard.TargetProperty="Fill">
                                                         <DiscreteObjectKeyFrame KeyTime="0"
-                                                                                Value="{ThemeResource SystemControlHighlightBaseMediumBrush}" />
+                                                                                Value="#E3E3E3" />
                                                     </ObjectAnimationUsingKeyFrames>
                                                 </Storyboard>
                                             </VisualState>
