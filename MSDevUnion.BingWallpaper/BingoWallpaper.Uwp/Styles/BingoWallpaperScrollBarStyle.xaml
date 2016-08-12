@@ -44,11 +44,6 @@
                                             <VisualState x:Name="Normal" />
                                             <VisualState x:Name="PointerOver">
                                                 <Storyboard>
-                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Root"
-                                                                                   Storyboard.TargetProperty="Background">
-                                                        <DiscreteObjectKeyFrame KeyTime="0"
-                                                                                Value="{ThemeResource SystemControlHighlightBaseMediumLowBrush}" />
-                                                    </ObjectAnimationUsingKeyFrames>
                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Arrow"
                                                                                    Storyboard.TargetProperty="Foreground">
                                                         <DiscreteObjectKeyFrame KeyTime="0"
@@ -58,11 +53,6 @@
                                             </VisualState>
                                             <VisualState x:Name="Pressed">
                                                 <Storyboard>
-                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Root"
-                                                                                   Storyboard.TargetProperty="Background">
-                                                        <DiscreteObjectKeyFrame KeyTime="0"
-                                                                                Value="{ThemeResource SystemControlHighlightBaseMediumBrush}" />
-                                                    </ObjectAnimationUsingKeyFrames>
                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Arrow"
                                                                                    Storyboard.TargetProperty="Foreground">
                                                         <DiscreteObjectKeyFrame KeyTime="0"
@@ -96,11 +86,6 @@
                                             <VisualState x:Name="Normal" />
                                             <VisualState x:Name="PointerOver">
                                                 <Storyboard>
-                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Root"
-                                                                                   Storyboard.TargetProperty="Background">
-                                                        <DiscreteObjectKeyFrame KeyTime="0"
-                                                                                Value="{ThemeResource SystemControlHighlightBaseMediumLowBrush}" />
-                                                    </ObjectAnimationUsingKeyFrames>
                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Arrow"
                                                                                    Storyboard.TargetProperty="Foreground">
                                                         <DiscreteObjectKeyFrame KeyTime="0"
@@ -110,11 +95,6 @@
                                             </VisualState>
                                             <VisualState x:Name="Pressed">
                                                 <Storyboard>
-                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Root"
-                                                                                   Storyboard.TargetProperty="Background">
-                                                        <DiscreteObjectKeyFrame KeyTime="0"
-                                                                                Value="{ThemeResource SystemControlHighlightBaseMediumBrush}" />
-                                                    </ObjectAnimationUsingKeyFrames>
                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Arrow"
                                                                                    Storyboard.TargetProperty="Foreground">
                                                         <DiscreteObjectKeyFrame KeyTime="0"
@@ -147,11 +127,6 @@
                                             <VisualState x:Name="Normal" />
                                             <VisualState x:Name="PointerOver">
                                                 <Storyboard>
-                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Root"
-                                                                                   Storyboard.TargetProperty="Background">
-                                                        <DiscreteObjectKeyFrame KeyTime="0"
-                                                                                Value="{ThemeResource SystemControlHighlightBaseMediumLowBrush}" />
-                                                    </ObjectAnimationUsingKeyFrames>
                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Arrow"
                                                                                    Storyboard.TargetProperty="Foreground">
                                                         <DiscreteObjectKeyFrame KeyTime="0"
@@ -161,11 +136,6 @@
                                             </VisualState>
                                             <VisualState x:Name="Pressed">
                                                 <Storyboard>
-                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Root"
-                                                                                   Storyboard.TargetProperty="Background">
-                                                        <DiscreteObjectKeyFrame KeyTime="0"
-                                                                                Value="{ThemeResource SystemControlHighlightBaseMediumBrush}" />
-                                                    </ObjectAnimationUsingKeyFrames>
                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Arrow"
                                                                                    Storyboard.TargetProperty="Foreground">
                                                         <DiscreteObjectKeyFrame KeyTime="0"
@@ -198,11 +168,6 @@
                                             <VisualState x:Name="Normal" />
                                             <VisualState x:Name="PointerOver">
                                                 <Storyboard>
-                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Root"
-                                                                                   Storyboard.TargetProperty="Background">
-                                                        <DiscreteObjectKeyFrame KeyTime="0"
-                                                                                Value="{ThemeResource SystemControlHighlightBaseMediumLowBrush}" />
-                                                    </ObjectAnimationUsingKeyFrames>
                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Arrow"
                                                                                    Storyboard.TargetProperty="Foreground">
                                                         <DiscreteObjectKeyFrame KeyTime="0"
@@ -212,11 +177,6 @@
                                             </VisualState>
                                             <VisualState x:Name="Pressed">
                                                 <Storyboard>
-                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Root"
-                                                                                   Storyboard.TargetProperty="Background">
-                                                        <DiscreteObjectKeyFrame KeyTime="0"
-                                                                                Value="{ThemeResource SystemControlHighlightBaseMediumBrush}" />
-                                                    </ObjectAnimationUsingKeyFrames>
                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Arrow"
                                                                                    Storyboard.TargetProperty="Foreground">
                                                         <DiscreteObjectKeyFrame KeyTime="0"
@@ -328,7 +288,7 @@
                             <Rectangle x:Name="HorizontalTrackRect"
                                        Grid.ColumnSpan="5"
                                        Margin="0"
-                                       Fill="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"
+                                       Fill="#80000000"
                                        RadiusX="8"
                                        RadiusY="8"
                                        Stroke="{ThemeResource SystemControlForegroundTransparentBrush}"
@@ -397,7 +357,7 @@
                             <Rectangle x:Name="VerticalTrackRect"
                                        Grid.RowSpan="5"
                                        Margin="0"
-                                       Fill="{ThemeResource SystemControlPageBackgroundChromeLowBrush}"
+                                       Fill="#80000000"
                                        RadiusX="8"
                                        RadiusY="8"
                                        Stroke="{ThemeResource SystemControlForegroundTransparentBrush}"
