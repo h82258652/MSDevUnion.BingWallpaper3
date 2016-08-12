@@ -153,6 +153,7 @@
     <Compile Include="Extensions\FrameExtensions.cs" />
     <Compile Include="Extensions\FrameworkElementExtensions.cs" />
     <Compile Include="Extensions\StoryboardExtensions.cs" />
+    <Compile Include="Helpers\ScrollViewerHelper.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Messages\OpenSharePopupMessage.cs" />
     <Compile Include="Messages\SinaWeiboSelectedMessage.cs" />
