@@ -104,6 +104,8 @@
     <Content Include="Assets\Fonts\Roboto-Thin.ttf" />
     <Content Include="Assets\Fonts\Roboto-ThinItalic.ttf" />
     <None Include="project.json" />
+    <PRIResource Include="Strings\en-US\Area.resw" />
+    <PRIResource Include="Strings\zh-CN\Area.resw" />
     <PRIResource Include="Strings\en-US\Constants.resw" />
     <PRIResource Include="Strings\zh-CN\Constants.resw" />
     <PRIResource Include="Strings\zh-CN\ChooseShareControl.resw" />
@@ -139,6 +141,7 @@
     <Compile Include="Controls\ImageFailedEventArgs.cs" />
     <Compile Include="Controls\ItemPointerEventArgs.cs" />
     <Compile Include="Controls\ToastPrompt.cs" />
+    <Compile Include="Converters\AreaToNameConverter.cs" />
     <Compile Include="Converters\BooleanNegationConverter.cs" />
     <Compile Include="Converters\DarkerColorConverter.cs" />
     <Compile Include="Converters\LighterColorConverter.cs" />
