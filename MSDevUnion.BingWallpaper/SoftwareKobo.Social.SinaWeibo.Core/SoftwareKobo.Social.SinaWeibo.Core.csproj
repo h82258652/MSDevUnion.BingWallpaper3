@@ -39,7 +39,9 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants.cs" />
     <Compile Include="Models\AccessToken.cs" />
+    <Compile Include="Models\ModelBase.cs" />
     <Compile Include="Models\StatusVisible.cs" />
     <Compile Include="Models\Geo.cs" />
     <Compile Include="Models\Status.cs" />

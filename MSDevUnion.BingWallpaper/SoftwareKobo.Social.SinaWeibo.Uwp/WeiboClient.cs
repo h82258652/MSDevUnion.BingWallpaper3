@@ -73,7 +73,7 @@ namespace SoftwareKobo.Social.SinaWeibo
                             ["redirect_uri"] = RedirectUri
                         };
 
-                        var requestTime = DateTime.Now;
+                        var requestTime = DateTimeOffset.Now;
                         var json =
                             await HttpPostAsync("https://api.weibo.com/oauth2/access_token", getAccessTokenQuery, false);
                         var accessToken = JsonConvert.DeserializeObject<AccessToken>(json);
@@ -88,22 +88,17 @@ namespace SoftwareKobo.Social.SinaWeibo
                         break;
 
                     case WebAuthenticationStatus.UserCancel:
-                        throw new NotImplementedException();
-                        break;
+                        throw new UserCancelAuthorizeException(authorizeResult);
 
                     case WebAuthenticationStatus.ErrorHttp:
-                        throw new NotImplementedException();
-                        break;
-
-                    default:
-                        throw new NotImplementedException();
-                        throw new ArgumentOutOfRangeException();
+                        throw new AuthorizeErrorHttpException(authorizeResult);
                 }
             }
         }
 
         public override void ClearAuthorize()
         {
+            AccessToken = null;
             ApplicationData.Current.LocalSettings.DeleteContainer(Constants.LocalAccessTokenDataContainerName);
         }
     }

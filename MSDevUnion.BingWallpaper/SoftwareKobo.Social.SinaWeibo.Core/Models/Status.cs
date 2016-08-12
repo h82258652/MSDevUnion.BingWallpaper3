@@ -3,7 +3,7 @@
 namespace SoftwareKobo.Social.SinaWeibo.Models
 {
     [JsonObject]
-    public class Status
+    public class Status : ModelBase
     {
         /// <summary>
         /// 微博创建时间

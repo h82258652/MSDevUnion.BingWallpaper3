@@ -3,7 +3,7 @@
 namespace SoftwareKobo.Social.SinaWeibo.Models
 {
     [JsonObject]
-    public class User
+    public class User : ModelBase
     {
         /// <summary>
         /// 用户UID

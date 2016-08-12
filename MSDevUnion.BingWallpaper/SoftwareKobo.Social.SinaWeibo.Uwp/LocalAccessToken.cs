@@ -5,11 +5,18 @@ namespace SoftwareKobo.Social.SinaWeibo
 {
     internal static class LocalAccessToken
     {
-        internal static DateTime ExpiresAt
+        internal static DateTimeOffset ExpiresAt
         {
             get
             {
-                return (DateTime)DataContainer.Values["ExpiresAt"];
+                if (DataContainer.Values.ContainsKey("ExpiresAt"))
+                {
+                    return (DateTimeOffset)DataContainer.Values["ExpiresAt"];
+                }
+                else
+                {
+                    return DateTimeOffset.MinValue;
+                }
             }
             set
             {
@@ -29,7 +36,7 @@ namespace SoftwareKobo.Social.SinaWeibo
                 {
                     return false;
                 }
-                return ExpiresAt > DateTime.Now;
+                return ExpiresAt > DateTimeOffset.Now;
             }
         }
 
@@ -37,7 +44,14 @@ namespace SoftwareKobo.Social.SinaWeibo
         {
             get
             {
-                return (string)DataContainer.Values["Uid"];
+                if (DataContainer.Values.ContainsKey("Uid"))
+                {
+                    return (string)DataContainer.Values["Uid"];
+                }
+                else
+                {
+                    return null;
+                }
             }
             set
             {
@@ -49,7 +63,14 @@ namespace SoftwareKobo.Social.SinaWeibo
         {
             get
             {
-                return (string)DataContainer.Values["AccessToken"];
+                if (DataContainer.Values.ContainsKey("AccessToken"))
+                {
+                    return (string)DataContainer.Values["AccessToken"];
+                }
+                else
+                {
+                    return null;
+                }
             }
             set
             {

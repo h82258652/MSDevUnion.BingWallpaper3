@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using SoftwareKobo.Social.SinaWeibo.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -105,11 +107,13 @@ namespace SoftwareKobo.Social.SinaWeibo
 
             using (var client = new HttpClient())
             {
-                return await client.GetStringAsync(api);
+                var repsonse = await client.GetAsync(api);
+                var json = await repsonse.Content.ReadAsStringAsync();
+                return json;
             }
         }
 
-        public Task<string> HttpPostAsync(String api, IDictionary<string, object> parameters, bool requiredAuthorized = true)
+        public Task<string> HttpPostAsync(string api, IDictionary<string, object> parameters, bool requiredAuthorized = true)
         {
             if (api == null)
             {
@@ -169,6 +173,13 @@ namespace SoftwareKobo.Social.SinaWeibo
             {
                 var response = await client.PostAsync(api, content);
                 var json = await response.Content.ReadAsStringAsync();
+
+                var modelBase = JsonConvert.DeserializeObject<ModelBase>(json);
+                if (modelBase.ErrorCode == Constants.UserRemoveAuthenticationErrorCode)
+                {
+                    ClearAuthorize();
+                }
+
                 return json;
             }
         }
@@ -181,6 +192,36 @@ namespace SoftwareKobo.Social.SinaWeibo
             }
 
             return HttpPostAsync(api, parameters.ToDictionary(temp => temp.Key, temp => (object)temp.Value), requiredAuthorized);
+        }
+
+        public async Task<User> ShowAsync(long uid)
+        {
+            var parameters = new Dictionary<string, string>()
+            {
+                ["uid"] = uid.ToString()
+            };
+            var json = await HttpGetAsync("https://api.weibo.com/2/users/show.json", parameters);
+            return JsonConvert.DeserializeObject<User>(json);
+        }
+
+        public async Task<Status> UploadAsync(string status, byte[] pic)
+        {
+            if (status == null)
+            {
+                throw new ArgumentNullException(nameof(status));
+            }
+            if (pic == null)
+            {
+                throw new ArgumentNullException(nameof(pic));
+            }
+
+            var parameters = new Dictionary<string, object>()
+            {
+                ["status"] = status,
+                ["pic"] = pic
+            };
+            var json = await HttpPostAsync("https://upload.api.weibo.com/2/statuses/upload.json", parameters);
+            return JsonConvert.DeserializeObject<Status>(json);
         }
 
         protected static string ToUriQuery(IDictionary<string, string> dictionary)
