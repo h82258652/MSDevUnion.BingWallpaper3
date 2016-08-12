@@ -19,6 +19,32 @@ namespace BingoWallpaper.Configuration
             _screenService = screenService;
         }
 
+        public bool IsAutoUpdateLockScreen
+        {
+            get
+            {
+                return Get(nameof(IsAutoUpdateLockScreen), ApplicationDataLocality.Local, () => false);
+            }
+            set
+            {
+                Set(nameof(IsAutoUpdateLockScreen), value, ApplicationDataLocality.Local);
+                RaisePropertyChanged();
+            }
+        }
+
+        public bool IsAutoUpdateWallpaper
+        {
+            get
+            {
+                return Get(nameof(IsAutoUpdateWallpaper), ApplicationDataLocality.Local, () => false);
+            }
+            set
+            {
+                Set(nameof(IsAutoUpdateWallpaper), value, ApplicationDataLocality.Local);
+                RaisePropertyChanged();
+            }
+        }
+
         public string SelectedArea
         {
             get

@@ -2,6 +2,7 @@
 using BingoWallpaper.Services;
 using System;
 using System.Linq;
+using System.Net.Http;
 using System.Text.RegularExpressions;
 using Windows.ApplicationModel.Background;
 
@@ -13,6 +14,8 @@ namespace BingoWallpaper.BackgroundTask
 
         private readonly IBingWallpaperService _bingWallpaperService;
 
+        private readonly ISystemSettingService _systemSettingService;
+
         private readonly ITileService _tileService;
 
         public UpdateTileTask()
@@ -21,6 +24,7 @@ namespace BingoWallpaper.BackgroundTask
             IScreenService screenService = new ScreenService();
             _bingoWallpaperSettings = new BingoWallpaperSettings(_bingWallpaperService, screenService);
             _tileService = new TileService(_bingWallpaperService);
+            _systemSettingService = new SystemSettingService();
         }
 
         public async void Run(IBackgroundTaskInstance taskInstance)
@@ -35,6 +39,22 @@ namespace BingoWallpaper.BackgroundTask
                     var copyright = image.Copyright;
                     var text = Regex.Replace(copyright, @"\(©.*", string.Empty).Trim();
                     _tileService.UpdatePrimaryTile(image, text);
+
+                    if (_bingoWallpaperSettings.IsAutoUpdateWallpaper || _bingoWallpaperSettings.IsAutoUpdateLockScreen)
+                    {
+                        using (var client = new HttpClient())
+                        {
+                            var bytes = await client.GetByteArrayAsync(_bingWallpaperService.GetUrl(image, _bingoWallpaperSettings.SelectedWallpaperSize));
+                            if (_bingoWallpaperSettings.IsAutoUpdateWallpaper)
+                            {
+                                await _systemSettingService.SetWallpaperAsync(bytes);
+                            }
+                            if (_bingoWallpaperSettings.IsAutoUpdateLockScreen)
+                            {
+                                await _systemSettingService.SetLockScreenAsync(bytes);
+                            }
+                        }
+                    }
                 }
             }
             catch (Exception)
