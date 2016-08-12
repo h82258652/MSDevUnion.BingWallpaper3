@@ -231,12 +231,15 @@
                             </ControlTemplate>
                             <ControlTemplate x:Key="VerticalThumbTemplate"
                                              TargetType="Thumb">
-                                <Rectangle x:Name="ThumbVisual"
-                                           RadiusX="4"
-                                           RadiusY="4">
-                                    <Rectangle.Fill>
-                                        <SolidColorBrush Color="#C8C8C8" />
-                                    </Rectangle.Fill>
+                                <Grid Background="Transparent">
+                                    <Rectangle x:Name="ThumbVisual"
+                                               Width="8"
+                                               RadiusX="4"
+                                               RadiusY="4">
+                                        <Rectangle.Fill>
+                                            <SolidColorBrush Color="#C8C8C8" />
+                                        </Rectangle.Fill>
+                                    </Rectangle>
                                     <VisualStateManager.VisualStateGroups>
                                         <VisualStateGroup x:Name="CommonStates">
                                             <VisualState x:Name="Normal">
@@ -273,16 +276,19 @@
                                             </VisualState>
                                         </VisualStateGroup>
                                     </VisualStateManager.VisualStateGroups>
-                                </Rectangle>
+                                </Grid>
                             </ControlTemplate>
                             <ControlTemplate x:Key="HorizontalThumbTemplate"
                                              TargetType="Thumb">
-                                <Rectangle x:Name="ThumbVisual"
-                                           RadiusX="4"
-                                           RadiusY="4">
-                                    <Rectangle.Fill>
-                                        <SolidColorBrush Color="#C8C8C8" />
-                                    </Rectangle.Fill>
+                                <Grid Background="Transparent">
+                                    <Rectangle x:Name="ThumbVisual"
+                                               Height="8"
+                                               RadiusX="4"
+                                               RadiusY="4">
+                                        <Rectangle.Fill>
+                                            <SolidColorBrush Color="#C8C8C8" />
+                                        </Rectangle.Fill>
+                                    </Rectangle>
                                     <VisualStateManager.VisualStateGroups>
                                         <VisualStateGroup x:Name="CommonStates">
                                             <VisualState x:Name="Normal">
@@ -319,7 +325,7 @@
                                             </VisualState>
                                         </VisualStateGroup>
                                     </VisualStateManager.VisualStateGroups>
-                                </Rectangle>
+                                </Grid>
                             </ControlTemplate>
                         </Grid.Resources>
                         <Grid x:Name="HorizontalRoot"
@@ -358,8 +364,8 @@
                                           Template="{StaticResource RepeatButtonTemplate}" />
                             <Thumb x:Name="HorizontalThumb"
                                    Grid.Column="2"
-                                   Height="8"
-                                   MinWidth="8"
+                                   Height="16"
+                                   MinWidth="16"
                                    AutomationProperties.AccessibilityView="Raw"
                                    Background="{ThemeResource SystemControlForegroundChromeHighBrush}"
                                    Template="{StaticResource HorizontalThumbTemplate}" />
@@ -427,8 +433,8 @@
                                           Template="{StaticResource RepeatButtonTemplate}" />
                             <Thumb x:Name="VerticalThumb"
                                    Grid.Row="2"
-                                   Width="8"
-                                   MinHeight="8"
+                                   Width="16"
+                                   MinHeight="16"
                                    AutomationProperties.AccessibilityView="Raw"
                                    Background="{ThemeResource SystemControlForegroundChromeHighBrush}"
                                    Template="{StaticResource VerticalThumbTemplate}" />
