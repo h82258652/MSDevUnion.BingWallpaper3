@@ -7,6 +7,7 @@
                 xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions"
+                xmlns:helpers="using:BingoWallpaper.Uwp.Helpers"
                 xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                 xmlns:local="using:BingoWallpaper.Uwp.Views"
                 xmlns:localConv="using:BingoWallpaper.Uwp.Converters"
@@ -44,6 +45,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <FlipView Grid.Row="0"
+                  helpers:ScrollViewerHelper.VerticalScrollBarStyle="{StaticResource BingoWallpaperScrollBarStyle}"
                   ItemsSource="{Binding Path=WallpaperCollections,
                                         Mode=OneTime}"
                   SelectedItem="{Binding Path=SelectedWallpaperCollection,
