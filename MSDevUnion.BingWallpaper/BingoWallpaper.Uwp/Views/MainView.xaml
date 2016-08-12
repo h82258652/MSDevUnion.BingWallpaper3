@@ -45,7 +45,6 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <FlipView Grid.Row="0"
-                  helpers:ScrollViewerHelper.VerticalScrollBarStyle="{StaticResource BingoWallpaperScrollBarStyle}"
                   ItemsSource="{Binding Path=WallpaperCollections,
                                         Mode=OneTime}"
                   SelectedItem="{Binding Path=SelectedWallpaperCollection,
@@ -62,6 +61,7 @@
                                                            ConverterParameter='1920x1080'}"
                                           Stretch="UniformToFill" />
                         <controls:GridViewEx x:Name="GridViewEx"
+                                             helpers:ScrollViewerHelper.VerticalScrollBarStyle="{StaticResource BingoWallpaperScrollBarStyle}"
                                              IsItemClickEnabled="True"
                                              ItemClick="GridViewEx_ItemClick"
                                              ItemPointerEntered="GridViewEx_ItemPointerEntered"
