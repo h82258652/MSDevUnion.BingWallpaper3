@@ -21,6 +21,13 @@
         <uap:SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#E7E7E7" />
       </uap:VisualElements>
       <Extensions>
+        <uap:Extension Category="windows.fileTypeAssociation">
+          <uap:FileTypeAssociation Name="wechat">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.wxff94ab33c2c89267</uap:FileType>
+            </uap:SupportedFileTypes>
+          </uap:FileTypeAssociation>
+        </uap:Extension>
         <Extension Category="windows.backgroundTasks" EntryPoint="BingoWallpaper.BackgroundTask.UpdateTileTask">
           <BackgroundTasks>
             <Task Type="timer" />

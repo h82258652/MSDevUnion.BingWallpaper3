@@ -159,6 +159,7 @@
     <Compile Include="Services\IAppToastService.cs" />
     <Compile Include="Services\BingoWallpaperNavigationService.cs" />
     <Compile Include="Utils\HashHelper.cs" />
+    <Compile Include="Utils\BingoWallpaperWeChatCallback.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\DetailViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />

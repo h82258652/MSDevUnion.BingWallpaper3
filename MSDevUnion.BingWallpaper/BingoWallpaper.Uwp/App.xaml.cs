@@ -1,4 +1,5 @@
-﻿using BingoWallpaper.Uwp.Views;
+﻿using BingoWallpaper.Uwp.Utils;
+using BingoWallpaper.Uwp.Views;
 using System;
 using UmengSDK;
 using Windows.ApplicationModel;
@@ -27,6 +28,19 @@ namespace BingoWallpaper.Uwp
             base.OnActivated(args);
 
             await UmengAnalytics.StartTrackAsync(Constants.UmengAppKey);
+        }
+
+        protected override void OnFileActivated(FileActivatedEventArgs args)
+        {
+            base.OnFileActivated(args);
+            try
+            {
+                new BingoWallpaperWeChatCallback().Handle(args);
+            }
+            catch (Exception)
+            {
+                // ignored
+            }
         }
 
         /// <summary>
