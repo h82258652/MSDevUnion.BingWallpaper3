@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Background;
 using Windows.Foundation.Metadata;
+using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using WinRTXamlToolkit.AwaitableUI;
@@ -45,9 +46,13 @@ namespace BingoWallpaper.Uwp.Views
             var titleBar = ApplicationView.GetForCurrentView().TitleBar;
             var systemAccentColor = ColorExtensions.AccentColor;
             titleBar.BackgroundColor = systemAccentColor;
+            titleBar.ForegroundColor = Colors.White;
+            titleBar.InactiveBackgroundColor = systemAccentColor;
             titleBar.ButtonBackgroundColor = systemAccentColor;
+            titleBar.ButtonForegroundColor = Colors.White;
             titleBar.ButtonHoverBackgroundColor = systemAccentColor.Lighter();
             titleBar.ButtonPressedBackgroundColor = systemAccentColor.Darker();
+            titleBar.ButtonInactiveBackgroundColor = systemAccentColor;
         }
 
         private static async Task RegisterBackgroundTaskAsync()

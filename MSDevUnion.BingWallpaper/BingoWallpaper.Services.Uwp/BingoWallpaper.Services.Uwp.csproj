@@ -140,6 +140,14 @@
       <Project>{c523169b-c592-4fe4-a683-0a8189462efd}</Project>
       <Name>BingoWallpaper.Utils</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SoftwareKobo.Social.SinaWeibo.Core\SoftwareKobo.Social.SinaWeibo.Core.csproj">
+      <Project>{d0ecace0-039d-473f-882a-ba9221749792}</Project>
+      <Name>SoftwareKobo.Social.SinaWeibo.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SoftwareKobo.Social.SinaWeibo.Uwp\SoftwareKobo.Social.SinaWeibo.Uwp.csproj">
+      <Project>{5d400a07-6427-411c-ab7a-6fac1fa875e7}</Project>
+      <Name>SoftwareKobo.Social.SinaWeibo.Uwp</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace SoftwareKobo.Social.SinaWeibo
 {
-    public abstract class WeiboClientBase
+    public abstract class SinaWeiboClientBase
     {
-        protected WeiboClientBase(string appKey, string appSecret, string redirectUri, string scope = null)
+        protected SinaWeiboClientBase(string appKey, string appSecret, string redirectUri, string scope = null)
         {
             if (appKey == null)
             {
@@ -158,9 +158,14 @@ namespace SoftwareKobo.Social.SinaWeibo
                 {
                     var value = temp.Value;
                     var bytes = value as byte[];
-                    postContent.Add(bytes != null
-                        ? new ByteArrayContent(bytes)
-                        : new StringContent(temp.Value.ToString()), temp.Key);
+                    if (bytes != null)
+                    {
+                        postContent.Add(new ByteArrayContent(bytes), temp.Key, "pic.jpg");
+                    }
+                    else
+                    {
+                        postContent.Add(new StringContent(value.ToString()), temp.Key);
+                    }
                 }
                 content = postContent;
             }

@@ -114,7 +114,7 @@
     <Compile Include="LocalAccessToken.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserCancelAuthorizeException.cs" />
-    <Compile Include="WeiboClient.cs" />
+    <Compile Include="SinaWeiboClient.cs" />
     <EmbeddedResource Include="Properties\SoftwareKobo.Social.SinaWeibo.Uwp.rd.xml" />
   </ItemGroup>
   <ItemGroup>

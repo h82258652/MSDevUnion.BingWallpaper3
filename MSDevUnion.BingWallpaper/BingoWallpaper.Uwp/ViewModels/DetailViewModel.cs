@@ -118,8 +118,7 @@ namespace BingoWallpaper.Uwp.ViewModels
                         var isSaved = await _bingoFileService.SaveImageAsync(fileName, bytes);
                         if (isSaved)
                         {
-                            // TODO to localized string.
-                            _appToastService.ShowMessage("保存成功");
+                            _appToastService.ShowMessage(LocalizedStrings.SaveSuccess);
                         }
                     }
                     catch (Exception ex)
@@ -149,13 +148,11 @@ namespace BingoWallpaper.Uwp.ViewModels
                         var isSuccess = await _systemSettingService.SetLockScreenAsync(bytes);
                         if (isSuccess)
                         {
-                            // TODO
-                            _appToastService.ShowMessage("设置成功");
+                            _appToastService.ShowMessage(LocalizedStrings.SetSuccess);
                         }
                         else
                         {
-                            // TODO
-                            _appToastService.ShowError("设置失败");
+                            _appToastService.ShowError(LocalizedStrings.SetFailed);
                         }
                     }
                     catch (Exception ex)
@@ -185,13 +182,11 @@ namespace BingoWallpaper.Uwp.ViewModels
                         var isSuccess = await _systemSettingService.SetWallpaperAsync(bytes);
                         if (isSuccess)
                         {
-                            // TODO
-                            _appToastService.ShowMessage("设置成功");
+                            _appToastService.ShowMessage(LocalizedStrings.SetSuccess);
                         }
                         else
                         {
-                            // TODO
-                            _appToastService.ShowError("设置失败");
+                            _appToastService.ShowError(LocalizedStrings.SetFailed);
                         }
                     }
                     catch (Exception ex)
@@ -241,11 +236,25 @@ namespace BingoWallpaper.Uwp.ViewModels
 
         private async void ShareToSinaWeibo()
         {
-            return;
-            // TODO
-            var url = _wallpaperService.GetUrl(Wallpaper.Image, _settings.SelectedWallpaperSize);
-            var bytes = await _imageLoader.GetBytesAsync(url);
-            await _bingoShareService.ShareToSinaWeiboAsync(bytes, Wallpaper.Archive.Info);
+            IsBusy = true;
+            try
+            {
+                var url = _wallpaperService.GetUrl(Wallpaper.Image, _settings.SelectedWallpaperSize);
+                var bytes = await _imageLoader.GetBytesAsync(url);
+                bool isSuccess = await _bingoShareService.ShareToSinaWeiboAsync(bytes, Wallpaper.Archive.Info + url);
+                if (isSuccess)
+                {
+                    _appToastService.ShowMessage(LocalizedStrings.ShareSuccess);
+                }
+            }
+            catch (Exception ex)
+            {
+                _appToastService.ShowError(ex.Message);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
 
         private async void ShareToWechat()

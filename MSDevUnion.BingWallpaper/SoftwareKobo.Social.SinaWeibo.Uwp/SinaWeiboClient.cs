@@ -11,9 +11,9 @@ using Windows.Storage;
 
 namespace SoftwareKobo.Social.SinaWeibo
 {
-    public class WeiboClient : WeiboClientBase
+    public class SinaWeiboClient : SinaWeiboClientBase
     {
-        public WeiboClient(string appKey, string appSecret, string redirectUri, string scope = null) : base(appKey, appSecret, redirectUri, scope)
+        public SinaWeiboClient(string appKey, string appSecret, string redirectUri, string scope = null) : base(appKey, appSecret, redirectUri, scope)
         {
             if (LocalAccessToken.IsUseable)
             {

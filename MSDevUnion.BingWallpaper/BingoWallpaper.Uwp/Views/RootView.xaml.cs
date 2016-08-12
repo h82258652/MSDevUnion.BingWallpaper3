@@ -33,11 +33,15 @@ namespace BingoWallpaper.Uwp.Views
 
         private void ChooseShareControl_SinaWeiboSelected(object sender, EventArgs e)
         {
+            CloseChooseShareGrid();
+
             Messenger.Default.Send(new SinaWeiboSelectedMessage());
         }
 
         private void ChooseShareControl_WechatSelected(object sender, EventArgs e)
         {
+            CloseChooseShareGrid();
+
             Messenger.Default.Send(new WechatSelectedMessage());
         }
 
