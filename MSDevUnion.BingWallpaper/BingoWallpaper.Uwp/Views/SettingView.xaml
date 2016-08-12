@@ -114,7 +114,7 @@
             </Viewbox>
         </Grid>
         <Pivot Margin="48,48,0,0">
-            <PivotItem Header="常规">
+            <PivotItem x:Uid="/SettingView/GeneralPivotItem">
                 <ScrollViewer HorizontalScrollBarVisibility="Disabled"
                               VerticalScrollBarVisibility="Auto">
                     <StackPanel Orientation="Vertical">
@@ -165,8 +165,10 @@
                 <ScrollViewer HorizontalScrollBarVisibility="Disabled"
                               VerticalScrollBarVisibility="Auto">
                     <StackPanel Orientation="Vertical">
-                        <CheckBox Content="自动更新壁纸" />
-                        <CheckBox Content="自动更新锁屏" />
+                        <CheckBox Content="自动更新壁纸"
+                                  IsChecked="{Binding Path=IsAutoUpdateWallpaper, Mode=TwoWay}" />
+                        <CheckBox Content="自动更新锁屏"
+                                  IsChecked="{Binding Path=IsAutoUpdateLockScreen, Mode=TwoWay}" />
                     </StackPanel>
                 </ScrollViewer>
             </PivotItem>
