@@ -21,18 +21,19 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Styles/BingoWallpaperBrushStyle.xaml" />
                 <ResourceDictionary Source="/Styles/BingoWallpaperFlipViewStyle.xaml" />
+                <ResourceDictionary Source="/Styles/BingoWallpaperScrollBarStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <localConv:BooleanNegationConverter x:Key="BooleanNegationConverter" />
             <conv:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
             <localConv:MonthNameConverter x:Key="MonthNameConverter" />
             <localConv:WallpaperUrlConverter x:Key="WallpaperUrlConverter" />
             <Storyboard x:Key="RefreshBusyStoryboard">
-                <DoubleAnimation Duration="0:0:1"
-                                 From="0"
-                                 RepeatBehavior="Forever"
+                <DoubleAnimation RepeatBehavior="Forever"
                                  Storyboard.TargetName="RefreshIconRotateTransform"
                                  Storyboard.TargetProperty="Angle"
-                                 To="360" />
+                                 From="0"
+                                 To="360"
+                                 Duration="0:0:1" />
             </Storyboard>
         </ResourceDictionary>
     </Page.Resources>
