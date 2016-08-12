@@ -39,6 +39,7 @@
             </Storyboard>
             <converters:SaveLocationConverter x:Key="SaveLocationConverter" />
             <converters:StringFormatConverter x:Key="StringFormatConverter" />
+            <converters:AreaToNameConverter x:Key="AreaToNameConverter" />
             <converters:LighterColorConverter x:Key="LighterColorConverter" />
             <converters:DarkerColorConverter x:Key="DarkerColorConverter" />
         </ResourceDictionary>
@@ -153,7 +154,7 @@
                                         <TextBlock Margin="4,0,0,0"
                                                    RelativePanel.AlignVerticalCenterWith="FlagImage"
                                                    RelativePanel.RightOf="FlagImage"
-                                                   Text="{Binding}" />
+                                                   Text="{Binding Converter={StaticResource AreaToNameConverter}}" />
                                     </RelativePanel>
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>

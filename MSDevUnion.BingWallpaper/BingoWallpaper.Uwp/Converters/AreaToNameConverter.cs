@@ -1,4 +1,5 @@
 ﻿using System;
+using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml.Data;
 
 namespace BingoWallpaper.Uwp.Converters
@@ -7,15 +8,9 @@ namespace BingoWallpaper.Uwp.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            string area = (string)value;
-            string name = null;
-            switch (area)
-            {
-                case "de-DE":
-                    break;
-            }
-
-            throw new NotImplementedException();
+            var area = (string)value;
+            var name = ResourceLoader.GetForCurrentView("Area").GetString(area);
+            return $"{name}({area})";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
