@@ -22,6 +22,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Styles/BingoWallpaperBrushStyle.xaml" />
                 <ResourceDictionary Source="/Styles/BingoWallpaperFlipViewStyle.xaml" />
+                <ResourceDictionary Source="/Styles/BingoWallpaperGridViewItemStyle.xaml" />
                 <ResourceDictionary Source="/Styles/BingoWallpaperScrollBarStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <localConv:BooleanNegationConverter x:Key="BooleanNegationConverter" />
