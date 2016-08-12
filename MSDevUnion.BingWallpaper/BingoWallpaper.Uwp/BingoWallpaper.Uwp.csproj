@@ -140,6 +140,8 @@
     <Compile Include="Controls\ItemPointerEventArgs.cs" />
     <Compile Include="Controls\ToastPrompt.cs" />
     <Compile Include="Converters\BooleanNegationConverter.cs" />
+    <Compile Include="Converters\DarkerColorConverter.cs" />
+    <Compile Include="Converters\LighterColorConverter.cs" />
     <Compile Include="Converters\MonthNameConverter.cs" />
     <Compile Include="Converters\SaveLocationConverter.cs" />
     <Compile Include="Converters\StringFormatConverter.cs" />

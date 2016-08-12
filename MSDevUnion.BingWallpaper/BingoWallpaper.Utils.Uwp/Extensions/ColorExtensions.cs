@@ -12,14 +12,14 @@ namespace BingoWallpaper.Extensions
         {
             var hslColor = color.ToHsl();
             hslColor.L = hslColor.L * 0.5;
-            return WinRTXamlToolkit.Imaging.ColorExtensions.FromHsl(hslColor.H, hslColor.S, hslColor.L, color.A);
+            return WinRTXamlToolkit.Imaging.ColorExtensions.FromHsl(hslColor.H, hslColor.S, hslColor.L, color.A / 255d);
         }
 
         public static Color Lighter(this Color color)
         {
             var hslColor = color.ToHsl();
             hslColor.L = hslColor.L + (1 - hslColor.L) * 0.5;
-            return WinRTXamlToolkit.Imaging.ColorExtensions.FromHsl(hslColor.H, hslColor.S, hslColor.L, color.A);
+            return WinRTXamlToolkit.Imaging.ColorExtensions.FromHsl(hslColor.H, hslColor.S, hslColor.L, color.A / 255d);
         }
     }
 }

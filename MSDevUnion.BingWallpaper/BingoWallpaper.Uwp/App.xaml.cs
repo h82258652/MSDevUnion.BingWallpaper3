@@ -18,7 +18,7 @@ namespace BingoWallpaper.Uwp
 
 #if DEBUG
             // 下面语句用于测试其他语言。
-            Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = "";
+            Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = "en-US";
 #endif
         }
 

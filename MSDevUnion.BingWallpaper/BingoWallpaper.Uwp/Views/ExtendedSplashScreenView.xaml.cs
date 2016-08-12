@@ -1,4 +1,5 @@
-﻿using BingoWallpaper.Extensions;
+﻿using BingoWallpaper.BackgroundTask;
+using BingoWallpaper.Extensions;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,6 +15,8 @@ namespace BingoWallpaper.Uwp.Views
 {
     public sealed partial class ExtendedSplashScreenView
     {
+        private BackgroundTaskRegistration _backgroundTaskRegistration;
+
         public ExtendedSplashScreenView()
         {
             InitializeComponent();
@@ -55,9 +58,16 @@ namespace BingoWallpaper.Uwp.Views
             titleBar.ButtonInactiveBackgroundColor = systemAccentColor;
         }
 
-        private static async Task RegisterBackgroundTaskAsync()
+        private static void UpdatePrimaryTile()
         {
-            if (BackgroundTaskRegistration.AllTasks.Any(task => task.Value.Name == Constants.UpdateTileTaskName))
+            new UpdateTileTask().Run(null);
+        }
+
+        private async Task RegisterBackgroundTaskAsync()
+        {
+            _backgroundTaskRegistration = BackgroundTaskRegistration.AllTasks.Values.OfType<BackgroundTaskRegistration>().FirstOrDefault(temp => temp.Name == Constants.UpdateTileTaskName);
+
+            if (_backgroundTaskRegistration != null)
             {
                 // 已经注册后台任务。
                 return;
@@ -77,7 +87,7 @@ namespace BingoWallpaper.Uwp.Views
             builder.Name = Constants.UpdateTileTaskName;
             builder.TaskEntryPoint = "BingoWallpaper.BackgroundTask.UpdateTileTask";
             builder.SetTrigger(new TimeTrigger(15, false));
-            var registration = builder.Register();
+            _backgroundTaskRegistration = builder.Register();
         }
 
         private async void SplashScreenImage_ImageOpened(object sender, RoutedEventArgs e)
@@ -85,16 +95,10 @@ namespace BingoWallpaper.Uwp.Views
             // 图片加载完毕后激活当前窗口，系统 SplashScreen 将会消失。
             Window.Current.Activate();
 
-            // 等待所有初始化执行完毕，最后的等待 1 秒纯粹是为了此扩展 SplashScreen 不太快消失。
             InitTitleBar();
-            await Task.WhenAll(HideStatusBarAsync(), RegisterBackgroundTaskAsync(), UpdatePrimaryTileAsync(), Task.Delay(TimeSpan.FromSeconds(1)));
+            await Task.WhenAll(HideStatusBarAsync(), RegisterBackgroundTaskAsync());
+            UpdatePrimaryTile();
             Completed?.Invoke(this, EventArgs.Empty);
-        }
-
-        private async Task UpdatePrimaryTileAsync()
-        {
-            // TODO
-            await Task.Delay(1000);
         }
     }
 }

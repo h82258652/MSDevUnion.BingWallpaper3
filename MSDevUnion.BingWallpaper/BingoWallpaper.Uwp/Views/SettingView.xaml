@@ -13,30 +13,46 @@
                                       Path=Setting}"
                 mc:Ignorable="d">
     <Page.Resources>
-        <Storyboard x:Name="CogStoryboard">
-            <DoubleAnimation RepeatBehavior="Forever"
-                             Storyboard.TargetName="TopCog"
-                             Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"
-                             From="0"
-                             To="360"
-                             Duration="0:0:12" />
-            <DoubleAnimation RepeatBehavior="Forever"
-                             Storyboard.TargetName="CenterCog"
-                             Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"
-                             From="22.5"
-                             To="-337.5"
-                             Duration="0:0:12" />
-            <DoubleAnimation RepeatBehavior="Forever"
-                             Storyboard.TargetName="LeftCog"
-                             Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"
-                             From="0"
-                             To="360"
-                             Duration="0:0:12" />
-        </Storyboard>
-        <converters:SaveLocationConverter x:Key="SaveLocationConverter" />
-        <converters:StringFormatConverter x:Key="StringFormatConverter" />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/BingoWallpaperBrushStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Storyboard x:Name="CogStoryboard">
+                <DoubleAnimation RepeatBehavior="Forever"
+                                 Storyboard.TargetName="TopCog"
+                                 Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"
+                                 From="0"
+                                 To="360"
+                                 Duration="0:0:12" />
+                <DoubleAnimation RepeatBehavior="Forever"
+                                 Storyboard.TargetName="CenterCog"
+                                 Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"
+                                 From="22.5"
+                                 To="-337.5"
+                                 Duration="0:0:12" />
+                <DoubleAnimation RepeatBehavior="Forever"
+                                 Storyboard.TargetName="LeftCog"
+                                 Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"
+                                 From="0"
+                                 To="360"
+                                 Duration="0:0:12" />
+            </Storyboard>
+            <converters:SaveLocationConverter x:Key="SaveLocationConverter" />
+            <converters:StringFormatConverter x:Key="StringFormatConverter" />
+            <converters:LighterColorConverter x:Key="LighterColorConverter" />
+            <converters:DarkerColorConverter x:Key="DarkerColorConverter" />
+        </ResourceDictionary>
     </Page.Resources>
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="#E3E3E3">
+        <Grid>
+            <Viewbox MaxWidth="300"
+                     MaxHeight="300"
+                     HorizontalAlignment="Stretch"
+                     VerticalAlignment="Stretch">
+                <uwp:FontAwesome Foreground="#C8C8C8"
+                                 Icon="Cog" />
+            </Viewbox>
+        </Grid>
         <Grid HorizontalAlignment="Left"
               VerticalAlignment="Top">
             <interactivity:Interaction.Behaviors>
@@ -52,9 +68,11 @@
             <Viewbox Width="48"
                      Height="48">
                 <uwp:FontAwesome x:Name="TopCog"
-                                 Foreground="Green"
                                  Icon="Cog"
                                  RenderTransformOrigin="0.5,0.5">
+                    <uwp:FontAwesome.Foreground>
+                        <SolidColorBrush Color="{Binding Source={StaticResource SystemAccentColor}, Converter={StaticResource DarkerColorConverter}}" />
+                    </uwp:FontAwesome.Foreground>
                     <uwp:FontAwesome.RenderTransform>
                         <RotateTransform />
                     </uwp:FontAwesome.RenderTransform>
@@ -66,7 +84,7 @@
             <Viewbox Width="48"
                      Height="48">
                 <uwp:FontAwesome x:Name="CenterCog"
-                                 Foreground="Green"
+                                 Foreground="{ThemeResource SystemAccentBrush}"
                                  Icon="Cog"
                                  RenderTransformOrigin="0.5,0.5">
                     <uwp:FontAwesome.RenderTransform>
@@ -81,9 +99,11 @@
             <Viewbox Width="48"
                      Height="48">
                 <uwp:FontAwesome x:Name="LeftCog"
-                                 Foreground="Green"
                                  Icon="Cog"
                                  RenderTransformOrigin="0.5,0.5">
+                    <uwp:FontAwesome.Foreground>
+                        <SolidColorBrush Color="{Binding Source={StaticResource SystemAccentColor}, Converter={StaticResource LighterColorConverter}}" />
+                    </uwp:FontAwesome.Foreground>
                     <uwp:FontAwesome.RenderTransform>
                         <RotateTransform />
                     </uwp:FontAwesome.RenderTransform>
@@ -93,43 +113,71 @@
                 </Viewbox.RenderTransform>
             </Viewbox>
         </Grid>
-        <StackPanel Margin="80"
-                    Orientation="Vertical">
-            <ComboBox x:Uid="/SettingView/SelectedSaveLocationComboBox"
-                      ItemsSource="{Binding Path=SaveLocations}"
-                      SelectedItem="{Binding Path=SelectedSaveLocation,
-                                             Mode=TwoWay}">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Converter={StaticResource SaveLocationConverter}}" />
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-            <ComboBox x:Uid="/SettingView/SelectedWallpaperSizeComboBox"
-                      ItemsSource="{Binding Path=WallpaperSizes}"
-                      SelectedItem="{Binding Path=SelectedWallpaperSize,
-                                             Mode=TwoWay}" />
-            <ComboBox x:Uid="/SettingView/SelectedAreaComboBox"
-                      ItemsSource="{Binding Path=Areas}"
-                      SelectedItem="{Binding Path=SelectedArea,
-                                             Mode=TwoWay}">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <RelativePanel>
-                            <Image x:Name="FlagImage"
-                                   Height="24"
-                                   RelativePanel.AlignLeftWithPanel="True"
-                                   RelativePanel.AlignVerticalCenterWithPanel="True"
-                                   Source="{Binding Converter={StaticResource StringFormatConverter},
-                                                    ConverterParameter='/Assets/Images/Flags/{0}.png'}" />
-                            <TextBlock Margin="4,0,0,0"
-                                       RelativePanel.AlignVerticalCenterWith="FlagImage"
-                                       RelativePanel.RightOf="FlagImage"
-                                       Text="{Binding}" />
-                        </RelativePanel>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-        </StackPanel>
+        <Pivot Margin="48,48,0,0">
+            <PivotItem Header="常规">
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                              VerticalScrollBarVisibility="Auto">
+                    <StackPanel Orientation="Vertical">
+                        <ComboBox x:Uid="/SettingView/SelectedSaveLocationComboBox"
+                                  Width="160"
+                                  ItemsSource="{Binding Path=SaveLocations}"
+                                  SelectedItem="{Binding Path=SelectedSaveLocation,
+                                                         Mode=TwoWay}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Converter={StaticResource SaveLocationConverter}}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <ComboBox x:Uid="/SettingView/SelectedWallpaperSizeComboBox"
+                                  Width="160"
+                                  Margin="0,8,0,0"
+                                  ItemsSource="{Binding Path=WallpaperSizes}"
+                                  SelectedItem="{Binding Path=SelectedWallpaperSize,
+                                                         Mode=TwoWay}" />
+                        <ComboBox x:Uid="/SettingView/SelectedAreaComboBox"
+                                  Width="160"
+                                  Margin="0,8,0,0"
+                                  ItemsSource="{Binding Path=Areas}"
+                                  SelectedItem="{Binding Path=SelectedArea,
+                                                         Mode=TwoWay}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <RelativePanel>
+                                        <Image x:Name="FlagImage"
+                                               Height="24"
+                                               RelativePanel.AlignLeftWithPanel="True"
+                                               RelativePanel.AlignVerticalCenterWithPanel="True"
+                                               Source="{Binding Converter={StaticResource StringFormatConverter},
+                                                                ConverterParameter='/Assets/Images/Flags/{0}.png'}" />
+                                        <TextBlock Margin="4,0,0,0"
+                                                   RelativePanel.AlignVerticalCenterWith="FlagImage"
+                                                   RelativePanel.RightOf="FlagImage"
+                                                   Text="{Binding}" />
+                                    </RelativePanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
+                </ScrollViewer>
+            </PivotItem>
+            <PivotItem Header="自动更新">
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                              VerticalScrollBarVisibility="Auto">
+                    <StackPanel Orientation="Vertical">
+                        <CheckBox Content="自动更新壁纸" />
+                        <CheckBox Content="自动更新锁屏" />
+                    </StackPanel>
+                </ScrollViewer>
+            </PivotItem>
+            <PivotItem Header="缓存">
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                              VerticalScrollBarVisibility="Auto">
+                    <StackPanel Orientation="Vertical">
+                        <Button Content="清除缓存" />
+                    </StackPanel>
+                </ScrollViewer>
+            </PivotItem>
+        </Pivot>
     </Grid>
 </local:ViewBase>

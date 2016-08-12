@@ -259,11 +259,21 @@ namespace BingoWallpaper.Uwp.ViewModels
 
         private async void ShareToWechat()
         {
-            return;
-            // TODO
-            var url = _wallpaperService.GetUrl(Wallpaper.Image, _settings.SelectedWallpaperSize);
-            var bytes = await _imageLoader.GetBytesAsync(url);
-            await _bingoShareService.ShareToWechatAsync(bytes, Wallpaper.Archive.Info);
+            IsBusy = true;
+            try
+            {
+                var url = _wallpaperService.GetUrl(Wallpaper.Image, _settings.SelectedWallpaperSize);
+                var bytes = await _imageLoader.GetBytesAsync(url);
+                await _bingoShareService.ShareToWechatAsync(bytes, Wallpaper.Archive.Info);
+            }
+            catch (Exception ex)
+            {
+                _appToastService.ShowError(ex.Message);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using BingoWallpaper.Configuration;
 using BingoWallpaper.Services;
+using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Windows.ApplicationModel.Background;
@@ -24,7 +25,7 @@ namespace BingoWallpaper.BackgroundTask
 
         public async void Run(IBackgroundTaskInstance taskInstance)
         {
-            var deferral = taskInstance.GetDeferral();
+            var deferral = taskInstance?.GetDeferral();
             try
             {
                 var result = await _bingWallpaperService.GetAsync(0, 1, _bingoWallpaperSettings.SelectedArea);
@@ -36,9 +37,13 @@ namespace BingoWallpaper.BackgroundTask
                     _tileService.UpdatePrimaryTile(image, text);
                 }
             }
+            catch (Exception)
+            {
+                // ignored
+            }
             finally
             {
-                deferral.Complete();
+                deferral?.Complete();
             }
         }
     }
