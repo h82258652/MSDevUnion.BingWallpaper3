@@ -36,7 +36,7 @@
                                 <Grid x:Name="Root">
                                     <uwp:FontAwesome x:Name="Arrow"
                                                      FontSize="10"
-                                                     Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
+                                                     Foreground="#C8C8C8"
                                                      Icon="CaretRight"
                                                      MirroredWhenRightToLeft="True" />
                                     <VisualStateManager.VisualStateGroups>
@@ -47,7 +47,7 @@
                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Arrow"
                                                                                    Storyboard.TargetProperty="Foreground">
                                                         <DiscreteObjectKeyFrame KeyTime="0"
-                                                                                Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}" />
+                                                                                Value="White" />
                                                     </ObjectAnimationUsingKeyFrames>
                                                 </Storyboard>
                                             </VisualState>
@@ -56,7 +56,7 @@
                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Arrow"
                                                                                    Storyboard.TargetProperty="Foreground">
                                                         <DiscreteObjectKeyFrame KeyTime="0"
-                                                                                Value="{ThemeResource SystemControlHighlightAltAltHighBrush}" />
+                                                                                Value="#E3E3E3" />
                                                     </ObjectAnimationUsingKeyFrames>
                                                 </Storyboard>
                                             </VisualState>
@@ -78,7 +78,7 @@
                                 <Grid x:Name="Root">
                                     <uwp:FontAwesome x:Name="Arrow"
                                                      FontSize="10"
-                                                     Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
+                                                     Foreground="#C8C8C8"
                                                      Icon="CaretLeft"
                                                      MirroredWhenRightToLeft="True" />
                                     <VisualStateManager.VisualStateGroups>
@@ -89,7 +89,7 @@
                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Arrow"
                                                                                    Storyboard.TargetProperty="Foreground">
                                                         <DiscreteObjectKeyFrame KeyTime="0"
-                                                                                Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}" />
+                                                                                Value="White" />
                                                     </ObjectAnimationUsingKeyFrames>
                                                 </Storyboard>
                                             </VisualState>
@@ -98,7 +98,7 @@
                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Arrow"
                                                                                    Storyboard.TargetProperty="Foreground">
                                                         <DiscreteObjectKeyFrame KeyTime="0"
-                                                                                Value="{ThemeResource SystemControlHighlightAltAltHighBrush}" />
+                                                                                Value="#E3E3E3" />
                                                     </ObjectAnimationUsingKeyFrames>
                                                 </Storyboard>
                                             </VisualState>
@@ -120,7 +120,7 @@
                                 <Grid x:Name="Root">
                                     <uwp:FontAwesome x:Name="Arrow"
                                                      FontSize="10"
-                                                     Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
+                                                     Foreground="#C8C8C8"
                                                      Icon="CaretDown" />
                                     <VisualStateManager.VisualStateGroups>
                                         <VisualStateGroup x:Name="CommonStates">
@@ -130,7 +130,7 @@
                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Arrow"
                                                                                    Storyboard.TargetProperty="Foreground">
                                                         <DiscreteObjectKeyFrame KeyTime="0"
-                                                                                Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}" />
+                                                                                Value="White" />
                                                     </ObjectAnimationUsingKeyFrames>
                                                 </Storyboard>
                                             </VisualState>
@@ -139,7 +139,7 @@
                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Arrow"
                                                                                    Storyboard.TargetProperty="Foreground">
                                                         <DiscreteObjectKeyFrame KeyTime="0"
-                                                                                Value="{ThemeResource SystemControlHighlightAltAltHighBrush}" />
+                                                                                Value="#E3E3E3" />
                                                     </ObjectAnimationUsingKeyFrames>
                                                 </Storyboard>
                                             </VisualState>
@@ -161,7 +161,7 @@
                                 <Grid x:Name="Root">
                                     <uwp:FontAwesome x:Name="Arrow"
                                                      FontSize="10"
-                                                     Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
+                                                     Foreground="#C8C8C8"
                                                      Icon="CaretUp" />
                                     <VisualStateManager.VisualStateGroups>
                                         <VisualStateGroup x:Name="CommonStates">
@@ -171,7 +171,7 @@
                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Arrow"
                                                                                    Storyboard.TargetProperty="Foreground">
                                                         <DiscreteObjectKeyFrame KeyTime="0"
-                                                                                Value="{ThemeResource SystemControlHighlightAltBaseHighBrush}" />
+                                                                                Value="White" />
                                                     </ObjectAnimationUsingKeyFrames>
                                                 </Storyboard>
                                             </VisualState>
@@ -180,7 +180,7 @@
                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Arrow"
                                                                                    Storyboard.TargetProperty="Foreground">
                                                         <DiscreteObjectKeyFrame KeyTime="0"
-                                                                                Value="{ThemeResource SystemControlHighlightAltAltHighBrush}" />
+                                                                                Value="#E3E3E3" />
                                                     </ObjectAnimationUsingKeyFrames>
                                                 </Storyboard>
                                             </VisualState>
@@ -200,28 +200,35 @@
                             <ControlTemplate x:Key="VerticalThumbTemplate"
                                              TargetType="Thumb">
                                 <Rectangle x:Name="ThumbVisual"
-                                           Fill="#C8C8C8"
-                                           RadiusX="6"
-                                           RadiusY="6">
+                                           RadiusX="4"
+                                           RadiusY="4">
+                                    <Rectangle.Fill>
+                                        <SolidColorBrush Color="#C8C8C8" />
+                                    </Rectangle.Fill>
                                     <VisualStateManager.VisualStateGroups>
                                         <VisualStateGroup x:Name="CommonStates">
-                                            <VisualState x:Name="Normal" />
+                                            <VisualState x:Name="Normal">
+                                                <Storyboard>
+                                                    <ColorAnimation Storyboard.TargetName="ThumbVisual"
+                                                                    Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
+                                                                    To="#C8C8C8"
+                                                                    Duration="0:0:0.15" />
+                                                </Storyboard>
+                                            </VisualState>
                                             <VisualState x:Name="PointerOver">
                                                 <Storyboard>
-                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ThumbVisual"
-                                                                                   Storyboard.TargetProperty="Fill">
-                                                        <DiscreteObjectKeyFrame KeyTime="0"
-                                                                                Value="White" />
-                                                    </ObjectAnimationUsingKeyFrames>
+                                                    <ColorAnimation Storyboard.TargetName="ThumbVisual"
+                                                                    Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
+                                                                    To="White"
+                                                                    Duration="0:0:0.15" />
                                                 </Storyboard>
                                             </VisualState>
                                             <VisualState x:Name="Pressed">
                                                 <Storyboard>
-                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ThumbVisual"
-                                                                                   Storyboard.TargetProperty="Fill">
-                                                        <DiscreteObjectKeyFrame KeyTime="0"
-                                                                                Value="#E3E3E3" />
-                                                    </ObjectAnimationUsingKeyFrames>
+                                                    <ColorAnimation Storyboard.TargetName="ThumbVisual"
+                                                                    Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
+                                                                    To="#E3E3E3"
+                                                                    Duration="0:0:0.15" />
                                                 </Storyboard>
                                             </VisualState>
                                             <VisualState x:Name="Disabled">
@@ -239,28 +246,35 @@
                             <ControlTemplate x:Key="HorizontalThumbTemplate"
                                              TargetType="Thumb">
                                 <Rectangle x:Name="ThumbVisual"
-                                           Fill="#C8C8C8"
-                                           RadiusX="6"
-                                           RadiusY="6">
+                                           RadiusX="4"
+                                           RadiusY="4">
+                                    <Rectangle.Fill>
+                                        <SolidColorBrush Color="#C8C8C8" />
+                                    </Rectangle.Fill>
                                     <VisualStateManager.VisualStateGroups>
                                         <VisualStateGroup x:Name="CommonStates">
-                                            <VisualState x:Name="Normal" />
+                                            <VisualState x:Name="Normal">
+                                                <Storyboard>
+                                                    <ColorAnimation Storyboard.TargetName="ThumbVisual"
+                                                                    Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
+                                                                    To="#C8C8C8"
+                                                                    Duration="0:0:0.15" />
+                                                </Storyboard>
+                                            </VisualState>
                                             <VisualState x:Name="PointerOver">
                                                 <Storyboard>
-                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ThumbVisual"
-                                                                                   Storyboard.TargetProperty="Fill">
-                                                        <DiscreteObjectKeyFrame KeyTime="0"
-                                                                                Value="White" />
-                                                    </ObjectAnimationUsingKeyFrames>
+                                                    <ColorAnimation Storyboard.TargetName="ThumbVisual"
+                                                                    Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
+                                                                    To="White"
+                                                                    Duration="0:0:0.15" />
                                                 </Storyboard>
                                             </VisualState>
                                             <VisualState x:Name="Pressed">
                                                 <Storyboard>
-                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ThumbVisual"
-                                                                                   Storyboard.TargetProperty="Fill">
-                                                        <DiscreteObjectKeyFrame KeyTime="0"
-                                                                                Value="#E3E3E3" />
-                                                    </ObjectAnimationUsingKeyFrames>
+                                                    <ColorAnimation Storyboard.TargetName="ThumbVisual"
+                                                                    Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
+                                                                    To="#E3E3E3"
+                                                                    Duration="0:0:0.15" />
                                                 </Storyboard>
                                             </VisualState>
                                             <VisualState x:Name="Disabled">
@@ -285,14 +299,14 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <Rectangle x:Name="HorizontalTrackRect"
-                                       Grid.ColumnSpan="5"
-                                       Margin="0"
-                                       Fill="#80000000"
-                                       RadiusX="8"
-                                       RadiusY="8"
-                                       Stroke="{ThemeResource SystemControlForegroundTransparentBrush}"
-                                       StrokeThickness="{ThemeResource ScrollBarTrackBorderThemeThickness}" />
+                            <Border x:Name="HorizontalTrackRect"
+                                    Grid.ColumnSpan="5"
+                                    Margin="0"
+                                    CornerRadius="8,8,0,0">
+                                <Border.Background>
+                                    <SolidColorBrush Color="#80000000" />
+                                </Border.Background>
+                            </Border>
                             <RepeatButton x:Name="HorizontalSmallDecrease"
                                           Grid.Column="0"
                                           Width="16"
@@ -312,8 +326,8 @@
                                           Template="{StaticResource RepeatButtonTemplate}" />
                             <Thumb x:Name="HorizontalThumb"
                                    Grid.Column="2"
-                                   Height="12"
-                                   MinWidth="12"
+                                   Height="8"
+                                   MinWidth="8"
                                    AutomationProperties.AccessibilityView="Raw"
                                    Background="{ThemeResource SystemControlForegroundChromeHighBrush}"
                                    Template="{StaticResource HorizontalThumbTemplate}" />
@@ -354,14 +368,14 @@
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-                            <Rectangle x:Name="VerticalTrackRect"
-                                       Grid.RowSpan="5"
-                                       Margin="0"
-                                       Fill="#80000000"
-                                       RadiusX="8"
-                                       RadiusY="8"
-                                       Stroke="{ThemeResource SystemControlForegroundTransparentBrush}"
-                                       StrokeThickness="{ThemeResource ScrollBarTrackBorderThemeThickness}" />
+                            <Border x:Name="VerticalTrackRect"
+                                    Grid.RowSpan="5"
+                                    Margin="0"
+                                    CornerRadius="8,0,0,8">
+                                <Border.Background>
+                                    <SolidColorBrush Color="#80000000" />
+                                </Border.Background>
+                            </Border>
                             <RepeatButton x:Name="VerticalSmallDecrease"
                                           Grid.Row="0"
                                           Height="16"
@@ -381,8 +395,8 @@
                                           Template="{StaticResource RepeatButtonTemplate}" />
                             <Thumb x:Name="VerticalThumb"
                                    Grid.Row="2"
-                                   Width="12"
-                                   MinHeight="12"
+                                   Width="8"
+                                   MinHeight="8"
                                    AutomationProperties.AccessibilityView="Raw"
                                    Background="{ThemeResource SystemControlForegroundChromeHighBrush}"
                                    Template="{StaticResource VerticalThumbTemplate}" />
@@ -416,8 +430,30 @@
                         </Grid>
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="Normal" />
-                                <VisualState x:Name="PointerOver" />
+                                <VisualState x:Name="Normal">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="HorizontalTrackRect"
+                                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                        To="#80000000"
+                                                        Duration="0:0:0.15" />
+                                        <ColorAnimation Storyboard.TargetName="VerticalTrackRect"
+                                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                        To="#80000000"
+                                                        Duration="0:0:0.15" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="PointerOver">
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="HorizontalTrackRect"
+                                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                        To="#C0000000"
+                                                        Duration="0:0:0.15" />
+                                        <ColorAnimation Storyboard.TargetName="VerticalTrackRect"
+                                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                        To="#C0000000"
+                                                        Duration="0:0:0.15" />
+                                    </Storyboard>
+                                </VisualState>
                                 <VisualState x:Name="Disabled">
                                     <Storyboard>
                                         <DoubleAnimation Storyboard.TargetName="Root"
