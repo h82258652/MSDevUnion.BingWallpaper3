@@ -3,9 +3,9 @@
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:controls="using:BingoWallpaper.Uwp.Controls"
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:dashicons="using:SoftwareKobo.Icons.Dashicons"
                 xmlns:local="using:BingoWallpaper.Uwp.Views"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                xmlns:dashicons="using:SoftwareKobo.Icons.Dashicons"
                 DataContext="{Binding Source={StaticResource Locator},
                                       Path=Detail}"
                 mc:Ignorable="d">
@@ -102,21 +102,26 @@
         </Grid>
         <CommandBar x:Name="AppBar"
                     Grid.Row="2"
-                    Background="{ThemeResource SystemAccentBrush}">
+                    Background="{ThemeResource SystemAccentBrush}"
+                    Foreground="#171717">
             <CommandBar.RenderTransform>
                 <TranslateTransform />
             </CommandBar.RenderTransform>
             <CommandBar.SecondaryCommands>
                 <AppBarButton x:Uid="/DetailView/OpenWallpaperSettingButton"
-                              Command="{Binding Path=OpenWallpaperSettingCommand}" />
+                              Command="{Binding Path=OpenWallpaperSettingCommand}"
+                              Foreground="#171717" />
                 <AppBarButton x:Uid="/DetailView/OpenLockScreenSettingButton"
-                              Command="{Binding Path=OpenLockScreenSettingCommand}" />
+                              Command="{Binding Path=OpenLockScreenSettingCommand}"
+                              Foreground="#171717" />
             </CommandBar.SecondaryCommands>
             <AppBarButton x:Uid="/DetailView/SaveButton"
                           Command="{Binding Path=SaveCommand}"
+                          Foreground="#171717"
                           Icon="Save" />
             <AppBarButton x:Uid="/DetailView/SetWallpaperButton"
-                          Command="{Binding Path=SetWallpaperCommand}">
+                          Command="{Binding Path=SetWallpaperCommand}"
+                          Foreground="#171717">
                 <AppBarButton.Icon>
                     <FontIcon FontFamily="Segoe MDL2 Assets"
                               Glyph="&#xE771;" />
@@ -124,9 +129,11 @@
             </AppBarButton>
             <AppBarButton x:Uid="/DetailView/SetLockScreenButton"
                           Command="{Binding Path=SetLockScreenCommand}"
+                          Foreground="#171717"
                           Icon="SetLockScreen" />
             <AppBarButton x:Uid="/DetailView/ShareButton"
-                          Command="{Binding Path=ChooseShareCommand}">
+                          Command="{Binding Path=ChooseShareCommand}"
+                          Foreground="#171717">
                 <AppBarButton.Icon>
                     <dashicons:DashIcon Symbol="Share" />
                 </AppBarButton.Icon>

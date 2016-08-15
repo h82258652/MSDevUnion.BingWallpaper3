@@ -116,7 +116,8 @@
         <AppBar x:Name="AppBar"
                 Grid.Row="1"
                 Background="{ThemeResource SystemAccentBrush}"
-                ClosedDisplayMode="Compact">
+                ClosedDisplayMode="Compact"
+                Foreground="#171717">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -153,14 +154,15 @@
                 <AppBarButton x:Uid="/MainView/RefreshButton"
                               Grid.Column="1"
                               Command="{Binding Path=RefreshCommand}"
+                              Foreground="#171717"
                               IsCompact="{Binding ElementName=AppBar,
                                                   Path=IsOpen,
                                                   Converter={StaticResource BooleanNegationConverter}}">
                     <AppBarButton.Icon>
-                        <uwp:FontAwesome  Icon="Refresh"
-                                          RenderTransformOrigin="0.5,0.5">
+                        <uwp:FontAwesome Icon="Refresh"
+                                         RenderTransformOrigin="0.5,0.5">
                             <FontIcon.RenderTransform>
-                                <RotateTransform x:Name="RefreshIconRotateTransform"></RotateTransform>
+                                <RotateTransform x:Name="RefreshIconRotateTransform" />
                             </FontIcon.RenderTransform>
                         </uwp:FontAwesome>
                     </AppBarButton.Icon>
@@ -178,6 +180,7 @@
                 </AppBarButton>
                 <AppBarButton x:Uid="/MainView/SettingButton"
                               Grid.Column="2"
+                              Foreground="#171717"
                               IsCompact="{Binding ElementName=AppBar,
                                                   Path=IsOpen,
                                                   Converter={StaticResource BooleanNegationConverter}}">
@@ -192,6 +195,7 @@
                 </AppBarButton>
                 <AppBarButton x:Uid="/MainView/AboutButton"
                               Grid.Column="3"
+                              Foreground="#171717"
                               IsCompact="{Binding ElementName=AppBar,
                                                   Path=IsOpen,
                                                   Converter={StaticResource BooleanNegationConverter}}">
