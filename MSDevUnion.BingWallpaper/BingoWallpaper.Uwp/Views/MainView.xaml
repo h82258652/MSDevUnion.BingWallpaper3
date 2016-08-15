@@ -14,7 +14,6 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:media="using:Microsoft.Xaml.Interactions.Media"
                 xmlns:uwp="using:FontAwesome.UWP"
-                xmlns:dashicons="using:SoftwareKobo.Icons.Dashicons"
                 DataContext="{Binding Source={StaticResource Locator},
                                       Path=Main}"
                 mc:Ignorable="d">
