@@ -103,6 +103,14 @@
                                     </Setter>
                                 </Style>
                             </controls:GridViewEx.ItemContainerStyle>
+                            <controls:GridViewEx.ItemContainerTransitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition />
+                                    <ContentThemeTransition />
+                                    <ReorderThemeTransition />
+                                    <EntranceThemeTransition IsStaggeringEnabled="True" />
+                                </TransitionCollection>
+                            </controls:GridViewEx.ItemContainerTransitions>
                             <controls:GridViewEx.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <controls:FirstDoubleSizePanel SizeChanged="FirstDoubleSizePanel_SizeChanged" />

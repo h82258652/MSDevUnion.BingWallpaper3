@@ -13,6 +13,8 @@
                x:FieldModifier="internal"
                Navigating="RootFrame_Navigating" />
         <ContentControl x:Name="PreviousPageContainer"
+                        HorizontalContentAlignment="Stretch"
+                        VerticalContentAlignment="Stretch"
                         x:FieldModifier="internal"
                         IsHitTestVisible="False" />
         <Grid x:Name="ChooseShareGrid"

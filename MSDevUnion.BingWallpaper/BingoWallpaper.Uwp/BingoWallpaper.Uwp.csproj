@@ -134,6 +134,9 @@
     <Compile Include="Controls\EllipseMask.cs" />
     <Compile Include="Controls\ExceptionEventArgs.cs" />
     <Compile Include="Controls\FirstDoubleSizePanel.cs" />
+    <Compile Include="Controls\GearBackgroundControl.xaml.cs">
+      <DependentUpon>GearBackgroundControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\GridViewEx.cs" />
     <Compile Include="Controls\HttpDownloadProgressEventArgs.cs" />
     <Compile Include="Controls\IImageLoader.cs" />
@@ -229,6 +232,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\BindableMargin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\GearBackgroundControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
