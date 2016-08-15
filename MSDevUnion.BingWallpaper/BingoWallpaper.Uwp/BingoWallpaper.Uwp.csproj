@@ -129,6 +129,7 @@
     <Compile Include="Controls\BindableMargin.xaml.cs">
       <DependentUpon>BindableMargin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\BingoWallpaperButton.cs" />
     <Compile Include="Controls\ChooseShareControl.cs" />
     <Compile Include="Controls\DefaultImageLoader.cs" />
     <Compile Include="Controls\EllipseMask.cs" />
@@ -263,6 +264,11 @@
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
+    <Page Include="Themes\BingoWallpaperButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
     <Page Include="Themes\ChooseShareControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -360,9 +366,7 @@
       <Name>Windows Mobile Extensions for the UWP</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Styles\Buttons\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
