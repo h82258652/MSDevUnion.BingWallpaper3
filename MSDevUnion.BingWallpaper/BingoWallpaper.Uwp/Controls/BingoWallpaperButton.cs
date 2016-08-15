@@ -9,7 +9,7 @@ namespace BingoWallpaper.Uwp.Controls
 
         public BingoWallpaperButton()
         {
-            this.DefaultStyleKey = typeof(BingoWallpaperButton);
+            DefaultStyleKey = typeof(BingoWallpaperButton);
         }
 
         public CornerRadius CornerRadius

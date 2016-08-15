@@ -144,6 +144,7 @@
     <Compile Include="Controls\ImageEx.cs" />
     <Compile Include="Controls\ImageFailedEventArgs.cs" />
     <Compile Include="Controls\ItemPointerEventArgs.cs" />
+    <Compile Include="Controls\Shadow.cs" />
     <Compile Include="Controls\ToastPrompt.cs" />
     <Compile Include="Converters\AreaToNameConverter.cs" />
     <Compile Include="Converters\BooleanNegationConverter.cs" />
@@ -156,6 +157,7 @@
     <Compile Include="Extensions\FileExtensions.cs" />
     <Compile Include="Extensions\FrameExtensions.cs" />
     <Compile Include="Extensions\FrameworkElementExtensions.cs" />
+    <Compile Include="Extensions\MathExtensions.cs" />
     <Compile Include="Extensions\StoryboardExtensions.cs" />
     <Compile Include="Helpers\ScrollViewerHelper.cs" />
     <Compile Include="LocalizedStrings.cs" />
@@ -284,6 +286,11 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\ImageEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Themes\Shadow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

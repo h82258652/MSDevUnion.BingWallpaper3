@@ -4,6 +4,15 @@
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:local="using:BingoWallpaper.Uwp.Views"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:controls="using:BingoWallpaper.Uwp.Controls"
                 mc:Ignorable="d">
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" />
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid VerticalAlignment="Center"
+              HorizontalAlignment="Center">
+            <controls:Shadow Direction="0">
+                <Image Source="http://www.bing.com/az/hprichbg/rb/PerceRock_ZH-CN12739516630_800x480.jpg"
+                       Stretch="None"></Image>
+            </controls:Shadow>
+        </Grid>
+    </Grid>
 </local:ViewBase>
