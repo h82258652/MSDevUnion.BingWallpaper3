@@ -5,7 +5,7 @@
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:local="using:BingoWallpaper.Uwp.Views"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                xmlns:uwp="using:FontAwesome.UWP"
+                xmlns:dashicons="using:SoftwareKobo.Icons.Dashicons"
                 DataContext="{Binding Source={StaticResource Locator},
                                       Path=Detail}"
                 mc:Ignorable="d">
@@ -128,7 +128,7 @@
             <AppBarButton x:Uid="/DetailView/ShareButton"
                           Command="{Binding Path=ChooseShareCommand}">
                 <AppBarButton.Icon>
-                    <uwp:FontAwesome Icon="ShareAlt" />
+                    <dashicons:DashIcon Symbol="Share" />
                 </AppBarButton.Icon>
             </AppBarButton>
         </CommandBar>

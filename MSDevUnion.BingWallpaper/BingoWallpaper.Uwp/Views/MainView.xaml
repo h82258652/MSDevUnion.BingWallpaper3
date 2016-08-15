@@ -14,6 +14,7 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:media="using:Microsoft.Xaml.Interactions.Media"
                 xmlns:uwp="using:FontAwesome.UWP"
+                xmlns:dashicons="using:SoftwareKobo.Icons.Dashicons"
                 DataContext="{Binding Source={StaticResource Locator},
                                       Path=Main}"
                 mc:Ignorable="d">
@@ -156,11 +157,11 @@
                                                   Path=IsOpen,
                                                   Converter={StaticResource BooleanNegationConverter}}">
                     <AppBarButton.Icon>
-                        <uwp:FontAwesome Icon="Refresh"
-                                         RenderTransformOrigin="0.5,0.5">
-                            <uwp:FontAwesome.RenderTransform>
-                                <RotateTransform x:Name="RefreshIconRotateTransform" />
-                            </uwp:FontAwesome.RenderTransform>
+                        <uwp:FontAwesome  Icon="Refresh"
+                                          RenderTransformOrigin="0.5,0.5">
+                            <FontIcon.RenderTransform>
+                                <RotateTransform x:Name="RefreshIconRotateTransform"></RotateTransform>
+                            </FontIcon.RenderTransform>
                         </uwp:FontAwesome>
                     </AppBarButton.Icon>
                     <interactivity:Interaction.Behaviors>

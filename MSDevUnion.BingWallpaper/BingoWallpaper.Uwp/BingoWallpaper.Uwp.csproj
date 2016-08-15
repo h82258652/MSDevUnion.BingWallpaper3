@@ -343,6 +343,10 @@
       <Project>{c523169b-c592-4fe4-a683-0a8189462efd}</Project>
       <Name>BingoWallpaper.Utils</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SoftwareKobo.Icons\SoftwareKobo.Icons.csproj">
+      <Project>{f05b58ec-8fbb-42c7-9ade-ac0e46b19ea1}</Project>
+      <Name>SoftwareKobo.Icons</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <SDKReference Include="WindowsMobile, Version=10.0.10586.0">
