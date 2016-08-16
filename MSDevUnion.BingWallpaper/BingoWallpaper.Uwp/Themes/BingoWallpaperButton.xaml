@@ -31,6 +31,8 @@
                 Value="{ThemeResource ControlContentThemeFontSize}" />
         <Setter Property="UseSystemFocusVisuals"
                 Value="True" />
+        <Setter Property="Margin"
+                Value="4" />
         <Setter Property="CornerRadius"
                 Value="2" />
         <Setter Property="Template">

@@ -2,7 +2,7 @@
 using Windows.Security.Cryptography;
 using Windows.Security.Cryptography.Core;
 
-namespace BingoWallpaper.Uwp.Utils
+namespace BingoWallpaper.Utils
 {
     public static class HashHelper
     {

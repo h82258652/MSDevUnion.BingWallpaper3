@@ -154,7 +154,6 @@
     <Compile Include="Converters\SaveLocationConverter.cs" />
     <Compile Include="Converters\StringFormatConverter.cs" />
     <Compile Include="Converters\WallpaperUrlConverter.cs" />
-    <Compile Include="Extensions\FileExtensions.cs" />
     <Compile Include="Extensions\FrameExtensions.cs" />
     <Compile Include="Extensions\FrameworkElementExtensions.cs" />
     <Compile Include="Extensions\MathExtensions.cs" />
@@ -168,7 +167,6 @@
     <Compile Include="Services\AppToastService.cs" />
     <Compile Include="Services\IAppToastService.cs" />
     <Compile Include="Services\BingoWallpaperNavigationService.cs" />
-    <Compile Include="Utils\HashHelper.cs" />
     <Compile Include="Utils\BingoWallpaperWeChatCallback.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\DetailViewModel.cs" />

@@ -3,12 +3,9 @@
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:controls="using:BingoWallpaper.Uwp.Controls"
                 xmlns:converters="using:BingoWallpaper.Uwp.Converters"
-                xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                 xmlns:local="using:BingoWallpaper.Uwp.Views"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                xmlns:media="using:Microsoft.Xaml.Interactions.Media"
                 xmlns:uwp="using:FontAwesome.UWP"
                 DataContext="{Binding Source={StaticResource Locator},
                                       Path=Setting}"
@@ -31,8 +28,8 @@
                              To="0"
                              Duration="0:0:0.4">
                 <DoubleAnimation.EasingFunction>
-                    <BackEase EasingMode="EaseOut"
-                              Amplitude="0.5" />
+                    <BackEase Amplitude="0.5"
+                              EasingMode="EaseOut" />
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
             <DoubleAnimation Storyboard.TargetName="GearBackgroundControl"
@@ -41,8 +38,8 @@
                              To="0"
                              Duration="0:0:0.4">
                 <DoubleAnimation.EasingFunction>
-                    <BackEase EasingMode="EaseOut"
-                              Amplitude="0.5" />
+                    <BackEase Amplitude="0.5"
+                              EasingMode="EaseOut" />
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
         </Storyboard>
@@ -54,8 +51,8 @@
                              To="-72"
                              Duration="0:0:0.4">
                 <DoubleAnimation.EasingFunction>
-                    <BackEase EasingMode="EaseIn"
-                              Amplitude="0.5" />
+                    <BackEase Amplitude="0.5"
+                              EasingMode="EaseIn" />
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
             <DoubleAnimation Storyboard.TargetName="GearBackgroundControl"
@@ -63,8 +60,8 @@
                              To="-72"
                              Duration="0:0:0.4">
                 <DoubleAnimation.EasingFunction>
-                    <BackEase EasingMode="EaseIn"
-                              Amplitude="0.5" />
+                    <BackEase Amplitude="0.5"
+                              EasingMode="EaseIn" />
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
         </Storyboard>
@@ -148,7 +145,8 @@
                 <ScrollViewer HorizontalScrollBarVisibility="Disabled"
                               VerticalScrollBarVisibility="Auto">
                     <StackPanel Orientation="Vertical">
-                        <Button Content="清除缓存" />
+                        <controls:BingoWallpaperButton HorizontalAlignment="Left"
+                                                       Content="清除缓存" />
                     </StackPanel>
                 </ScrollViewer>
             </PivotItem>

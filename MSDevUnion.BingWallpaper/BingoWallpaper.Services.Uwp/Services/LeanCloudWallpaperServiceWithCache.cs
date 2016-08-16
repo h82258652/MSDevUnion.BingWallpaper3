@@ -1,17 +1,23 @@
-﻿using BingoWallpaper.Models;
+﻿using BingoWallpaper.Extensions;
+using BingoWallpaper.Models;
 using BingoWallpaper.Models.LeanCloud;
+using BingoWallpaper.Utils;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Windows.Storage;
 
 namespace BingoWallpaper.Services
 {
-    public class LeanCloudWallpaperService : ILeanCloudWallpaperService
+    public class LeanCloudWallpaperServiceWithCache : ILeanCloudWallpaperService
     {
+        private const string CacheFolderName = "LeanCloudCache";
+
         public async Task<LeanCloudResultCollection<Archive>> GetArchivesAsync(int year, int month, string area)
         {
             var viewMonth = new DateTime(year, month, 1);
@@ -42,31 +48,63 @@ namespace BingoWallpaper.Services
 
             string requestUrl = $"{BingoWallpaper.Constants.LeanCloudUrlBase}/1.1/classes/Archive?where={WebUtility.UrlEncode(JsonConvert.SerializeObject(where))}&order=-date";
 
-            using (var client = CreateHttpClient())
+            var cacheFilePath = Path.Combine(ApplicationData.Current.LocalFolder.Path, CacheFolderName, HashHelper.GenerateMd5Hash(requestUrl)) + ".json";
+            LeanCloudResultCollection<Archive> result = null;
+            if (File.Exists(cacheFilePath))
             {
-                var json = await client.GetStringAsync(requestUrl);
-                return JsonConvert.DeserializeObject<LeanCloudResultCollection<Archive>>(json);
+                var json = await FileExtensions.ReadAllTextAsync(cacheFilePath);
+                try
+                {
+                    result = JsonConvert.DeserializeObject<LeanCloudResultCollection<Archive>>(json);
+                    if (result.Count() >= DateTime.DaysInMonth(year, month))
+                    {
+                        // 已经缓存过当月所有信息，直接返回。
+                        return result;
+                    }
+                }
+                catch (Exception)
+                {
+                    // 缓存不可用，丢弃缓存。
+                    File.Delete(cacheFilePath);
+                }
             }
+
+            try
+            {
+                using (var client = CreateHttpClient())
+                {
+                    var json = await client.GetStringAsync(requestUrl);
+                    result = JsonConvert.DeserializeObject<LeanCloudResultCollection<Archive>>(json);
+
+                    if (result.Any())
+                    {
+                        try
+                        {
+                            // 创建缓存文件夹（假设不存在）。
+                            Directory.CreateDirectory(Path.GetDirectoryName(cacheFilePath));
+                            await FileExtensions.WriteAllTextAsync(cacheFilePath, json);
+                        }
+                        catch (Exception)
+                        {
+                            // ignored
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                if (result == null || result.Any() == false)
+                {
+                    throw;
+                }
+            }
+
+            return result;
         }
 
-        public async Task<Image> GetImageAsync(string objectId)
+        public Task<Image> GetImageAsync(string objectId)
         {
-            if (objectId == null)
-            {
-                throw new ArgumentNullException(nameof(objectId));
-            }
-            if (objectId.Length <= 0)
-            {
-                throw new ArgumentException($"{nameof(objectId)} 不能为空字符串。", nameof(objectId));
-            }
-
-            string requestUrl = $"{BingoWallpaper.Constants.LeanCloudUrlBase}/1.1/classes/Image/{objectId}";
-
-            using (var client = CreateHttpClient())
-            {
-                var json = await client.GetStringAsync(requestUrl);
-                return JsonConvert.DeserializeObject<Image>(json);
-            }
+            throw new NotImplementedException();
         }
 
         public async Task<LeanCloudResultCollection<Image>> GetImagesAsync(IEnumerable<string> objectIds)
@@ -89,10 +127,41 @@ namespace BingoWallpaper.Services
 
             string requestUrl = $"{BingoWallpaper.Constants.LeanCloudUrlBase}/1.1/classes/Image?where={WebUtility.UrlEncode(JsonConvert.SerializeObject(where))}&order=-updatedAt";
 
+            var cacheFilePath = Path.Combine(ApplicationData.Current.LocalFolder.Path, CacheFolderName, HashHelper.GenerateMd5Hash(requestUrl)) + ".json";
+            if (File.Exists(cacheFilePath))
+            {
+                var json = await FileExtensions.ReadAllTextAsync(cacheFilePath);
+                try
+                {
+                    return JsonConvert.DeserializeObject<LeanCloudResultCollection<Image>>(json);
+                }
+                catch (Exception)
+                {
+                    // 缓存不可用，丢弃缓存。
+                    File.Delete(cacheFilePath);
+                }
+            }
+
             using (var client = CreateHttpClient())
             {
                 var json = await client.GetStringAsync(requestUrl);
-                return JsonConvert.DeserializeObject<LeanCloudResultCollection<Image>>(json);
+                var result = JsonConvert.DeserializeObject<LeanCloudResultCollection<Image>>(json);
+
+                if (result.Any())
+                {
+                    try
+                    {
+                        // 创建缓存文件夹（假设不存在）。
+                        Directory.CreateDirectory(Path.GetDirectoryName(cacheFilePath));
+                        await FileExtensions.WriteAllTextAsync(cacheFilePath, json);
+                    }
+                    catch (Exception)
+                    {
+                        // ignored
+                    }
+                }
+
+                return result;
             }
         }
 

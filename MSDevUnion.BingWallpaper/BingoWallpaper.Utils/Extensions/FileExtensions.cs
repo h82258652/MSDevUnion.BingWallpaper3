@@ -1,9 +1,10 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace BingoWallpaper.Uwp.Extensions
+namespace BingoWallpaper.Extensions
 {
     public static class FileExtensions
     {
@@ -27,6 +28,19 @@ namespace BingoWallpaper.Uwp.Extensions
             }
         }
 
+        public static async Task<string> ReadAllTextAsync(string path)
+        {
+            if (path == null)
+            {
+                throw new ArgumentNullException(nameof(path));
+            }
+
+            using (var sr = File.OpenText(path))
+            {
+                return await sr.ReadToEndAsync();
+            }
+        }
+
         public static Task WriteAllBytesAsync(string path, byte[] bytes)
         {
             return WriteAllBytesAsync(path, bytes, CancellationToken.None);
@@ -46,6 +60,35 @@ namespace BingoWallpaper.Uwp.Extensions
             using (var fs = File.OpenWrite(path))
             {
                 await fs.WriteAsync(bytes, 0, bytes.Length, cancellationToken);
+            }
+        }
+
+        public static Task WriteAllTextAsync(string path, string contents)
+        {
+            return WriteAllTextAsync(path, contents, Encoding.UTF8);
+        }
+
+        public static async Task WriteAllTextAsync(string path, string contents, Encoding encoding)
+        {
+            if (path == null)
+            {
+                throw new ArgumentNullException(nameof(path));
+            }
+            if (contents == null)
+            {
+                throw new ArgumentNullException(nameof(contents));
+            }
+            if (encoding == null)
+            {
+                throw new ArgumentNullException(nameof(encoding));
+            }
+
+            using (var fs = File.OpenWrite(path))
+            {
+                using (var sw = new StreamWriter(fs, encoding))
+                {
+                    await sw.WriteAsync(contents);
+                }
             }
         }
     }

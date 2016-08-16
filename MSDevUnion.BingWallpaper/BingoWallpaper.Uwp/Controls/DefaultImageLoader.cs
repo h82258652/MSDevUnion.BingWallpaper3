@@ -1,5 +1,5 @@
-﻿using BingoWallpaper.Uwp.Extensions;
-using BingoWallpaper.Uwp.Utils;
+﻿using BingoWallpaper.Extensions;
+using BingoWallpaper.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
