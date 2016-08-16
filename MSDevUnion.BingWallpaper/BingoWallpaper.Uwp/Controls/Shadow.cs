@@ -15,6 +15,8 @@ namespace BingoWallpaper.Uwp.Controls
     [TemplatePart(Name = CanvasControlTemplateName, Type = typeof(CanvasControl))]
     public sealed class Shadow : ContentControl
     {
+        public static readonly DependencyProperty BlurRadiusProperty = DependencyProperty.Register(nameof(BlurRadius), typeof(double), typeof(Shadow), new PropertyMetadata(2d, BlurRadiusChanged));
+
         public static readonly DependencyProperty ColorProperty = DependencyProperty.Register(nameof(Color), typeof(Color), typeof(Shadow), new PropertyMetadata(Colors.Black, ColorChanged));
 
         public static readonly DependencyProperty DepthProperty = DependencyProperty.Register(nameof(Depth), typeof(double), typeof(Shadow), new PropertyMetadata(2d, DepthChanged));
@@ -30,6 +32,18 @@ namespace BingoWallpaper.Uwp.Controls
             DefaultStyleKey = typeof(Shadow);
             SizeChanged += Shadow_SizeChanged;
             Unloaded += Shadow_Unloaded;
+        }
+
+        public double BlurRadius
+        {
+            get
+            {
+                return (double)GetValue(BlurRadiusProperty);
+            }
+            set
+            {
+                SetValue(BlurRadiusProperty, value);
+            }
         }
 
         public Color Color
@@ -77,6 +91,12 @@ namespace BingoWallpaper.Uwp.Controls
             ExpandCanvas();
         }
 
+        private static void BlurRadiusChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var obj = (Shadow)d;
+            obj._canvasControl?.Invalidate();
+        }
+
         private static void ColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var obj = (Shadow)d;
@@ -121,7 +141,7 @@ namespace BingoWallpaper.Uwp.Controls
                         Source = new ShadowEffect()
                         {
                             Source = cl,
-                            BlurAmount = 2,
+                            BlurAmount = (float)BlurRadius,
                             ShadowColor = GetShadowColor()
                         },
                         TransformMatrix = Matrix3x2.CreateTranslation(translateX, translateY)
