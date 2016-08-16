@@ -45,6 +45,8 @@
         <Image x:Name="SplashScreenImage"
                ImageOpened="SplashScreenImage_ImageOpened"
                Source="/Assets/SplashScreen.png" />
-        <ProgressRing IsActive="True" />
+        <ProgressRing IsActive="True"
+                      Width="48"
+                      Height="48" />
     </Grid>
 </UserControl>
