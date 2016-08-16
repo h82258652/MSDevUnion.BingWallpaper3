@@ -7,6 +7,7 @@ using BingoWallpaper.Uwp.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using SoftwareKobo.Social.SinaWeibo;
 using System;
 using System.IO;
 
@@ -246,6 +247,10 @@ namespace BingoWallpaper.Uwp.ViewModels
                 {
                     _appToastService.ShowMessage(LocalizedStrings.ShareSuccess);
                 }
+            }
+            catch (UserCancelAuthorizeException)
+            {
+                _appToastService.ShowInformation(LocalizedStrings.CancelAuthorize);
             }
             catch (Exception ex)
             {

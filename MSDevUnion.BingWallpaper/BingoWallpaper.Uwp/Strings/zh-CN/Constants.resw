@@ -138,4 +138,7 @@
   <data name="ShareSuccess" xml:space="preserve">
     <value>分享成功</value>
   </data>
+  <data name="CancelAuthorize" xml:space="preserve">
+    <value>已取消授权</value>
+  </data>
 </root>

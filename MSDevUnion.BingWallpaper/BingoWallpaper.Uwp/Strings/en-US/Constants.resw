@@ -138,4 +138,7 @@
   <data name="ShareSuccess" xml:space="preserve">
     <value>Share success</value>
   </data>
+  <data name="CancelAuthorize" xml:space="preserve">
+    <value>Authorize canceled</value>
+  </data>
 </root>

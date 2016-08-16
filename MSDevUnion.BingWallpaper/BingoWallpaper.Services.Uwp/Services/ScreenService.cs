@@ -8,8 +8,8 @@ namespace BingoWallpaper.Services
 
         private const int SM_CYSCREEN = 1;
 
-        public uint ScreenHeightInRawPixels => (uint)User32.GetSystemMetrics(SM_CXSCREEN);
+        public uint ScreenHeightInRawPixels => (uint)User32.GetSystemMetrics(SM_CYSCREEN);
 
-        public uint ScreenWidthInRawPixels => (uint)User32.GetSystemMetrics(SM_CYSCREEN);
+        public uint ScreenWidthInRawPixels => (uint)User32.GetSystemMetrics(SM_CXSCREEN);
     }
 }

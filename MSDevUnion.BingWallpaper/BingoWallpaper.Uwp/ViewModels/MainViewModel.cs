@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace BingoWallpaper.Uwp.ViewModels
 {
@@ -69,10 +70,7 @@ namespace BingoWallpaper.Uwp.ViewModels
                     try
                     {
                         var wallpapers = await _leanCloudWallpaperService.GetWallpapersAsync(selectedWallpaperCollection.Year, selectedWallpaperCollection.Month, _settings.SelectedArea);
-                        foreach (var wallpaper in wallpapers)
-                        {
-                            selectedWallpaperCollection.Add(wallpaper);
-                        }
+                        FillWallpaperCollection(selectedWallpaperCollection, wallpapers);
                     }
                     catch (HttpRequestException ex)
                     {
@@ -110,6 +108,15 @@ namespace BingoWallpaper.Uwp.ViewModels
         public IReadOnlyList<WallpaperCollection> WallpaperCollections
         {
             get;
+        }
+
+        private async void FillWallpaperCollection(WallpaperCollection collection, IEnumerable<Wallpaper> wallpapers)
+        {
+            foreach (var wallpaper in wallpapers)
+            {
+                collection.Add(wallpaper);
+                await Task.Delay(TimeSpan.FromMilliseconds(50));
+            }
         }
     }
 }

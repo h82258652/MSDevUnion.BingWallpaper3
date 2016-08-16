@@ -91,6 +91,10 @@
                             </controls:GridViewEx.ItemTemplate>
                             <controls:GridViewEx.ItemContainerStyle>
                                 <Style TargetType="GridViewItem">
+                                    <Setter Property="HorizontalContentAlignment"
+                                            Value="Stretch" />
+                                    <Setter Property="VerticalContentAlignment"
+                                            Value="Stretch" />
                                     <Setter Property="Margin"
                                             Value="1" />
                                     <Setter Property="RenderTransformOrigin"

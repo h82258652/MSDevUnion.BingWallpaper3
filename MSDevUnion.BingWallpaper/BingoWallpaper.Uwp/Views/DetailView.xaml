@@ -94,11 +94,14 @@
             <Grid.RenderTransform>
                 <TranslateTransform />
             </Grid.RenderTransform>
-            <TextBlock Margin="8"
-                       FontSize="14"
-                       Foreground="White"
-                       Text="{Binding Path=Wallpaper.Archive.Info}"
-                       TextAlignment="Left" />
+            <ScrollViewer HorizontalScrollBarVisibility="Hidden"
+                          VerticalScrollBarVisibility="Disabled">
+                <TextBlock Margin="8"
+                           FontSize="14"
+                           Foreground="White"
+                           Text="{Binding Path=Wallpaper.Archive.Info}"
+                           TextAlignment="Left" />
+            </ScrollViewer>
         </Grid>
         <CommandBar x:Name="AppBar"
                     Grid.Row="2"

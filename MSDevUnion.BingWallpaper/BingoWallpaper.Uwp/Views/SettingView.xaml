@@ -82,7 +82,7 @@
                 <TranslateTransform />
             </UIElement.RenderTransform>
         </controls:GearBackgroundControl>
-        <Pivot Margin="48,48,0,0">
+        <Pivot Margin="28,28,0,0">
             <PivotItem x:Uid="/SettingView/GeneralPivotItem">
                 <ScrollViewer HorizontalScrollBarVisibility="Disabled"
                               VerticalScrollBarVisibility="Auto">

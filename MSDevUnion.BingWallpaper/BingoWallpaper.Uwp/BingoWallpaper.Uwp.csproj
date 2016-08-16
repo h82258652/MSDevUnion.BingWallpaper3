@@ -236,6 +236,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\DeviceFamily-Mobile\GearBackgroundControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\GearBackgroundControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -359,6 +363,14 @@
     <ProjectReference Include="..\SoftwareKobo.Icons\SoftwareKobo.Icons.csproj">
       <Project>{f05b58ec-8fbb-42c7-9ade-ac0e46b19ea1}</Project>
       <Name>SoftwareKobo.Icons</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SoftwareKobo.Social.SinaWeibo.Core\SoftwareKobo.Social.SinaWeibo.Core.csproj">
+      <Project>{d0ecace0-039d-473f-882a-ba9221749792}</Project>
+      <Name>SoftwareKobo.Social.SinaWeibo.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SoftwareKobo.Social.SinaWeibo.Uwp\SoftwareKobo.Social.SinaWeibo.Uwp.csproj">
+      <Project>{5d400a07-6427-411c-ab7a-6fac1fa875e7}</Project>
+      <Name>SoftwareKobo.Social.SinaWeibo.Uwp</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
