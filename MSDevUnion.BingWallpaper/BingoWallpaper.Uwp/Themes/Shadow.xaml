@@ -3,6 +3,10 @@
                     xmlns:controls="using:BingoWallpaper.Uwp.Controls"
                     xmlns:win2d="using:Microsoft.Graphics.Canvas.UI.Xaml">
     <Style TargetType="controls:Shadow">
+        <Setter Property="HorizontalContentAlignment"
+                Value="Stretch" />
+        <Setter Property="VerticalContentAlignment"
+                Value="Stretch" />
         <Setter Property="Depth"
                 Value="2" />
         <Setter Property="Direction"

@@ -17,9 +17,9 @@ namespace BingoWallpaper.Uwp.Controls
     {
         public static readonly DependencyProperty ColorProperty = DependencyProperty.Register(nameof(Color), typeof(Color), typeof(Shadow), new PropertyMetadata(Colors.Black, ColorChanged));
 
-        public static readonly DependencyProperty DepthProperty = DependencyProperty.Register(nameof(Depth), typeof(double), typeof(Shadow), new PropertyMetadata(default(double), DepthChanged));
+        public static readonly DependencyProperty DepthProperty = DependencyProperty.Register(nameof(Depth), typeof(double), typeof(Shadow), new PropertyMetadata(2d, DepthChanged));
 
-        public static readonly DependencyProperty DirectionProperty = DependencyProperty.Register(nameof(Direction), typeof(double), typeof(Shadow), new PropertyMetadata(default(double), DirectionChanged));
+        public static readonly DependencyProperty DirectionProperty = DependencyProperty.Register(nameof(Direction), typeof(double), typeof(Shadow), new PropertyMetadata(270d, DirectionChanged));
 
         private const string CanvasControlTemplateName = "PART_CanvasControl";
 
@@ -110,7 +110,7 @@ namespace BingoWallpaper.Uwp.Controls
                     using (var clds = cl.CreateDrawingSession())
                     {
                         var radius = (float)GetContentCornerRadius();
-                        clds.FillRoundedRectangle(new Rect(0 - sender.Margin.Left, 0 - sender.Margin.Top, ActualWidth, ActualHeight), radius, radius, Color.FromArgb(128, 0, 0, 0));
+                        clds.FillRoundedRectangle(new Rect(0 - sender.Margin.Left, 0 - sender.Margin.Top, ActualWidth, ActualHeight), radius, radius, Colors.Black);
                     }
 
                     var translateX = (float)(Math.Cos(Math.PI / 180.0d * Direction) * Depth);
