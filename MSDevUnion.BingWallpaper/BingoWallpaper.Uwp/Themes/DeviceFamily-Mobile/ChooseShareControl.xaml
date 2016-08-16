@@ -20,7 +20,7 @@
                             </Grid.ColumnDefinitions>
                             <StackPanel x:Name="PART_SinaWeiboControl"
                                         Grid.Column="0"
-                                        Margin="20"
+                                        Margin="16"
                                         Orientation="Vertical">
                                 <Image Width="64"
                                        Height="64"
@@ -32,7 +32,7 @@
                             </StackPanel>
                             <StackPanel x:Name="PART_WechatControl"
                                         Grid.Column="1"
-                                        Margin="20"
+                                        Margin="16"
                                         Orientation="Vertical">
                                 <Image Width="64"
                                        Height="64"
@@ -44,7 +44,7 @@
                             </StackPanel>
                             <StackPanel x:Name="PART_SystemShareControl"
                                         Grid.Column="2"
-                                        Margin="20"
+                                        Margin="16"
                                         Orientation="Vertical">
                                 <Image Width="64"
                                        Height="64"
