@@ -12,6 +12,8 @@ namespace BingoWallpaper.Uwp
 
         internal static string PictureLibrary => ResourceLoader.GetForCurrentView(ConstantsReswName).GetString("PictureLibrary");
 
+        internal static string RefreshSuccess => ResourceLoader.GetForCurrentView(ConstantsReswName).GetString("RefreshSuccess");
+
         internal static string SavedPictures => ResourceLoader.GetForCurrentView(ConstantsReswName).GetString("SavedPictures");
 
         internal static string SaveSuccess => ResourceLoader.GetForCurrentView(ConstantsReswName).GetString("SaveSuccess");

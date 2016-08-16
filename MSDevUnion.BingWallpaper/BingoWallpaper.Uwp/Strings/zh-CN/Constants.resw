@@ -141,4 +141,7 @@
   <data name="CancelAuthorize" xml:space="preserve">
     <value>已取消授权</value>
   </data>
+  <data name="RefreshSuccess" xml:space="preserve">
+    <value>刷新成功</value>
+  </data>
 </root>

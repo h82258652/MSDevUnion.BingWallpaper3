@@ -2,6 +2,7 @@
 using BingoWallpaper.Uwp.ViewModels;
 using System.Collections;
 using System.Diagnostics;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 
 namespace BingoWallpaper.Uwp.Views
@@ -15,15 +16,13 @@ namespace BingoWallpaper.Uwp.Views
 
         public DetailViewModel ViewModel => (DetailViewModel)DataContext;
 
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
 
             var parameter = (IDictionary)e.Parameter;
             Debug.Assert(parameter != null);
             ViewModel.Wallpaper = (Wallpaper)parameter["Wallpaper"];
-
-            await EllipseMask.LightOnAsync();
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
@@ -34,6 +33,11 @@ namespace BingoWallpaper.Uwp.Views
             }
 
             base.OnNavigatingFrom(e);
+        }
+
+        private async void DetailView_Loaded(object sender, RoutedEventArgs e)
+        {
+            await EllipseMask.LightOnAsync();
         }
     }
 }

@@ -20,7 +20,7 @@ namespace BingoWallpaper.Uwp.ViewModels
 
         private readonly IBingoWallpaperSettings _settings;
 
-        private bool _isBusy;
+        private int _loadingCollectionCount;
 
         private RelayCommand _refreshCommand;
 
@@ -42,17 +42,7 @@ namespace BingoWallpaper.Uwp.ViewModels
             WallpaperCollections = wallpaperCollections;
         }
 
-        public bool IsBusy
-        {
-            get
-            {
-                return _isBusy;
-            }
-            private set
-            {
-                Set(ref _isBusy, value);
-            }
-        }
+        public bool IsBusy => _loadingCollectionCount > 0;
 
         public RelayCommand RefreshCommand
         {
@@ -61,16 +51,19 @@ namespace BingoWallpaper.Uwp.ViewModels
                 _refreshCommand = _refreshCommand ?? new RelayCommand(async () =>
                 {
                     var selectedWallpaperCollection = SelectedWallpaperCollection;
-                    if (selectedWallpaperCollection.Count > 0)
+                    var year = selectedWallpaperCollection.Year;
+                    var month = selectedWallpaperCollection.Month;
+                    if (selectedWallpaperCollection.Count >= DateTime.DaysInMonth(year, month))
                     {
                         return;
                     }
 
-                    IsBusy = true;
+                    LoadingCollectionCount++;
                     try
                     {
-                        var wallpapers = await _leanCloudWallpaperService.GetWallpapersAsync(selectedWallpaperCollection.Year, selectedWallpaperCollection.Month, _settings.SelectedArea);
+                        var wallpapers = await _leanCloudWallpaperService.GetWallpapersAsync(year, month, _settings.SelectedArea);
                         FillWallpaperCollection(selectedWallpaperCollection, wallpapers);
+                        _appToastService.ShowMessage(LocalizedStrings.RefreshSuccess);
                     }
                     catch (HttpRequestException ex)
                     {
@@ -78,7 +71,7 @@ namespace BingoWallpaper.Uwp.ViewModels
                     }
                     finally
                     {
-                        IsBusy = false;
+                        LoadingCollectionCount--;
                     }
                 });
                 return _refreshCommand;
@@ -100,7 +93,7 @@ namespace BingoWallpaper.Uwp.ViewModels
                 if (_selectedWallpaperCollection != value)
                 {
                     Set(ref _selectedWallpaperCollection, value);
-                    RefreshCommand.Execute(null);
+                    LoadWallpapersAsync(value);
                 }
             }
         }
@@ -110,12 +103,49 @@ namespace BingoWallpaper.Uwp.ViewModels
             get;
         }
 
+        private int LoadingCollectionCount
+        {
+            get
+            {
+                return _loadingCollectionCount;
+            }
+            set
+            {
+                _loadingCollectionCount = value;
+                RaisePropertyChanged(nameof(IsBusy));
+            }
+        }
+
         private async void FillWallpaperCollection(WallpaperCollection collection, IEnumerable<Wallpaper> wallpapers)
         {
+            collection.Clear();
             foreach (var wallpaper in wallpapers)
             {
                 collection.Add(wallpaper);
                 await Task.Delay(TimeSpan.FromMilliseconds(50));
+            }
+        }
+
+        private async void LoadWallpapersAsync(WallpaperCollection collection)
+        {
+            if (collection.Count > 0)
+            {
+                return;
+            }
+
+            LoadingCollectionCount++;
+            try
+            {
+                var wallpapers = await _leanCloudWallpaperService.GetWallpapersAsync(collection.Year, collection.Month, _settings.SelectedArea);
+                FillWallpaperCollection(collection, wallpapers);
+            }
+            catch (HttpRequestException ex)
+            {
+                _appToastService.ShowError(ex.Message);
+            }
+            finally
+            {
+                LoadingCollectionCount--;
             }
         }
     }

@@ -20,13 +20,19 @@ namespace BingoWallpaper.Uwp.Views
 
         private readonly SystemNavigationManager _systemNavigationManager;
 
+        private bool _isLeaving;
+
         protected ViewBase()
         {
             if (DesignMode.DesignModeEnabled == false)
             {
                 _systemNavigationManager = SystemNavigationManager.GetForCurrentView();
             }
+
+            base.Loaded += ViewBase_Loaded;
         }
+
+        public new event RoutedEventHandler Loaded;
 
         public Storyboard EnterStoryboard
         {
@@ -99,6 +105,7 @@ namespace BingoWallpaper.Uwp.Views
                 var previousPage = FrameExtensions.GetPreviousPage(Frame);
                 if (previousPage != null)
                 {
+                    previousPage._isLeaving = true;
                     var leaveStoryboard = previousPage.LeaveStoryboard;
                     if (leaveStoryboard != null)
                     {
@@ -107,10 +114,9 @@ namespace BingoWallpaper.Uwp.Views
                         PreviousPageContainer.Content = null;
                     }
                     FrameExtensions.SetPreviousPage(Frame, null);
+                    previousPage._isLeaving = false;
                 }
             }
-
-            EnterStoryboard?.Begin();
         }
 
         private void CurrentWindow_PointerReleased(CoreWindow sender, PointerEventArgs args)
@@ -153,6 +159,15 @@ namespace BingoWallpaper.Uwp.Views
             {
                 e.Handled = true;
                 Frame.GoBack();
+            }
+        }
+
+        private void ViewBase_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (_isLeaving == false)
+            {
+                EnterStoryboard?.Begin();
+                Loaded?.Invoke(sender, e);
             }
         }
     }

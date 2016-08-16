@@ -141,4 +141,7 @@
   <data name="CancelAuthorize" xml:space="preserve">
     <value>Authorize canceled</value>
   </data>
+  <data name="RefreshSuccess" xml:space="preserve">
+    <value>Refresh success</value>
+  </data>
 </root>
