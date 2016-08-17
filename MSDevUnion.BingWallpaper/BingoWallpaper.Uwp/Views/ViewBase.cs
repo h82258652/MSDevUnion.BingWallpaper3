@@ -166,8 +166,8 @@ namespace BingoWallpaper.Uwp.Views
         {
             if (_isLeaving == false)
             {
-                EnterStoryboard?.Begin();
                 Loaded?.Invoke(sender, e);
+                EnterStoryboard?.Begin();
             }
         }
     }

@@ -65,7 +65,7 @@
                 </UIElement.RenderTransform>
             </uwp:FontAwesome>
             <Viewbox.RenderTransform>
-                <TranslateTransform X="52" />
+                <TranslateTransform X="54" />
             </Viewbox.RenderTransform>
         </Viewbox>
         <Viewbox Width="48"
@@ -79,8 +79,8 @@
                 </UIElement.RenderTransform>
             </uwp:FontAwesome>
             <Viewbox.RenderTransform>
-                <TranslateTransform X="35.36"
-                                    Y="35.36" />
+                <TranslateTransform X="38.19"
+                                    Y="38.19" />
             </Viewbox.RenderTransform>
         </Viewbox>
         <Viewbox Width="48"
@@ -96,7 +96,7 @@
                 </UIElement.RenderTransform>
             </uwp:FontAwesome>
             <Viewbox.RenderTransform>
-                <TranslateTransform Y="52" />
+                <TranslateTransform Y="54" />
             </Viewbox.RenderTransform>
         </Viewbox>
     </Grid>
