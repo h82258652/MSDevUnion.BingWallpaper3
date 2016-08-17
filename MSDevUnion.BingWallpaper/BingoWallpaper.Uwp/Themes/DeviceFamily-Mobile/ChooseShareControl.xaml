@@ -50,7 +50,7 @@
                                        Height="64"
                                        Source="/Assets/Images/Share/SystemShare.png"
                                        Stretch="Fill" />
-                                <TextBlock x:Uid="/Assets/Images/Share/SystemShareTextBlock"
+                                <TextBlock x:Uid="/ChooseShareControl/SystemShareTextBlock"
                                            Foreground="LightGray"
                                            TextAlignment="Center" />
                             </StackPanel>
