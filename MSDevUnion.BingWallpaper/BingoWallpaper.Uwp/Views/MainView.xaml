@@ -100,6 +100,10 @@
                             <controls:GridViewEx.ItemTemplate>
                                 <DataTemplate>
                                     <Grid extensions:FrameworkElementExtensions.ClipToBounds="True">
+                                        <Viewbox Stretch="UniformToFill">
+                                            <Grid Width="800"
+                                                  Height="480" />
+                                        </Viewbox>
                                         <controls:ImageEx Source="{Binding Path=Image, Converter={StaticResource WallpaperUrlConverter}, ConverterParameter='800x480'}"
                                                           Stretch="UniformToFill" />
                                         <Border VerticalAlignment="Bottom"
