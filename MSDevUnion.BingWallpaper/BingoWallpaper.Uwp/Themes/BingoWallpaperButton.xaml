@@ -41,24 +41,6 @@
                     <controls:Shadow x:Name="Shadow"
                                      BlurRadius="2"
                                      Depth="2">
-                        <FrameworkElement.Resources>
-                            <converters:LighterColorConverter x:Key="LighterColorConverter" />
-                            <converters:DarkerColorConverter x:Key="DarkerColorConverter" />
-                        </FrameworkElement.Resources>
-                        <Grid x:Name="RootGrid"
-                              Background="{TemplateBinding Background}"
-                              CornerRadius="{TemplateBinding CornerRadius}">
-                            <ContentPresenter x:Name="ContentPresenter"
-                                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                              AutomationProperties.AccessibilityView="Raw"
-                                              BorderBrush="{TemplateBinding BorderBrush}"
-                                              BorderThickness="{TemplateBinding BorderThickness}"
-                                              Content="{TemplateBinding Content}"
-                                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                                              ContentTransitions="{TemplateBinding ContentTransitions}"
-                                              Padding="{TemplateBinding Padding}" />
-                        </Grid>
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal">
@@ -140,6 +122,24 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
+                        <FrameworkElement.Resources>
+                            <converters:LighterColorConverter x:Key="LighterColorConverter" />
+                            <converters:DarkerColorConverter x:Key="DarkerColorConverter" />
+                        </FrameworkElement.Resources>
+                        <Grid x:Name="RootGrid"
+                              Background="{TemplateBinding Background}"
+                              CornerRadius="{TemplateBinding CornerRadius}">
+                            <ContentPresenter x:Name="ContentPresenter"
+                                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              AutomationProperties.AccessibilityView="Raw"
+                                              BorderBrush="{TemplateBinding BorderBrush}"
+                                              BorderThickness="{TemplateBinding BorderThickness}"
+                                              Content="{TemplateBinding Content}"
+                                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                                              ContentTransitions="{TemplateBinding ContentTransitions}"
+                                              Padding="{TemplateBinding Padding}" />
+                        </Grid>
                     </controls:Shadow>
                 </ControlTemplate>
             </Setter.Value>

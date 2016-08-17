@@ -44,14 +44,6 @@
                     <Border x:Name="Root"
                             Background="{TemplateBinding Background}"
                             CornerRadius="0,20,20,0">
-                        <uwp:FontAwesome x:Name="Icon"
-                                         HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                         VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                         FontSize="{TemplateBinding FontSize}"
-                                         Foreground="{TemplateBinding Foreground}"
-                                         Icon="AngleLeft"
-                                         MirroredWhenRightToLeft="True"
-                                         UseLayoutRounding="False" />
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal" />
@@ -74,6 +66,14 @@
                                 <VisualState x:Name="Disabled" />
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
+                        <uwp:FontAwesome x:Name="Icon"
+                                         HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                         VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                         FontSize="{TemplateBinding FontSize}"
+                                         Foreground="{TemplateBinding Foreground}"
+                                         Icon="AngleLeft"
+                                         MirroredWhenRightToLeft="True"
+                                         UseLayoutRounding="False" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -105,14 +105,6 @@
                     <Border x:Name="Root"
                             Background="{TemplateBinding Background}"
                             CornerRadius="20,0,0,20">
-                        <uwp:FontAwesome x:Name="Icon"
-                                         HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                         VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                         FontSize="{TemplateBinding FontSize}"
-                                         Foreground="{TemplateBinding Foreground}"
-                                         Icon="AngleRight"
-                                         MirroredWhenRightToLeft="True"
-                                         UseLayoutRounding="False" />
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal" />
@@ -135,6 +127,14 @@
                                 <VisualState x:Name="Disabled" />
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
+                        <uwp:FontAwesome x:Name="Icon"
+                                         HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                         VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                         FontSize="{TemplateBinding FontSize}"
+                                         Foreground="{TemplateBinding Foreground}"
+                                         Icon="AngleRight"
+                                         MirroredWhenRightToLeft="True"
+                                         UseLayoutRounding="False" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -166,14 +166,6 @@
                     <Border x:Name="Root"
                             Background="{TemplateBinding Background}"
                             CornerRadius="0,0,20,20">
-                        <uwp:FontAwesome x:Name="Icon"
-                                         HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                         VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                         FontSize="{TemplateBinding FontSize}"
-                                         Foreground="{StaticResource BingoWallpaperFlipViewButtonForegroundBrush}"
-                                         Icon="AngleUp"
-                                         MirroredWhenRightToLeft="True"
-                                         UseLayoutRounding="False" />
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal" />
@@ -196,6 +188,14 @@
                                 <VisualState x:Name="Disabled" />
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
+                        <uwp:FontAwesome x:Name="Icon"
+                                         HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                         VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                         FontSize="{TemplateBinding FontSize}"
+                                         Foreground="{StaticResource BingoWallpaperFlipViewButtonForegroundBrush}"
+                                         Icon="AngleUp"
+                                         MirroredWhenRightToLeft="True"
+                                         UseLayoutRounding="False" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -227,14 +227,6 @@
                     <Border x:Name="Root"
                             Background="{TemplateBinding Background}"
                             CornerRadius="20,20,0,0">
-                        <uwp:FontAwesome x:Name="Icon"
-                                         HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                         VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                         FontSize="{TemplateBinding FontSize}"
-                                         Foreground="{StaticResource BingoWallpaperFlipViewButtonForegroundBrush}"
-                                         Icon="AngleDown"
-                                         MirroredWhenRightToLeft="True"
-                                         UseLayoutRounding="False" />
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal" />
@@ -257,6 +249,14 @@
                                 <VisualState x:Name="Disabled" />
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
+                        <uwp:FontAwesome x:Name="Icon"
+                                         HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                         VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                         FontSize="{TemplateBinding FontSize}"
+                                         Foreground="{StaticResource BingoWallpaperFlipViewButtonForegroundBrush}"
+                                         Icon="AngleDown"
+                                         MirroredWhenRightToLeft="True"
+                                         UseLayoutRounding="False" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
