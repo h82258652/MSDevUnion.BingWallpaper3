@@ -23,8 +23,8 @@
                   PointerPressed="ChooseShareGrid_PointerPressed" />
             <controls:ChooseShareControl x:Name="ChooseShareControl"
                                          SinaWeiboSelected="ChooseShareControl_SinaWeiboSelected"
-                                         WechatSelected="ChooseShareControl_WechatSelected"
-                                         SystemShareSelected="ChooseShareControl_SystemShareSelected">
+                                         SystemShareSelected="ChooseShareControl_SystemShareSelected"
+                                         WechatSelected="ChooseShareControl_WechatSelected">
                 <controls:ChooseShareControl.RenderTransform>
                     <TranslateTransform />
                 </controls:ChooseShareControl.RenderTransform>
