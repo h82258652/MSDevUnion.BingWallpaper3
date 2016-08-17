@@ -79,6 +79,7 @@ namespace BingoWallpaper.Uwp.Views
             center.X = center.X + element.ActualWidth / 2;
             center.Y = center.Y + element.ActualHeight / 2;
 
+            // TODO process center in detail view.
             var parameter = new Dictionary<string, object>
             {
                 ["Wallpaper"] = wallpaper,

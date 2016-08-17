@@ -13,6 +13,7 @@
                 xmlns:localConv="using:BingoWallpaper.Uwp.Converters"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:media="using:Microsoft.Xaml.Interactions.Media"
+                xmlns:system="using:System"
                 xmlns:uwp="using:FontAwesome.UWP"
                 DataContext="{Binding Source={StaticResource Locator},
                                       Path=Main}"
@@ -27,6 +28,7 @@
             <localConv:BooleanNegationConverter x:Key="BooleanNegationConverter" />
             <conv:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
             <localConv:MonthNameConverter x:Key="MonthNameConverter" />
+            <localConv:MultiplyConverter x:Key="MultiplyConverter" />
             <localConv:WallpaperUrlConverter x:Key="WallpaperUrlConverter" />
             <Storyboard x:Key="RefreshBusyStoryboard">
                 <DoubleAnimation RepeatBehavior="Forever"
@@ -44,6 +46,32 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="AdaptiveStates">
+                <VisualState x:Name="Narrow">
+                    <VisualState.Setters>
+                        <Setter Target="NarrowMonthTextBlock.Visibility"
+                                Value="Visible" />
+                        <Setter Target="WideMonthTextBlock.Visibility"
+                                Value="Collapsed" />
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="Wide">
+                    <VisualState.Setters>
+                        <Setter Target="NarrowMonthTextBlock.Visibility"
+                                Value="Collapsed" />
+                        <Setter Target="WideMonthTextBlock.Visibility"
+                                Value="Visible" />
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="400" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <FlipView Grid.Row="0"
                   ItemsSource="{Binding Path=WallpaperCollections,
                                         Mode=OneTime}"
@@ -74,6 +102,17 @@
                             <controls:GridViewEx.ItemTemplate>
                                 <DataTemplate>
                                     <Grid extensions:FrameworkElementExtensions.ClipToBounds="True">
+                                        <Grid>
+                                            <Grid.MinHeight>
+                                                <Binding RelativeSource="{RelativeSource Mode=Self}"
+                                                         Path="ActualWidth"
+                                                         Converter="{StaticResource MultiplyConverter}">
+                                                    <Binding.ConverterParameter>
+                                                        <system:Double>0.6</system:Double>
+                                                    </Binding.ConverterParameter>
+                                                </Binding>
+                                            </Grid.MinHeight>
+                                        </Grid>
                                         <controls:ImageEx Source="{Binding Path=Image, Converter={StaticResource WallpaperUrlConverter}, ConverterParameter='800x480'}"
                                                           Stretch="UniformToFill" />
                                         <Border VerticalAlignment="Bottom"
@@ -222,31 +261,5 @@
                 </AppBarButton>
             </Grid>
         </AppBar>
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="AdaptiveStates">
-                <VisualState x:Name="Narrow">
-                    <VisualState.Setters>
-                        <Setter Target="NarrowMonthTextBlock.Visibility"
-                                Value="Visible" />
-                        <Setter Target="WideMonthTextBlock.Visibility"
-                                Value="Collapsed" />
-                    </VisualState.Setters>
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0" />
-                    </VisualState.StateTriggers>
-                </VisualState>
-                <VisualState x:Name="Wide">
-                    <VisualState.Setters>
-                        <Setter Target="NarrowMonthTextBlock.Visibility"
-                                Value="Collapsed" />
-                        <Setter Target="WideMonthTextBlock.Visibility"
-                                Value="Visible" />
-                    </VisualState.Setters>
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="400" />
-                    </VisualState.StateTriggers>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
     </Grid>
 </local:ViewBase>
