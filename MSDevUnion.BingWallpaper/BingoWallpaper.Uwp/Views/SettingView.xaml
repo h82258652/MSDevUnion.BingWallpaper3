@@ -130,7 +130,7 @@
                     </StackPanel>
                 </ScrollViewer>
             </PivotItem>
-            <PivotItem Header="自动更新">
+            <PivotItem x:Uid="/SettingView/AutoUpdatePivotItem">
                 <ScrollViewer HorizontalScrollBarVisibility="Disabled"
                               VerticalScrollBarVisibility="Auto">
                     <StackPanel Orientation="Vertical">
