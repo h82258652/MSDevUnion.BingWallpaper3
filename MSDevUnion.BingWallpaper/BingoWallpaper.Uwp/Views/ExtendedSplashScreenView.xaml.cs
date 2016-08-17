@@ -6,15 +6,19 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Background;
 using Windows.Foundation.Metadata;
+using Windows.Graphics.Display;
 using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using WinRTXamlToolkit.AwaitableUI;
 
 namespace BingoWallpaper.Uwp.Views
 {
     public sealed partial class ExtendedSplashScreenView
     {
+        private readonly SplashScreen _splashScreen;
+
         private BackgroundTaskRegistration _backgroundTaskRegistration;
 
         public ExtendedSplashScreenView()
@@ -24,9 +28,9 @@ namespace BingoWallpaper.Uwp.Views
 
         public ExtendedSplashScreenView(SplashScreen splashScreen) : this()
         {
-            var rect = splashScreen.ImageLocation;
-            SplashScreenImage.Width = rect.Width;
-            SplashScreenImage.Height = rect.Height;
+            _splashScreen = splashScreen;
+
+            UpdateSplashScreenImagePosition();
         }
 
         public event EventHandler Completed;
@@ -61,6 +65,17 @@ namespace BingoWallpaper.Uwp.Views
         private static void UpdatePrimaryTile()
         {
             new UpdateTileTask().Run(null);
+        }
+
+        private void ExtendedSplashScreenView_Loaded(object sender, RoutedEventArgs e)
+        {
+            Window.Current.SizeChanged += Window_SizeChanged;
+            UpdateSplashScreenImagePosition();
+        }
+
+        private void ExtendedSplashScreenView_Unloaded(object sender, RoutedEventArgs e)
+        {
+            Window.Current.SizeChanged -= Window_SizeChanged;
         }
 
         private async Task RegisterBackgroundTaskAsync()
@@ -99,6 +114,25 @@ namespace BingoWallpaper.Uwp.Views
             await Task.WhenAll(HideStatusBarAsync(), RegisterBackgroundTaskAsync());
             UpdatePrimaryTile();
             Completed?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void UpdateSplashScreenImagePosition()
+        {
+            if (_splashScreen != null)
+            {
+                var rect = _splashScreen.ImageLocation;
+                Canvas.SetLeft(SplashScreenImage, rect.Left);
+                Canvas.SetTop(SplashScreenImage, rect.Top);
+
+                var scaleFactor = (double)DisplayInformation.GetForCurrentView().ResolutionScale / 100.0d;
+                SplashScreenImage.Width = rect.Width / scaleFactor;
+                SplashScreenImage.Height = rect.Height / scaleFactor;
+            }
+        }
+
+        private void Window_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
+        {
+            UpdateSplashScreenImagePosition();
         }
     }
 }
