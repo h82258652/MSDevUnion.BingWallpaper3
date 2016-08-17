@@ -4,9 +4,9 @@
                 xmlns:controls="using:BingoWallpaper.Uwp.Controls"
                 xmlns:converters="using:BingoWallpaper.Uwp.Converters"
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:fontAwesome="using:SoftwareKobo.Icons.FontAwesome"
                 xmlns:local="using:BingoWallpaper.Uwp.Views"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                xmlns:uwp="using:FontAwesome.UWP"
                 DataContext="{Binding Source={StaticResource Locator},
                                       Path=Setting}"
                 mc:Ignorable="d">
@@ -73,8 +73,8 @@
                      MaxHeight="300"
                      HorizontalAlignment="Stretch"
                      VerticalAlignment="Stretch">
-                <uwp:FontAwesome Foreground="#C8C8C8"
-                                 Icon="Cog" />
+                <fontAwesome:FontAwesomeIcon Foreground="#C8C8C8"
+                                             Symbol="Cog" />
             </Viewbox>
         </Grid>
         <controls:GearBackgroundControl x:Name="GearBackgroundControl">

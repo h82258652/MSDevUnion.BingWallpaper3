@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:uwp="using:FontAwesome.UWP">
+                    xmlns:fontAwesome="using:SoftwareKobo.Icons.FontAwesome">
     <Style x:Key="BingoWallpaperScrollBarStyle"
            TargetType="ScrollBar">
         <Setter Property="MinWidth"
@@ -71,14 +71,14 @@
                                             </VisualState>
                                         </VisualStateGroup>
                                     </VisualStateManager.VisualStateGroups>
-                                    <uwp:FontAwesome x:Name="Arrow"
-                                                     FontSize="10"
-                                                     Icon="CaretRight"
-                                                     MirroredWhenRightToLeft="True">
-                                        <uwp:FontAwesome.Foreground>
+                                    <fontAwesome:FontAwesomeIcon x:Name="Arrow"
+                                                                 FontSize="10"
+                                                                 MirroredWhenRightToLeft="True"
+                                                                 Symbol="CaretRight">
+                                        <IconElement.Foreground>
                                             <SolidColorBrush Color="#C8C8C8" />
-                                        </uwp:FontAwesome.Foreground>
-                                    </uwp:FontAwesome>
+                                        </IconElement.Foreground>
+                                    </fontAwesome:FontAwesomeIcon>
                                 </Grid>
                             </ControlTemplate>
                             <ControlTemplate x:Key="HorizontalDecrementTemplate"
@@ -121,14 +121,14 @@
                                             </VisualState>
                                         </VisualStateGroup>
                                     </VisualStateManager.VisualStateGroups>
-                                    <uwp:FontAwesome x:Name="Arrow"
-                                                     FontSize="10"
-                                                     Icon="CaretLeft"
-                                                     MirroredWhenRightToLeft="True">
-                                        <uwp:FontAwesome.Foreground>
+                                    <fontAwesome:FontAwesomeIcon x:Name="Arrow"
+                                                                 FontSize="10"
+                                                                 MirroredWhenRightToLeft="True"
+                                                                 Symbol="CaretLeft">
+                                        <IconElement.Foreground>
                                             <SolidColorBrush Color="#C8C8C8" />
-                                        </uwp:FontAwesome.Foreground>
-                                    </uwp:FontAwesome>
+                                        </IconElement.Foreground>
+                                    </fontAwesome:FontAwesomeIcon>
                                 </Grid>
                             </ControlTemplate>
                             <ControlTemplate x:Key="VerticalIncrementTemplate"
@@ -171,13 +171,13 @@
                                             </VisualState>
                                         </VisualStateGroup>
                                     </VisualStateManager.VisualStateGroups>
-                                    <uwp:FontAwesome x:Name="Arrow"
-                                                     FontSize="10"
-                                                     Icon="CaretDown">
-                                        <uwp:FontAwesome.Foreground>
+                                    <fontAwesome:FontAwesomeIcon x:Name="Arrow"
+                                                                 FontSize="10"
+                                                                 Symbol="CaretDown">
+                                        <IconElement.Foreground>
                                             <SolidColorBrush Color="#C8C8C8" />
-                                        </uwp:FontAwesome.Foreground>
-                                    </uwp:FontAwesome>
+                                        </IconElement.Foreground>
+                                    </fontAwesome:FontAwesomeIcon>
                                 </Grid>
                             </ControlTemplate>
                             <ControlTemplate x:Key="VerticalDecrementTemplate"
@@ -220,13 +220,13 @@
                                             </VisualState>
                                         </VisualStateGroup>
                                     </VisualStateManager.VisualStateGroups>
-                                    <uwp:FontAwesome x:Name="Arrow"
-                                                     FontSize="10"
-                                                     Icon="CaretUp">
-                                        <uwp:FontAwesome.Foreground>
+                                    <fontAwesome:FontAwesomeIcon x:Name="Arrow"
+                                                                 FontSize="10"
+                                                                 Symbol="CaretUp">
+                                        <IconElement.Foreground>
                                             <SolidColorBrush Color="#C8C8C8" />
-                                        </uwp:FontAwesome.Foreground>
-                                    </uwp:FontAwesome>
+                                        </IconElement.Foreground>
+                                    </fontAwesome:FontAwesomeIcon>
                                 </Grid>
                             </ControlTemplate>
                             <ControlTemplate x:Key="VerticalThumbTemplate"

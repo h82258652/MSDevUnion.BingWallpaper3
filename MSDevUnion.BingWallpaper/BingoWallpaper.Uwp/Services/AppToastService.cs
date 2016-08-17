@@ -1,6 +1,6 @@
 ﻿using BingoWallpaper.Uwp.Controls;
 using BingoWallpaper.Uwp.Views;
-using FontAwesome.UWP;
+using SoftwareKobo.Icons.FontAwesome;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -25,9 +25,9 @@ namespace BingoWallpaper.Uwp.Services
             {
                 Background = new SolidColorBrush(Color.FromArgb(255, 234, 23, 32)),
                 Message = message,
-                Icon = new FontAwesome.UWP.FontAwesome()
+                Icon = new FontAwesomeIcon()
                 {
-                    Icon = FontAwesomeIcon.Close
+                    Symbol = FontAwesomeSymbol.Close
                 }
             };
             ToastPromptContainer.Children.Add(toastPrompt);
@@ -41,9 +41,9 @@ namespace BingoWallpaper.Uwp.Services
             {
                 Background = new SolidColorBrush(Color.FromArgb(255, 0, 156, 243)),
                 Message = message,
-                Icon = new FontAwesome.UWP.FontAwesome()
+                Icon = new FontAwesomeIcon()
                 {
-                    Icon = FontAwesomeIcon.InfoCircle
+                    Symbol = FontAwesomeSymbol.InfoCircle
                 }
             };
             ToastPromptContainer.Children.Add(toastPrompt);
@@ -57,9 +57,9 @@ namespace BingoWallpaper.Uwp.Services
             {
                 Background = new SolidColorBrush(Color.FromArgb(255, 19, 192, 77)),
                 Message = message,
-                Icon = new FontAwesome.UWP.FontAwesome()
+                Icon = new FontAwesomeIcon()
                 {
-                    Icon = FontAwesomeIcon.Check
+                    Symbol = FontAwesomeSymbol.Check
                 }
             };
             ToastPromptContainer.Children.Add(toastPrompt);
@@ -69,13 +69,13 @@ namespace BingoWallpaper.Uwp.Services
 
         public async void ShowWarning(string message)
         {
-            ToastPrompt toastPrompt = new ToastPrompt()
+            var toastPrompt = new ToastPrompt()
             {
                 Background = new SolidColorBrush(Color.FromArgb(255, 255, 193, 0)),
                 Message = message,
-                Icon = new FontAwesome.UWP.FontAwesome()
+                Icon = new FontAwesomeIcon()
                 {
-                    Icon = FontAwesomeIcon.Warning
+                    Symbol = FontAwesomeSymbol.Warning
                 }
             };
             ToastPromptContainer.Children.Add(toastPrompt);

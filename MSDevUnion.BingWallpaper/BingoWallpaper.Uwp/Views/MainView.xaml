@@ -7,13 +7,13 @@
                 xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions"
+                xmlns:fontAwesome="using:SoftwareKobo.Icons.FontAwesome"
                 xmlns:helpers="using:BingoWallpaper.Uwp.Helpers"
                 xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                 xmlns:local="using:BingoWallpaper.Uwp.Views"
                 xmlns:localConv="using:BingoWallpaper.Uwp.Converters"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:media="using:Microsoft.Xaml.Interactions.Media"
-                xmlns:uwp="using:FontAwesome.UWP"
                 DataContext="{Binding Source={StaticResource Locator},
                                       Path=Main}"
                 mc:Ignorable="d">
@@ -200,12 +200,12 @@
                                                   Path=IsOpen,
                                                   Converter={StaticResource BooleanNegationConverter}}">
                     <AppBarButton.Icon>
-                        <uwp:FontAwesome Icon="Refresh"
-                                         RenderTransformOrigin="0.5,0.5">
+                        <fontAwesome:FontAwesomeIcon RenderTransformOrigin="0.5,0.5"
+                                                     Symbol="Refresh">
                             <FontIcon.RenderTransform>
                                 <RotateTransform x:Name="RefreshIconRotateTransform" />
                             </FontIcon.RenderTransform>
-                        </uwp:FontAwesome>
+                        </fontAwesome:FontAwesomeIcon>
                     </AppBarButton.Icon>
                     <interactivity:Interaction.Behaviors>
                         <core:DataTriggerBehavior Binding="{Binding Path=IsBusy}"
@@ -226,7 +226,7 @@
                                                   Path=IsOpen,
                                                   Converter={StaticResource BooleanNegationConverter}}">
                     <AppBarButton.Icon>
-                        <uwp:FontAwesome Icon="Cog" />
+                        <fontAwesome:FontAwesomeIcon Symbol="Cog" />
                     </AppBarButton.Icon>
                     <interactivity:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="Click">

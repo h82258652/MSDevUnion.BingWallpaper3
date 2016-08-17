@@ -4,10 +4,10 @@
       xmlns:converters="using:BingoWallpaper.Uwp.Converters"
       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:fontAwesome="using:SoftwareKobo.Icons.FontAwesome"
       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:media="using:Microsoft.Xaml.Interactions.Media"
-      xmlns:uwp="using:FontAwesome.UWP"
       mc:Ignorable="d">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -67,30 +67,30 @@
         </Grid.RenderTransform>
         <Viewbox Width="48"
                  Height="48">
-            <uwp:FontAwesome x:Name="TopGear"
-                             Icon="Cog"
-                             RenderTransformOrigin="0.5,0.5">
+            <fontAwesome:FontAwesomeIcon x:Name="TopGear"
+                                         RenderTransformOrigin="0.5,0.5"
+                                         Symbol="Cog">
                 <IconElement.Foreground>
                     <SolidColorBrush Color="{Binding Source={StaticResource SystemAccentColor}, Converter={StaticResource DarkerColorConverter}}" />
                 </IconElement.Foreground>
                 <UIElement.RenderTransform>
                     <RotateTransform />
                 </UIElement.RenderTransform>
-            </uwp:FontAwesome>
+            </fontAwesome:FontAwesomeIcon>
             <Viewbox.RenderTransform>
                 <TranslateTransform X="54" />
             </Viewbox.RenderTransform>
         </Viewbox>
         <Viewbox Width="48"
                  Height="48">
-            <uwp:FontAwesome x:Name="CenterGear"
-                             Foreground="{ThemeResource SystemAccentBrush}"
-                             Icon="Cog"
-                             RenderTransformOrigin="0.5,0.5">
+            <fontAwesome:FontAwesomeIcon x:Name="CenterGear"
+                                         Foreground="{ThemeResource SystemAccentBrush}"
+                                         RenderTransformOrigin="0.5,0.5"
+                                         Symbol="Cog">
                 <UIElement.RenderTransform>
                     <RotateTransform Angle="22.5" />
                 </UIElement.RenderTransform>
-            </uwp:FontAwesome>
+            </fontAwesome:FontAwesomeIcon>
             <Viewbox.RenderTransform>
                 <TranslateTransform X="38.19"
                                     Y="38.19" />
@@ -98,16 +98,16 @@
         </Viewbox>
         <Viewbox Width="48"
                  Height="48">
-            <uwp:FontAwesome x:Name="LeftGear"
-                             Icon="Cog"
-                             RenderTransformOrigin="0.5,0.5">
+            <fontAwesome:FontAwesomeIcon x:Name="LeftGear"
+                                         RenderTransformOrigin="0.5,0.5"
+                                         Symbol="Cog">
                 <IconElement.Foreground>
                     <SolidColorBrush Color="{Binding Source={StaticResource SystemAccentColor}, Converter={StaticResource LighterColorConverter}}" />
                 </IconElement.Foreground>
                 <UIElement.RenderTransform>
                     <RotateTransform />
                 </UIElement.RenderTransform>
-            </uwp:FontAwesome>
+            </fontAwesome:FontAwesomeIcon>
             <Viewbox.RenderTransform>
                 <TranslateTransform Y="54" />
             </Viewbox.RenderTransform>
