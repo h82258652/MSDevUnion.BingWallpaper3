@@ -13,7 +13,6 @@
                 xmlns:localConv="using:BingoWallpaper.Uwp.Converters"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:media="using:Microsoft.Xaml.Interactions.Media"
-                xmlns:system="using:System"
                 xmlns:uwp="using:FontAwesome.UWP"
                 DataContext="{Binding Source={StaticResource Locator},
                                       Path=Main}"
@@ -28,7 +27,6 @@
             <localConv:BooleanNegationConverter x:Key="BooleanNegationConverter" />
             <conv:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
             <localConv:MonthNameConverter x:Key="MonthNameConverter" />
-            <localConv:MultiplyConverter x:Key="MultiplyConverter" />
             <localConv:WallpaperUrlConverter x:Key="WallpaperUrlConverter" />
             <Storyboard x:Key="RefreshBusyStoryboard">
                 <DoubleAnimation RepeatBehavior="Forever"
@@ -102,17 +100,6 @@
                             <controls:GridViewEx.ItemTemplate>
                                 <DataTemplate>
                                     <Grid extensions:FrameworkElementExtensions.ClipToBounds="True">
-                                        <Grid>
-                                            <Grid.MinHeight>
-                                                <Binding RelativeSource="{RelativeSource Mode=Self}"
-                                                         Path="ActualWidth"
-                                                         Converter="{StaticResource MultiplyConverter}">
-                                                    <Binding.ConverterParameter>
-                                                        <system:Double>0.6</system:Double>
-                                                    </Binding.ConverterParameter>
-                                                </Binding>
-                                            </Grid.MinHeight>
-                                        </Grid>
                                         <controls:ImageEx Source="{Binding Path=Image, Converter={StaticResource WallpaperUrlConverter}, ConverterParameter='800x480'}"
                                                           Stretch="UniformToFill" />
                                         <Border VerticalAlignment="Bottom"
