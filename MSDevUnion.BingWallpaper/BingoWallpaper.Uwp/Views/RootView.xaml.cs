@@ -38,6 +38,13 @@ namespace BingoWallpaper.Uwp.Views
             Messenger.Default.Send(new SinaWeiboSelectedMessage());
         }
 
+        private void ChooseShareControl_SystemShareSelected(object sender, EventArgs e)
+        {
+            CloseChooseShareGrid();
+
+            Messenger.Default.Send(new SystemShareSelectedMessage());
+        }
+
         private void ChooseShareControl_WechatSelected(object sender, EventArgs e)
         {
             CloseChooseShareGrid();

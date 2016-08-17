@@ -162,6 +162,7 @@
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Messages\OpenSharePopupMessage.cs" />
     <Compile Include="Messages\SinaWeiboSelectedMessage.cs" />
+    <Compile Include="Messages\SystemShareSelectedMessage.cs" />
     <Compile Include="Messages\WechatSelectedMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AppToastService.cs" />

@@ -228,6 +228,10 @@ namespace BingoWallpaper.Uwp.ViewModels
             {
                 ShareToWechat();
             });
+            Messenger.Default.Register<SystemShareSelectedMessage>(this, message =>
+            {
+                ShareToSystem();
+            });
         }
 
         public void Deactivate(object parameter)
@@ -251,6 +255,25 @@ namespace BingoWallpaper.Uwp.ViewModels
             catch (UserCancelAuthorizeException)
             {
                 _appToastService.ShowInformation(LocalizedStrings.CancelAuthorize);
+            }
+            catch (Exception ex)
+            {
+                _appToastService.ShowError(ex.Message);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        private async void ShareToSystem()
+        {
+            IsBusy = true;
+            try
+            {
+                var url = _wallpaperService.GetUrl(Wallpaper.Image, _settings.SelectedWallpaperSize);
+                var bytes = await _imageLoader.GetBytesAsync(url);
+                _bingoShareService.ShareToSystem(bytes, Wallpaper.Archive.Info);
             }
             catch (Exception ex)
             {

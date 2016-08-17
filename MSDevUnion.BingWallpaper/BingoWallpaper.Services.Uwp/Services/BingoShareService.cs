@@ -1,7 +1,11 @@
 ﻿using MicroMsg.sdk;
 using SoftwareKobo.Social.SinaWeibo;
 using System;
+using System.IO;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.DataTransfer;
+using Windows.Foundation;
+using Windows.Storage.Streams;
 
 namespace BingoWallpaper.Services
 {
@@ -28,6 +32,22 @@ namespace BingoWallpaper.Services
             {
                 throw new Exception(status.ErrorMessage);
             }
+        }
+
+        public void ShareToSystem(byte[] image, string text)
+        {
+            var dataTransferManager = DataTransferManager.GetForCurrentView();
+            TypedEventHandler<DataTransferManager, DataRequestedEventArgs> handler = (sender, args) =>
+            {
+                var request = args.Request;
+                var deferral = request.GetDeferral();
+                request.Data.Properties.Title = text;
+                request.Data.SetBitmap(RandomAccessStreamReference.CreateFromStream(new MemoryStream(image).AsRandomAccessStream()));
+                deferral.Complete();
+            };
+            dataTransferManager.DataRequested += handler;
+            DataTransferManager.ShowShareUI();
+            dataTransferManager.DataRequested -= handler;
         }
 
         public async Task ShareToWechatAsync(byte[] image, string text)
