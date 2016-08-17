@@ -1,7 +1,6 @@
 ﻿using MicroMsg.sdk;
 using SoftwareKobo.Social.SinaWeibo;
 using System;
-using System.IO;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
@@ -34,20 +33,33 @@ namespace BingoWallpaper.Services
             }
         }
 
-        public void ShareToSystem(byte[] image, string text)
+        public async Task ShareToSystemAsync(string imageUrl, string text)
         {
-            var dataTransferManager = DataTransferManager.GetForCurrentView();
-            TypedEventHandler<DataTransferManager, DataRequestedEventArgs> handler = (sender, args) =>
+            if (imageUrl == null)
             {
+                throw new ArgumentNullException(nameof(imageUrl));
+            }
+            if (text == null)
+            {
+                throw new ArgumentNullException(nameof(text));
+            }
+
+            var tcs = new TaskCompletionSource<object>();
+            var dataTransferManager = DataTransferManager.GetForCurrentView();
+            TypedEventHandler<DataTransferManager, DataRequestedEventArgs> handler = null;
+            handler = (sender, args) =>
+            {
+                dataTransferManager.DataRequested -= handler;
                 var request = args.Request;
                 var deferral = request.GetDeferral();
                 request.Data.Properties.Title = text;
-                request.Data.SetBitmap(RandomAccessStreamReference.CreateFromStream(new MemoryStream(image).AsRandomAccessStream()));
+                request.Data.SetBitmap(RandomAccessStreamReference.CreateFromUri(new Uri(imageUrl, UriKind.Absolute)));
                 deferral.Complete();
+                tcs.SetResult(null);
             };
             dataTransferManager.DataRequested += handler;
             DataTransferManager.ShowShareUI();
-            dataTransferManager.DataRequested -= handler;
+            await tcs.Task;
         }
 
         public async Task ShareToWechatAsync(byte[] image, string text)

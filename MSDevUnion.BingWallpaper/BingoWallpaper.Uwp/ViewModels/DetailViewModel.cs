@@ -272,8 +272,7 @@ namespace BingoWallpaper.Uwp.ViewModels
             try
             {
                 var url = _wallpaperService.GetUrl(Wallpaper.Image, _settings.SelectedWallpaperSize);
-                var bytes = await _imageLoader.GetBytesAsync(url);
-                _bingoShareService.ShareToSystem(bytes, Wallpaper.Archive.Info);
+                await _bingoShareService.ShareToSystemAsync(url, Wallpaper.Archive.Info);
             }
             catch (Exception ex)
             {
