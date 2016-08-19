@@ -40,8 +40,7 @@
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal" />
-                                <VisualState x:Name="PointerOver" />
-                                <VisualState x:Name="Pressed">
+                                <VisualState x:Name="PointerOver">
                                     <Storyboard>
                                         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="NormalRectangle"
                                                                        Storyboard.TargetProperty="RadiusX">
@@ -55,7 +54,34 @@
                                         </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
+                                <VisualState x:Name="Pressed" />
                                 <VisualState x:Name="Disabled" />
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition To="PointerOver">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="NormalRectangle"
+                                                             Storyboard.TargetProperty="RadiusX"
+                                                             To="4"
+                                                             Duration="0:0:0.2" />
+                                            <DoubleAnimation Storyboard.TargetName="NormalRectangle"
+                                                             Storyboard.TargetProperty="RadiusY"
+                                                             To="4"
+                                                             Duration="0:0:0.2" />
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition From="PointerOver">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="NormalRectangle"
+                                                             Storyboard.TargetProperty="RadiusX"
+                                                             To="0"
+                                                             Duration="0:0:0.2" />
+                                            <DoubleAnimation Storyboard.TargetName="NormalRectangle"
+                                                             Storyboard.TargetProperty="RadiusY"
+                                                             To="0"
+                                                             Duration="0:0:0.2" />
+                                        </Storyboard>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
                             </VisualStateGroup>
                             <VisualStateGroup x:Name="CheckStates">
                                 <VisualState x:Name="Unchecked" />
