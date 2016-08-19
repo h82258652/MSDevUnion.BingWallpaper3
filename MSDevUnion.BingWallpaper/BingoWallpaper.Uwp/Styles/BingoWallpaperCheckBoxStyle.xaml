@@ -41,13 +41,42 @@
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal" />
                                 <VisualState x:Name="PointerOver" />
-                                <VisualState x:Name="Pressed" />
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="NormalRectangle"
+                                                                       Storyboard.TargetProperty="RadiusX">
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0"
+                                                                    Value="4" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="NormalRectangle"
+                                                                       Storyboard.TargetProperty="RadiusY">
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0"
+                                                                    Value="4" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
                                 <VisualState x:Name="Disabled" />
                             </VisualStateGroup>
                             <VisualStateGroup x:Name="CheckStates">
                                 <VisualState x:Name="Unchecked" />
-                                <VisualState x:Name="Checked" />
-                                <VisualState x:Name="Indeterminate" />
+                                <VisualState x:Name="Checked">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Path"
+                                                                       Storyboard.TargetProperty="Opacity">
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0"
+                                                                    Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Indeterminate">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Path"
+                                                                       Storyboard.TargetProperty="Opacity">
+                                            <DiscreteDoubleKeyFrame KeyTime="0:0:0"
+                                                                    Value="1" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
                                 <VisualStateGroup.Transitions>
                                     <VisualTransition From="Unchecked"
                                                       To="Checked">
@@ -181,8 +210,8 @@
                                       Foreground="{ThemeResource SystemControlHighlightAltChromeWhiteBrush}"
                                       Glyph="&#xE001;"
                                       Opacity="0" />
-                            <Viewbox Width="20"
-                                     Height="20">
+                            <Viewbox Width="18"
+                                     Height="18">
                                 <Path x:Name="Path"
                                       Width="24"
                                       Height="24"
