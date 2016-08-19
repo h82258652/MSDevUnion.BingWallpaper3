@@ -48,6 +48,118 @@
                                 <VisualState x:Name="Unchecked" />
                                 <VisualState x:Name="Checked" />
                                 <VisualState x:Name="Indeterminate" />
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition From="Unchecked"
+                                                      To="Checked">
+                                        <Storyboard>
+                                            <PointAnimationUsingKeyFrames Storyboard.TargetName="Path"
+                                                                          Storyboard.TargetProperty="(Path.Data).(PathGeometry.Figures)[0].(PathFigure.Segments)[0].(LineSegment.Point)">
+                                                <DiscretePointKeyFrame KeyTime="0:0:0"
+                                                                       Value="3,13" />
+                                                <EasingPointKeyFrame KeyTime="0:0:0.1"
+                                                                     Value="9,19">
+                                                    <EasingPointKeyFrame.EasingFunction>
+                                                        <CircleEase EasingMode="EaseOut" />
+                                                    </EasingPointKeyFrame.EasingFunction>
+                                                </EasingPointKeyFrame>
+                                            </PointAnimationUsingKeyFrames>
+                                            <PointAnimationUsingKeyFrames Storyboard.TargetName="Path"
+                                                                          Storyboard.TargetProperty="(Path.Data).(PathGeometry.Figures)[0].(PathFigure.Segments)[1].(LineSegment.Point)">
+                                                <DiscretePointKeyFrame KeyTime="0:0:0"
+                                                                       Value="3,13" />
+                                                <EasingPointKeyFrame KeyTime="0:0:0.1"
+                                                                     Value="9,19">
+                                                    <EasingPointKeyFrame.EasingFunction>
+                                                        <CircleEase EasingMode="EaseOut" />
+                                                    </EasingPointKeyFrame.EasingFunction>
+                                                </EasingPointKeyFrame>
+                                                <DiscretePointKeyFrame KeyTime="0:0:0.13"
+                                                                       Value="9,19" />
+                                                <EasingPointKeyFrame KeyTime="0:0:0.23"
+                                                                     Value="21,6">
+                                                    <EasingPointKeyFrame.EasingFunction>
+                                                        <ExponentialEase EasingMode="EaseOut"
+                                                                         Exponent="8" />
+                                                    </EasingPointKeyFrame.EasingFunction>
+                                                </EasingPointKeyFrame>
+                                            </PointAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition From="Unchecked"
+                                                      To="Indeterminate">
+                                        <Storyboard>
+                                            <PointAnimationUsingKeyFrames Storyboard.TargetName="Path"
+                                                                          Storyboard.TargetProperty="(Path.Data).(PathGeometry.Figures)[0].(PathFigure.Segments)[0].(LineSegment.Point)">
+                                                <DiscretePointKeyFrame KeyTime="0:0:0"
+                                                                       Value="3,13" />
+                                                <EasingPointKeyFrame KeyTime="0:0:0.1"
+                                                                     Value="9,19">
+                                                    <EasingPointKeyFrame.EasingFunction>
+                                                        <CircleEase EasingMode="EaseOut" />
+                                                    </EasingPointKeyFrame.EasingFunction>
+                                                </EasingPointKeyFrame>
+                                            </PointAnimationUsingKeyFrames>
+                                            <PointAnimationUsingKeyFrames Storyboard.TargetName="Path"
+                                                                          Storyboard.TargetProperty="(Path.Data).(PathGeometry.Figures)[0].(PathFigure.Segments)[1].(LineSegment.Point)">
+                                                <DiscretePointKeyFrame KeyTime="0:0:0"
+                                                                       Value="3,13" />
+                                                <EasingPointKeyFrame KeyTime="0:0:0.1"
+                                                                     Value="9,19">
+                                                    <EasingPointKeyFrame.EasingFunction>
+                                                        <CircleEase EasingMode="EaseOut" />
+                                                    </EasingPointKeyFrame.EasingFunction>
+                                                </EasingPointKeyFrame>
+                                                <DiscretePointKeyFrame KeyTime="0:0:0.13"
+                                                                       Value="9,19" />
+                                                <EasingPointKeyFrame KeyTime="0:0:0.23"
+                                                                     Value="21,6">
+                                                    <EasingPointKeyFrame.EasingFunction>
+                                                        <ExponentialEase EasingMode="EaseOut"
+                                                                         Exponent="8" />
+                                                    </EasingPointKeyFrame.EasingFunction>
+                                                </EasingPointKeyFrame>
+                                            </PointAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition To="Unchecked">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.23"
+                                                                           Storyboard.TargetName="Path"
+                                                                           Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0"
+                                                                        Value="0" />
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <PointAnimationUsingKeyFrames BeginTime="0:0:0.13"
+                                                                          Storyboard.TargetName="Path"
+                                                                          Storyboard.TargetProperty="(Path.Data).(PathGeometry.Figures)[0].(PathFigure.Segments)[0].(LineSegment.Point)">
+                                                <EasingPointKeyFrame KeyTime="0:0:0.10"
+                                                                     Value="3,13">
+                                                    <EasingPointKeyFrame.EasingFunction>
+                                                        <CircleEase EasingMode="EaseIn" />
+                                                    </EasingPointKeyFrame.EasingFunction>
+                                                </EasingPointKeyFrame>
+                                            </PointAnimationUsingKeyFrames>
+                                            <PointAnimationUsingKeyFrames Storyboard.TargetName="Path"
+                                                                          Storyboard.TargetProperty="(Path.Data).(PathGeometry.Figures)[0].(PathFigure.Segments)[1].(LineSegment.Point)">
+                                                <EasingPointKeyFrame KeyTime="0:0:0.10"
+                                                                     Value="9,19">
+                                                    <EasingPointKeyFrame.EasingFunction>
+                                                        <ExponentialEase EasingMode="EaseIn"
+                                                                         Exponent="8" />
+                                                    </EasingPointKeyFrame.EasingFunction>
+                                                </EasingPointKeyFrame>
+                                                <DiscretePointKeyFrame KeyTime="0:0:0.13"
+                                                                       Value="9,19" />
+                                                <EasingPointKeyFrame KeyTime="0:0:0.23"
+                                                                     Value="3,13">
+                                                    <EasingPointKeyFrame.EasingFunction>
+                                                        <CircleEase EasingMode="EaseIn" />
+                                                    </EasingPointKeyFrame.EasingFunction>
+                                                </EasingPointKeyFrame>
+                                            </PointAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <VisualStateManager.CustomVisualStateManager>
@@ -74,6 +186,7 @@
                                 <Path x:Name="Path"
                                       Width="24"
                                       Height="24"
+                                      Opacity="0"
                                       Stroke="Black"
                                       StrokeEndLineCap="Round"
                                       StrokeLineJoin="Round"
