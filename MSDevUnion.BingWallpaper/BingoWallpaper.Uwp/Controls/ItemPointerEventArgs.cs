@@ -1,10 +1,11 @@
-﻿using Windows.UI.Xaml;
+﻿using System;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 
 namespace BingoWallpaper.Uwp.Controls
 {
-    public class ItemPointerEventArgs
+    public class ItemPointerEventArgs : EventArgs
     {
         internal ItemPointerEventArgs(UIElement element, PointerRoutedEventArgs args)
         {
