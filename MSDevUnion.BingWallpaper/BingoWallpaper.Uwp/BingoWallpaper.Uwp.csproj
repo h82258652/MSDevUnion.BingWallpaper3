@@ -130,6 +130,7 @@
       <DependentUpon>BindableMargin.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\BingoWallpaperButton.cs" />
+    <Compile Include="Controls\BingoWallpaperCheckBoxVisualStateManager.cs" />
     <Compile Include="Controls\ChooseShareControl.cs" />
     <Compile Include="Controls\DefaultImageLoader.cs" />
     <Compile Include="Controls\EllipseMask.cs" />
@@ -155,7 +156,6 @@
     <Compile Include="Converters\StringFormatConverter.cs" />
     <Compile Include="Converters\WallpaperUrlConverter.cs" />
     <Compile Include="Extensions\FrameExtensions.cs" />
-    <Compile Include="Extensions\FrameworkElementExtensions.cs" />
     <Compile Include="Extensions\MathExtensions.cs" />
     <Compile Include="Extensions\StoryboardExtensions.cs" />
     <Compile Include="Helpers\ScrollViewerHelper.cs" />
@@ -258,6 +258,11 @@
     <Page Include="Styles\BingoWallpaperButtonStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\BingoWallpaperCheckBoxStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Styles\BingoWallpaperFlipViewStyle.xaml">
       <SubType>Designer</SubType>

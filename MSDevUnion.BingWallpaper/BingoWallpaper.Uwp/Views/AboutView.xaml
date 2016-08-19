@@ -6,10 +6,15 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:controls="using:BingoWallpaper.Uwp.Controls"
                 mc:Ignorable="d">
+    <Page.Resources>
+        <ResourceDictionary Source="/Styles/BingoWallpaperCheckBoxStyle.xaml"></ResourceDictionary>
+    </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid VerticalAlignment="Center"
               HorizontalAlignment="Center">
-            <controls:BingoWallpaperButton Content="Hello world"></controls:BingoWallpaperButton>
+            <CheckBox Style="{StaticResource BingoWallpaperCheckBoxStyle}"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"></CheckBox>
         </Grid>
     </Grid>
 </local:ViewBase>
