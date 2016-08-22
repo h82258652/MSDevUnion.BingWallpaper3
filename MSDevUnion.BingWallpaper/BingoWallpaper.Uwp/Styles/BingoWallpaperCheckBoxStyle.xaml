@@ -40,7 +40,7 @@
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal" />
-                                <VisualState x:Name="PointerOver"></VisualState>
+                                <VisualState x:Name="PointerOver" />
                                 <VisualState x:Name="Pressed">
                                     <Storyboard>
                                         <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True"
@@ -61,29 +61,29 @@
                                 <VisualStateGroup.Transitions>
                                     <VisualTransition To="Pressed">
                                         <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetName="NormalRectangle"
-                                                             EnableDependentAnimation="True"
+                                            <DoubleAnimation EnableDependentAnimation="True"
+                                                             Storyboard.TargetName="NormalRectangle"
                                                              Storyboard.TargetProperty="RadiusX"
                                                              To="4"
                                                              Duration="0:0:0.2" />
-                                            <DoubleAnimation Storyboard.TargetName="NormalRectangle"
+                                            <DoubleAnimation EnableDependentAnimation="True"
+                                                             Storyboard.TargetName="NormalRectangle"
                                                              Storyboard.TargetProperty="RadiusY"
-                                                             EnableDependentAnimation="True"
                                                              To="4"
                                                              Duration="0:0:0.2" />
                                         </Storyboard>
                                     </VisualTransition>
                                     <VisualTransition From="Pressed">
                                         <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetName="NormalRectangle"
+                                            <DoubleAnimation EnableDependentAnimation="True"
+                                                             Storyboard.TargetName="NormalRectangle"
                                                              Storyboard.TargetProperty="RadiusX"
-                                                             EnableDependentAnimation="True"
                                                              From="4"
                                                              To="0"
                                                              Duration="0:0:0.2" />
-                                            <DoubleAnimation Storyboard.TargetName="NormalRectangle"
+                                            <DoubleAnimation EnableDependentAnimation="True"
+                                                             Storyboard.TargetName="NormalRectangle"
                                                              Storyboard.TargetProperty="RadiusY"
-                                                             EnableDependentAnimation="True"
                                                              From="4"
                                                              To="0"
                                                              Duration="0:0:0.2" />
@@ -103,7 +103,7 @@
                                         <ColorAnimation Storyboard.TargetName="NormalRectangle"
                                                         Storyboard.TargetProperty="(Rectangle.Fill).(SolidColorBrush.Color)"
                                                         To="{ThemeResource SystemAccentColor}"
-                                                        Duration="0:0:0"></ColorAnimation>
+                                                        Duration="0:0:0" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Indeterminate">
@@ -116,12 +116,12 @@
                                         <ColorAnimation Storyboard.TargetName="Path"
                                                         Storyboard.TargetProperty="(Path.Stroke).(SolidColorBrush.Color)"
                                                         To="Gray"
-                                                        Duration="0:0:0.23"></ColorAnimation>
+                                                        Duration="0:0:0.23" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualStateGroup.Transitions>
-                                    <VisualTransition From="Unchecked"
-                                                      GeneratedDuration="0:0:0"
+                                    <VisualTransition GeneratedDuration="0:0:0"
+                                                      From="Unchecked"
                                                       To="Checked">
                                         <Storyboard>
                                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Path"
@@ -164,8 +164,8 @@
                                             </PointAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
-                                    <VisualTransition From="Unchecked"
-                                                      GeneratedDuration="0:0:0"
+                                    <VisualTransition GeneratedDuration="0:0:0"
+                                                      From="Unchecked"
                                                       To="Indeterminate">
                                         <Storyboard>
                                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Path"
@@ -262,7 +262,7 @@
                                        StrokeThickness="2"
                                        UseLayoutRounding="False">
                                 <Rectangle.Fill>
-                                    <SolidColorBrush Color="Transparent"></SolidColorBrush>
+                                    <SolidColorBrush Color="Transparent" />
                                 </Rectangle.Fill>
                             </Rectangle>
                             <!--<FontIcon x:Name="CheckGlyph"
@@ -272,7 +272,9 @@
                                       Glyph="&#xE001;"
                                       Opacity="0" />-->
                             <Viewbox Width="20"
-                                     Height="20">
+                                     Height="20"
+                                     HorizontalAlignment="Center"
+                                     VerticalAlignment="Center">
                                 <Path x:Name="Path"
                                       Width="24"
                                       Height="24"
@@ -282,7 +284,7 @@
                                       StrokeStartLineCap="Round"
                                       StrokeThickness="2">
                                     <Path.Stroke>
-                                        <SolidColorBrush Color="Black"></SolidColorBrush>
+                                        <SolidColorBrush Color="Black" />
                                     </Path.Stroke>
                                     <Path.Data>
                                         <PathGeometry>
