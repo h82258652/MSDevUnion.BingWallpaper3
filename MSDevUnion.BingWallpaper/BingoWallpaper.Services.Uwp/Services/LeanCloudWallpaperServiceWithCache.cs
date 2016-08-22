@@ -16,8 +16,6 @@ namespace BingoWallpaper.Services
 {
     public class LeanCloudWallpaperServiceWithCache : ILeanCloudWallpaperService
     {
-        private const string CacheFolderName = "LeanCloudCache";
-
         public async Task<LeanCloudResultCollection<Archive>> GetArchivesAsync(int year, int month, string area)
         {
             var viewMonth = new DateTime(year, month, 1);
@@ -48,7 +46,7 @@ namespace BingoWallpaper.Services
 
             string requestUrl = $"{BingoWallpaper.Constants.LeanCloudUrlBase}/1.1/classes/Archive?where={WebUtility.UrlEncode(JsonConvert.SerializeObject(where))}&order=-date";
 
-            var cacheFilePath = Path.Combine(ApplicationData.Current.LocalFolder.Path, CacheFolderName, HashHelper.GenerateMd5Hash(requestUrl)) + ".json";
+            var cacheFilePath = Path.Combine(ApplicationData.Current.LocalFolder.Path, BingoWallpaper.Constants.LeanCloudWallpaperDataCacheFolderName, HashHelper.GenerateMd5Hash(requestUrl)) + ".json";
             LeanCloudResultCollection<Archive> result = null;
             if (File.Exists(cacheFilePath))
             {
@@ -127,7 +125,7 @@ namespace BingoWallpaper.Services
 
             string requestUrl = $"{BingoWallpaper.Constants.LeanCloudUrlBase}/1.1/classes/Image?where={WebUtility.UrlEncode(JsonConvert.SerializeObject(where))}&order=-updatedAt";
 
-            var cacheFilePath = Path.Combine(ApplicationData.Current.LocalFolder.Path, CacheFolderName, HashHelper.GenerateMd5Hash(requestUrl)) + ".json";
+            var cacheFilePath = Path.Combine(ApplicationData.Current.LocalFolder.Path, BingoWallpaper.Constants.LeanCloudWallpaperDataCacheFolderName, HashHelper.GenerateMd5Hash(requestUrl)) + ".json";
             if (File.Exists(cacheFilePath))
             {
                 var json = await FileExtensions.ReadAllTextAsync(cacheFilePath);
