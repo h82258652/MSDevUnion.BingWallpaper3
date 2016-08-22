@@ -130,7 +130,6 @@
       <DependentUpon>BindableMargin.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\BingoWallpaperButton.cs" />
-    <Compile Include="Controls\BingoWallpaperCheckBoxVisualStateManager.cs" />
     <Compile Include="Controls\ChooseShareControl.cs" />
     <Compile Include="Controls\DefaultImageLoader.cs" />
     <Compile Include="Controls\EllipseMask.cs" />
