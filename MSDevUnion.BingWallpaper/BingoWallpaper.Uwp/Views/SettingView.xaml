@@ -97,7 +97,7 @@
                              Storyboard.TargetName="ContentBackgroundRectangle"
                              Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
                              From="0"
-                             Duration="0:0:0.6">
+                             Duration="0:0:0.55">
                 <DoubleAnimation.EasingFunction>
                     <BackEase Amplitude="0.75"
                               EasingMode="EaseIn" />

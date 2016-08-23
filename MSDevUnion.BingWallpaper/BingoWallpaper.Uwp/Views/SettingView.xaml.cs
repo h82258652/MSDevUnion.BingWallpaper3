@@ -13,7 +13,7 @@
 
             ContentBackgroundRectangleWidthLeaveAnimation.From = ContentBackgroundRectangle.ActualWidth;
             ContentBackgroundRectangleHeightLeaveAnimation.From = ContentBackgroundRectangle.ActualHeight;
-            ContentBackgroundRectangleTranslateTransformLeaveAnimation.To = ActualHeight / 2;
+            ContentBackgroundRectangleTranslateTransformLeaveAnimation.To = ActualHeight / 2 + 40;
         }
     }
 }
