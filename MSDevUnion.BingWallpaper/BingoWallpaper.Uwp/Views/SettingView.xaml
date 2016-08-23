@@ -15,6 +15,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Styles/BingoWallpaperBrushStyle.xaml" />
                 <ResourceDictionary Source="/Styles/BingoWallpaperCheckBoxStyle.xaml" />
+                <ResourceDictionary Source="/Styles/BingoWallpaperPivotHeaderItemStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <converters:SaveLocationConverter x:Key="SaveLocationConverter" />
             <converters:StringFormatConverter x:Key="StringFormatConverter" />
@@ -43,14 +44,39 @@
                               EasingMode="EaseOut" />
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="ContentBackgroundRectangle"
+                             Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[1].(ScaleTransform.ScaleX)"
+                             From="0"
+                             To="1"
+                             Duration="0:0:0.4">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase Amplitude="0.4"
+                              EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="ContentBackgroundRectangle"
+                             Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[1].(ScaleTransform.ScaleY)"
+                             From="0"
+                             To="1"
+                             Duration="0:0:0.4">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase Amplitude="0.4"
+                              EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="ContentGrid"
+                             Storyboard.TargetProperty="Opacity"
+                             From="0"
+                             To="1"
+                             Duration="0:0:0.4" />
         </Storyboard>
     </local:ViewBase.EnterStoryboard>
     <local:ViewBase.LeaveStoryboard>
         <Storyboard>
-            <ColorAnimation Storyboard.TargetName="BackgroundGrid"
+            <ColorAnimation BeginTime="0:0:0.3"
+                            Storyboard.TargetName="BackgroundGrid"
                             Storyboard.TargetProperty="(UIElement.Background).(SolidColorBrush.Color)"
                             From="#E3E3E3"
-                            BeginTime="0:0:0.3"
                             To="Transparent"
                             Duration="0:0:0.3" />
             <DoubleAnimation Storyboard.TargetName="GearBackgroundControl"
@@ -95,7 +121,7 @@
                              Duration="0:0:0.2" />
             <DoubleAnimation x:Name="ContentBackgroundRectangleTranslateTransformLeaveAnimation"
                              Storyboard.TargetName="ContentBackgroundRectangle"
-                             Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+                             Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(TranslateTransform.Y)"
                              From="0"
                              Duration="0:0:0.55">
                 <DoubleAnimation.EasingFunction>
@@ -127,9 +153,13 @@
                    VerticalAlignment="Stretch"
                    Fill="#C0FFFFFF"
                    RadiusX="12"
-                   RadiusY="12">
+                   RadiusY="12"
+                   RenderTransformOrigin="0.5,0.5">
             <Rectangle.RenderTransform>
-                <TranslateTransform />
+                <TransformGroup>
+                    <TranslateTransform />
+                    <ScaleTransform />
+                </TransformGroup>
             </Rectangle.RenderTransform>
         </Rectangle>
         <Grid x:Name="ContentGrid">
@@ -141,15 +171,21 @@
                                              Symbol="Cog" />
             </Viewbox>
             <Pivot Margin="28,28,28,28">
-                <PivotItem x:Uid="/SettingView/GeneralPivotItem">
+                <Pivot.Resources>
+                    <Style BasedOn="{StaticResource BingoWallpaperPivotHeaderItemStyle}"
+                           TargetType="PivotHeaderItem" />
+                </Pivot.Resources>
+                <PivotItem x:Uid="/SettingView/GeneralPivotItem"
+                           Margin="0,8,0,0">
                     <ScrollViewer HorizontalScrollBarVisibility="Disabled"
                                   VerticalScrollBarVisibility="Auto">
-                        <StackPanel Orientation="Vertical">
+                        <StackPanel Margin="12,0,12,0"
+                                    Orientation="Vertical">
                             <ComboBox x:Uid="/SettingView/SelectedSaveLocationComboBox"
                                       Width="220"
                                       ItemsSource="{Binding Path=SaveLocations}"
                                       SelectedItem="{Binding Path=SelectedSaveLocation,
-                                                         Mode=TwoWay}">
+                                                             Mode=TwoWay}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding Converter={StaticResource SaveLocationConverter}}" />
@@ -161,13 +197,13 @@
                                       Margin="0,8,0,0"
                                       ItemsSource="{Binding Path=WallpaperSizes}"
                                       SelectedItem="{Binding Path=SelectedWallpaperSize,
-                                                         Mode=TwoWay}" />
+                                                             Mode=TwoWay}" />
                             <ComboBox x:Uid="/SettingView/SelectedAreaComboBox"
                                       Width="220"
                                       Margin="0,8,0,0"
                                       ItemsSource="{Binding Path=Areas}"
                                       SelectedItem="{Binding Path=SelectedArea,
-                                                         Mode=TwoWay}">
+                                                             Mode=TwoWay}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
                                         <RelativePanel>
@@ -176,7 +212,7 @@
                                                    RelativePanel.AlignLeftWithPanel="True"
                                                    RelativePanel.AlignVerticalCenterWithPanel="True"
                                                    Source="{Binding Converter={StaticResource StringFormatConverter},
-                                                                ConverterParameter='/Assets/Images/Flags/{0}.png'}" />
+                                                                    ConverterParameter='/Assets/Images/Flags/{0}.png'}" />
                                             <TextBlock Margin="4,0,0,0"
                                                        RelativePanel.AlignVerticalCenterWith="FlagImage"
                                                        RelativePanel.RightOf="FlagImage"
@@ -188,25 +224,29 @@
                         </StackPanel>
                     </ScrollViewer>
                 </PivotItem>
-                <PivotItem x:Uid="/SettingView/AutoUpdatePivotItem">
+                <PivotItem x:Uid="/SettingView/AutoUpdatePivotItem"
+                           Margin="0,8,0,0">
                     <ScrollViewer HorizontalScrollBarVisibility="Disabled"
                                   VerticalScrollBarVisibility="Auto">
-                        <StackPanel Orientation="Vertical">
+                        <StackPanel Margin="12,0,12,0"
+                                    Orientation="Vertical">
                             <CheckBox Content="自动更新壁纸"
                                       IsChecked="{Binding Path=IsAutoUpdateWallpaper,
-                                                      Mode=TwoWay}"
+                                                          Mode=TwoWay}"
                                       Style="{StaticResource BingoWallpaperCheckBoxStyle}" />
                             <CheckBox Content="自动更新锁屏"
                                       IsChecked="{Binding Path=IsAutoUpdateLockScreen,
-                                                      Mode=TwoWay}"
+                                                          Mode=TwoWay}"
                                       Style="{StaticResource BingoWallpaperCheckBoxStyle}" />
                         </StackPanel>
                     </ScrollViewer>
                 </PivotItem>
-                <PivotItem Header="缓存">
+                <PivotItem Margin="0,8,0,0"
+                           Header="缓存">
                     <ScrollViewer HorizontalScrollBarVisibility="Disabled"
                                   VerticalScrollBarVisibility="Auto">
-                        <StackPanel Orientation="Vertical">
+                        <StackPanel Margin="12,0,12,0"
+                                    Orientation="Vertical">
                             <controls:BingoWallpaperButton HorizontalAlignment="Left"
                                                            Content="清除缓存" />
                         </StackPanel>
