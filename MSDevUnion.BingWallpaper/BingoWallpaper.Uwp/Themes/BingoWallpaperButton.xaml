@@ -41,9 +41,9 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:BingoWallpaperButton">
-                    <controls:Shadow x:Name="Shadow"
-                                     BlurRadius="2"
-                                     Depth="2">
+                    <Grid x:Name="RootGrid"
+                          Background="{TemplateBinding Background}"
+                          CornerRadius="{TemplateBinding CornerRadius}">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal">
@@ -52,11 +52,6 @@
                                                         Storyboard.TargetProperty="(Grid.Background).(SolidColorBrush.Color)"
                                                         To="{ThemeResource SystemAccentColor}"
                                                         Duration="0:0:0.15" />
-                                        <DoubleAnimation EnableDependentAnimation="True"
-                                                         Storyboard.TargetName="Shadow"
-                                                         Storyboard.TargetProperty="BlurRadius"
-                                                         To="2"
-                                                         Duration="0:0:0.15" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="PointerOver">
@@ -74,11 +69,6 @@
                                                 </DiscreteObjectKeyFrame.Value>
                                             </DiscreteObjectKeyFrame>
                                         </ObjectAnimationUsingKeyFrames>
-                                        <DoubleAnimation EnableDependentAnimation="True"
-                                                         Storyboard.TargetName="Shadow"
-                                                         Storyboard.TargetProperty="BlurRadius"
-                                                         To="3"
-                                                         Duration="0:0:0.15" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Pressed">
@@ -96,11 +86,6 @@
                                                 </DiscreteObjectKeyFrame.Value>
                                             </DiscreteObjectKeyFrame>
                                         </ObjectAnimationUsingKeyFrames>
-                                        <DoubleAnimation EnableDependentAnimation="True"
-                                                         Storyboard.TargetName="Shadow"
-                                                         Storyboard.TargetProperty="BlurRadius"
-                                                         To="1"
-                                                         Duration="0:0:0.15" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Disabled">
@@ -129,21 +114,17 @@
                             <converters:LighterColorConverter x:Key="LighterColorConverter" />
                             <converters:DarkerColorConverter x:Key="DarkerColorConverter" />
                         </FrameworkElement.Resources>
-                        <Grid x:Name="RootGrid"
-                              Background="{TemplateBinding Background}"
-                              CornerRadius="{TemplateBinding CornerRadius}">
-                            <ContentPresenter x:Name="ContentPresenter"
-                                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                              AutomationProperties.AccessibilityView="Raw"
-                                              BorderBrush="{TemplateBinding BorderBrush}"
-                                              BorderThickness="{TemplateBinding BorderThickness}"
-                                              Content="{TemplateBinding Content}"
-                                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                                              ContentTransitions="{TemplateBinding ContentTransitions}"
-                                              Padding="{TemplateBinding Padding}" />
-                        </Grid>
-                    </controls:Shadow>
+                        <ContentPresenter x:Name="ContentPresenter"
+                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          AutomationProperties.AccessibilityView="Raw"
+                                          BorderBrush="{TemplateBinding BorderBrush}"
+                                          BorderThickness="{TemplateBinding BorderThickness}"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          ContentTransitions="{TemplateBinding ContentTransitions}"
+                                          Padding="{TemplateBinding Padding}" />
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

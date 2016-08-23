@@ -6,5 +6,14 @@
         {
             InitializeComponent();
         }
+
+        protected override void PrepareLeaveStoryboard()
+        {
+            base.PrepareLeaveStoryboard();
+
+            ContentBackgroundRectangleWidthLeaveAnimation.From = ContentBackgroundRectangle.ActualWidth;
+            ContentBackgroundRectangleHeightLeaveAnimation.From = ContentBackgroundRectangle.ActualHeight;
+            ContentBackgroundRectangleTranslateTransformLeaveAnimation.To = ActualHeight / 2;
+        }
     }
 }

@@ -23,9 +23,7 @@ namespace BingoWallpaper.Uwp.Views
             completedHandler = async (sender, e) =>
             {
                 extendedSplashScreenView.Completed -= completedHandler;
-                // TODO
-                RootFrame.Navigate(typeof(AboutView));
-                //RootFrame.Navigate(typeof(MainView));
+                RootFrame.Navigate(typeof(MainView));
                 await extendedSplashScreenView.DismissAsync();
                 RootGrid.Children.Remove(extendedSplashScreenView);
             };

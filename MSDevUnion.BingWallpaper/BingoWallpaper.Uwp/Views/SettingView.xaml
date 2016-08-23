@@ -14,6 +14,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Styles/BingoWallpaperBrushStyle.xaml" />
+                <ResourceDictionary Source="/Styles/BingoWallpaperCheckBoxStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <converters:SaveLocationConverter x:Key="SaveLocationConverter" />
             <converters:StringFormatConverter x:Key="StringFormatConverter" />
@@ -46,6 +47,12 @@
     </local:ViewBase.EnterStoryboard>
     <local:ViewBase.LeaveStoryboard>
         <Storyboard>
+            <ColorAnimation Storyboard.TargetName="BackgroundGrid"
+                            Storyboard.TargetProperty="(UIElement.Background).(SolidColorBrush.Color)"
+                            From="#E3E3E3"
+                            BeginTime="0:0:0.3"
+                            To="Transparent"
+                            Duration="0:0:0.3" />
             <DoubleAnimation Storyboard.TargetName="GearBackgroundControl"
                              Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
                              To="-72"
@@ -64,11 +71,68 @@
                               EasingMode="EaseIn" />
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
+            <DoubleAnimation x:Name="ContentBackgroundRectangleWidthLeaveAnimation"
+                             EnableDependentAnimation="True"
+                             Storyboard.TargetName="ContentBackgroundRectangle"
+                             Storyboard.TargetProperty="Width"
+                             To="40"
+                             Duration="0:0:0.2" />
+            <DoubleAnimation x:Name="ContentBackgroundRectangleHeightLeaveAnimation"
+                             EnableDependentAnimation="True"
+                             Storyboard.TargetName="ContentBackgroundRectangle"
+                             Storyboard.TargetProperty="Height"
+                             To="40"
+                             Duration="0:0:0.2" />
+            <DoubleAnimation EnableDependentAnimation="True"
+                             Storyboard.TargetName="ContentBackgroundRectangle"
+                             Storyboard.TargetProperty="RadiusX"
+                             To="20"
+                             Duration="0:0:0.2" />
+            <DoubleAnimation EnableDependentAnimation="True"
+                             Storyboard.TargetName="ContentBackgroundRectangle"
+                             Storyboard.TargetProperty="RadiusY"
+                             To="20"
+                             Duration="0:0:0.2" />
+            <DoubleAnimation x:Name="ContentBackgroundRectangleTranslateTransformLeaveAnimation"
+                             Storyboard.TargetName="ContentBackgroundRectangle"
+                             Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+                             From="0"
+                             Duration="0:0:0.6">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase Amplitude="0.75"
+                              EasingMode="EaseIn" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="ContentGrid"
+                             Storyboard.TargetProperty="Opacity"
+                             From="1"
+                             To="0"
+                             Duration="0:0:0.2" />
         </Storyboard>
     </local:ViewBase.LeaveStoryboard>
     <Grid>
-        <Grid x:Name="BackgroundGrid"
-              Background="#E3E3E3">
+        <Grid x:Name="BackgroundGrid">
+            <Grid.Background>
+                <SolidColorBrush Color="#E3E3E3" />
+            </Grid.Background>
+        </Grid>
+        <controls:GearBackgroundControl x:Name="GearBackgroundControl">
+            <UIElement.RenderTransform>
+                <TranslateTransform />
+            </UIElement.RenderTransform>
+        </controls:GearBackgroundControl>
+        <Rectangle x:Name="ContentBackgroundRectangle"
+                   Margin="28,28,28,28"
+                   HorizontalAlignment="Stretch"
+                   VerticalAlignment="Stretch"
+                   Fill="#C0FFFFFF"
+                   RadiusX="12"
+                   RadiusY="12">
+            <Rectangle.RenderTransform>
+                <TranslateTransform />
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Grid x:Name="ContentGrid">
             <Viewbox MaxWidth="300"
                      MaxHeight="300"
                      HorizontalAlignment="Stretch"
@@ -76,80 +140,79 @@
                 <fontAwesome:FontAwesomeIcon Foreground="#C8C8C8"
                                              Symbol="Cog" />
             </Viewbox>
-        </Grid>
-        <controls:GearBackgroundControl x:Name="GearBackgroundControl">
-            <UIElement.RenderTransform>
-                <TranslateTransform />
-            </UIElement.RenderTransform>
-        </controls:GearBackgroundControl>
-        <Pivot Margin="28,28,0,0">
-            <PivotItem x:Uid="/SettingView/GeneralPivotItem">
-                <ScrollViewer HorizontalScrollBarVisibility="Disabled"
-                              VerticalScrollBarVisibility="Auto">
-                    <StackPanel Orientation="Vertical">
-                        <ComboBox x:Uid="/SettingView/SelectedSaveLocationComboBox"
-                                  Width="220"
-                                  ItemsSource="{Binding Path=SaveLocations}"
-                                  SelectedItem="{Binding Path=SelectedSaveLocation,
+            <Pivot Margin="28,28,28,28">
+                <PivotItem x:Uid="/SettingView/GeneralPivotItem">
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                                  VerticalScrollBarVisibility="Auto">
+                        <StackPanel Orientation="Vertical">
+                            <ComboBox x:Uid="/SettingView/SelectedSaveLocationComboBox"
+                                      Width="220"
+                                      ItemsSource="{Binding Path=SaveLocations}"
+                                      SelectedItem="{Binding Path=SelectedSaveLocation,
                                                          Mode=TwoWay}">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Converter={StaticResource SaveLocationConverter}}" />
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                        <ComboBox x:Uid="/SettingView/SelectedWallpaperSizeComboBox"
-                                  Width="220"
-                                  Margin="0,8,0,0"
-                                  ItemsSource="{Binding Path=WallpaperSizes}"
-                                  SelectedItem="{Binding Path=SelectedWallpaperSize,
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Converter={StaticResource SaveLocationConverter}}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <ComboBox x:Uid="/SettingView/SelectedWallpaperSizeComboBox"
+                                      Width="220"
+                                      Margin="0,8,0,0"
+                                      ItemsSource="{Binding Path=WallpaperSizes}"
+                                      SelectedItem="{Binding Path=SelectedWallpaperSize,
                                                          Mode=TwoWay}" />
-                        <ComboBox x:Uid="/SettingView/SelectedAreaComboBox"
-                                  Width="220"
-                                  Margin="0,8,0,0"
-                                  ItemsSource="{Binding Path=Areas}"
-                                  SelectedItem="{Binding Path=SelectedArea,
+                            <ComboBox x:Uid="/SettingView/SelectedAreaComboBox"
+                                      Width="220"
+                                      Margin="0,8,0,0"
+                                      ItemsSource="{Binding Path=Areas}"
+                                      SelectedItem="{Binding Path=SelectedArea,
                                                          Mode=TwoWay}">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <RelativePanel>
-                                        <Image x:Name="FlagImage"
-                                               Height="24"
-                                               RelativePanel.AlignLeftWithPanel="True"
-                                               RelativePanel.AlignVerticalCenterWithPanel="True"
-                                               Source="{Binding Converter={StaticResource StringFormatConverter},
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <RelativePanel>
+                                            <Image x:Name="FlagImage"
+                                                   Height="24"
+                                                   RelativePanel.AlignLeftWithPanel="True"
+                                                   RelativePanel.AlignVerticalCenterWithPanel="True"
+                                                   Source="{Binding Converter={StaticResource StringFormatConverter},
                                                                 ConverterParameter='/Assets/Images/Flags/{0}.png'}" />
-                                        <TextBlock Margin="4,0,0,0"
-                                                   RelativePanel.AlignVerticalCenterWith="FlagImage"
-                                                   RelativePanel.RightOf="FlagImage"
-                                                   Text="{Binding Converter={StaticResource AreaToNameConverter}}" />
-                                    </RelativePanel>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                    </StackPanel>
-                </ScrollViewer>
-            </PivotItem>
-            <PivotItem x:Uid="/SettingView/AutoUpdatePivotItem">
-                <ScrollViewer HorizontalScrollBarVisibility="Disabled"
-                              VerticalScrollBarVisibility="Auto">
-                    <StackPanel Orientation="Vertical">
-                        <CheckBox Content="自动更新壁纸"
-                                  IsChecked="{Binding Path=IsAutoUpdateWallpaper, Mode=TwoWay}" />
-                        <CheckBox Content="自动更新锁屏"
-                                  IsChecked="{Binding Path=IsAutoUpdateLockScreen, Mode=TwoWay}" />
-                    </StackPanel>
-                </ScrollViewer>
-            </PivotItem>
-            <PivotItem Header="缓存">
-                <ScrollViewer HorizontalScrollBarVisibility="Disabled"
-                              VerticalScrollBarVisibility="Auto">
-                    <StackPanel Orientation="Vertical">
-                        <controls:BingoWallpaperButton HorizontalAlignment="Left"
-                                                       Content="清除缓存" />
-                    </StackPanel>
-                </ScrollViewer>
-            </PivotItem>
-        </Pivot>
+                                            <TextBlock Margin="4,0,0,0"
+                                                       RelativePanel.AlignVerticalCenterWith="FlagImage"
+                                                       RelativePanel.RightOf="FlagImage"
+                                                       Text="{Binding Converter={StaticResource AreaToNameConverter}}" />
+                                        </RelativePanel>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </StackPanel>
+                    </ScrollViewer>
+                </PivotItem>
+                <PivotItem x:Uid="/SettingView/AutoUpdatePivotItem">
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                                  VerticalScrollBarVisibility="Auto">
+                        <StackPanel Orientation="Vertical">
+                            <CheckBox Content="自动更新壁纸"
+                                      IsChecked="{Binding Path=IsAutoUpdateWallpaper,
+                                                      Mode=TwoWay}"
+                                      Style="{StaticResource BingoWallpaperCheckBoxStyle}" />
+                            <CheckBox Content="自动更新锁屏"
+                                      IsChecked="{Binding Path=IsAutoUpdateLockScreen,
+                                                      Mode=TwoWay}"
+                                      Style="{StaticResource BingoWallpaperCheckBoxStyle}" />
+                        </StackPanel>
+                    </ScrollViewer>
+                </PivotItem>
+                <PivotItem Header="缓存">
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                                  VerticalScrollBarVisibility="Auto">
+                        <StackPanel Orientation="Vertical">
+                            <controls:BingoWallpaperButton HorizontalAlignment="Left"
+                                                           Content="清除缓存" />
+                        </StackPanel>
+                    </ScrollViewer>
+                </PivotItem>
+            </Pivot>
+        </Grid>
     </Grid>
 </local:ViewBase>

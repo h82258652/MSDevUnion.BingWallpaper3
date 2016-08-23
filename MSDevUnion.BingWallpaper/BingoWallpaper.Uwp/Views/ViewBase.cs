@@ -106,17 +106,23 @@ namespace BingoWallpaper.Uwp.Views
                 if (previousPage != null)
                 {
                     previousPage._isLeaving = true;
+                    PreviousPageContainer.Content = previousPage;
+                    await previousPage.WaitForLoadedAsync();
+                    previousPage.PrepareLeaveStoryboard();
                     var leaveStoryboard = previousPage.LeaveStoryboard;
                     if (leaveStoryboard != null)
                     {
-                        PreviousPageContainer.Content = previousPage;
                         await leaveStoryboard.BeginAsync();
-                        PreviousPageContainer.Content = null;
                     }
+                    PreviousPageContainer.Content = null;
                     FrameExtensions.SetPreviousPage(Frame, null);
                     previousPage._isLeaving = false;
                 }
             }
+        }
+
+        protected virtual void PrepareLeaveStoryboard()
+        {
         }
 
         private void CurrentWindow_PointerReleased(CoreWindow sender, PointerEventArgs args)
