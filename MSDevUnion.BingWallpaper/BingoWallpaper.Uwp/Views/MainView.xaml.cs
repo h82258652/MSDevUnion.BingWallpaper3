@@ -1,4 +1,6 @@
 ﻿using BingoWallpaper.Uwp.Controls;
+using BingoWallpaper.Uwp.Messages;
+using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -209,6 +211,34 @@ namespace BingoWallpaper.Uwp.Views
                 }
                 storyboard.Begin();
             }
+        }
+
+        private void MainView_Loaded(object sender, RoutedEventArgs e)
+        {
+            Messenger.Default.Register<SelectedWallpaperCollectionChangingMessage>(this, message =>
+            {
+                var oldWallpaperCollection = message.OldWallpaperCollection;
+                var newWallpaperCollection = message.NewWallpaperCollection;
+
+                var oldMonth = oldWallpaperCollection.Month;
+                var newMonth = newWallpaperCollection.Month;
+
+                NarrowOldMonthTextBlock.DataContext = oldMonth;
+                WideOldMonthTextBlock.DataContext = oldMonth;
+                if (oldMonth < newMonth)
+                {
+                    MonthIncreasedStoryboard.Begin();
+                }
+                else if (oldMonth > newMonth)
+                {
+                    MonthDecreasedStoryboard.Begin();
+                }
+            });
+        }
+
+        private void MainView_Unloaded(object sender, RoutedEventArgs e)
+        {
+            Messenger.Default.Unregister(this);
         }
     }
 }

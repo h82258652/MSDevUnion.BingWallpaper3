@@ -102,6 +102,10 @@ namespace BingoWallpaper.Uwp.ViewModels
             {
                 if (_selectedWallpaperCollection != value)
                 {
+                    if (_selectedWallpaperCollection != null && value != null)
+                    {
+                        MessengerInstance.Send(new SelectedWallpaperCollectionChangingMessage(_selectedWallpaperCollection, value));
+                    }
                     Set(ref _selectedWallpaperCollection, value);
                     LoadWallpapersAsync(value);
                 }

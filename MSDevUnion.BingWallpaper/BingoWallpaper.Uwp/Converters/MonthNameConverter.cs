@@ -8,6 +8,11 @@ namespace BingoWallpaper.Uwp.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value is int == false)
+            {
+                return null;
+            }
+
             var month = (int)value;
             if (CultureInfo.CurrentUICulture.Name == "zh-CN")
             {

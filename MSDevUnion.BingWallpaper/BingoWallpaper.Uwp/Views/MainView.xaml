@@ -16,6 +16,8 @@
                 xmlns:media="using:Microsoft.Xaml.Interactions.Media"
                 DataContext="{Binding Source={StaticResource Locator},
                                       Path=Main}"
+                Loaded="MainView_Loaded"
+                Unloaded="MainView_Unloaded"
                 mc:Ignorable="d">
     <Page.Resources>
         <ResourceDictionary>
@@ -23,9 +25,9 @@
                 <ResourceDictionary Source="/Styles/BingoWallpaperBrushStyle.xaml" />
                 <ResourceDictionary Source="/Styles/BingoWallpaperFlipViewStyle.xaml" />
                 <ResourceDictionary Source="/Styles/BingoWallpaperScrollBarStyle.xaml" />
+                <ResourceDictionary Source="/Styles/BingoWallpaperTextBlockStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <localConv:BooleanNegationConverter x:Key="BooleanNegationConverter" />
-            <conv:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
             <localConv:MonthNameConverter x:Key="MonthNameConverter" />
             <localConv:WallpaperUrlConverter x:Key="WallpaperUrlConverter" />
             <Storyboard x:Key="RefreshBusyStoryboard">
@@ -35,6 +37,73 @@
                                  From="0"
                                  To="360"
                                  Duration="0:0:1" />
+            </Storyboard>
+            <Storyboard x:Key="ShowYearTextBlockStoryboard">
+                <DoubleAnimation Storyboard.TargetName="YearTextBlock"
+                                 Storyboard.TargetProperty="Opacity"
+                                 From="0"
+                                 To="1"
+                                 Duration="0:0:0.2" />
+                <DoubleAnimation Storyboard.TargetName="YearTextBlock"
+                                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+                                 From="8"
+                                 To="0"
+                                 Duration="0:0:0.2">
+                    <DoubleAnimation.EasingFunction>
+                        <QuinticEase EasingMode="EaseOut" />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+            </Storyboard>
+            <Storyboard x:Key="HideYearTextBlockStoryboard">
+                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="YearTextBlock"
+                                               Storyboard.TargetProperty="Opacity">
+                    <DiscreteDoubleKeyFrame KeyTime="0:0:0"
+                                            Value="0" />
+                </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+            <Storyboard x:Name="MonthIncreasedStoryboard">
+                <DoubleAnimation Storyboard.TargetName="OldMonthGrid"
+                                 Storyboard.TargetProperty="Opacity"
+                                 From="1"
+                                 To="0"
+                                 Duration="0:0:0.2" />
+                <DoubleAnimation Storyboard.TargetName="OldMonthGrid"
+                                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                                 From="0"
+                                 To="-12"
+                                 Duration="0:0:0.2" />
+                <DoubleAnimation Storyboard.TargetName="CurrentMonthGrid"
+                                 Storyboard.TargetProperty="Opacity"
+                                 From="0"
+                                 To="1"
+                                 Duration="0:0:0.2" />
+                <DoubleAnimation Storyboard.TargetName="CurrentMonthGrid"
+                                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                                 From="12"
+                                 To="0"
+                                 Duration="0:0:0.2" />
+            </Storyboard>
+            <Storyboard x:Name="MonthDecreasedStoryboard">
+                <DoubleAnimation Storyboard.TargetName="OldMonthGrid"
+                                 Storyboard.TargetProperty="Opacity"
+                                 From="1"
+                                 To="0"
+                                 Duration="0:0:0.2" />
+                <DoubleAnimation Storyboard.TargetName="OldMonthGrid"
+                                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                                 From="0"
+                                 To="12"
+                                 Duration="0:0:0.2" />
+                <DoubleAnimation Storyboard.TargetName="CurrentMonthGrid"
+                                 Storyboard.TargetProperty="Opacity"
+                                 From="0"
+                                 To="1"
+                                 Duration="0:0:0.2" />
+                <DoubleAnimation Storyboard.TargetName="CurrentMonthGrid"
+                                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                                 From="-12"
+                                 To="0"
+                                 Duration="0:0:0.2" />
             </Storyboard>
         </ResourceDictionary>
     </Page.Resources>
@@ -50,7 +119,11 @@
                     <VisualState.Setters>
                         <Setter Target="NarrowMonthTextBlock.Visibility"
                                 Value="Visible" />
+                        <Setter Target="NarrowOldMonthTextBlock.Visibility"
+                                Value="Visible" />
                         <Setter Target="WideMonthTextBlock.Visibility"
+                                Value="Collapsed" />
+                        <Setter Target="WideOldMonthTextBlock.Visibility"
                                 Value="Collapsed" />
                     </VisualState.Setters>
                     <VisualState.StateTriggers>
@@ -61,7 +134,11 @@
                     <VisualState.Setters>
                         <Setter Target="NarrowMonthTextBlock.Visibility"
                                 Value="Collapsed" />
+                        <Setter Target="NarrowOldMonthTextBlock.Visibility"
+                                Value="Collapsed" />
                         <Setter Target="WideMonthTextBlock.Visibility"
+                                Value="Visible" />
+                        <Setter Target="WideOldMonthTextBlock.Visibility"
                                 Value="Visible" />
                     </VisualState.Setters>
                     <VisualState.StateTriggers>
@@ -159,6 +236,24 @@
                 Background="{ThemeResource SystemAccentBrush}"
                 ClosedDisplayMode="Compact"
                 Foreground="#171717">
+            <interactivity:Interaction.Behaviors>
+                <core:DataTriggerBehavior Binding="{Binding ElementName=AppBar, Path=IsOpen}"
+                                          Value="True">
+                    <media:ControlStoryboardAction ControlStoryboardOption="Play"
+                                                   Storyboard="{StaticResource ShowYearTextBlockStoryboard}" />
+                    <core:ChangePropertyAction PropertyName="VerticalAlignment"
+                                               TargetObject="{Binding ElementName=MonthGrid}"
+                                               Value="Bottom" />
+                </core:DataTriggerBehavior>
+                <core:DataTriggerBehavior Binding="{Binding ElementName=AppBar, Path=IsOpen}"
+                                          Value="False">
+                    <media:ControlStoryboardAction ControlStoryboardOption="Play"
+                                                   Storyboard="{StaticResource HideYearTextBlockStoryboard}" />
+                    <core:ChangePropertyAction PropertyName="VerticalAlignment"
+                                               TargetObject="{Binding ElementName=MonthGrid}"
+                                               Value="Top" />
+                </core:DataTriggerBehavior>
+            </interactivity:Interaction.Behaviors>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -166,32 +261,56 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="0"
-                            Orientation="Vertical">
-                    <TextBlock IsTextScaleFactorEnabled="False"
-                               Text="{Binding Path=SelectedWallpaperCollection.Year}"
-                               Visibility="{Binding ElementName=AppBar,
-                                                    Path=IsOpen,
-                                                    Converter={StaticResource BooleanToVisibilityConverter}}" />
-                    <Grid>
-                        <TextBlock x:Name="NarrowMonthTextBlock"
-                                   FontSize="{ThemeResource TextStyleExtraLargeFontSize}"
-                                   FontWeight="Bold"
-                                   IsTextScaleFactorEnabled="False"
-                                   Text="{Binding Path=SelectedWallpaperCollection.Month,
-                                                  Converter={StaticResource MonthNameConverter},
-                                                  ConverterParameter=Narrow}"
-                                   Visibility="Visible" />
-                        <TextBlock x:Name="WideMonthTextBlock"
-                                   FontSize="{ThemeResource TextStyleExtraLargeFontSize}"
-                                   FontWeight="Bold"
-                                   IsTextScaleFactorEnabled="False"
-                                   Text="{Binding Path=SelectedWallpaperCollection.Month,
-                                                  Converter={StaticResource MonthNameConverter},
-                                                  ConverterParameter=Wide}"
-                                   Visibility="Collapsed" />
+                <Grid Grid.Column="0">
+                    <TextBlock x:Name="YearTextBlock"
+                               Margin="4,4,0,0"
+                               Opacity="0"
+                               Style="{StaticResource YearTextBlock}"
+                               Text="{Binding Path=SelectedWallpaperCollection.Year}">
+                        <TextBlock.RenderTransform>
+                            <TranslateTransform />
+                        </TextBlock.RenderTransform></TextBlock>
+                    <Grid x:Name="MonthGrid"
+                          Height="48"
+                          Margin="4,0,0,0"
+                          VerticalAlignment="Top">
+                        <Grid x:Name="OldMonthGrid"
+                              Opacity="0">
+                            <Grid.RenderTransform>
+                                <TranslateTransform />
+                            </Grid.RenderTransform>
+                            <TextBlock x:Name="NarrowOldMonthTextBlock"
+                                       Style="{StaticResource MonthTextBlock}"
+                                       Text="{Binding RelativeSource={RelativeSource Mode=Self},
+                                                      Path=DataContext,
+                                                      Converter={StaticResource MonthNameConverter}}"
+                                       Visibility="Visible" />
+                            <TextBlock x:Name="WideOldMonthTextBlock"
+                                       Style="{StaticResource MonthTextBlock}"
+                                       Text="{Binding RelativeSource={RelativeSource Mode=Self},
+                                                      Path=DataContext,
+                                                      Converter={StaticResource MonthNameConverter}}"
+                                       Visibility="Collapsed" />
+                        </Grid>
+                        <Grid x:Name="CurrentMonthGrid">
+                            <Grid.RenderTransform>
+                                <TranslateTransform />
+                            </Grid.RenderTransform>
+                            <TextBlock x:Name="NarrowMonthTextBlock"
+                                       Style="{StaticResource MonthTextBlock}"
+                                       Text="{Binding Path=SelectedWallpaperCollection.Month,
+                                                      Converter={StaticResource MonthNameConverter},
+                                                      ConverterParameter=Narrow}"
+                                       Visibility="Visible" />
+                            <TextBlock x:Name="WideMonthTextBlock"
+                                       Style="{StaticResource MonthTextBlock}"
+                                       Text="{Binding Path=SelectedWallpaperCollection.Month,
+                                                      Converter={StaticResource MonthNameConverter},
+                                                      ConverterParameter=Wide}"
+                                       Visibility="Collapsed" />
+                        </Grid>
                     </Grid>
-                </StackPanel>
+                </Grid>
                 <AppBarButton x:Uid="/MainView/RefreshButton"
                               Grid.Column="1"
                               Command="{Binding Path=RefreshCommand}"
