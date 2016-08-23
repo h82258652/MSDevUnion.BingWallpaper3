@@ -160,6 +160,7 @@
     <Compile Include="Helpers\ScrollViewerHelper.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Messages\OpenSharePopupMessage.cs" />
+    <Compile Include="Messages\SelectedAreaChangedMessage.cs" />
     <Compile Include="Messages\SinaWeiboSelectedMessage.cs" />
     <Compile Include="Messages\SystemShareSelectedMessage.cs" />
     <Compile Include="Messages\WechatSelectedMessage.cs" />

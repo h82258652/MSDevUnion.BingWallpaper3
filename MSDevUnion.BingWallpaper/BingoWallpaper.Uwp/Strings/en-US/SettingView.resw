@@ -117,8 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AutoUpdateLockScreenCheckBox.Content" xml:space="preserve">
+    <value>Auto update lock screen</value>
+  </data>
   <data name="AutoUpdatePivotItem.Header" xml:space="preserve">
-    <value>Auto Update</value>
+    <value>AutoUpdate</value>
+  </data>
+  <data name="AutoUpdateWallpaperCheckBox.Content" xml:space="preserve">
+    <value>Auto update wallpaper</value>
+  </data>
+  <data name="CachePivotItem.Header" xml:space="preserve">
+    <value>Cache</value>
   </data>
   <data name="GeneralPivotItem.Header" xml:space="preserve">
     <value>General</value>

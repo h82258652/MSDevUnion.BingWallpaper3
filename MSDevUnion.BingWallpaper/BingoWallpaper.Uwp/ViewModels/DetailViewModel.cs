@@ -62,7 +62,7 @@ namespace BingoWallpaper.Uwp.ViewModels
             {
                 _chooseShareCommand = _chooseShareCommand ?? new RelayCommand(() =>
                 {
-                    Messenger.Default.Send(new OpenSharePopupMessage());
+                    MessengerInstance.Send(new OpenSharePopupMessage());
                 });
                 return _chooseShareCommand;
             }
@@ -220,15 +220,15 @@ namespace BingoWallpaper.Uwp.ViewModels
 
         public void Activate(object parameter)
         {
-            Messenger.Default.Register<SinaWeiboSelectedMessage>(this, message =>
+            MessengerInstance.Register<SinaWeiboSelectedMessage>(this, message =>
             {
                 ShareToSinaWeibo();
             });
-            Messenger.Default.Register<WechatSelectedMessage>(this, message =>
+            MessengerInstance.Register<WechatSelectedMessage>(this, message =>
             {
                 ShareToWechat();
             });
-            Messenger.Default.Register<SystemShareSelectedMessage>(this, message =>
+            MessengerInstance.Register<SystemShareSelectedMessage>(this, message =>
             {
                 ShareToSystem();
             });
@@ -236,7 +236,7 @@ namespace BingoWallpaper.Uwp.ViewModels
 
         public void Deactivate(object parameter)
         {
-            Messenger.Default.Unregister(this);
+            MessengerInstance.Unregister(this);
         }
 
         private async void ShareToSinaWeibo()

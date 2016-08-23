@@ -230,11 +230,11 @@
                                   VerticalScrollBarVisibility="Auto">
                         <StackPanel Margin="12,0,12,0"
                                     Orientation="Vertical">
-                            <CheckBox Content="自动更新壁纸"
+                            <CheckBox x:Uid="/SettingView/AutoUpdateWallpaperCheckBox"
                                       IsChecked="{Binding Path=IsAutoUpdateWallpaper,
                                                           Mode=TwoWay}"
                                       Style="{StaticResource BingoWallpaperCheckBoxStyle}" />
-                            <CheckBox Content="自动更新锁屏"
+                            <CheckBox x:Uid="/SettingView/AutoUpdateLockScreenCheckBox"
                                       IsChecked="{Binding Path=IsAutoUpdateLockScreen,
                                                           Mode=TwoWay}"
                                       Style="{StaticResource BingoWallpaperCheckBoxStyle}" />
@@ -242,7 +242,7 @@
                     </ScrollViewer>
                 </PivotItem>
                 <PivotItem Margin="0,8,0,0"
-                           Header="缓存">
+                           x:Uid="/SettingView/CachePivotItem">
                     <ScrollViewer HorizontalScrollBarVisibility="Disabled"
                                   VerticalScrollBarVisibility="Auto">
                         <StackPanel Margin="12,0,12,0"

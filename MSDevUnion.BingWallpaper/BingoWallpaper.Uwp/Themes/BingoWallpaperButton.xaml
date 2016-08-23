@@ -11,7 +11,7 @@
         </Setter>
         <Setter Property="Foreground">
             <Setter.Value>
-                <SolidColorBrush Color="#171717" />
+                <SolidColorBrush Color="White" />
             </Setter.Value>
         </Setter>
         <Setter Property="BorderBrush"

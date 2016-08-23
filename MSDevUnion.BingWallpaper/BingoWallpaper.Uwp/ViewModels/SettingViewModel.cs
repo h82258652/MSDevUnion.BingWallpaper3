@@ -1,17 +1,20 @@
 ﻿using BingoWallpaper.Configuration;
 using BingoWallpaper.Models;
 using BingoWallpaper.Services;
+using BingoWallpaper.Uwp.Messages;
 using GalaSoft.MvvmLight;
 using System.Collections.Generic;
 using WinRTXamlToolkit.Tools;
 
 namespace BingoWallpaper.Uwp.ViewModels
 {
-    public class SettingViewModel : ViewModelBase
+    public class SettingViewModel : ViewModelBase, INavigable
     {
         private readonly ILeanCloudWallpaperService _leanCloudWallpaperService;
 
         private readonly IBingoWallpaperSettings _settings;
+
+        private string _previousSelectedArea;
 
         public SettingViewModel(ILeanCloudWallpaperService leanCloudWallpaperService, IBingoWallpaperSettings settings)
         {
@@ -92,5 +95,18 @@ namespace BingoWallpaper.Uwp.ViewModels
         }
 
         public IReadOnlyList<WallpaperSize> WallpaperSizes => _leanCloudWallpaperService.GetSupportedWallpaperSizes();
+
+        public void Activate(object parameter)
+        {
+            _previousSelectedArea = SelectedArea;
+        }
+
+        public void Deactivate(object parameter)
+        {
+            if (_previousSelectedArea != SelectedArea)
+            {
+                MessengerInstance.Send(new SelectedAreaChangedMessage());
+            }
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using BingoWallpaper.Configuration;
 using BingoWallpaper.Models.LeanCloud;
 using BingoWallpaper.Services;
+using BingoWallpaper.Uwp.Messages;
 using BingoWallpaper.Uwp.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -40,6 +41,15 @@ namespace BingoWallpaper.Uwp.ViewModels
                 date = date.AddMonths(1);
             }
             WallpaperCollections = wallpaperCollections;
+
+            MessengerInstance.Register<SelectedAreaChangedMessage>(this, message =>
+            {
+                foreach (var wallpaperCollection in WallpaperCollections)
+                {
+                    wallpaperCollection.Clear();
+                    LoadWallpapersAsync(SelectedWallpaperCollection);
+                }
+            });
         }
 
         public bool IsBusy => _loadingCollectionCount > 0;
@@ -114,6 +124,13 @@ namespace BingoWallpaper.Uwp.ViewModels
                 _loadingCollectionCount = value;
                 RaisePropertyChanged(nameof(IsBusy));
             }
+        }
+
+        public override void Cleanup()
+        {
+            base.Cleanup();
+
+            MessengerInstance.Unregister(this);
         }
 
         private async void FillWallpaperCollection(WallpaperCollection collection, IEnumerable<Wallpaper> wallpapers)

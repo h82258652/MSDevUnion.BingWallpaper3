@@ -117,8 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AutoUpdateLockScreenCheckBox.Content" xml:space="preserve">
+    <value>自动更新锁屏</value>
+  </data>
   <data name="AutoUpdatePivotItem.Header" xml:space="preserve">
     <value>自动更新</value>
+  </data>
+  <data name="AutoUpdateWallpaperCheckBox.Content" xml:space="preserve">
+    <value>自动更新壁纸</value>
+  </data>
+  <data name="CachePivotItem.Header" xml:space="preserve">
+    <value>缓存</value>
   </data>
   <data name="GeneralPivotItem.Header" xml:space="preserve">
     <value>常规</value>
