@@ -49,6 +49,8 @@
                    Source="/Assets/SplashScreen.png"
                    Stretch="Uniform" />
         </Canvas>
+        <TextBlock Text="正在启动"
+                   TextAlignment="Center" />
         <ProgressRing Width="48"
                       Height="48"
                       IsActive="True" />
