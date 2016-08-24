@@ -151,6 +151,10 @@ namespace BingoWallpaper.Uwp.Controls
                             };
                             await bitmap.SetSourceAsync(new MemoryStream(bytes).AsRandomAccessStream());
                         }
+                        catch (Exception ex)
+                        {
+                            ImageFailed?.Invoke(this, new ImageFailedEventArgs(source, ex.Message));
+                        }
                         finally
                         {
                             ImageDownloadTasks.Remove(source);
@@ -215,6 +219,11 @@ namespace BingoWallpaper.Uwp.Controls
                         await bitmap.SetSourceAsync(new MemoryStream(bytes).AsRandomAccessStream());
 
                         return bytes;
+                    }
+                    catch (Exception ex)
+                    {
+                        ImageFailed?.Invoke(this, new ImageFailedEventArgs(source, ex.Message));
+                        return null;
                     }
                     finally
                     {

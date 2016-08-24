@@ -220,16 +220,20 @@ namespace BingoWallpaper.Uwp.Views
                 var oldWallpaperCollection = message.OldWallpaperCollection;
                 var newWallpaperCollection = message.NewWallpaperCollection;
 
+                var oldYear = oldWallpaperCollection.Year;
+                var newYear = newWallpaperCollection.Year;
                 var oldMonth = oldWallpaperCollection.Month;
                 var newMonth = newWallpaperCollection.Month;
+                var oldTimeOffset = new DateTimeOffset(new DateTime(oldYear, oldMonth, 1));
+                var newTimeOffset = new DateTimeOffset(new DateTime(newYear, newMonth, 1));
 
                 NarrowOldMonthTextBlock.DataContext = oldMonth;
                 WideOldMonthTextBlock.DataContext = oldMonth;
-                if (oldMonth < newMonth)
+                if (oldTimeOffset < newTimeOffset)
                 {
                     MonthIncreasedStoryboard.Begin();
                 }
-                else if (oldMonth > newMonth)
+                else if (oldTimeOffset > newTimeOffset)
                 {
                     MonthDecreasedStoryboard.Begin();
                 }
