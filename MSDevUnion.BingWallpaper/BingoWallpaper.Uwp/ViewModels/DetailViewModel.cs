@@ -6,7 +6,6 @@ using BingoWallpaper.Uwp.Messages;
 using BingoWallpaper.Uwp.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Messaging;
 using SoftwareKobo.Social.SinaWeibo;
 using System;
 using System.IO;

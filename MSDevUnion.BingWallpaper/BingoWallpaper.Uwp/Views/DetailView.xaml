@@ -2,10 +2,10 @@
                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:controls="using:BingoWallpaper.Uwp.Controls"
+                xmlns:converters="using:WinRTXamlToolkit.Converters"
                 xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:dashicons="using:SoftwareKobo.Icons.Dashicons"
-                xmlns:helpers="using:BingoWallpaper.Uwp.Helpers"
                 xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                 xmlns:local="using:BingoWallpaper.Uwp.Views"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -58,6 +58,7 @@
                     </DiscreteObjectKeyFrame>
                 </ObjectAnimationUsingKeyFrames>
             </Storyboard>
+            <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         </ResourceDictionary>
     </Page.Resources>
     <local:ViewBase.LeaveStoryboard>
@@ -222,6 +223,21 @@
                                   Source="{Binding Path=WallpaperUrl}"
                                   Stretch="None" />
             </ScrollViewer>
+        </Grid>
+        <Grid Grid.Row="0"
+              Grid.RowSpan="3"
+              Background="Transparent"
+              Visibility="{Binding Path=IsBusy,Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Ellipse Width="96"
+                     Height="96"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center"
+                     Fill="#80FFFFFF" />
+            <ProgressRing Width="64"
+                          Height="64"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          IsActive="True" />
         </Grid>
         <controls:EllipseMask x:Name="EllipseMask"
                               Grid.Row="0"

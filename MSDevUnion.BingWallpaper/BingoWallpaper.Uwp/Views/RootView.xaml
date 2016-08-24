@@ -31,6 +31,7 @@
             </controls:ChooseShareControl>
         </Grid>
         <Grid x:Name="ToastPromptContainer"
-              x:FieldModifier="internal" />
+              x:FieldModifier="internal"
+              Padding="0,16,0,0" />
     </Grid>
 </UserControl>
