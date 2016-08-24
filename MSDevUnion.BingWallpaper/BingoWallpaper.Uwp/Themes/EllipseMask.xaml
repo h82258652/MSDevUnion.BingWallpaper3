@@ -14,6 +14,7 @@
                             <Path x:Name="PART_Path"
                                   Width="100"
                                   Height="100"
+                                  CacheMode="BitmapCache"
                                   Fill="{TemplateBinding Background}">
                                 <Path.Data>
                                     <GeometryGroup FillRule="EvenOdd">

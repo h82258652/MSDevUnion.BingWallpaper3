@@ -42,6 +42,8 @@ namespace BingoWallpaper.Uwp.Controls
 
         public event EventHandler<ImageFailedEventArgs> ImageFailed;
 
+        public event EventHandler ImageOpened;
+
         public virtual IImageLoader Loader
         {
             get
@@ -182,6 +184,7 @@ namespace BingoWallpaper.Uwp.Controls
                             _image.Visibility = Visibility.Visible;
                             _placeholderContentControl.Visibility = Visibility.Collapsed;
                             _image.Source = bitmap;
+                            ImageOpened?.Invoke(this, EventArgs.Empty);
                         }
                     }
                 }
