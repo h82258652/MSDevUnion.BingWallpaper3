@@ -18,7 +18,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Styles/BingoWallpaperBrushStyle.xaml" />
-                <ResourceDictionary Source="/Styles/BingoWallpaperScrollBarStyle.xaml" />
+                <ResourceDictionary Source="/Styles/BingoWallpaperScrollViewerStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <Storyboard x:Key="ThumbnailImageOpenedStoryboard">
                 <DoubleAnimation Storyboard.TargetName="ThumbnailImageGrid"
@@ -48,8 +48,8 @@
                                  From="1"
                                  To="0"
                                  Duration="0:0:0.2" />
-                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OriginalWallpaperGrid"
-                                               BeginTime="0:0:0.2"
+                <ObjectAnimationUsingKeyFrames BeginTime="0:0:0.2"
+                                               Storyboard.TargetName="OriginalWallpaperGrid"
                                                Storyboard.TargetProperty="Visibility">
                     <DiscreteObjectKeyFrame KeyTime="0:0:0">
                         <DiscreteObjectKeyFrame.Value>
@@ -152,6 +152,7 @@
                 <TranslateTransform />
             </Grid.RenderTransform>
             <ScrollViewer HorizontalScrollBarVisibility="Hidden"
+                          Style="{StaticResource BingoWallpaperScrollViewerStyle}"
                           VerticalScrollBarVisibility="Disabled">
                 <TextBlock Margin="8"
                            FontSize="14"
@@ -206,9 +207,8 @@
               Visibility="Collapsed">
             <ScrollViewer HorizontalContentAlignment="Center"
                           VerticalContentAlignment="Center"
-                          helpers:ScrollViewerHelper.HorizontalScrollBarStyle="{StaticResource BingoWallpaperScrollBarStyle}"
-                          helpers:ScrollViewerHelper.VerticalScrollBarStyle="{StaticResource BingoWallpaperScrollBarStyle}"
                           HorizontalScrollBarVisibility="Auto"
+                          Style="{StaticResource BingoWallpaperScrollViewerStyle}"
                           VerticalScrollBarVisibility="Auto"
                           ZoomMode="Enabled">
                 <interactivity:Interaction.Behaviors>

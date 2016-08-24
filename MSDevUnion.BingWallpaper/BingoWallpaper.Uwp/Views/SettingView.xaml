@@ -16,6 +16,7 @@
                 <ResourceDictionary Source="/Styles/BingoWallpaperBrushStyle.xaml" />
                 <ResourceDictionary Source="/Styles/BingoWallpaperCheckBoxStyle.xaml" />
                 <ResourceDictionary Source="/Styles/BingoWallpaperPivotHeaderItemStyle.xaml" />
+                <ResourceDictionary Source="/Styles/BingoWallpaperScrollViewerStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <converters:SaveLocationConverter x:Key="SaveLocationConverter" />
             <converters:StringFormatConverter x:Key="StringFormatConverter" />
@@ -178,6 +179,7 @@
                 <PivotItem x:Uid="/SettingView/GeneralPivotItem"
                            Margin="0,8,0,0">
                     <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                                  Style="{StaticResource BingoWallpaperScrollViewerStyle}"
                                   VerticalScrollBarVisibility="Auto">
                         <StackPanel Margin="12,0,12,0"
                                     Orientation="Vertical">
@@ -227,6 +229,7 @@
                 <PivotItem x:Uid="/SettingView/AutoUpdatePivotItem"
                            Margin="0,8,0,0">
                     <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                                  Style="{StaticResource BingoWallpaperScrollViewerStyle}"
                                   VerticalScrollBarVisibility="Auto">
                         <StackPanel Margin="12,0,12,0"
                                     Orientation="Vertical">
@@ -241,9 +244,10 @@
                         </StackPanel>
                     </ScrollViewer>
                 </PivotItem>
-                <PivotItem Margin="0,8,0,0"
-                           x:Uid="/SettingView/CachePivotItem">
+                <PivotItem x:Uid="/SettingView/CachePivotItem"
+                           Margin="0,8,0,0">
                     <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                                  Style="{StaticResource BingoWallpaperScrollViewerStyle}"
                                   VerticalScrollBarVisibility="Auto">
                         <StackPanel Margin="12,0,12,0"
                                     Orientation="Vertical">
