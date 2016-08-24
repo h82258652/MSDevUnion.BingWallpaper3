@@ -10,8 +10,6 @@ namespace BingoWallpaper
 
         public const string LeanCloudUrlBase = @"https://leancloud.cn";
 
-        public const string LeanCloudWallpaperDataCacheFolderName = "LeanCloudCache";
-
         public const string PenBeatUrlBase = "http://wallimaz-cdn.penbeat.cn";
 
         public static readonly DateTimeOffset MinimumViewMonth = new DateTimeOffset(new DateTime(2015, 1, 1));

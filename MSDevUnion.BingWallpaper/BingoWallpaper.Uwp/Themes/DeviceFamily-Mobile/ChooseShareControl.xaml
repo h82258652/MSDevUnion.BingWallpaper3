@@ -27,7 +27,9 @@
                                        Source="/Assets/Images/Share/SinaWeibo.png"
                                        Stretch="Fill" />
                                 <TextBlock x:Uid="/ChooseShareControl/SinaWeiboTextBlock"
+                                           FontSize="13"
                                            Foreground="LightGray"
+                                           IsTextScaleFactorEnabled="False"
                                            TextAlignment="Center" />
                             </StackPanel>
                             <StackPanel x:Name="PART_WechatControl"
@@ -39,7 +41,9 @@
                                        Source="/Assets/Images/Share/Wechat.png"
                                        Stretch="Fill" />
                                 <TextBlock x:Uid="/ChooseShareControl/WechatTextBlock"
+                                           FontSize="13"
                                            Foreground="LightGray"
+                                           IsTextScaleFactorEnabled="False"
                                            TextAlignment="Center" />
                             </StackPanel>
                             <StackPanel x:Name="PART_SystemShareControl"
@@ -51,7 +55,9 @@
                                        Source="/Assets/Images/Share/SystemShare.png"
                                        Stretch="Fill" />
                                 <TextBlock x:Uid="/ChooseShareControl/SystemShareTextBlock"
+                                           FontSize="13"
                                            Foreground="LightGray"
+                                           IsTextScaleFactorEnabled="False"
                                            TextAlignment="Center" />
                             </StackPanel>
                         </Grid>

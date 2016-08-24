@@ -134,6 +134,7 @@
             <Viewbox Stretch="Uniform"
                      StretchDirection="DownOnly">
                 <controls:ImageEx x:Name="ThumbnailImage"
+                                  ImageFailed="ThumbnailImage_ImageFailed"
                                   PointerReleased="ThumbnailImageGrid_PointerReleased"
                                   Source="{Binding Path=WallpaperUrl}"
                                   Stretch="None">
@@ -221,13 +222,18 @@
                 <controls:ImageEx HorizontalAlignment="Center"
                                   VerticalAlignment="Center"
                                   Source="{Binding Path=WallpaperUrl}"
-                                  Stretch="None" />
+                                  Stretch="None">
+                    <UIElement.RenderTransform>
+                        <TranslateTransform Y="-7" />
+                    </UIElement.RenderTransform>
+                </controls:ImageEx>
             </ScrollViewer>
         </Grid>
         <Grid Grid.Row="0"
               Grid.RowSpan="3"
               Background="Transparent"
-              Visibility="{Binding Path=IsBusy,Converter={StaticResource BooleanToVisibilityConverter}}">
+              Visibility="{Binding Path=IsBusy,
+                                   Converter={StaticResource BooleanToVisibilityConverter}}">
             <Ellipse Width="96"
                      Height="96"
                      HorizontalAlignment="Center"

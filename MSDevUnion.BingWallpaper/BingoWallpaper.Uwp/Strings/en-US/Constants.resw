@@ -147,4 +147,7 @@
   <data name="ClearCacheFinish" xml:space="preserve">
     <value>Clear cache finish</value>
   </data>
+  <data name="LoadImageFailed" xml:space="preserve">
+    <value>Load image failed</value>
+  </data>
 </root>

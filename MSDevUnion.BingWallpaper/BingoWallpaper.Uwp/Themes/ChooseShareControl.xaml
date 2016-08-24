@@ -17,8 +17,8 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <StackPanel Grid.Column="0"
-                                        x:Name="PART_SinaWeiboControl"
+                            <StackPanel x:Name="PART_SinaWeiboControl"
+                                        Grid.Column="0"
                                         Margin="20"
                                         Orientation="Vertical">
                                 <Image Width="64"
@@ -27,20 +27,24 @@
                                        Stretch="Fill" />
                                 <TextBlock x:Uid="/ChooseShareControl/SinaWeiboTextBlock"
                                            Margin="0,8,0,0"
+                                           FontSize="15"
                                            Foreground="LightGray"
+                                           IsTextScaleFactorEnabled="False"
                                            TextAlignment="Center" />
                             </StackPanel>
-                            <StackPanel Grid.Column="1"
-                                        x:Name="PART_SystemShareControl"
+                            <StackPanel x:Name="PART_SystemShareControl"
+                                        Grid.Column="1"
                                         Margin="20"
                                         Orientation="Vertical">
                                 <Image Width="64"
                                        Height="64"
                                        Source="/Assets/Images/Share/SystemShare.png"
                                        Stretch="Fill" />
-                                <TextBlock Margin="0,8,0,0"
-                                           x:Uid="/ChooseShareControl/SystemShareTextBlock"
+                                <TextBlock x:Uid="/ChooseShareControl/SystemShareTextBlock"
+                                           Margin="0,8,0,0"
+                                           FontSize="15"
                                            Foreground="LightGray"
+                                           IsTextScaleFactorEnabled="False"
                                            TextAlignment="Center" />
                             </StackPanel>
                         </Grid>

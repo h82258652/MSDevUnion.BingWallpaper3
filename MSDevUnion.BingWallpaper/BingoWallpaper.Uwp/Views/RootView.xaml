@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:controls="using:BingoWallpaper.Uwp.Controls"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="using:BingoWallpaper.Uwp.Views"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              Loaded="RootView_Loaded"
              Unloaded="RootView_Unloaded"
@@ -11,6 +10,7 @@
     <Grid x:Name="RootGrid">
         <Frame x:Name="RootFrame"
                x:FieldModifier="internal"
+               Background="#E3E3E3"
                Navigating="RootFrame_Navigating" />
         <ContentControl x:Name="PreviousPageContainer"
                         HorizontalContentAlignment="Stretch"

@@ -129,6 +129,9 @@
   <data name="CachePivotItem.Header" xml:space="preserve">
     <value>Cache</value>
   </data>
+  <data name="ClearCacheButton.Content" xml:space="preserve">
+    <value>Clear cache</value>
+  </data>
   <data name="GeneralPivotItem.Header" xml:space="preserve">
     <value>General</value>
   </data>
@@ -140,5 +143,11 @@
   </data>
   <data name="SelectedWallpaperSizeComboBox.Header" xml:space="preserve">
     <value>Wallpaper Size</value>
+  </data>
+  <data name="TotalCacheDataSizeTextBlock.Text" xml:space="preserve">
+    <value>Total cache data size:</value>
+  </data>
+  <data name="TotalCacheImageSizeTextBlock.Text" xml:space="preserve">
+    <value>Total cache image size:</value>
   </data>
 </root>

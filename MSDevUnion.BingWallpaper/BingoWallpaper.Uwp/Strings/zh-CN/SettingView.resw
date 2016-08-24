@@ -129,6 +129,9 @@
   <data name="CachePivotItem.Header" xml:space="preserve">
     <value>缓存</value>
   </data>
+  <data name="ClearCacheButton.Content" xml:space="preserve">
+    <value>清除缓存</value>
+  </data>
   <data name="GeneralPivotItem.Header" xml:space="preserve">
     <value>常规</value>
   </data>
@@ -140,5 +143,11 @@
   </data>
   <data name="SelectedWallpaperSizeComboBox.Header" xml:space="preserve">
     <value>壁纸大小</value>
+  </data>
+  <data name="TotalCacheDataSizeTextBlock.Text" xml:space="preserve">
+    <value>已缓存数据大小：</value>
+  </data>
+  <data name="TotalCacheImageSizeTextBlock.Text" xml:space="preserve">
+    <value>已缓存图片大小：</value>
   </data>
 </root>

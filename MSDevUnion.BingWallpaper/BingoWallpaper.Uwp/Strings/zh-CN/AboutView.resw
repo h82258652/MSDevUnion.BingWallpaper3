@@ -117,37 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ChooseEveryTime" xml:space="preserve">
-    <value>每次询问</value>
+  <data name="AppNameTextBlock.Text" xml:space="preserve">
+    <value>碧影壁纸</value>
   </data>
-  <data name="PictureLibrary" xml:space="preserve">
-    <value>图片库</value>
+  <data name="ClientDeveloperTextBlock.Text" xml:space="preserve">
+    <value>客户端开发</value>
   </data>
-  <data name="SavedPictures" xml:space="preserve">
-    <value>保存的图片</value>
+  <data name="IconDesignerTextBlock.Text" xml:space="preserve">
+    <value>图标设计</value>
   </data>
-  <data name="SaveSuccess" xml:space="preserve">
-    <value>保存成功</value>
+  <data name="RateButton.Content" xml:space="preserve">
+    <value>评价此 App</value>
   </data>
-  <data name="SetFailed" xml:space="preserve">
-    <value>设置失败</value>
+  <data name="ServerDeveloperTextBlock.Text" xml:space="preserve">
+    <value>服务器开发</value>
   </data>
-  <data name="SetSuccess" xml:space="preserve">
-    <value>设置成功</value>
-  </data>
-  <data name="ShareSuccess" xml:space="preserve">
-    <value>分享成功</value>
-  </data>
-  <data name="CancelAuthorize" xml:space="preserve">
-    <value>已取消授权</value>
-  </data>
-  <data name="RefreshSuccess" xml:space="preserve">
-    <value>刷新成功</value>
-  </data>
-  <data name="ClearCacheFinish" xml:space="preserve">
-    <value>清除缓存完成</value>
-  </data>
-  <data name="LoadImageFailed" xml:space="preserve">
-    <value>加载图片失败</value>
+  <data name="SpecialThanksTextBlock.Text" xml:space="preserve">
+    <value>特别感谢</value>
   </data>
 </root>

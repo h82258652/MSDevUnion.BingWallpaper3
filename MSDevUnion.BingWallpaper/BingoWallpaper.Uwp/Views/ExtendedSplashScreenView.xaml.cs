@@ -8,6 +8,7 @@ using Windows.ApplicationModel.Background;
 using Windows.Foundation.Metadata;
 using Windows.Graphics.Display;
 using Windows.UI;
+using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -130,7 +131,7 @@ namespace BingoWallpaper.Uwp.Views
             }
         }
 
-        private void Window_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
+        private void Window_SizeChanged(object sender, WindowSizeChangedEventArgs e)
         {
             UpdateSplashScreenImagePosition();
         }

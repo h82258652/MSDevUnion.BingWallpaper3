@@ -194,13 +194,24 @@
                                         <TextBlock Text="{Binding Converter={StaticResource SaveLocationConverter}}" />
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
+                                <ComboBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Vertical" />
+                                    </ItemsPanelTemplate>
+                                </ComboBox.ItemsPanel>
                             </ComboBox>
                             <ComboBox x:Uid="/SettingView/SelectedWallpaperSizeComboBox"
                                       Width="220"
                                       Margin="0,8,0,0"
                                       ItemsSource="{Binding Path=WallpaperSizes}"
                                       SelectedItem="{Binding Path=SelectedWallpaperSize,
-                                                             Mode=TwoWay}" />
+                                                             Mode=TwoWay}">
+                                <ComboBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Vertical" />
+                                    </ItemsPanelTemplate>
+                                </ComboBox.ItemsPanel>
+                            </ComboBox>
                             <ComboBox x:Uid="/SettingView/SelectedAreaComboBox"
                                       Width="220"
                                       Margin="0,8,0,0"
@@ -223,6 +234,11 @@
                                         </RelativePanel>
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
+                                <ComboBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Vertical" />
+                                    </ItemsPanelTemplate>
+                                </ComboBox.ItemsPanel>
                             </ComboBox>
                         </StackPanel>
                     </ScrollViewer>
@@ -254,10 +270,10 @@
                                     Orientation="Vertical">
                             <StackPanel Margin="4"
                                         Orientation="Vertical">
-                                <TextBlock FontSize="13"
+                                <TextBlock x:Uid="/SettingView/TotalCacheDataSizeTextBlock"
+                                           FontSize="13"
                                            FontWeight="Light"
-                                           Foreground="{ThemeResource SystemAccentBrush}"
-                                           Text="已缓存数据大小：" />
+                                           Foreground="{ThemeResource SystemAccentBrush}" />
                                 <TextBlock Margin="0,2,0,0"
                                            FontSize="16"
                                            Foreground="#2F2F2F"
@@ -265,19 +281,19 @@
                             </StackPanel>
                             <StackPanel Margin="4"
                                         Orientation="Vertical">
-                                <TextBlock FontSize="13"
+                                <TextBlock x:Uid="/SettingView/TotalCacheImageSizeTextBlock"
+                                           FontSize="13"
                                            FontWeight="Light"
-                                           Foreground="{ThemeResource SystemAccentBrush}"
-                                           Text="已缓存图片大小：" />
+                                           Foreground="{ThemeResource SystemAccentBrush}" />
                                 <TextBlock Margin="0,2,0,0"
                                            FontSize="16"
                                            Foreground="#2F2F2F"
                                            Text="{Binding Path=CacheImageSizeString}" />
                             </StackPanel>
                             <Grid Margin="0,4,0,0">
-                                <controls:BingoWallpaperButton HorizontalAlignment="Left"
-                                                               Command="{Binding Path=ClearCacheCommand}"
-                                                               Content="清除缓存" />
+                                <controls:BingoWallpaperButton x:Uid="/SettingView/ClearCacheButton"
+                                                               HorizontalAlignment="Left"
+                                                               Command="{Binding Path=ClearCacheCommand}" />
                             </Grid>
                         </StackPanel>
                     </ScrollViewer>

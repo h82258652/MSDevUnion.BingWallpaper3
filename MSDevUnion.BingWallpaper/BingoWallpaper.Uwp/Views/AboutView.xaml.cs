@@ -6,5 +6,12 @@
         {
             InitializeComponent();
         }
+
+        protected override void PrepareLeaveStoryboard()
+        {
+            base.PrepareLeaveStoryboard();
+
+            LeaveAnimation.To = RootGrid.ActualWidth;
+        }
     }
 }

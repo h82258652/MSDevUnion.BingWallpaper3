@@ -52,6 +52,7 @@ namespace BingoWallpaper.Uwp.ViewModels
             unityContainer.RegisterType<IBingoFileService, BingoFileService>();
             unityContainer.RegisterType<IAppToastService, AppToastService>();
             unityContainer.RegisterType<IBingoShareService, BingoShareService>();
+            unityContainer.RegisterType<IStoreService, StoreService>();
 
             unityContainer.RegisterType<IBingoWallpaperSettings, BingoWallpaperSettings>();
 

@@ -112,8 +112,10 @@
     <Compile Include="Services\BingoShareService.cs" />
     <Compile Include="Services\Constants.cs" />
     <Compile Include="Services\ILeanCloudWallpaperServiceWithCache.cs" />
+    <Compile Include="Services\IStoreService.cs" />
     <Compile Include="Services\ITileService.cs" />
     <Compile Include="Services\LeanCloudWallpaperServiceWithCache.cs" />
+    <Compile Include="Services\StoreService.cs" />
     <Compile Include="Services\SystemSettingService.cs" />
     <Compile Include="Services\BingoFileService.cs" />
     <Compile Include="Services\IBingoFileService.cs" />

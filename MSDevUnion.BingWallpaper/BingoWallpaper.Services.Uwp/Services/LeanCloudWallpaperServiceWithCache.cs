@@ -16,6 +16,8 @@ namespace BingoWallpaper.Services
 {
     public class LeanCloudWallpaperServiceWithCache : ILeanCloudWallpaperServiceWithCache
     {
+        private const string CacheFolderName = "LeanCloudCache";
+
         public long CalculateSize()
         {
             var cacheFolderPath = GetCacheFolderPath();
@@ -118,8 +120,7 @@ namespace BingoWallpaper.Services
 
         public string GetCacheFolderPath()
         {
-            return Path.Combine(ApplicationData.Current.LocalFolder.Path,
-                BingoWallpaper.Constants.LeanCloudWallpaperDataCacheFolderName);
+            return Path.Combine(ApplicationData.Current.LocalFolder.Path, CacheFolderName);
         }
 
         public Task<Image> GetImageAsync(string objectId)

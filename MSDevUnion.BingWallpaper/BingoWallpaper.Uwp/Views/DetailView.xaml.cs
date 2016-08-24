@@ -1,7 +1,10 @@
 ﻿using BingoWallpaper.Models.LeanCloud;
+using BingoWallpaper.Uwp.Controls;
+using BingoWallpaper.Uwp.Services;
 using BingoWallpaper.Uwp.ViewModels;
 using System.Collections;
 using System.Diagnostics;
+using UmengSDK;
 using Windows.Devices.Input;
 using Windows.UI.Input;
 using Windows.UI.Xaml;
@@ -46,6 +49,12 @@ namespace BingoWallpaper.Uwp.Views
         private async void DetailView_Loaded(object sender, RoutedEventArgs e)
         {
             await EllipseMask.LightOnAsync();
+        }
+
+        private async void ThumbnailImage_ImageFailed(object sender, ImageFailedEventArgs e)
+        {
+            new AppToastService().ShowError(LocalizedStrings.LoadImageFailed);
+            await UmengAnalytics.TrackError(e.ErrorMessage);
         }
 
         private void ThumbnailImageGrid_PointerReleased(object sender, PointerRoutedEventArgs e)

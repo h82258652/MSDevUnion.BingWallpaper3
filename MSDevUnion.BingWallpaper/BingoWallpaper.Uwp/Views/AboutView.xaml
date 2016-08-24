@@ -5,6 +5,8 @@
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:local="using:BingoWallpaper.Uwp.Views"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                DataContext="{Binding Source={StaticResource Locator},
+                                      Path=About}"
                 mc:Ignorable="d">
     <Page.Resources>
         <ResourceDictionary>
@@ -14,7 +16,52 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-    <Grid>
+    <local:ViewBase.EnterStoryboard>
+        <Storyboard>
+            <DoubleAnimation Storyboard.TargetName="RootGrid"
+                             Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[1].(ScaleTransform.ScaleX)"
+                             From="0"
+                             To="1"
+                             Duration="0:0:0.4">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase Amplitude="0.1"
+                              EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="RootGrid"
+                             Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[1].(ScaleTransform.ScaleY)"
+                             From="0"
+                             To="1"
+                             Duration="0:0:0.4">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase Amplitude="0.1"
+                              EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+    </local:ViewBase.EnterStoryboard>
+    <local:ViewBase.LeaveStoryboard>
+        <Storyboard>
+            <DoubleAnimation x:Name="LeaveAnimation"
+                             Storyboard.TargetName="RootGrid"
+                             Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(TranslateTransform.X)"
+                             From="0"
+                             Duration="0:0:0.4">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase Amplitude="0.4"
+                              EasingMode="EaseIn" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+    </local:ViewBase.LeaveStoryboard>
+    <Grid x:Name="RootGrid"
+          RenderTransformOrigin="0.5,0.5">
+        <Grid.RenderTransform>
+            <TransformGroup>
+                <TranslateTransform />
+                <ScaleTransform />
+            </TransformGroup>
+        </Grid.RenderTransform>
         <Grid Background="#E3E3E3" />
         <Grid>
             <Grid.RowDefinitions>
@@ -29,11 +76,11 @@
                        HorizontalAlignment="Center"
                        Source="/Assets/Square150x150Logo.png"
                        Stretch="Uniform" />
-                <TextBlock Margin="0,4,0,0"
+                <TextBlock x:Uid="/AboutView/AppNameTextBlock"
+                           Margin="0,4,0,0"
                            FontSize="22"
                            FontWeight="Bold"
                            Foreground="#171717"
-                           Text="碧影壁纸"
                            TextAlignment="Center" />
             </StackPanel>
             <ScrollViewer Grid.Row="1"
@@ -57,10 +104,10 @@
                                     Orientation="Vertical">
                             <StackPanel Margin="8"
                                         Orientation="Vertical">
-                                <TextBlock FontSize="14"
+                                <TextBlock x:Uid="/AboutView/ServerDeveloperTextBlock"
+                                           FontSize="14"
                                            FontWeight="Light"
-                                           Foreground="{ThemeResource SystemAccentBrush}"
-                                           Text="服务器开发" />
+                                           Foreground="{ThemeResource SystemAccentBrush}" />
                                 <TextBlock Margin="0,2,0,0"
                                            FontSize="18"
                                            Foreground="#2F2F2F"
@@ -68,10 +115,10 @@
                             </StackPanel>
                             <StackPanel Margin="8"
                                         Orientation="Vertical">
-                                <TextBlock FontSize="14"
+                                <TextBlock x:Uid="/AboutView/ClientDeveloperTextBlock"
+                                           FontSize="14"
                                            FontWeight="Light"
-                                           Foreground="{ThemeResource SystemAccentBrush}"
-                                           Text="客户端开发" />
+                                           Foreground="{ThemeResource SystemAccentBrush}" />
                                 <TextBlock Margin="0,2,0,0"
                                            FontSize="18"
                                            Foreground="#2F2F2F"
@@ -79,10 +126,10 @@
                             </StackPanel>
                             <StackPanel Margin="8"
                                         Orientation="Vertical">
-                                <TextBlock FontSize="14"
+                                <TextBlock x:Uid="/AboutView/IconDesignerTextBlock"
+                                           FontSize="14"
                                            FontWeight="Light"
-                                           Foreground="{ThemeResource SystemAccentBrush}"
-                                           Text="图标设计" />
+                                           Foreground="{ThemeResource SystemAccentBrush}" />
                                 <TextBlock Margin="0,2,0,0"
                                            FontSize="18"
                                            Foreground="#2F2F2F"
@@ -98,10 +145,10 @@
                                     Orientation="Vertical">
                             <StackPanel Margin="8"
                                         Orientation="Vertical">
-                                <TextBlock FontSize="14"
+                                <TextBlock x:Uid="/AboutView/SpecialThanksTextBlock"
+                                           FontSize="14"
                                            FontWeight="Light"
-                                           Foreground="{ThemeResource SystemAccentBrush}"
-                                           Text="特别感谢" />
+                                           Foreground="{ThemeResource SystemAccentBrush}" />
                                 <TextBlock Margin="0,2,0,0"
                                            FontSize="18"
                                            Foreground="#2F2F2F"
@@ -118,9 +165,10 @@
                         </StackPanel>
                     </Grid>
                     <Grid Grid.Row="1">
-                        <controls:BingoWallpaperButton Margin="0,16,0,24"
-                                                       Content="评价此 App"
-                                                       FontSize="20" />
+                        <controls:BingoWallpaperButton x:Uid="/AboutView/RateButton"
+                                                       Margin="0,16,0,24"
+                                                       Command="{Binding Path=RateCommand}"
+                                                       FontSize="19" />
                     </Grid>
                 </Grid>
             </ScrollViewer>
