@@ -20,15 +20,15 @@
                 <ResourceDictionary Source="/Styles/BingoWallpaperBrushStyle.xaml" />
                 <ResourceDictionary Source="/Styles/BingoWallpaperScrollBarStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <Storyboard x:Key="ImageOpenedStoryboard">
-                <DoubleAnimation Storyboard.TargetName="Image"
+            <Storyboard x:Key="ThumbnailImageOpenedStoryboard">
+                <DoubleAnimation Storyboard.TargetName="ThumbnailImageGrid"
                                  Storyboard.TargetProperty="Opacity"
                                  From="0"
                                  To="1"
                                  Duration="0:0:0.4" />
             </Storyboard>
-            <Storyboard x:Name="ShowWallpaperScrollViewerStoryboard">
-                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="WallpaperScrollViewer"
+            <Storyboard x:Name="ShowOriginalWallpaperScrollViewerStoryboard">
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OriginalWallpaperGrid"
                                                Storyboard.TargetProperty="Visibility">
                     <DiscreteObjectKeyFrame KeyTime="0:0:0">
                         <DiscreteObjectKeyFrame.Value>
@@ -36,50 +36,20 @@
                         </DiscreteObjectKeyFrame.Value>
                     </DiscreteObjectKeyFrame>
                 </ObjectAnimationUsingKeyFrames>
-                <DoubleAnimation Storyboard.TargetName="WallpaperScrollViewer"
-                                 Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                <DoubleAnimation Storyboard.TargetName="OriginalWallpaperGrid"
+                                 Storyboard.TargetProperty="Opacity"
                                  From="0"
                                  To="1"
-                                 Duration="0:0:0.4">
-                    <DoubleAnimation.EasingFunction>
-                        <BackEase Amplitude="0.3"
-                                  EasingMode="EaseOut" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="WallpaperScrollViewer"
-                                 Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
-                                 From="0"
-                                 To="1"
-                                 Duration="0:0:0.4">
-                    <DoubleAnimation.EasingFunction>
-                        <BackEase Amplitude="0.3"
-                                  EasingMode="EaseOut" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
+                                 Duration="0:0:0.2" />
             </Storyboard>
-            <Storyboard x:Name="HideWallpaperScrollViewerStoryboard">
-                <DoubleAnimation Storyboard.TargetName="WallpaperScrollViewer"
-                                 Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+            <Storyboard x:Name="HideOriginalWallpaperScrollViewerStoryboard">
+                <DoubleAnimation Storyboard.TargetName="OriginalWallpaperGrid"
+                                 Storyboard.TargetProperty="Opacity"
                                  From="1"
                                  To="0"
-                                 Duration="0:0:0.4">
-                    <DoubleAnimation.EasingFunction>
-                        <BackEase Amplitude="0.3"
-                                  EasingMode="EaseIn" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="WallpaperScrollViewer"
-                                 Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
-                                 From="1"
-                                 To="0"
-                                 Duration="0:0:0.4">
-                    <DoubleAnimation.EasingFunction>
-                        <BackEase Amplitude="0.3"
-                                  EasingMode="EaseIn" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <ObjectAnimationUsingKeyFrames BeginTime="0:0:0.4"
-                                               Storyboard.TargetName="WallpaperScrollViewer"
+                                 Duration="0:0:0.2" />
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OriginalWallpaperGrid"
+                                               BeginTime="0:0:0.2"
                                                Storyboard.TargetProperty="Visibility">
                     <DiscreteObjectKeyFrame KeyTime="0:0:0">
                         <DiscreteObjectKeyFrame.Value>
@@ -110,7 +80,7 @@
                             From="#E3E3E3"
                             To="Transparent"
                             Duration="0:0:0.4" />
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ImageGrid"
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ThumbnailImageGrid"
                                            Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
                 <DiscreteDoubleKeyFrame KeyTime="0:0:0"
                                         Value="1" />
@@ -123,7 +93,7 @@
                     </EasingDoubleKeyFrame.EasingFunction>
                 </EasingDoubleKeyFrame>
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ImageGrid"
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ThumbnailImageGrid"
                                            Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
                 <DiscreteDoubleKeyFrame KeyTime="0:0:0"
                                         Value="1" />
@@ -154,7 +124,7 @@
               Grid.RowSpan="2"
               Background="#E3E3E3"
               IsHitTestVisible="False" />
-        <Grid x:Name="ImageGrid"
+        <Grid x:Name="ThumbnailImageGrid"
               Grid.Row="1"
               RenderTransformOrigin="0.5,0.5">
             <Grid.RenderTransform>
@@ -162,14 +132,14 @@
             </Grid.RenderTransform>
             <Viewbox Stretch="Uniform"
                      StretchDirection="DownOnly">
-                <controls:ImageEx x:Name="Image"
-                                  PointerReleased="Image_PointerReleased"
+                <controls:ImageEx x:Name="ThumbnailImage"
+                                  PointerReleased="ThumbnailImageGrid_PointerReleased"
                                   Source="{Binding Path=WallpaperUrl}"
                                   Stretch="None">
                     <interactivity:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="ImageOpened">
                             <media:ControlStoryboardAction ControlStoryboardOption="Play"
-                                                           Storyboard="{StaticResource ImageOpenedStoryboard}" />
+                                                           Storyboard="{StaticResource ThumbnailImageOpenedStoryboard}" />
                         </core:EventTriggerBehavior>
                     </interactivity:Interaction.Behaviors>
                 </controls:ImageEx>
@@ -229,28 +199,24 @@
                 </AppBarButton.Icon>
             </AppBarButton>
         </CommandBar>
-        <Grid Grid.Row="0"
-              Grid.RowSpan="3">
-            <ScrollViewer x:Name="WallpaperScrollViewer"
-                          HorizontalContentAlignment="Center"
+        <Grid x:Name="OriginalWallpaperGrid"
+              Grid.Row="0"
+              Grid.RowSpan="3"
+              Background="#171717"
+              Visibility="Collapsed">
+            <ScrollViewer HorizontalContentAlignment="Center"
                           VerticalContentAlignment="Center"
                           helpers:ScrollViewerHelper.HorizontalScrollBarStyle="{StaticResource BingoWallpaperScrollBarStyle}"
                           helpers:ScrollViewerHelper.VerticalScrollBarStyle="{StaticResource BingoWallpaperScrollBarStyle}"
-                          Background="#171717"
                           HorizontalScrollBarVisibility="Auto"
-                          RenderTransformOrigin="0.5,0.5"
                           VerticalScrollBarVisibility="Auto"
-                          Visibility="Collapsed"
                           ZoomMode="Enabled">
                 <interactivity:Interaction.Behaviors>
                     <core:EventTriggerBehavior EventName="Tapped">
                         <media:ControlStoryboardAction ControlStoryboardOption="Play"
-                                                       Storyboard="{Binding ElementName=HideWallpaperScrollViewerStoryboard}" />
+                                                       Storyboard="{Binding ElementName=HideOriginalWallpaperScrollViewerStoryboard}" />
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
-                <ScrollViewer.RenderTransform>
-                    <ScaleTransform />
-                </ScrollViewer.RenderTransform>
                 <controls:ImageEx HorizontalAlignment="Center"
                                   VerticalAlignment="Center"
                                   Source="{Binding Path=WallpaperUrl}"

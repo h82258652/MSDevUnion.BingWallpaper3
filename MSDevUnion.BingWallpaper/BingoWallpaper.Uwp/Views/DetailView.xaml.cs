@@ -34,9 +34,9 @@ namespace BingoWallpaper.Uwp.Views
             {
                 e.Cancel = true;
             }
-            else if (WallpaperScrollViewer.Visibility == Visibility.Visible)
+            else if (OriginalWallpaperGrid.Visibility == Visibility.Visible)
             {
-                HideWallpaperScrollViewerStoryboard.Begin();
+                HideOriginalWallpaperScrollViewerStoryboard.Begin();
                 e.Cancel = true;
             }
 
@@ -48,7 +48,7 @@ namespace BingoWallpaper.Uwp.Views
             await EllipseMask.LightOnAsync();
         }
 
-        private void Image_PointerReleased(object sender, PointerRoutedEventArgs e)
+        private void ThumbnailImageGrid_PointerReleased(object sender, PointerRoutedEventArgs e)
         {
             var pointerPoint = e.GetCurrentPoint(null);
             var pointerDevice = pointerPoint.PointerDevice;
@@ -58,7 +58,7 @@ namespace BingoWallpaper.Uwp.Views
             }
 
             e.Handled = true;
-            ShowWallpaperScrollViewerStoryboard.Begin();
+            ShowOriginalWallpaperScrollViewerStoryboard.Begin();
         }
     }
 }

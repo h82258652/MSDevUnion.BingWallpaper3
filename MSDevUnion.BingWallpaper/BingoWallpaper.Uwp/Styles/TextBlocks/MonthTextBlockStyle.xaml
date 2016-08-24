@@ -12,5 +12,10 @@
                 Value="#171717" />
         <Setter Property="IsTextScaleFactorEnabled"
                 Value="False" />
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <TranslateTransform Y="-2" />
+            </Setter.Value>
+        </Setter>
     </Style>
 </ResourceDictionary>
