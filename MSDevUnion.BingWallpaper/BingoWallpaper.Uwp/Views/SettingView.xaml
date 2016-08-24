@@ -104,12 +104,26 @@
                              Storyboard.TargetProperty="Width"
                              To="40"
                              Duration="0:0:0.25" />
+            <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.25"
+                                           EnableDependentAnimation="True"
+                                           Storyboard.TargetName="ContentBackgroundRectangle"
+                                           Storyboard.TargetProperty="Width">
+                <DiscreteDoubleKeyFrame KeyTime="0:0:0"
+                                        Value="40" />
+            </DoubleAnimationUsingKeyFrames>
             <DoubleAnimation x:Name="ContentBackgroundRectangleHeightLeaveAnimation"
                              EnableDependentAnimation="True"
                              Storyboard.TargetName="ContentBackgroundRectangle"
                              Storyboard.TargetProperty="Height"
                              To="40"
                              Duration="0:0:0.25" />
+            <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.25"
+                                           EnableDependentAnimation="True"
+                                           Storyboard.TargetName="ContentBackgroundRectangle"
+                                           Storyboard.TargetProperty="Height">
+                <DiscreteDoubleKeyFrame KeyTime="0:0:0"
+                                        Value="40" />
+            </DoubleAnimationUsingKeyFrames>
             <DoubleAnimation EnableDependentAnimation="True"
                              Storyboard.TargetName="ContentBackgroundRectangle"
                              Storyboard.TargetProperty="RadiusX"
