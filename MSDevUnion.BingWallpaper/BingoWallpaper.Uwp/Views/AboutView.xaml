@@ -37,6 +37,7 @@
                            TextAlignment="Center" />
             </StackPanel>
             <ScrollViewer Grid.Row="1"
+                          Margin="0,8,0,0"
                           HorizontalScrollBarVisibility="Disabled"
                           Style="{StaticResource BingoWallpaperScrollViewerStyle}"
                           VerticalScrollBarVisibility="Auto">
@@ -54,7 +55,7 @@
                         <StackPanel Grid.Column="0"
                                     HorizontalAlignment="Center"
                                     Orientation="Vertical">
-                            <StackPanel Margin="4"
+                            <StackPanel Margin="8"
                                         Orientation="Vertical">
                                 <TextBlock FontSize="14"
                                            FontWeight="Light"
@@ -65,7 +66,7 @@
                                            Foreground="#2F2F2F"
                                            Text="bohan" />
                             </StackPanel>
-                            <StackPanel Margin="4"
+                            <StackPanel Margin="8"
                                         Orientation="Vertical">
                                 <TextBlock FontSize="14"
                                            FontWeight="Light"
@@ -76,7 +77,7 @@
                                            Foreground="#2F2F2F"
                                            Text="h82258652" />
                             </StackPanel>
-                            <StackPanel Margin="4"
+                            <StackPanel Margin="8"
                                         Orientation="Vertical">
                                 <TextBlock FontSize="14"
                                            FontWeight="Light"
@@ -95,7 +96,7 @@
                         <StackPanel Grid.Column="1"
                                     HorizontalAlignment="Center"
                                     Orientation="Vertical">
-                            <StackPanel Margin="4"
+                            <StackPanel Margin="8"
                                         Orientation="Vertical">
                                 <TextBlock FontSize="14"
                                            FontWeight="Light"
