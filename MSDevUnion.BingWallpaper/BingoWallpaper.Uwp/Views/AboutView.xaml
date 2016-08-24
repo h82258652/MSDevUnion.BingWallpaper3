@@ -118,7 +118,7 @@
                         </StackPanel>
                     </Grid>
                     <Grid Grid.Row="1">
-                        <controls:BingoWallpaperButton Margin="16"
+                        <controls:BingoWallpaperButton Margin="0,16,0,24"
                                                        Content="评价此 App"
                                                        FontSize="20" />
                     </Grid>
