@@ -8,21 +8,25 @@ namespace BingoWallpaper.Uwp.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var saveLocation = (SaveLocation)value;
-            switch (saveLocation)
+            if (value is SaveLocation)
             {
-                case SaveLocation.PictureLibrary:
-                    return LocalizedStrings.PictureLibrary;
+                var saveLocation = (SaveLocation)value;
+                switch (saveLocation)
+                {
+                    case SaveLocation.PictureLibrary:
+                        return LocalizedStrings.PictureLibrary;
 
-                case SaveLocation.ChooseEveryTime:
-                    return LocalizedStrings.ChooseEveryTime;
+                    case SaveLocation.ChooseEveryTime:
+                        return LocalizedStrings.ChooseEveryTime;
 
-                case SaveLocation.SavedPictures:
-                    return LocalizedStrings.SavedPictures;
+                    case SaveLocation.SavedPictures:
+                        return LocalizedStrings.SavedPictures;
 
-                default:
-                    return value;
+                    default:
+                        return value;
+                }
             }
+            return value;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

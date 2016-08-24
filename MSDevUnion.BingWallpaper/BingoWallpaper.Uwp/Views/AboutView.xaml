@@ -177,6 +177,6 @@
                    HorizontalAlignment="Right"
                    VerticalAlignment="Bottom"
                    IsHitTestVisible="False"
-                   Text="MSDevUnion © 2015-2016" />
+                   Text="MSDevUnion © 2015 - 2016" />
     </Grid>
 </local:ViewBase>

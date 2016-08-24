@@ -189,6 +189,10 @@
                                       ItemsSource="{Binding Path=SaveLocations}"
                                       SelectedItem="{Binding Path=SelectedSaveLocation,
                                                              Mode=TwoWay}">
+                                <ComboBox.Resources>
+                                    <Style BasedOn="{StaticResource BingoWallpaperScrollBarStyle}"
+                                           TargetType="ScrollBar" />
+                                </ComboBox.Resources>
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding Converter={StaticResource SaveLocationConverter}}" />
@@ -196,7 +200,8 @@
                                 </ComboBox.ItemTemplate>
                                 <ComboBox.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <StackPanel Orientation="Vertical" />
+                                        <VirtualizingStackPanel Width="220"
+                                                                Orientation="Vertical" />
                                     </ItemsPanelTemplate>
                                 </ComboBox.ItemsPanel>
                             </ComboBox>
@@ -206,9 +211,14 @@
                                       ItemsSource="{Binding Path=WallpaperSizes}"
                                       SelectedItem="{Binding Path=SelectedWallpaperSize,
                                                              Mode=TwoWay}">
+                                <ComboBox.Resources>
+                                    <Style BasedOn="{StaticResource BingoWallpaperScrollBarStyle}"
+                                           TargetType="ScrollBar" />
+                                </ComboBox.Resources>
                                 <ComboBox.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <StackPanel Orientation="Vertical" />
+                                        <VirtualizingStackPanel Width="220"
+                                                                Orientation="Vertical" />
                                     </ItemsPanelTemplate>
                                 </ComboBox.ItemsPanel>
                             </ComboBox>
@@ -218,6 +228,10 @@
                                       ItemsSource="{Binding Path=Areas}"
                                       SelectedItem="{Binding Path=SelectedArea,
                                                              Mode=TwoWay}">
+                                <ComboBox.Resources>
+                                    <Style BasedOn="{StaticResource BingoWallpaperScrollBarStyle}"
+                                           TargetType="ScrollBar" />
+                                </ComboBox.Resources>
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
                                         <RelativePanel>
@@ -236,7 +250,8 @@
                                 </ComboBox.ItemTemplate>
                                 <ComboBox.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <StackPanel Orientation="Vertical" />
+                                        <VirtualizingStackPanel Width="220"
+                                                                Orientation="Vertical" />
                                     </ItemsPanelTemplate>
                                 </ComboBox.ItemsPanel>
                             </ComboBox>
