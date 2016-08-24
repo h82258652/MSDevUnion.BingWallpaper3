@@ -144,4 +144,7 @@
   <data name="RefreshSuccess" xml:space="preserve">
     <value>刷新成功</value>
   </data>
+  <data name="ClearCacheFinish" xml:space="preserve">
+    <value>清除缓存完成</value>
+  </data>
 </root>

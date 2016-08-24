@@ -144,4 +144,7 @@
   <data name="RefreshSuccess" xml:space="preserve">
     <value>Refresh success</value>
   </data>
+  <data name="ClearCacheFinish" xml:space="preserve">
+    <value>Clear cache finish</value>
+  </data>
 </root>

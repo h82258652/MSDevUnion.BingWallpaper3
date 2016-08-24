@@ -107,9 +107,11 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\LeanCloudWallpaperServiceWithCacheExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BingoShareService.cs" />
     <Compile Include="Services\Constants.cs" />
+    <Compile Include="Services\ILeanCloudWallpaperServiceWithCache.cs" />
     <Compile Include="Services\ITileService.cs" />
     <Compile Include="Services\LeanCloudWallpaperServiceWithCache.cs" />
     <Compile Include="Services\SystemSettingService.cs" />

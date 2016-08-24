@@ -10,6 +10,9 @@ namespace BingoWallpaper.Uwp
 
         internal static string ChooseEveryTime => ResourceLoader.GetForCurrentView(ConstantsReswName).GetString("ChooseEveryTime");
 
+        internal static string ClearCacheFinish
+            => ResourceLoader.GetForCurrentView(ConstantsReswName).GetString("ClearCacheFinish");
+
         internal static string PictureLibrary => ResourceLoader.GetForCurrentView(ConstantsReswName).GetString("PictureLibrary");
 
         internal static string RefreshSuccess => ResourceLoader.GetForCurrentView(ConstantsReswName).GetString("RefreshSuccess");

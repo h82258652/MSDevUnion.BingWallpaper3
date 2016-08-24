@@ -29,7 +29,7 @@
         <Setter Property="FontWeight"
                 Value="Normal" />
         <Setter Property="FontSize"
-                Value="{ThemeResource ControlContentThemeFontSize}" />
+                Value="14" />
         <Setter Property="UseSystemFocusVisuals"
                 Value="True" />
         <Setter Property="Margin"

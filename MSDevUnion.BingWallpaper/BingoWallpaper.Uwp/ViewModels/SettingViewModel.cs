@@ -1,28 +1,80 @@
 ﻿using BingoWallpaper.Configuration;
+using BingoWallpaper.Extensions;
 using BingoWallpaper.Models;
 using BingoWallpaper.Services;
+using BingoWallpaper.Uwp.Controls;
+using BingoWallpaper.Uwp.Extensions;
 using BingoWallpaper.Uwp.Messages;
+using BingoWallpaper.Uwp.Services;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using WinRTXamlToolkit.Tools;
 
 namespace BingoWallpaper.Uwp.ViewModels
 {
     public class SettingViewModel : ViewModelBase, INavigable
     {
-        private readonly ILeanCloudWallpaperService _leanCloudWallpaperService;
+        private readonly IAppToastService _appToastService;
+
+        private readonly IImageLoader _imageLoader;
+
+        private readonly ILeanCloudWallpaperServiceWithCache _leanCloudWallpaperServiceWithCache;
 
         private readonly IBingoWallpaperSettings _settings;
 
+        private RelayCommand _clearCacheCommand;
+
         private string _previousSelectedArea;
 
-        public SettingViewModel(ILeanCloudWallpaperService leanCloudWallpaperService, IBingoWallpaperSettings settings)
+        public SettingViewModel(ILeanCloudWallpaperServiceWithCache leanCloudWallpaperServiceWithCache, IBingoWallpaperSettings settings, IAppToastService appToastService, IImageLoader imageLoader)
         {
-            _leanCloudWallpaperService = leanCloudWallpaperService;
+            _leanCloudWallpaperServiceWithCache = leanCloudWallpaperServiceWithCache;
             _settings = settings;
+            _appToastService = appToastService;
+            _imageLoader = imageLoader;
         }
 
-        public IReadOnlyList<string> Areas => _leanCloudWallpaperService.GetSupportedAreas();
+        public IReadOnlyList<string> Areas => _leanCloudWallpaperServiceWithCache.GetSupportedAreas();
+
+        public string CacheDataSizeString => _leanCloudWallpaperServiceWithCache.CalculateSizeString();
+
+        public string CacheImageSizeString => _imageLoader.CalculateCacheSizeString();
+
+        public RelayCommand ClearCacheCommand
+        {
+            get
+            {
+                _clearCacheCommand = _clearCacheCommand ?? new RelayCommand(async () =>
+                {
+                    await Task.Run(() =>
+                    {
+                        try
+                        {
+                            _leanCloudWallpaperServiceWithCache.DeleteAllCache();
+                        }
+                        catch (Exception)
+                        {
+                            // ignored
+                        }
+                        try
+                        {
+                            _imageLoader.DeleteAllCache();
+                        }
+                        catch (Exception)
+                        {
+                            // ignored
+                        }
+                    });
+                    RaisePropertyChanged(nameof(CacheDataSizeString));
+                    RaisePropertyChanged(nameof(CacheImageSizeString));
+                    _appToastService.ShowMessage(LocalizedStrings.ClearCacheFinish);
+                });
+                return _clearCacheCommand;
+            }
+        }
 
         public bool IsAutoUpdateLockScreen
         {
@@ -94,7 +146,7 @@ namespace BingoWallpaper.Uwp.ViewModels
             }
         }
 
-        public IReadOnlyList<WallpaperSize> WallpaperSizes => _leanCloudWallpaperService.GetSupportedWallpaperSizes();
+        public IReadOnlyList<WallpaperSize> WallpaperSizes => _leanCloudWallpaperServiceWithCache.GetSupportedWallpaperSizes();
 
         public void Activate(object parameter)
         {

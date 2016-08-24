@@ -155,6 +155,7 @@
     <Compile Include="Converters\StringFormatConverter.cs" />
     <Compile Include="Converters\WallpaperUrlConverter.cs" />
     <Compile Include="Extensions\FrameExtensions.cs" />
+    <Compile Include="Extensions\ImageLoaderExtensions.cs" />
     <Compile Include="Extensions\MathExtensions.cs" />
     <Compile Include="Extensions\StoryboardExtensions.cs" />
     <Compile Include="Helpers\ScrollViewerHelper.cs" />

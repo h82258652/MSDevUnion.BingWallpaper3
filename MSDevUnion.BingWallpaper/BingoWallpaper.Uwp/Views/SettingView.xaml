@@ -252,8 +252,33 @@
                                   VerticalScrollBarVisibility="Auto">
                         <StackPanel Margin="12,0,12,0"
                                     Orientation="Vertical">
-                            <controls:BingoWallpaperButton HorizontalAlignment="Left"
-                                                           Content="清除缓存" />
+                            <StackPanel Margin="4"
+                                        Orientation="Vertical">
+                                <TextBlock FontSize="13"
+                                           FontWeight="Light"
+                                           Foreground="{ThemeResource SystemAccentBrush}"
+                                           Text="已缓存数据大小：" />
+                                <TextBlock Margin="0,2,0,0"
+                                           FontSize="16"
+                                           Foreground="#2F2F2F"
+                                           Text="{Binding Path=CacheDataSizeString}" />
+                            </StackPanel>
+                            <StackPanel Margin="4"
+                                        Orientation="Vertical">
+                                <TextBlock FontSize="13"
+                                           FontWeight="Light"
+                                           Foreground="{ThemeResource SystemAccentBrush}"
+                                           Text="已缓存图片大小：" />
+                                <TextBlock Margin="0,2,0,0"
+                                           FontSize="16"
+                                           Foreground="#2F2F2F"
+                                           Text="{Binding Path=CacheImageSizeString}" />
+                            </StackPanel>
+                            <Grid Margin="0,4,0,0">
+                                <controls:BingoWallpaperButton HorizontalAlignment="Left"
+                                                               Command="{Binding Path=ClearCacheCommand}"
+                                                               Content="清除缓存" />
+                            </Grid>
                         </StackPanel>
                     </ScrollViewer>
                 </PivotItem>

@@ -46,6 +46,7 @@ namespace BingoWallpaper.Uwp.ViewModels
             unityContainer.RegisterInstance(CreateNavigationService());
             unityContainer.RegisterType<IWallpaperService, LeanCloudWallpaperServiceWithCache>();
             unityContainer.RegisterType<ILeanCloudWallpaperService, LeanCloudWallpaperServiceWithCache>();
+            unityContainer.RegisterType<ILeanCloudWallpaperServiceWithCache, LeanCloudWallpaperServiceWithCache>();
             unityContainer.RegisterType<IScreenService, ScreenService>();
             unityContainer.RegisterType<ISystemSettingService, SystemSettingService>();
             unityContainer.RegisterType<IBingoFileService, BingoFileService>();
