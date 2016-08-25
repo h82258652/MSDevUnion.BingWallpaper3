@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Background;
 using Windows.Foundation.Metadata;
-using Windows.Graphics.Display;
 using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
@@ -125,9 +124,8 @@ namespace BingoWallpaper.Uwp.Views
                 Canvas.SetLeft(SplashScreenImage, rect.Left);
                 Canvas.SetTop(SplashScreenImage, rect.Top);
 
-                var scaleFactor = (double)DisplayInformation.GetForCurrentView().ResolutionScale / 100.0d;
-                SplashScreenImage.Width = rect.Width / scaleFactor;
-                SplashScreenImage.Height = rect.Height / scaleFactor;
+                SplashScreenImage.Width = rect.Width;
+                SplashScreenImage.Height = rect.Height;
             }
         }
 
