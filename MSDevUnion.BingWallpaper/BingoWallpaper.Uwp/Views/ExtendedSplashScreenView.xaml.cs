@@ -1,5 +1,6 @@
 ﻿using BingoWallpaper.BackgroundTask;
 using BingoWallpaper.Extensions;
+using BingoWallpaper.Helpers;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -125,9 +126,17 @@ namespace BingoWallpaper.Uwp.Views
                 Canvas.SetLeft(SplashScreenImage, rect.Left);
                 Canvas.SetTop(SplashScreenImage, rect.Top);
 
-                var scaleFactor = (double)DisplayInformation.GetForCurrentView().ResolutionScale / 100.0d;
-                SplashScreenImage.Width = rect.Width / scaleFactor;
-                SplashScreenImage.Height = rect.Height / scaleFactor;
+                if (DeviceFamilyHelper.IsMobile)
+                {
+                    var scaleFactor = (double)DisplayInformation.GetForCurrentView().ResolutionScale / 100.0d;
+                    SplashScreenImage.Width = rect.Width / scaleFactor;
+                    SplashScreenImage.Height = rect.Height / scaleFactor;
+                }
+                else
+                {
+                    SplashScreenImage.Width = rect.Width;
+                    SplashScreenImage.Height = rect.Height;
+                }
             }
         }
 
