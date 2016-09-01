@@ -5,6 +5,7 @@ using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media.Animation;
+using Windows.UI.Xaml.Navigation;
 using WinRTXamlToolkit.AwaitableUI;
 
 namespace BingoWallpaper.Uwp.Views
@@ -91,7 +92,7 @@ namespace BingoWallpaper.Uwp.Views
             ChooseShareGrid.Visibility = Visibility.Collapsed;
         }
 
-        private void RootFrame_Navigating(object sender, Windows.UI.Xaml.Navigation.NavigatingCancelEventArgs e)
+        private void RootFrame_Navigating(object sender, NavigatingCancelEventArgs e)
         {
             if (ChooseShareGrid.Visibility == Visibility.Visible)
             {
