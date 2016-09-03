@@ -8,7 +8,7 @@
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BingoWallpaper.Uwp</RootNamespace>
-    <AssemblyName>BingoWallpaper.Uwp</AssemblyName>
+    <AssemblyName>BingoWallpaper.Uwp.10586</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
@@ -366,13 +366,13 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BingoWallpaper.BackgroundTask\BingoWallpaper.BackgroundTask.csproj">
+    <ProjectReference Include="..\BingoWallpaper.BackgroundTask.10586\BingoWallpaper.BackgroundTask.10586.csproj">
       <Project>{87314e79-4eb0-4431-bb1f-fb449d40d05e}</Project>
-      <Name>BingoWallpaper.BackgroundTask</Name>
+      <Name>BingoWallpaper.BackgroundTask.10586</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BingoWallpaper.Configuration.Uwp\BingoWallpaper.Configuration.Uwp.csproj">
+    <ProjectReference Include="..\BingoWallpaper.Configuration.Uwp.10586\BingoWallpaper.Configuration.Uwp.10586.csproj">
       <Project>{705c0b5b-63b0-4ef3-817a-e8fc5adefc5a}</Project>
-      <Name>BingoWallpaper.Configuration.Uwp</Name>
+      <Name>BingoWallpaper.Configuration.Uwp.10586</Name>
     </ProjectReference>
     <ProjectReference Include="..\BingoWallpaper.Configuration\BingoWallpaper.Configuration.csproj">
       <Project>{242f3ee3-e03f-4a7e-b679-ba957acd0215}</Project>
@@ -382,17 +382,17 @@
       <Project>{62274e0e-9ab4-489f-b8e2-3e7ec0462b1e}</Project>
       <Name>BingoWallpaper.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BingoWallpaper.Services.Uwp\BingoWallpaper.Services.Uwp.csproj">
+    <ProjectReference Include="..\BingoWallpaper.Services.Uwp.10586\BingoWallpaper.Services.Uwp.10586.csproj">
       <Project>{e7e505fe-aa7c-41b0-a156-68322e2ec962}</Project>
-      <Name>BingoWallpaper.Services.Uwp</Name>
+      <Name>BingoWallpaper.Services.Uwp.10586</Name>
     </ProjectReference>
     <ProjectReference Include="..\BingoWallpaper.Services\BingoWallpaper.Services.csproj">
       <Project>{0566ba90-61fe-4703-a729-cf6258476673}</Project>
       <Name>BingoWallpaper.Services</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BingoWallpaper.Utils.Uwp\BingoWallpaper.Utils.Uwp.csproj">
+    <ProjectReference Include="..\BingoWallpaper.Utils.Uwp.10586\BingoWallpaper.Utils.Uwp.10586.csproj">
       <Project>{b0432459-6ca3-43d5-92d0-434e80e436e4}</Project>
-      <Name>BingoWallpaper.Utils.Uwp</Name>
+      <Name>BingoWallpaper.Utils.Uwp.10586</Name>
     </ProjectReference>
     <ProjectReference Include="..\BingoWallpaper.Utils\BingoWallpaper.Utils.csproj">
       <Project>{c523169b-c592-4fe4-a683-0a8189462efd}</Project>

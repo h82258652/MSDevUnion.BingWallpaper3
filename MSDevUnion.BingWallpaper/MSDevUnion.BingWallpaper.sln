@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BingoWallpaper.Uwp", "BingoWallpaper.Uwp\BingoWallpaper.Uwp.csproj", "{4D6FE44D-70F5-42D9-B051-E3C04C2E9B11}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BingoWallpaper.Uwp.10586", "BingoWallpaper.Uwp.10586\BingoWallpaper.Uwp.10586.csproj", "{4D6FE44D-70F5-42D9-B051-E3C04C2E9B11}"
 	ProjectSection(ProjectDependencies) = postProject
 		{87314E79-4EB0-4431-BB1F-FB449D40D05E} = {87314E79-4EB0-4431-BB1F-FB449D40D05E}
 	EndProjectSection
@@ -18,15 +18,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BingoWallpaper.Services.Uni
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BingoWallpaper.Configuration", "BingoWallpaper.Configuration\BingoWallpaper.Configuration.csproj", "{242F3EE3-E03F-4A7E-B679-BA957ACD0215}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BingoWallpaper.Configuration.Uwp", "BingoWallpaper.Configuration.Uwp\BingoWallpaper.Configuration.Uwp.csproj", "{705C0B5B-63B0-4EF3-817A-E8FC5ADEFC5A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BingoWallpaper.Configuration.Uwp.10586", "BingoWallpaper.Configuration.Uwp.10586\BingoWallpaper.Configuration.Uwp.10586.csproj", "{705C0B5B-63B0-4EF3-817A-E8FC5ADEFC5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BingoWallpaper.Services.Uwp", "BingoWallpaper.Services.Uwp\BingoWallpaper.Services.Uwp.csproj", "{E7E505FE-AA7C-41B0-A156-68322E2EC962}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BingoWallpaper.Services.Uwp.10586", "BingoWallpaper.Services.Uwp.10586\BingoWallpaper.Services.Uwp.10586.csproj", "{E7E505FE-AA7C-41B0-A156-68322E2EC962}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BingoWallpaper.RuntimeComponent", "BingoWallpaper.RuntimeComponent\BingoWallpaper.RuntimeComponent.vcxproj", "{90A86079-0DF4-47C1-8165-56AD498E4078}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BingoWallpaper.BackgroundTask", "BingoWallpaper.BackgroundTask\BingoWallpaper.BackgroundTask.csproj", "{87314E79-4EB0-4431-BB1F-FB449D40D05E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BingoWallpaper.BackgroundTask.10586", "BingoWallpaper.BackgroundTask.10586\BingoWallpaper.BackgroundTask.10586.csproj", "{87314E79-4EB0-4431-BB1F-FB449D40D05E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BingoWallpaper.Utils.Uwp", "BingoWallpaper.Utils.Uwp\BingoWallpaper.Utils.Uwp.csproj", "{B0432459-6CA3-43D5-92D0-434E80E436E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BingoWallpaper.Utils.Uwp.10586", "BingoWallpaper.Utils.Uwp.10586\BingoWallpaper.Utils.Uwp.10586.csproj", "{B0432459-6CA3-43D5-92D0-434E80E436E4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftwareKobo.Social.SinaWeibo.Core", "SoftwareKobo.Social.SinaWeibo.Core\SoftwareKobo.Social.SinaWeibo.Core.csproj", "{D0ECACE0-039D-473F-882A-BA9221749792}"
 EndProject
