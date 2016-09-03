@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("BingoWallpaper.Configuration.Uwp")]
+[assembly: AssemblyTitle("BingoWallpaper.Configuration.Uwp.10586")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("BingoWallpaper.Configuration.Uwp")]
+[assembly: AssemblyProduct("BingoWallpaper.Configuration.Uwp.10586")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
