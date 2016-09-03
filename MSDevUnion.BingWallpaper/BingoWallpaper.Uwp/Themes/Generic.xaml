@@ -5,7 +5,6 @@
         <ResourceDictionary Source="/Themes/ChooseShareControl.xaml" />
         <ResourceDictionary Source="/Themes/EllipseMask.xaml" />
         <ResourceDictionary Source="/Themes/ImageEx.xaml" />
-        <ResourceDictionary Source="/Themes/Shadow.xaml" />
         <ResourceDictionary Source="/Themes/ToastPrompt.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
