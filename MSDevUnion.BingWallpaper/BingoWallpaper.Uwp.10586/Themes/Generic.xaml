@@ -1,10 +1,10 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/Themes/BingoWallpaperButton.xaml" />
-        <ResourceDictionary Source="/Themes/ChooseShareControl.xaml" />
-        <ResourceDictionary Source="/Themes/EllipseMask.xaml" />
-        <ResourceDictionary Source="/Themes/ImageEx.xaml" />
-        <ResourceDictionary Source="/Themes/ToastPrompt.xaml" />
+        <ResourceDictionary Source="/Controls/BingoWallpaperButton.xaml" />
+        <ResourceDictionary Source="/Controls/ChooseShareControl.xaml" />
+        <ResourceDictionary Source="/Controls/EllipseMask.xaml" />
+        <ResourceDictionary Source="/Controls/ImageEx.xaml" />
+        <ResourceDictionary Source="/Controls/ToastPrompt.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
